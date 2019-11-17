@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:layout_margin="20dp"
     android:layout_width="match_parent"
@@ -9,9 +10,18 @@
     android:orientation="vertical">
 
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:scaleType="fitStart"
+        app:srcCompat="@drawable/splash" />
+
+
     <TextView
         android:textSize="30sp"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:text="Iniciar sesión"
         android:gravity="center"
         android:layout_width="match_parent"
@@ -44,6 +54,8 @@
         android:text="LOGIN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+
 
 
 </LinearLayout>

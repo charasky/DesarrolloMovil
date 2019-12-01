@@ -29,8 +29,8 @@ public class InicioActivity extends AppCompatActivity {
         btReporte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(InicioActivity.this, ReporteActivity.class);
-                startActivity(intent);
+                Intent intent2 = new Intent(InicioActivity.this, ReporteActivity.class);
+                startActivity(intent2);
             }
         });
 

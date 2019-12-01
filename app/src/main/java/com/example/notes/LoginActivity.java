@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                 password = editPassword.getText().toString();
 
                 if (!usuario.isEmpty() && !password.isEmpty()) {
-                    validarUsuario("http://10.114.1.77/proyecto/validar_usuario.php");
+                    validarUsuario("http://ec2-3-16-10-212.us-east-2.compute.amazonaws.com/proyecto/validar_usuario.php");
                 } else {
                     Toast.makeText(LoginActivity.this, "no se permiten campos vacio papu", Toast.LENGTH_SHORT).show();
                 }

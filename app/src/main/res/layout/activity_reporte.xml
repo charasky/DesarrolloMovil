@@ -6,79 +6,235 @@
     android:layout_height="match_parent"
     tools:context=".ReporteActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="15dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Entrevistador"
-            android:textSize="30sp">
-
-
-        </TextView>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="13dp"
+            tools:layout_editor_absoluteY="101dp">
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:text="Entrevistador"
+                android:textSize="30sp">
+
+
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <EditText
+                    android:id="@+id/editNombreEntrevistador"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:hint="Nombre">
+
+                </EditText>
+
+                <EditText
+                    android:id="@+id/editApellidoEntrevistador"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:hint="Apellido">
+
+                </EditText>
+            </LinearLayout>
 
             <EditText
-                android:id="@+id/editNombreEntrevistador"
-                android:layout_width="150dp"
+                android:id="@+id/editAsambleaEntrevistador"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_margin="10dp"
+                android:hint="Asamblea a la que pertenece">
+
+            </EditText>
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:text="Fecha"
+                android:textSize="20sp">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:text="Persona Entrevistada"
+                android:textSize="30sp">
+
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/checkVictima"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="Victima"
+                    android:textSize="20sp">
+
+                </CheckBox>
+
+                <CheckBox
+                    android:id="@+id/checkFamiliar"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="Familiar"
+                    android:textSize="20sp">
+
+                </CheckBox>
+
+                <EditText
+                    android:id="@+id/editOtro"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Otro:"
+                    android:textSize="20sp">
+
+                </EditText>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:text="Datos De Identidad De La Victima"
+                android:textSize="23sp">
+
+            </TextView>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
                 android:gravity="center"
-                android:hint="Nombre">
+                android:hint="Nombres y Apellidos"
+                android:textSize="20sp">
+
+            </EditText>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:hint="Genero"
+                    android:textSize="20sp">
+
+                </EditText>
+
+                <EditText
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:hint="Edad"
+                    android:inputType="number"
+                    android:textSize="20sp">
+
+                </EditText>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:hint="Nacionalidad"
+                    android:textSize="20sp">
+
+                </EditText>
+
+                <EditText
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:hint="N° Documento"
+                    android:inputType="number"
+                    android:textSize="20sp">
+
+                </EditText>
+
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:gravity="center"
+                android:hint="Direccion">
 
             </EditText>
 
             <EditText
-                android:id="@+id/editApellidoEntrevistador"
-                android:layout_width="150dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="15dp"
                 android:gravity="center"
-                android:hint="Apellido">
+                android:hint="Barrio"
+                android:textSize="20sp">
 
             </EditText>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="13dp"
+                android:gravity="center"
+                android:hint="Ciudad"
+                android:textSize="20sp">
+
+            </EditText>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:gravity="center"
+                android:hint="Provincia"
+                android:textSize="20sp">
+
+            </EditText>
+
         </LinearLayout>
-
-        <EditText
-            android:id="@+id/editAsambleaEntrevistador"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:hint="Asamblea a la que pertenece">
-
-        </EditText>
-
-
-        <DatePicker
-            android:layout_width="350dp"
-            android:layout_height="380dp"
-            android:layout_gravity="center">
-
-        </DatePicker>
-
-        <Button
-            android:id="@+id/btnSiguente"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:hint="Siguiente"
-            android:textSize="20dp"
-            android:layout_margin="15dp">
-
-        </Button>
-
-    </LinearLayout>
-
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

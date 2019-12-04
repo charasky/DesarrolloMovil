@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.notes">
+    package="com.lapoderosa.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Reporte3Activity"></activity>
-        <activity android:name=".Reporte2Activity" />
-        <activity android:name=".ReporteActivity" />
-        <activity android:name=".BusquedaActivity" />
-        <activity android:name=".InicioActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name="org.lapoderosa.app.Reporte3Activity"></activity>
+        <activity android:name="org.lapoderosa.app.Reporte2Activity" />
+        <activity android:name="org.lapoderosa.app.ReporteActivity" />
+        <activity android:name="org.lapoderosa.app.BusquedaActivity" />
+        <activity android:name="org.lapoderosa.app.InicioActivity" />
+        <activity android:name="org.lapoderosa.app.LoginActivity" />
+        <activity android:name="org.lapoderosa.app.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

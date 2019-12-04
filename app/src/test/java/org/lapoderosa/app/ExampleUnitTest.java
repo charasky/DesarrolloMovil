@@ -1,4 +1,4 @@
-package com.example.notes;
+package org.lapoderosa.app;
 
 import org.junit.Test;
 

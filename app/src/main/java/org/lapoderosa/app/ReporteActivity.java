@@ -1,4 +1,4 @@
-package com.example.notes;
+package org.lapoderosa.app;
 
 import android.app.DatePickerDialog;
 import android.graphics.Color;
@@ -10,6 +10,8 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.lapoderosa.app.R;
 
 import java.util.Calendar;
 

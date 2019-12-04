@@ -1,14 +1,16 @@
-package com.example.notes;
+package org.lapoderosa.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Reporte2Activity extends AppCompatActivity {
+import com.lapoderosa.app.R;
+
+public class Reporte3Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reporte2);
+        setContentView(R.layout.activity_reporte3);
     }
 }

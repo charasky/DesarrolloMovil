@@ -1,8 +1,10 @@
-package com.example.notes;
+package org.lapoderosa.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.lapoderosa.app.R;
 
 public class BusquedaActivity extends AppCompatActivity {
 

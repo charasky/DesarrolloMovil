@@ -59,7 +59,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_margin="20dp"
             android:text="Datos De Identidad De La Victima"
             android:textSize="23sp">

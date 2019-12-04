@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
+    android:layout_margin="22dp"
     android:gravity="center"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    app:layout_editor_absoluteX="10dp"
+    app:layout_editor_absoluteY="10dp">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:scaleType="fitStart"
+        android:layout_above="@id/centerTextView"
+        android:foregroundGravity="center"
+        android:padding="5dp"
         app:srcCompat="@drawable/splash" />
 
-
     <TextView
+        android:id="@+id/centerTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_margin="20dp"
         android:gravity="center"
         android:text="Iniciar sesión"
@@ -30,14 +35,15 @@
         android:id="@+id/etUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/centerTextView"
         android:drawableLeft="@drawable/icon_email"
         android:hint="Usuario" />
-
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/etUserName"
         android:drawableLeft="@drawable/icon_lock"
         android:hint="Contraseña"
         android:inputType="textPassword" />
@@ -46,10 +52,28 @@
         android:id="@+id/btLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/etPassword"
         android:background="#FA5858"
         android:text="LOGIN"
         android:textColor="#FFF"
         android:textSize="18sp" />
 
+    <TextView
+        android:id="@+id/etOlvidastesContraseña"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/etRegistrarse"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="¿Olvidastes la contraseña?"
+        android:textSize="15sp" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/etRegistrarse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="Registrarse"
+        android:textSize="15sp" />
+</RelativeLayout>

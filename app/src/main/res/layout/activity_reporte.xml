@@ -9,93 +9,103 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        android:scrollbars="none"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="13dp"
-            tools:layout_editor_absoluteY="101dp">
+            android:orientation="vertical">
 
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:text="Entrevistador"
-                android:textSize="30sp">
+                android:layout_width="match_parent"
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Entrevistador:"
+                    android:textSize="30sp">
+                </TextView>
 
-            </TextView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editNombreEntrevistador"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Nombre">
+
+                    </EditText>
+
+                    <EditText
+                        android:id="@+id/editApellidoEntrevistador"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Apellido">
+
+                    </EditText>
+                </LinearLayout>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-                <EditText
-                    android:id="@+id/editNombreEntrevistador"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
-                    android:hint="Nombre">
-
-                </EditText>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editApellidoEntrevistador"
-                    android:layout_width="150dp"
+                    android:id="@+id/editAsambleaEntrevistador"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
-                    android:hint="Apellido">
-
+                    android:layout_weight="2"
+                    android:hint="Asamblea a la que pertenece">
                 </EditText>
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Fecha"
+                    android:textSize="20sp">
+                </TextView>
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/editAsambleaEntrevistador"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:hint="Asamblea a la que pertenece">
-
-            </EditText>
+        <RelativeLayout
+            android:layout_marginTop="35dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tvDate"
+                android:id="@+id/textViewPersonaEntrevistada"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:text="Fecha"
-                android:textSize="20sp">
-
-            </TextView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:text="Persona Entrevistada"
+                android:text="Persona Entrevistada:"
                 android:textSize="30sp">
-
             </TextView>
 
             <LinearLayout
+                android:layout_below="@+id/textViewPersonaEntrevistada"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <CheckBox
                     android:id="@+id/checkVictima"
-                    android:layout_width="110dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Victima"
                     android:textSize="20sp">
 
@@ -103,8 +113,9 @@
 
                 <CheckBox
                     android:id="@+id/checkFamiliar"
-                    android:layout_width="110dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Familiar"
                     android:textSize="20sp">
 
@@ -112,28 +123,30 @@
 
                 <EditText
                     android:id="@+id/editOtro"
-                    android:layout_width="150dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:hint="Otro:"
                     android:textSize="20sp">
 
                 </EditText>
             </LinearLayout>
+        </RelativeLayout>
+
 
             <TextView
+                android:layout_marginTop="35dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:text="Datos De Identidad De La Victima"
-                android:textSize="23sp">
+                android:text="Datos De Identidad De La Victima:"
+                android:textSize="28sp">
 
             </TextView>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
                 android:gravity="center"
                 android:hint="Nombres y Apellidos"
                 android:textSize="20sp">
@@ -146,9 +159,9 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:layout_width="180dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     android:gravity="center"
                     android:hint="Genero"
                     android:textSize="20sp">
@@ -156,9 +169,9 @@
                 </EditText>
 
                 <EditText
-                    android:layout_width="180dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     android:gravity="center"
                     android:hint="Edad"
                     android:inputType="number"
@@ -174,9 +187,9 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:layout_width="180dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     android:gravity="center"
                     android:hint="Nacionalidad"
                     android:textSize="20sp">
@@ -184,9 +197,9 @@
                 </EditText>
 
                 <EditText
-                    android:layout_width="180dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     android:gravity="center"
                     android:hint="N° Documento"
                     android:inputType="number"
@@ -199,7 +212,6 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
                 android:gravity="center"
                 android:hint="Direccion">
 
@@ -208,7 +220,6 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
                 android:gravity="center"
                 android:hint="Barrio"
                 android:textSize="20sp">
@@ -218,7 +229,6 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="13dp"
                 android:gravity="center"
                 android:hint="Ciudad"
                 android:textSize="20sp">
@@ -228,11 +238,9 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
                 android:gravity="center"
                 android:hint="Provincia"
                 android:textSize="20sp">
-
             </EditText>
 
         </LinearLayout>

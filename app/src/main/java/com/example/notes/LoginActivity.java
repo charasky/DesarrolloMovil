@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (!usuario.isEmpty() && !password.isEmpty()) {
                     validarUsuario("http://ec2-3-16-10-212.us-east-2.compute.amazonaws.com/proyecto/validar_usuario.php");
                 } else {
-                    Toast.makeText(LoginActivity.this, "no se permiten campos vacio papu", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Ingrese usuario y contraseña", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -107,8 +107,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void recuperarPreferencias(){
         SharedPreferences preferences = getSharedPreferences("preferenciasLogin",Context.MODE_PRIVATE);
-        editUsuario.setText(preferences.getString("usuario","micorreo@gmail.com"));
-        editPassword.setText(preferences.getString("password","123456"));
+        editUsuario.setText(preferences.getString("usuario",""));
+        editPassword.setText(preferences.getString("password",""));
     }
 }
 

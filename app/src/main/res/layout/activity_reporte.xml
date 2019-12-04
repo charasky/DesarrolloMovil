@@ -10,239 +10,3292 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="20dp"
-        android:scrollbars="none"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Entrevistador:"
-                    android:textSize="30sp">
-                </TextView>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/editNombreEntrevistador"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="Nombre">
-
-                    </EditText>
-
-                    <EditText
-                        android:id="@+id/editApellidoEntrevistador"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="Apellido">
-
-                    </EditText>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/editAsambleaEntrevistador"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:hint="Asamblea a la que pertenece">
-                </EditText>
-
-                <TextView
-                    android:id="@+id/tvDate"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Fecha"
-                    android:textSize="20sp">
-                </TextView>
-            </LinearLayout>
-
-        <RelativeLayout
-            android:layout_marginTop="35dp"
-            android:layout_width="match_parent"
+            android:layout_margin="15dp"
             android:orientation="vertical"
-            android:layout_height="wrap_content">
+            tools:layout_editor_absoluteX="13dp"
+            tools:layout_editor_absoluteY="101dp">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="Entrevistador"
+            android:textSize="23sp"
+            android:textStyle="bold">
+
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
             <TextView
-                android:id="@+id/textViewPersonaEntrevistada"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Persona Entrevistada:"
-                android:textSize="30sp">
-            </TextView>
-
-            <LinearLayout
-                android:layout_below="@+id/textViewPersonaEntrevistada"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <CheckBox
-                    android:id="@+id/checkVictima"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Victima"
-                    android:textSize="20sp">
-
-                </CheckBox>
-
-                <CheckBox
-                    android:id="@+id/checkFamiliar"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Familiar"
-                    android:textSize="20sp">
-
-                </CheckBox>
-
-                <EditText
-                    android:id="@+id/editOtro"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Otro:"
-                    android:textSize="20sp">
-
-                </EditText>
-            </LinearLayout>
-        </RelativeLayout>
-
-
-            <TextView
-                android:layout_marginTop="35dp"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Datos De Identidad De La Victima:"
-                android:textSize="28sp">
+                android:gravity="right"
+                android:text="Nombres:"
+                android:textSize="20dp">
+
 
             </TextView>
 
             <EditText
-                android:layout_width="match_parent"
+                android:id="@+id/edtNombreEntrevistador"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="Nombres y Apellidos"
-                android:textSize="20sp">
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Apellidos:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtApellidoEntrevistador"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvDateEntrevista"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Fecha"
+            android:textSize="20sp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="Persona Entrevistada"
+            android:textSize="23sp"
+            android:textStyle="bold">
+
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Victima"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtVictima"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Familiar"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtFamiliar"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="Otro: "
+                android:textSize="20dp">
+
+            </TextView>
+
+            <EditText
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
 
             </EditText>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="Datos De Identidad De La Victima"
+            android:textSize="23sp"
+            android:textStyle="bold">
+
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Nombres:"
+                android:textSize="20dp">
 
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:hint="Genero"
-                    android:textSize="20sp">
 
-                </EditText>
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:hint="Edad"
-                    android:inputType="number"
-                    android:textSize="20sp">
-
-                </EditText>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:hint="Nacionalidad"
-                    android:textSize="20sp">
-
-                </EditText>
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:hint="N° Documento"
-                    android:inputType="number"
-                    android:textSize="20sp">
-
-                </EditText>
-
-            </LinearLayout>
+            </TextView>
 
             <EditText
-                android:layout_width="match_parent"
+                android:id="@+id/edtNombreVictima"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="Direccion">
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textSize="10sp">
 
             </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Apellidos:"
+                android:textSize="20dp">
+
+
+            </TextView>
 
             <EditText
-                android:layout_width="match_parent"
+                android:id="@+id/edtApellidoVictima"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="Barrio"
-                android:textSize="20sp">
+                android:layout_gravity="left"
+                android:textSize="10sp">
 
             </EditText>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Genero:"
+                android:textSize="20dp">
+
+
+            </TextView>
 
             <EditText
-                android:layout_width="match_parent"
+                android:id="@+id/edtGenero"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="Ciudad"
-                android:textSize="20sp">
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textSize="10sp">
 
             </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Edad:"
+                android:textSize="20dp">
+
+
+            </TextView>
 
             <EditText
-                android:layout_width="match_parent"
+                android:id="@+id/edtEdad"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="Provincia"
-                android:textSize="20sp">
+                android:layout_gravity="left"
+                android:inputType="number"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Nacionalidad:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtNacionalidad"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:inputType="number"
+                android:text="N° Documento:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtDocumento"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Direccion:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtDireccionVictima"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Barrio:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtBarrioVictima"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Telefono:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtTelefono"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:inputType="number"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="Descripcion General Del Hecho"
+            android:textSize="23sp"
+            android:textStyle="bold">
+
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvDateHecho"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="Fecha"
+            android:textSize="20sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="Hora"
+            android:textSize="20sp">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Direccion:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtDireccionHecho"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Barrio:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtBarrioHecho"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="10sp">
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Ciudad:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtCiudad"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Provincia:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtProvincia"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="¿Se encontraba acompañado?"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="No "
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtNoAcompañado"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content">
+
+            </RadioButton>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Si "
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtSiAcompañado"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content">
+
+            </RadioButton>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Cuantos:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtCuantosAcompañan"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:inputType="number"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="¿Donde se encontraba?"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Via Publica "
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtSiViaPublica"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content">
+
+            </RadioButton>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Domicilio "
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtSiDomicilio"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content">
+
+            </RadioButton>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Cual:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtCualLugar"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="Fuerzas Intervinientes"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Provincial/Federal/Local:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtFuerzasIntervinientes"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="Funcionarios Intervinientes"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="  Agentes:"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Cantidad:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtCantidadAgentes"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:inputType="number"
+                android:textSize="10sp">
+
             </EditText>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Nombre y/o Apellido:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtNombresAgentes"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Apodos/otro:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtApodos"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textSize="10sp">
+
+            </EditText>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="  Vehiculos:"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Cantidad:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtCantidadVehiculos"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:inputType="number"
+                android:textSize="10sp">
+
+            </EditText>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="N° Movil:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtNumMovil"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:inputType="number"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Dominio:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtDominio"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="¿Que hacian los Funcionarios?"
+            android:textSize="20sp"
+            android:textStyle="normal"></TextView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Parados en Consigna:"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Caminando:"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="En Movil:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <RadioButton
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Donde:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtDondeEstaban"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Otra Conducta:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtOtraConducta"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="Caracteristicas del Procedimiento"
+            android:textSize="23sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="¿Le informaron los motivos del procedimiento?"
+            android:textSize="23sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="No"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtNoMotivos"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Si"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtSiMotivos"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="Cual:"
+            android:textSize="20sp"
+            android:textStyle="normal"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Acusacion de un delito/contravencion:"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtDelito"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Averiguacion de Identidad/Antecedentes:"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtAveriguacion"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Requiza:"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtRequiza"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="¿Recibio malos tratos y/o agresiones?"
+            android:textSize="20sp"
+            android:textStyle="normal"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="No"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtNoMaltratos"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Si"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtSiMaltratos"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="Cual/es:"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Verbales:"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtVerbales"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Fisicos:"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtFisicos"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Amenazas:"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtAmenazas"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Robo/daño de pertenencias:"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtDañoPertenencias"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Requiza humillante o vejatoria:"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtRequizaHumillante"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Otra:"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtOtra"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textSize="10sp">
+
+            </EditText>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="¿Hubo Lesiones?"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="No"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtNoLesiones"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Si"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/rbtSiLesiones"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="¿De que tipo?"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Fisica:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtFisica"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Psiquica:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtPsiquica"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Insomnio/Panico/Otros miedos:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtInsomnioPanico"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Otros:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtOtrosMiedos"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="Modalidad De Detencion"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Parado:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtTiempoParado"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:hint="Cuanto Tiempo?"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Arrodillado:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtTiempoArrodillado"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:hint="Cuanto Tiempo?"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Acostado:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtTiempoAcostado"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:hint="Cuanto Tiempo?"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Otro:"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtOtraModalidad"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:hint="Describe"
+                android:textSize="10sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="¿Lo Trasladaron a algun lugar diferente de donde lo abordaron?"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="No"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/noTrasladaron"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Si"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/siTrasladaron"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="¿Donde?"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/dondeTrasladaron"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+            </EditText>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="¿Fue conducido a una comisaria, garita/dependencia?"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="No"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/noComisaria"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Si"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/siComisaria"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="¿A cual?"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtCualComisaria"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+            </EditText>
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="¿Fuaron esposados?"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="No"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/noEsposados"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Si"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/siEsposados"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="Solo Allanamientos"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="¿Le mostraron la orden de allanamiento?"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="No"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/noOrdenAllanamiento"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Si"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/siOrdenAllanamiento"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="¿Las personas que estaban en el domicilio recibieron agresiones?"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="No"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/noAgresionesDomicilio"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Si"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/siAgresionesDomicilio"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="¿Cuales?"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtCualesAgresionesDomicilio"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="Describe">
+
+            </EditText>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="¿Las pertenencias que estaban en el domicilio fueron dañadas y/o robadas?"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="No"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/noPertenenciasRobadas"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Si"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/siPertenenciasRobadas"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="¿Cuales?"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtCualesPertenencias"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="Describe">
+
+            </EditText>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="¿Se llevaron pertenencias que no incorporaron en el acta?"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="No"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/noOmitieronPertenencias"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Si"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/siOmitieronPertenencias"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="¿Cuales?"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtCualesOmitieron"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="Describe">
+
+            </EditText>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="¿Fueron detenidas personas en el domicilio?"
+            android:textSize="20sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="No"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/noDetenidos"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Si"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <RadioButton
+                android:id="@+id/siDetenidos"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </RadioButton>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="¿Cuantas?"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtCuantosDetenidos"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="number">
+
+            </EditText>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:text="¿Cuanto duro el procedimiento?"
+                android:textSize="20sp"
+                android:textStyle="normal">
+
+            </TextView>
+            <EditText
+                android:id="@+id/edtTiempoAllanamiento"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="number">
+
+            </EditText>
+        </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:text="¿En que posicion fisica estuvieron las personas que estaban en el lugar?"
+                android:textSize="20sp"
+                android:textStyle="normal">
+
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="Parado"
+                    android:textSize="20dp">
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtParado"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="Arrodillado"
+                    android:textSize="20dp">
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtArrodillado"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="Acostado"
+                    android:textSize="20dp">
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtAcostado"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="Otro:"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/edtOtraPosicion"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:hint="Describe"
+                    android:textSize="10sp">
+
+                </EditText>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:text="¿Fuaron esposados?"
+                android:textSize="20sp"
+                android:textStyle="normal">
+
+            </TextView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="No"
+                    android:textSize="20dp">
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/noEsposadosAllanamiento"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="Si"
+                    android:textSize="20dp">
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/SiEsposadosAllanamiento"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:text="Omision De Actuar"
+                android:textSize="23sp"
+                android:textStyle="bold">
+
+
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="¿Por que medios pidio asistencia?"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/edtMedioAsistencia"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:textSize="10sp">
+
+                </EditText>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="¿A quien?"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/edtAQuien"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:textSize="10sp">
+
+                </EditText>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="¿Concurrio a una denuncia y no se la tomaron?"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="No"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtNoDenuncia"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="Si"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtSiDenuncia"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="¿Por que motivos?"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/edtMotivos"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:textSize="10sp">
+
+                </EditText>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="¿Se sintio violentado?"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="No"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtNoViolentado"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="Si"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtSiViolentado"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:text="Denuncia"
+                android:textSize="23sp"
+                android:textStyle="bold">
+
+
+            </TextView>
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="¿Hizo la denuncia?"
+                android:textSize="20dp">
+
+
+            </TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="Si"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtSiHizoDenuncia"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="¿Donde?"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/edtDonde"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:textSize="10sp">
+
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="No"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtNoHizoDenuncia"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="¿Por que?"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/edtPorQueNo"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:textSize="10sp">
+
+                </EditText>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="No Sabe"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtNoSabeHacerDenuncia"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="Resultado de la investigacion"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="Condena"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtCondena"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="Absolucion"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtAbsolucion"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="Causa en tramite"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtCausaEnTramite"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="Archivo/Desestimacion"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtArchivo"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="No Sabe"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtNoSabeResultado"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text="¿El o los oficiales siguen trabajando en la fuerza de seguridad?"
+                android:textSize="20dp">
+
+
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="No"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtNoTrabajaMas"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="Si"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <RadioButton
+                    android:id="@+id/rbtSiTrabaja"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:text=""
+                android:textSize="20dp">
+
+
+            </TextView>
+
+        </LinearLayout>
+
+
+
     </ScrollView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.50121653" />
 </androidx.constraintlayout.widget.ConstraintLayout>

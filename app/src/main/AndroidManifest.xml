@@ -12,8 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="org.lapoderosa.app.Reporte3Activity"></activity>
-        <activity android:name="org.lapoderosa.app.Reporte2Activity" />
         <activity android:name="org.lapoderosa.app.ReporteActivity" />
         <activity android:name="org.lapoderosa.app.BusquedaActivity" />
         <activity android:name="org.lapoderosa.app.InicioActivity" />

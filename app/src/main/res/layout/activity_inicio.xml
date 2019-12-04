@@ -38,6 +38,4 @@
         android:text="Cerrar Sesión"
         android:textColor="#fff"
         android:textSize="18sp" />
-
-
 </RelativeLayout>

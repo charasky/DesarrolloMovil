@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
@@ -18,12 +19,13 @@ import java.util.Calendar;
 
 public class ReporteActivity extends AppCompatActivity {
 
-
+    Button btnGuardar;
     private static final String TAG = "ReporteActivity";
 
     private TextView tvDate1,tvDate2,tvHora1;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private TimePickerDialog.OnTimeSetListener timeSetListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

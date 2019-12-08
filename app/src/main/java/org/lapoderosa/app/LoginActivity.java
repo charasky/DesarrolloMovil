@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                 password = editPassword.getText().toString();
 
                 if (!usuario.isEmpty() && !password.isEmpty()) {
-                    validarUsuario("http://ec2-3-16-10-212.us-east-2.compute.amazonaws.com/proyecto/validar_usuario.php");
+                    validarUsuario("http://3.136.55.99/proyecto/validar_usuario.php");
                 } else {
                     Toast.makeText(LoginActivity.this, "Ingrese usuario y contraseña", Toast.LENGTH_SHORT).show();
                 }

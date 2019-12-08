@@ -3284,11 +3284,18 @@
                 android:textSize="20dp">
 
 
+
             </TextView>
+            <Button
+                android:id="@+id/btnGuardar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FA5858"
+                android:text="GUARDAR"
+                android:textColor="#FFF"
+                android:textSize="18sp" />
 
         </LinearLayout>
-
-
 
     </ScrollView>
 

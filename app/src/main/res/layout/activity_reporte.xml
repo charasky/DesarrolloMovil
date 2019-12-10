@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="right"
-                android:text="Nombres:"
+                android:text="Nombre:"
                 android:textSize="20dp">
 
 
@@ -54,9 +54,8 @@
                 android:id="@+id/edtNombreEntrevistador"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="right"
-                android:textSize="10sp">
+                android:layout_gravity="left"
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -83,10 +82,37 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="Asamblea:"
+                    android:textSize="20dp">
+
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/edtAsamblea"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:textSize="20sp">
+
+                </EditText>
+            </LinearLayout>
 
         <TextView
             android:id="@+id/tvDateEntrevista"
@@ -177,9 +203,11 @@
             </TextView>
 
             <EditText
+                android:id="@+id/edtOtroParentesco"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:gravity="center"
+                android:textSize="20dp">
 
             </EditText>
 
@@ -220,7 +248,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="right"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -247,7 +275,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -275,7 +303,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="right"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -303,7 +331,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:inputType="number"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -331,7 +359,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="right"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -359,7 +387,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -387,7 +415,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -414,7 +442,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -442,7 +470,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:inputType="number"
-                android:textSize="10sp">
+                android:maxLength="15"
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -504,7 +533,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -531,7 +560,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:textSize="10sp">
+                android:textSize="20sp">
             </EditText>
         </LinearLayout>
 
@@ -557,7 +586,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -584,7 +613,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -672,7 +701,7 @@
                 android:layout_gravity="center"
                 android:gravity="right"
                 android:inputType="number"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -759,7 +788,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="right"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -798,7 +827,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="right"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -850,7 +879,7 @@
                 android:layout_gravity="center"
                 android:gravity="right"
                 android:inputType="number"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
 
@@ -878,7 +907,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="right"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -905,7 +934,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="right"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
 
@@ -946,7 +975,7 @@
                 android:layout_gravity="center"
                 android:gravity="right"
                 android:inputType="number"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
 
@@ -975,7 +1004,7 @@
                 android:layout_gravity="center"
                 android:gravity="right"
                 android:inputType="number"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -1003,7 +1032,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="right"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -1015,7 +1044,9 @@
             android:layout_margin="15dp"
             android:text="¿Que hacian los Funcionarios?"
             android:textSize="20sp"
-            android:textStyle="normal"></TextView>
+            android:textStyle="normal">
+
+        </TextView>
 
 
         <LinearLayout
@@ -1113,7 +1144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="right"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -1140,7 +1171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="right"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -1530,7 +1561,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="right"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
 
@@ -1633,7 +1664,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="right"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -1660,7 +1691,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="right"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -1687,7 +1718,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="right"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -1714,7 +1745,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="right"
-                android:textSize="10sp">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
@@ -1753,7 +1784,7 @@
                 android:layout_gravity="center"
                 android:gravity="right"
                 android:hint="Cuanto Tiempo?"
-                android:textSize="10sp">
+                android:textSize="20dp">
 
             </EditText>
         </LinearLayout>
@@ -1781,7 +1812,7 @@
                 android:layout_gravity="center"
                 android:gravity="right"
                 android:hint="Cuanto Tiempo?"
-                android:textSize="10sp">
+                android:textSize="20dp">
 
             </EditText>
         </LinearLayout>
@@ -1809,7 +1840,7 @@
                 android:layout_gravity="center"
                 android:gravity="right"
                 android:hint="Cuanto Tiempo?"
-                android:textSize="10sp">
+                android:textSize="20dp">
 
             </EditText>
         </LinearLayout>
@@ -1837,7 +1868,7 @@
                 android:layout_gravity="center"
                 android:gravity="right"
                 android:hint="Describe"
-                android:textSize="10sp">
+                android:textSize="20dp">
 
             </EditText>
         </LinearLayout>
@@ -1848,7 +1879,7 @@
             android:layout_gravity="center"
             android:layout_margin="15dp"
             android:text="¿Lo Trasladaron a algun lugar diferente de donde lo abordaron?"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:textStyle="normal">
 
         </TextView>
@@ -1923,7 +1954,8 @@
                 android:id="@+id/dondeTrasladaron"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:gravity="center"
+                android:textSize="20dp">
 
             </EditText>
 
@@ -2011,7 +2043,8 @@
                 android:id="@+id/edtCualComisaria"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:gravity="center"
+                android:textSize="20dp">
 
             </EditText>
 
@@ -2089,7 +2122,7 @@
             android:layout_gravity="center"
             android:layout_margin="15dp"
             android:text="Solo Allanamientos"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:textStyle="normal">
 
         </TextView>
@@ -2100,7 +2133,7 @@
             android:layout_gravity="center"
             android:layout_margin="15dp"
             android:text="¿Le mostraron la orden de allanamiento?"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:textStyle="normal">
 
         </TextView>
@@ -2162,7 +2195,7 @@
             android:layout_gravity="center"
             android:layout_margin="15dp"
             android:text="¿Las personas que estaban en el domicilio recibieron agresiones?"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:textStyle="normal">
 
         </TextView>
@@ -2238,7 +2271,8 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:hint="Describe">
+                android:hint="Describe"
+                android:textSize="20dp">
 
             </EditText>
 
@@ -2251,7 +2285,7 @@
             android:layout_gravity="center"
             android:layout_margin="15dp"
             android:text="¿Las pertenencias que estaban en el domicilio fueron dañadas y/o robadas?"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:textStyle="normal">
 
         </TextView>
@@ -2327,7 +2361,8 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:hint="Describe">
+                android:hint="Describe"
+                android:textSize="20dp">
 
             </EditText>
 
@@ -2340,7 +2375,7 @@
             android:layout_gravity="center"
             android:layout_margin="15dp"
             android:text="¿Se llevaron pertenencias que no incorporaron en el acta?"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:textStyle="normal">
 
         </TextView>
@@ -2416,7 +2451,8 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:hint="Describe">
+                android:hint="Describe"
+                android:textSize="20dp">
 
             </EditText>
 
@@ -2429,7 +2465,7 @@
             android:layout_gravity="center"
             android:layout_margin="15dp"
             android:text="¿Fueron detenidas personas en el domicilio?"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:textStyle="normal">
 
         </TextView>
@@ -2505,7 +2541,8 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:inputType="number">
+                android:inputType="number"
+                android:textSize="20dp">
 
             </EditText>
 
@@ -2524,7 +2561,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
                 android:text="¿Cuanto duro el procedimiento?"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 android:textStyle="normal">
 
             </TextView>
@@ -2533,7 +2570,8 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:inputType="number">
+                android:inputType="number"
+                android:textSize="20dp">
 
             </EditText>
         </LinearLayout>
@@ -2544,7 +2582,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
                 android:text="¿En que posicion fisica estuvieron las personas que estaban en el lugar?"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 android:textStyle="normal">
 
             </TextView>
@@ -2650,7 +2688,7 @@
                     android:layout_gravity="center"
                     android:gravity="right"
                     android:hint="Describe"
-                    android:textSize="10sp">
+                    android:textSize="20dp">
 
                 </EditText>
             </LinearLayout>
@@ -2660,7 +2698,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
                 android:text="¿Fuaron esposados?"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 android:textStyle="normal">
 
             </TextView>
@@ -2752,7 +2790,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="right"
-                    android:textSize="10sp">
+                    android:textSize="20sp">
 
                 </EditText>
             </LinearLayout>
@@ -2778,7 +2816,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="right"
-                    android:textSize="10sp">
+                    android:textSize="20dp">
 
                 </EditText>
             </LinearLayout>
@@ -2865,7 +2903,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="right"
-                    android:textSize="10sp">
+                    android:textSize="20dp">
 
                 </EditText>
             </LinearLayout>
@@ -2936,7 +2974,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
                 android:text="Denuncia"
-                android:textSize="23sp"
+                android:textSize="23dp"
                 android:textStyle="bold">
 
 
@@ -2998,7 +3036,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="right"
-                    android:textSize="10sp">
+                    android:textSize="20dp">
 
                 </EditText>
             </LinearLayout>
@@ -3049,7 +3087,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="right"
-                    android:textSize="10sp">
+                    android:textSize="20dp">
 
                 </EditText>
             </LinearLayout>
@@ -3284,8 +3322,8 @@
                 android:textSize="20dp">
 
 
-
             </TextView>
+
             <Button
                 android:id="@+id/btnGuardar"
                 android:layout_width="match_parent"
@@ -3293,9 +3331,11 @@
                 android:background="#FA5858"
                 android:text="GUARDAR"
                 android:textColor="#FFF"
-                android:textSize="18sp" />
+                android:textSize="20dp" />
 
         </LinearLayout>
+
+
 
     </ScrollView>
 

@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegistrarseActivity extends AppCompatActivity {
-    EditText mNombre, mApellido, mEmail, mPassword, mPassword2, mAsamblea;
+    EditText mNombres, mApellidos, mEmail, mPassword, mPassword2, mAsamblea;
     Button mRegistrarBtn;
     TextView mLogin;
     ProgressBar progressBar;
@@ -37,15 +37,15 @@ public class RegistrarseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrarse);
 
-        mAsamblea = findViewById(R.id.mAsamblea);
-        mNombre = findViewById(R.id.mName);
-        mApellido = findViewById(R.id.mApellido);
-        mEmail = findViewById(R.id.mEmail);
-        mPassword = findViewById(R.id.mPassword);
-        mPassword2 = findViewById(R.id.mPassword2);
+        mAsamblea = findViewById(R.id.dmAsamblea);
+        mNombres = findViewById(R.id.dmName);
+        mApellidos = findViewById(R.id.dmApellido);
+        mEmail = findViewById(R.id.dmEmail);
+        mPassword = findViewById(R.id.dmPassword1);
+        mPassword2 = findViewById(R.id.dmPassword2);
 
-        mRegistrarBtn = findViewById(R.id.mRegistrarseBtn);
-        mLogin = findViewById(R.id.mLogin);
+        mRegistrarBtn = findViewById(R.id.dmRegistrarseBtn);
+        mLogin = findViewById(R.id.dmLogin);
         progressBar = findViewById(R.id.progressBar);
 
         mLogin.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +74,7 @@ public class RegistrarseActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Operacion Exitosa", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Nueva cuenta con exito", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -83,13 +83,12 @@ public class RegistrarseActivity extends AppCompatActivity {
             }
         }) {
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parametros = new HashMap<>();
-                parametros.put("usu_nombre", mNombre.getText().toString());
-                parametros.put("usu_asamblea", mAsamblea.getText().toString());
-                parametros.put("usu_apellidos", mApellido.getText().toString());
+                Map<String, String> parametros = new HashMap<String, String>();
                 parametros.put("usu_usuario", mEmail.getText().toString());
                 parametros.put("usu_password", mPassword.getText().toString());
-                parametros.put("usu_validacion", "0");
+                parametros.put("usu_nombres", mNombres.getText().toString());
+                parametros.put("usu_apellidos", mApellidos.getText().toString());
+                parametros.put("usu_asamblea", mAsamblea.getText().toString());
                 return parametros;
             }
         };

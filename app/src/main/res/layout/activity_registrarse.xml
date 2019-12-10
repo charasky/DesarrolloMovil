@@ -13,30 +13,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_above="@+id/mAsamblea"
+        android:layout_above="@+id/dmAsamblea"
         android:text="Registrarse"
         android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/mAsamblea"
+        android:id="@+id/dmAsamblea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Asamblea"
-        android:layout_above="@+id/mName"
+        android:layout_above="@+id/dmName"
         android:layout_marginTop="10dp"
         android:textSize="20dp" />
 
     <EditText
-        android:id="@+id/mName"
+        android:id="@+id/dmName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nombre"
-        android:layout_above="@+id/mApellido"
+        android:layout_above="@+id/dmApellido"
         android:layout_marginTop="10dp"
         android:textSize="20dp" />
 
     <EditText
-        android:id="@+id/mApellido"
+        android:id="@+id/dmApellido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -46,40 +46,40 @@
         android:textSize="20dp" />
 
     <EditText
-        android:id="@+id/mEmail"
+        android:id="@+id/dmEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mApellido"
+        android:layout_below="@+id/dmApellido"
         android:layout_marginTop="10dp"
         android:hint="Email"
         android:textSize="20dp" />
 
     <EditText
-        android:id="@+id/mPassword"
+        android:id="@+id/dmPassword1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/mEmail"
+        android:layout_below="@id/dmEmail"
         android:layout_marginTop="10dp"
         android:hint="Contraseña"
         android:inputType="textPassword"
         android:textSize="20dp" />
 
     <EditText
-        android:id="@+id/mPassword2"
+        android:id="@+id/dmPassword2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mPassword"
+        android:layout_below="@+id/dmPassword1"
         android:layout_marginTop="10dp"
         android:hint="Confirmar contraseña"
         android:inputType="textPassword"
         android:textSize="20dp" />
 
     <Button
-        android:id="@+id/mRegistrarseBtn"
-        android:layout_marginTop="50dp"
+        android:id="@+id/dmRegistrarseBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mPassword2"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/dmPassword2"
         android:gravity="center"
         android:background="#FA5858"
         android:text="Registrarse"
@@ -87,22 +87,22 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/mLogin"
+        android:id="@+id/dmLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mRegistrarseBtn"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/dmRegistrarseBtn"
         android:gravity="center"
-        android:padding="20dp"
-        android:text="¿Estas Registrado?, Inicia Sesion"
+        android:text="¿Ya estas Registrado?, Inicia Sesion"
         android:textSize="15sp" />
 
     <ProgressBar
-        android:layout_below="@+id/mLogin"
+        android:layout_below="@+id/dmLogin"
         android:id="@+id/progressBar"
+        android:layout_marginTop="15dp"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
         android:visibility="invisible" />
 </RelativeLayout>

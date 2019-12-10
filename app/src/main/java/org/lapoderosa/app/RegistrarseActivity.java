@@ -25,19 +25,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegistrarseActivity extends AppCompatActivity {
-    String URL = "http://192.168.0.6/phpmyadmin/";
-    EditText mNombre, mApellido, mEmail, mPassword, mPassword2;
+    EditText mNombre, mApellido, mEmail, mPassword, mPassword2, mAsamblea;
     Button mRegistrarBtn;
     TextView mLogin;
     ProgressBar progressBar;
 
-    String str_name, str_apellido, str_email, str_password, str_password2;
+    String str_asamblea, str_name, str_apellido, str_email, str_password, str_password2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrarse);
 
+        mAsamblea = findViewById(R.id.mAsamblea);
         mNombre = findViewById(R.id.mName);
         mApellido = findViewById(R.id.mApellido);
         mEmail = findViewById(R.id.mEmail);
@@ -56,66 +56,48 @@ public class RegistrarseActivity extends AppCompatActivity {
             }
         });
 
-
         mRegistrarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Registrarse(v);
-                moverALogin(v);
+                ejecutarServicio("http://ec2-3-136-55-99.us-east-2.compute.amazonaws.com/proyecto/registrar_usuario.php");
+
             }
         });
     }
 
-    public void moverALogin(View view) {
+    public void moverALogin() {
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         finish();
     }
 
-    public void Registrarse(View view) {
-        if (mNombre.getText().toString().equals("")) {
-            Toast.makeText(this, "ingrese nombre", Toast.LENGTH_SHORT).show();
-        } else if (mApellido.getText().toString().equals("")) {
-            Toast.makeText(this, "ingrese apellido", Toast.LENGTH_SHORT).show();
-        } else if (mEmail.getText().toString().equals("")) {
-            Toast.makeText(this, "ingrese email", Toast.LENGTH_SHORT).show();
-        } else if (mPassword.getText().toString().equals("")) {
-            Toast.makeText(this, "ingrese contraseña", Toast.LENGTH_SHORT).show();
-        } else if (mPassword2.getText().toString().equals("")) {
-            Toast.makeText(this, "confirme contraseña", Toast.LENGTH_SHORT).show();
-        } else {
-            str_name = mNombre.getText().toString().trim();
-            str_apellido = mApellido.getText().toString().trim();
-            str_email = mEmail.getText().toString().trim();
-            str_password = mPassword.getText().toString().trim();
-            str_password2 = mPassword2.getText().toString().trim();
-
-            StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    Toast.makeText(RegistrarseActivity.this, response, Toast.LENGTH_SHORT).show();
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                    Toast.makeText(RegistrarseActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                }
+    private void ejecutarServicio(String URL) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), "Operacion Exitosa", Toast.LENGTH_SHORT).show();
             }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<>();
+                parametros.put("usu_nombre", mNombre.getText().toString());
+                parametros.put("usu_asamblea", mAsamblea.getText().toString());
+                parametros.put("usu_apellidos", mApellido.getText().toString());
+                parametros.put("usu_usuario", mEmail.getText().toString());
+                parametros.put("usu_password", mPassword.getText().toString());
+                parametros.put("usu_validacion", "0");
+                return parametros;
+            }
+        };
 
-            ) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<>();
-                    params.put("name", str_name);
-                    params.put("apellido", str_apellido);
-                    params.put("email", str_email);
-                    params.put("password", str_password);
-                    return params;
-                }
-            };
-
-            RequestQueue requestQueue = Volley.newRequestQueue(RegistrarseActivity.this);
-            requestQueue.add(request);
-        }
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+        moverALogin();
     }
+
 }
+

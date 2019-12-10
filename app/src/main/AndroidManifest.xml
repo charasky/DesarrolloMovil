@@ -23,5 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="org.lapoderosa.app.RegistrarseActivity" />
+        <activity android:name="org.lapoderosa.app.RecuperarContraseña" />
     </application>
 </manifest>

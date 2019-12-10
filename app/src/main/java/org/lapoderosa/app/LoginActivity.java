@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,9 +27,9 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
 
     EditText editUsuario, editPassword;
+    TextView etRegistrarse, etOlvidastesContraseña;
     Button btnLogin;
     String usuario, password;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +37,29 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         editUsuario = findViewById(R.id.etUserName);
-        editPassword = findViewById(R.id.etPassword);
+        editPassword = findViewById(R.id.mPassword);
+        etRegistrarse = findViewById(R.id.etRegistrarse);
         btnLogin = findViewById(R.id.btLogin);
+        etOlvidastesContraseña = findViewById(R.id.etOlvidastesContraseña);
 
         recuperarPreferencias();
+
+        etOlvidastesContraseña.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RecuperarContraseña.class);
+                startActivity(intent);
+            }
+        });
+
+        etRegistrarse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegistrarseActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
 
@@ -96,20 +116,20 @@ public class LoginActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    private void guardarPreferencias(){
+    private void guardarPreferencias() {
         SharedPreferences preferences = getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("usuario",usuario);
-        editor.putString("password",password);
-        editor.putBoolean("sesion",true);
+        editor.putString("usuario", usuario);
+        editor.putString("password", password);
+        editor.putBoolean("sesion", true);
         editor.commit();
 
     }
 
-    private void recuperarPreferencias(){
-        SharedPreferences preferences = getSharedPreferences("preferenciasLogin",Context.MODE_PRIVATE);
-        editUsuario.setText(preferences.getString("usuario",""));
-        editPassword.setText(preferences.getString("password",""));
+    private void recuperarPreferencias() {
+        SharedPreferences preferences = getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
+        editUsuario.setText(preferences.getString("usuario", ""));
+        editPassword.setText(preferences.getString("password", ""));
     }
 }
 

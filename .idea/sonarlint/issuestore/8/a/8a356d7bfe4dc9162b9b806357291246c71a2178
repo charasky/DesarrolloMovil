@@ -1,0 +1,11 @@
+
+@squid:S1659)")Declare "edtApellido" on a separate line.(°¹ß
+qsquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÿÎÀ
+osquid:S00117€"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹‘‘ßùÿÿÿÿ
+@squid:S1659)")Declare "edtAsamblea" on a separate line.(°¹ß
+<squid:S1659$"%Declare "tvDate2" on a separate line.(§¾²ë
+bsquid:CommentedOutCodeLinew"<This block of commented-out lines of code should be removed.(°°œÉ
+lsquid:S1450("VRemove the "guardar" field and declare it as a local variable in the relevant methods.(ÔÍ•
+Bsquid:S1068$"+Remove this unused "tvHora1" private field.(§¾²ë
+<squid:S1659$"%Declare "tvHora1" on a separate line.(§¾²ë
+Osquid:S1068'"3Remove this unused "timeSetListener" private field.(½ªúÿÿÿÿ

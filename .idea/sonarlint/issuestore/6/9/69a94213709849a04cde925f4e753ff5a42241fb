@@ -1,7 +1,9 @@
 
-nsquid:S00117?"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(á„ îÿÿÿÿÿ
-Bsquid:S1659"&Declare "password" on a separate line.(­Ê¿³ıÿÿÿÿ
-`squid:S1192Y"IDefine a constant instead of duplicating this literal "password" 3 times.(º®ú
-dsquid:S1192X"HDefine a constant instead of duplicating this literal "usuario" 3 times.(ˆ¦«ûÿÿÿÿ
-Fsquid:S1659"*Declare "editPassword" on a separate line.(İÉÌÒùÿÿÿÿ
-psquid:S2293W"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÿÎÀ
+psquid:S2293k"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÿÎÀ
+Bsquid:S1659 "&Declare "password" on a separate line.(­Ê¿³ıÿÿÿÿ
+`squid:S1192m"IDefine a constant instead of duplicating this literal "password" 3 times.(º®ú
+nsquid:S00117S"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(á„ îÿÿÿÿÿ
+dsquid:S1192l"HDefine a constant instead of duplicating this literal "usuario" 3 times.(ˆ¦«ûÿÿÿÿ
+Fsquid:S1659"*Declare "editPassword" on a separate line.(İÉÌÒùÿÿÿÿ
+Ssquid:S1659"5Declare "etOlvidastesContraseÃ±a" on a separate line.(­Òˆ8şÌ¡êî-
+squid:S00116"bRename this field "etOlvidastesContraseÃ±a" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­Òˆ8şÌ¡êî-

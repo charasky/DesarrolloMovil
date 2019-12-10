@@ -82,6 +82,9 @@ public class RegistrarseActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
             }
         }) {
+
+            //todo revisar conexion :v
+            @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros = new HashMap<String, String>();
                 parametros.put("usu_usuario", mEmail.getText().toString());
@@ -92,11 +95,14 @@ public class RegistrarseActivity extends AppCompatActivity {
                 return parametros;
             }
         };
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
         moverALogin();
     }
 
+
+    private void verificaciones(){
+        //todo agregar las condiciones para cada campo
+    }
 }
 

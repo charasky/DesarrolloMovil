@@ -130,14 +130,11 @@ public class ReporteActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(getApplicationContext(),"Operacion Exitosa",Toast.LENGTH_SHORT).show();
-
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
                 Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-
             }
         }) {
             @Override
@@ -154,4 +151,5 @@ public class ReporteActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
 }

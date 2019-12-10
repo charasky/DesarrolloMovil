@@ -24,6 +24,6 @@
             </intent-filter>
         </activity>
         <activity android:name="org.lapoderosa.app.RegistrarseActivity" />
-        <activity android:name="org.lapoderosa.app.RecuperarContraseña" />
+        <activity android:name="org.lapoderosa.app.RecuperarCuentaActivity" />
     </application>
 </manifest>

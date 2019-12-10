@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="30dp"
+    android:layout_margin="25dp"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="org.lapoderosa.app.RegistrarseActivity">
 
     <TextView
+        android:id="@+id/textRegistrase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_above="@+id/dmAsamblea"
         android:text="Registrarse"
         android:textSize="30sp" />
 
@@ -22,57 +23,56 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Asamblea"
-        android:layout_above="@+id/dmName"
-        android:layout_marginTop="10dp"
-        android:textSize="20dp" />
+        android:layout_below="@+id/textRegistrase"
+        android:layout_marginTop="5dp"
+        android:textSize="18dp" />
 
     <EditText
         android:id="@+id/dmName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nombre"
-        android:layout_above="@+id/dmApellido"
-        android:layout_marginTop="10dp"
-        android:textSize="20dp" />
+        android:layout_below="@+id/dmAsamblea"
+        android:layout_marginTop="5dp"
+        android:textSize="18dp" />
 
     <EditText
         android:id="@+id/dmApellido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="10dp"
+        android:layout_below="@+id/dmName"
+        android:layout_marginTop="5dp"
         android:hint="Apellido"
-        android:textSize="20dp" />
+        android:textSize="18dp" />
 
     <EditText
         android:id="@+id/dmEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dmApellido"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:hint="Email"
-        android:textSize="20dp" />
+        android:textSize="18dp" />
 
     <EditText
         android:id="@+id/dmPassword1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/dmEmail"
-        android:layout_marginTop="10dp"
+        android:layout_below="@+id/dmEmail"
+        android:layout_marginTop="5dp"
         android:hint="Contraseña"
         android:inputType="textPassword"
-        android:textSize="20dp" />
+        android:textSize="18dp" />
 
     <EditText
         android:id="@+id/dmPassword2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dmPassword1"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:hint="Confirmar contraseña"
         android:inputType="textPassword"
-        android:textSize="20dp" />
+        android:textSize="18dp" />
 
     <Button
         android:id="@+id/dmRegistrarseBtn"
@@ -93,9 +93,9 @@
         android:layout_marginTop="15dp"
         android:layout_below="@+id/dmRegistrarseBtn"
         android:gravity="center"
-        android:text="¿Ya estas Registrado?, Inicia Sesion"
+        android:text="¿Ya tienes cuenta?, Inicia Sesion"
         android:textSize="15sp" />
-
+    <!--
     <ProgressBar
         android:layout_below="@+id/dmLogin"
         android:id="@+id/progressBar"
@@ -105,4 +105,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:visibility="invisible" />
+    -->
+
 </RelativeLayout>

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="40dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="org.lapoderosa.app.RecuperarCuentaActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -17,14 +21,14 @@
         android:id="@+id/textTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/recoverEmail"
+        android:layout_above="@+id/rEmail"
         android:layout_marginTop="40dp"
         android:gravity="center"
         android:text="ingrese el correo electronico del usuario que quiere recuperar la cuenta"
         android:textSize="18sp" />
 
     <EditText
-        android:id="@+id/recoverEmail"
+        android:id="@+id/rEmail"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,11 +38,11 @@
         android:hint="correo electronico" />
 
     <Button
-        android:id="@+id/btSiguiente"
+        android:id="@+id/rBtSiguiente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/recoverEmail"
+        android:layout_below="@+id/rEmail"
         android:background="#FA5858"
         android:text="SIGUIENTE"
         android:textColor="#FFF"
@@ -49,7 +53,7 @@
         android:id="@+id/rLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btSiguiente"
+        android:layout_below="@+id/rBtSiguiente"
         android:gravity="center"
         android:padding="20dp"
         android:text="volver a iniciar Sesión"

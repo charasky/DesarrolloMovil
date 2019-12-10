@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         etOlvidastesContraseña.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RecuperarContraseña.class);
+                Intent intent = new Intent(LoginActivity.this, RecuperarCuentaActivity.class);
                 startActivity(intent);
             }
         });
@@ -60,9 +60,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
 
@@ -74,8 +72,6 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(LoginActivity.this, "Ingrese usuario y contraseña", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
     }
@@ -97,9 +93,7 @@ public class LoginActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
                 Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-
             }
         }) {
             @Override

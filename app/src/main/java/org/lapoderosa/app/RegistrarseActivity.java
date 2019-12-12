@@ -99,6 +99,7 @@ public class RegistrarseActivity extends AppCompatActivity {
 
 
     private void verificaciones(){
+
         //todo agregar las condiciones para cada campo
     }
 }

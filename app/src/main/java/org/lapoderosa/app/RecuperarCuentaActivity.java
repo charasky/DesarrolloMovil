@@ -53,7 +53,7 @@ public class RecuperarCuentaActivity extends AppCompatActivity {
                 email = rEmail.getText().toString();
 
                 if (!email.isEmpty()) {
-                    ejecutarServicio("ingrese url :v");
+                    ejecutarServicio("http://ec2-3-136-55-99.us-east-2.compute.amazonaws.com/proyecto/validar_email.php");
                 } else {
                     Toast.makeText(RecuperarCuentaActivity.this, "ingrese email", Toast.LENGTH_SHORT).show();
                 }
@@ -71,6 +71,7 @@ public class RecuperarCuentaActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(getApplicationContext(), "revise su casilla de email", Toast.LENGTH_SHORT).show();
+                enviarEmail(email);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -81,7 +82,6 @@ public class RecuperarCuentaActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros = new HashMap<String, String>();
-                //todo agregar el php y verificar o modificar variable
                 parametros.put("usu_usuario", rEmail.getText().toString());
                 return parametros;
             }
@@ -90,5 +90,9 @@ public class RecuperarCuentaActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
         volverLogin();
+    }
+
+    private void enviarEmail(String email) {
+        //Todo rellenar para que recuperen la cuenta
     }
 }

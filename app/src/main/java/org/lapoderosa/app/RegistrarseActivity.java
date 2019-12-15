@@ -79,8 +79,6 @@ public class RegistrarseActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
             }
         }) {
-
-            //todo revisar conexion :v
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros = new HashMap<String, String>();
@@ -89,6 +87,8 @@ public class RegistrarseActivity extends AppCompatActivity {
                 parametros.put("usu_nombres", dmNombres.getText().toString());
                 parametros.put("usu_apellidos", dmApellidos.getText().toString());
                 parametros.put("usu_asamblea", dmAsamblea.getText().toString());
+                parametros.put("usu_validacion", "FALSE");
+                parametros.put("usu_administrador", "FALSE");
                 return parametros;
             }
         };
@@ -97,9 +97,7 @@ public class RegistrarseActivity extends AppCompatActivity {
         volverLogin();
     }
 
-
-    private void verificaciones(){
-
+    private void verificaciones(String asamble, String nombre, String apellido, String email, String contraseña1, String contraseña2) {
         //todo agregar las condiciones para cada campo
     }
 }

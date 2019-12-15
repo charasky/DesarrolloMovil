@@ -83,6 +83,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (!response.isEmpty()) {
                     guardarPreferencias();
                     Intent intent = new Intent(getApplicationContext(), InicioActivity.class);
+
+
+                    //todo registro inicio sexion
+                    //registroInicioSesion();
                     startActivity(intent);
                     finish();
                 } else {
@@ -105,7 +109,6 @@ public class LoginActivity extends AppCompatActivity {
                 return parametros;
             }
         };
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
@@ -117,7 +120,6 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("password", password);
         editor.putBoolean("sesion", true);
         editor.commit();
-
     }
 
     private void recuperarPreferencias() {

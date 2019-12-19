@@ -9,26 +9,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.lapoderosa.app.R;
 
-import java.util.HashMap;
 import java.util.Map;
 
-public class RecuperarCuentaActivity extends AppCompatActivity {
+public class RecuperarCuentaActivity extends MasterClass {
 
-    Button rBtSiguiente;
-    TextView rLogin;
-    EditText rEmail;
-    String email;
+    private Button rBtSiguiente;
+    private TextView rLogin;
+    private EditText rEmail;
+    private String email;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,46 +42,38 @@ public class RecuperarCuentaActivity extends AppCompatActivity {
         rBtSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                email = rEmail.getText().toString();
-
-                if (!email.isEmpty()) {
-                    ejecutarServicio("http://ec2-3-136-55-99.us-east-2.compute.amazonaws.com/proyecto/validar_email.php");
-                } else {
-                    Toast.makeText(RecuperarCuentaActivity.this, "ingrese email", Toast.LENGTH_SHORT).show();
-                }
+                recuperar();
             }
         });
     }
 
-    public void volverLogin() {
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        finish();
+    private void recuperar() {
+        inicializarStringVariables();
+        if (!email.isEmpty()) {
+            ejecutarServicio("http://ec2-3-136-55-99.us-east-2.compute.amazonaws.com/proyecto/validar_email.php");
+        } else {
+            Toast.makeText(RecuperarCuentaActivity.this, "Ingrese email", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private void ejecutarServicio(String URL) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "revise su casilla de email", Toast.LENGTH_SHORT).show();
-                enviarEmail(email);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("usu_usuario", rEmail.getText().toString());
-                return parametros;
-            }
-        };
+    @Override
+    protected void putParams(Map<String, String> parametros) throws AuthFailureError {
+        parametros.put("usu_usuario", email);
+    }
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-        volverLogin();
+    @Override
+    protected void inicializarStringVariables() {
+        email = rEmail.getText().toString();
+    }
+
+    @Override
+    protected void responseConexion(String response) {
+        if (!response.isEmpty()) {
+            //TODO revisar que es lo que responde
+            Toast.makeText(RecuperarCuentaActivity.this, "Revise su casilla de Email", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(RecuperarCuentaActivity.this, "No hay cuenta registrada con ese Email", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void enviarEmail(String email) {

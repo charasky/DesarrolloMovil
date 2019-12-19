@@ -3,7 +3,6 @@ package org.lapoderosa.app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,32 +11,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.lapoderosa.app.R;
 
-import java.util.HashMap;
 import java.util.Map;
 
-public class RegistrarseActivity extends AppCompatActivity {
-    EditText dmNombres, dmApellidos, dmEmail, dmPassword, dmPassword2, dmAsamblea;
-    Button dmRegistrarBtn;
-    TextView dmLogin;
-    ProgressBar progressBar;
-    String name, surname, email, password1, password2, asamblea;
+public class RegistrarseActivity extends MasterClass {
+    private EditText dmNombres, dmApellidos, dmEmail, dmPassword, dmPassword2, dmAsamblea;
+    private Button dmRegistrarBtn;
+    private TextView dmLogin;
+    private ProgressBar progressBar;
+    private String name, surname, email, password1, password2, asamblea;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrarse);
-        
+
         dmAsamblea = findViewById(R.id.dmAsamblea);
         dmNombres = findViewById(R.id.dmName);
         dmApellidos = findViewById(R.id.dmApellido);
@@ -48,8 +39,6 @@ public class RegistrarseActivity extends AppCompatActivity {
         dmRegistrarBtn = findViewById(R.id.dmRegistrarseBtn);
         dmLogin = findViewById(R.id.dmLogin);
         //progressBar = findViewById(R.id.progressBar);
-
-        this.inicializarVariables();
 
         dmLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,37 +56,8 @@ public class RegistrarseActivity extends AppCompatActivity {
         });
     }
 
-    public void volverLogin() {
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        finish();
-    }
-
-    private void ejecutarServicio(String URL) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Nueva cuenta con exito", Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parametros = new HashMap<String, String>();
-                putParams(parametros);
-                return parametros;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-        volverLogin();
-    }
-
     protected void registrar() {
-        inicializarVariables();
+        inicializarStringVariables();
         if (!validate()) {
             Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
         } else {
@@ -105,7 +65,7 @@ public class RegistrarseActivity extends AppCompatActivity {
         }
     }
 
-    protected void inicializarVariables() {
+    protected void inicializarStringVariables() {
         email = dmEmail.getText().toString();
         password2 = dmPassword2.getText().toString();
         password1 = dmPassword.getText().toString();
@@ -114,8 +74,13 @@ public class RegistrarseActivity extends AppCompatActivity {
         asamblea = dmAsamblea.getText().toString();
     }
 
+    @Override
+    protected void responseConexion(String response) {
+        Toast.makeText(getApplicationContext(), "Nueva cuenta con exito", Toast.LENGTH_SHORT).show();
+        volverLogin();
+    }
+
     protected void putParams(Map<String, String> parametros) throws AuthFailureError {
-        inicializarVariables();
         parametros.put("usu_usuario", email);
         parametros.put("usu_password", password1);
         parametros.put("usu_nombres", name);
@@ -199,4 +164,3 @@ public class RegistrarseActivity extends AppCompatActivity {
         return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 }
-

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btAdminBusqueda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btAdminReporte"
+        android:layout_margin="10dp"
+        android:background="#FA5858"
+        android:text="BUSQUEDA"
+        android:textColor="#FFF"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btAdminReporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btAdminHabilitar"
+        android:layout_margin="10dp"
+        android:background="#FA5858"
+        android:text="REPORTE"
+        android:textColor="#FFF"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btAdminHabilitar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:background="#FA5858"
+        android:text="HABILITAR CUENTA"
+        android:textColor="#FFF"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btAdminRestablecer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btAdminHabilitar"
+        android:layout_margin="10dp"
+        android:background="#FA5858"
+        android:text="RESTABLECER CONTRASEÑA"
+        android:textColor="#FFF"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btAdminMovimientos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btAdminRestablecer"
+        android:layout_margin="10dp"
+        android:background="#FA5858"
+        android:text="MOVIMIENTOS"
+        android:textColor="#FFF"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btAdminCerrarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:background="#000"
+        android:text="Cerrar Sesión"
+        android:textColor="#fff"
+        android:textSize="18sp" />
+</RelativeLayout>

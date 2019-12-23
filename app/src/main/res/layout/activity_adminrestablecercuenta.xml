@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="40dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_above="@+id/textTitulo"
+        android:text="Restablecer Cuenta"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rEmail"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="Complete los campos del email y contraseña a cambiar"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/rEmail"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/icon_email"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:hint="correo electronico" />
+
+    <EditText
+        android:id="@+id/dmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rEmail"
+        android:drawableLeft="@drawable/icon_lock"
+        android:hint="Contraseña"
+        android:inputType="textPassword" />
+
+
+    <Button
+        android:id="@+id/rBtSiguiente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/dmPassword"
+        android:background="#FA5858"
+        android:text="GUARDAR"
+        android:textColor="#FFF"
+        android:textSize="18sp"
+        />
+
+    <TextView
+        android:id="@+id/rLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rBtSiguiente"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="volver"
+        android:textSize="15sp" />
+</RelativeLayout>

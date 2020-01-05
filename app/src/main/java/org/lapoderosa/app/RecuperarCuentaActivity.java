@@ -58,7 +58,7 @@ public class RecuperarCuentaActivity extends MasterClass {
 
     @Override
     protected void putParams(Map<String, String> parametros) throws AuthFailureError {
-        parametros.put("usu_usuario", email);
+        parametros.put("usuario", email);
     }
 
     @Override
@@ -71,6 +71,8 @@ public class RecuperarCuentaActivity extends MasterClass {
         if (!response.isEmpty()) {
             //TODO revisar que es lo que responde
             Toast.makeText(RecuperarCuentaActivity.this, "Revise su casilla de Email", Toast.LENGTH_SHORT).show();
+            enviarEmail(email);
+            volverLogin();
         } else {
             Toast.makeText(RecuperarCuentaActivity.this, "No hay cuenta registrada con ese Email", Toast.LENGTH_SHORT).show();
         }

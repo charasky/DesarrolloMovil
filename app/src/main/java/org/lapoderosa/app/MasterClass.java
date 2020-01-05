@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class MasterClass extends AppCompatActivity {
+    RequestQueue requestQueue;
+
     protected void ejecutarServicio(String URL) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
@@ -36,7 +38,7 @@ public abstract class MasterClass extends AppCompatActivity {
                 return parametros;
             }
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
 

@@ -12,7 +12,15 @@ import android.widget.Toast;
 
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.lapoderosa.app.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Map;
 
@@ -20,7 +28,7 @@ public class LoginActivity extends MasterClass {
     private EditText editUsuario, editPassword;
     private TextView etRegistrarse, etOlvidastesContraseña;
     private Button btnLogin;
-    private String usuario, password;
+    private String usuario, password, respuestaAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +67,11 @@ public class LoginActivity extends MasterClass {
         });
     }
 
-    private void iniciar(){
+    private void iniciar() {
         inicializarStringVariables();
         if (!usuario.isEmpty() && !password.isEmpty()) {
             ejecutarServicio("http://3.136.55.99/proyecto/validar_usuario.php");
+            //validarAdmin("http://3.136.55.99/proyecto/validar_administrador.php");
         } else {
             Toast.makeText(LoginActivity.this, "Ingrese usuario y contraseña", Toast.LENGTH_SHORT).show();
         }
@@ -73,7 +82,6 @@ public class LoginActivity extends MasterClass {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("usuario", usuario);
         editor.putString("password", password);
-        editor.putBoolean("sesion", true);
         editor.commit();
     }
 
@@ -98,6 +106,7 @@ public class LoginActivity extends MasterClass {
     @Override
     protected void responseConexion(String response) {
         if (!response.isEmpty()) {
+            //todo response cambiara el sentido del activity para activity admin
             guardarPreferencias();
             Intent intent = new Intent(getApplicationContext(), InicioActivity.class);
             startActivity(intent);
@@ -105,6 +114,32 @@ public class LoginActivity extends MasterClass {
         } else {
             Toast.makeText(LoginActivity.this, "Usuario o Contraseña incorrectos", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    //TODO VERIFICAR el admintrador
+    private void validarAdmin(String URL) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        respuestaAdmin = jsonObject.getString("usu_administrador");
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "ERROR DE CONEXION", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
     }
 }
 

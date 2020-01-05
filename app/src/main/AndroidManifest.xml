@@ -25,5 +25,9 @@
         </activity>
         <activity android:name="org.lapoderosa.app.RegistrarseActivity" />
         <activity android:name="org.lapoderosa.app.RecuperarCuentaActivity" />
+        <activity android:name="org.lapoderosa.app.admin.AdminRestablecerContraseñaActivity" />
+        <activity android:name="org.lapoderosa.app.admin.AdminMovimientosActivity" />
+        <activity android:name="org.lapoderosa.app.admin.AdminHabilitarCuenta" />
+        <activity android:name="org.lapoderosa.app.admin.AdminInicioActivity" />
     </application>
 </manifest>

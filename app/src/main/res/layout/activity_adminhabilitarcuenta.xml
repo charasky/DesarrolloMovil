@@ -21,14 +21,14 @@
         android:id="@+id/textTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/rEmail"
+        android:layout_above="@+id/hEmail"
         android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="usuarios sin habilitar:"
         android:textSize="18sp" />
 
     <EditText
-        android:id="@+id/rEmail"
+        android:id="@+id/hEmail"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,11 +38,11 @@
         android:hint="correo electronico" />
 
     <Button
-        android:id="@+id/rBtSiguiente"
+        android:id="@+id/hBtSiguiente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/rEmail"
+        android:layout_below="@+id/hEmail"
         android:background="#FA5858"
         android:text="SIGUIENTE"
         android:textColor="#FFF"

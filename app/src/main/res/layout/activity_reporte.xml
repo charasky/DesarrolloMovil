@@ -142,50 +142,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Victima"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/rbtVictima"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                </RadioButton>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Familiar"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/rbtFamiliar"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                </RadioButton>
-
             </LinearLayout>
 
             <LinearLayout
@@ -198,16 +154,17 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:text="Otro: "
+                    android:text="Parentesco:"
                     android:textSize="20dp">
 
                 </TextView>
 
                 <EditText
-                    android:id="@+id/edtOtroParentesco"
+                    android:id="@+id/edtParentesco"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:hint="Victima/Familiar/otro"
                     android:textSize="20dp">
 
                 </EditText>
@@ -502,7 +459,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/tvTime"
+                android:id="@+id/tvHoraHecho"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -582,7 +539,7 @@
                 </TextView>
 
                 <EditText
-                    android:id="@+id/edtCiudad"
+                    android:id="@+id/edtCiudadHecho"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
@@ -609,7 +566,7 @@
                 </TextView>
 
                 <EditText
-                    android:id="@+id/edtProvincia"
+                    android:id="@+id/edtProvinciaHecho"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
@@ -623,60 +580,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
-                android:text="¿Se encontraba acompañado?"
+                android:text="Cantidad de acompañantes:"
                 android:textSize="20sp"
                 android:textStyle="normal">
 
 
             </TextView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="No "
-                    android:textSize="20dp">
-
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/rbtNoAcompañado"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content">
-
-                </RadioButton>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si "
-                    android:textSize="20dp">
-
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/rbtSiAcompañado"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content">
-
-                </RadioButton>
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -728,55 +637,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="right"
-                    android:text="Via Publica "
-                    android:textSize="20dp">
-
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/rbtSiViaPublica"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content">
-
-                </RadioButton>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Domicilio "
-                    android:textSize="20dp">
-
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/rbtSiDomicilio"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content">
-
-                </RadioButton>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Cual:"
+                    android:text="Via Publica / Domicilio:"
                     android:textSize="20dp">
 
 
@@ -788,6 +649,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="right"
+                    android:hint="Especifique"
                     android:textSize="20sp">
 
                 </EditText>
@@ -1042,7 +904,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
-                android:text="¿Que hacian los Funcionarios?"
+                android:text="¿Describa la conducta de los Funcionarios?"
                 android:textSize="20sp"
                 android:textStyle="normal">
 
@@ -1055,126 +917,28 @@
                 android:gravity="center">
 
                 <TextView
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="right"
-                    android:text="Parados en Consigna:"
-                    android:textSize="20dp">
+                    android:text="Parados/Caminando/En Movil:"
+                    android:textSize="15dp">
 
                 </TextView>
 
-                <RadioButton
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                </RadioButton>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Caminando:"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                </RadioButton>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="En Movil:"
-                    android:textSize="20dp">
-
-
-                </TextView>
-
-                <RadioButton
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                </RadioButton>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Donde:"
-                    android:textSize="20dp">
-
-
-                </TextView>
 
                 <EditText
-                    android:id="@+id/edtDondeEstaban"
+                    android:id="@+id/edtConductaAgentes"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="right"
                     android:gravity="right"
                     android:textSize="20sp">
 
                 </EditText>
+
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Otra Conducta:"
-                    android:textSize="20dp">
-
-
-                </TextView>
-
-                <EditText
-                    android:id="@+id/edtOtraConducta"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:textSize="20sp">
-
-                </EditText>
-            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -1192,93 +956,23 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
-                android:text="¿Le informaron los motivos del procedimiento?"
+                android:text="Seleccione el motivo del procedimiento:"
                 android:textSize="23sp"
                 android:textStyle="normal">
 
             </TextView>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="No"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/rbtNoMotivos"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                </RadioButton>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/rbtSiMotivos"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                </RadioButton>
-
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:text="Cual:"
-                android:textSize="20sp"
-                android:textStyle="normal"></TextView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Acusacion de un delito/contravencion:"
-                    android:textSize="20dp">
-
-                </TextView>
 
                 <RadioButton
                     android:id="@+id/rbtDelito"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Acusacion de un delito/Contravencion"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -1290,21 +984,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Averiguacion de Identidad/Antecedentes:"
-                    android:textSize="20dp">
-
-                </TextView>
 
                 <RadioButton
                     android:id="@+id/rbtAveriguacion"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Averiguacion de Identidad/Antecedentes"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -1317,20 +1003,30 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Requiza:"
-                    android:textSize="20dp">
-
-                </TextView>
-
                 <RadioButton
                     android:id="@+id/rbtRequiza"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Requiza"
+                    android:textSize="20dp"
+                    android:layout_gravity="center">
+
+                </RadioButton>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <RadioButton
+                    android:id="@+id/rbtNoMotivos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No se me informo el motivo"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -1345,53 +1041,22 @@
                 android:layout_margin="15dp"
                 android:text="¿Recibio malos tratos y/o agresiones?"
                 android:textSize="20sp"
-                android:textStyle="normal"></TextView>
+                android:textStyle="normal">
+
+            </TextView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="No"
-                    android:textSize="20dp">
-
-                </TextView>
 
                 <RadioButton
                     android:id="@+id/rbtNoMaltratos"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                </RadioButton>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/rbtSiMaltratos"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
+                    android:text="No"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -1415,20 +1080,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Verbales:"
-                    android:textSize="20dp">
-
-                </TextView>
-
                 <RadioButton
                     android:id="@+id/rbtVerbales"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Verbales"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -1440,21 +1097,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Fisicos:"
-                    android:textSize="20dp">
-
-                </TextView>
 
                 <RadioButton
                     android:id="@+id/rbtFisicos"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Fisicos"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -1466,21 +1115,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Amenazas:"
-                    android:textSize="20dp">
-
-                </TextView>
 
                 <RadioButton
                     android:id="@+id/rbtAmenazas"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Amenazas"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -1492,21 +1133,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Robo/daño de pertenencias:"
-                    android:textSize="20dp">
-
-                </TextView>
 
                 <RadioButton
                     android:id="@+id/rbtDañoPertenencias"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Robo/Daño de pertenencias"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -1518,22 +1151,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Requiza humillante o vejatoria:"
-                    android:textSize="20dp">
-
-                </TextView>
 
                 <RadioButton
                     android:id="@+id/rbtRequizaHumillante"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+                    android:text="Requiza humillante o vejatoria"
+                    android:textSize="20dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp">
 
                 </RadioButton>
 
@@ -1545,22 +1171,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Otra:"
-                    android:textSize="20dp">
-
-                </TextView>
-
                 <EditText
-                    android:id="@+id/edtOtra"
-                    android:layout_width="150dp"
+                    android:id="@+id/edtOtraAgresion"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="right"
+                    android:hint="Otro"
+                    android:textAlignment="center"
                     android:textSize="20sp">
 
                 </EditText>
@@ -1584,46 +1202,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="No"
-                    android:textSize="20dp">
-
-                </TextView>
-
                 <RadioButton
                     android:id="@+id/rbtNoLesiones"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                </RadioButton>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/rbtSiLesiones"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
+                    android:text="No"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -1647,6 +1231,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
+
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
@@ -1662,8 +1247,7 @@
                     android:id="@+id/edtFisica"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
+                    android:layout_gravity="left"
                     android:textSize="20sp">
 
                 </EditText>
@@ -1679,7 +1263,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="right"
-                    android:text="Psiquica:"
+                    android:text="Psquica:"
                     android:textSize="20dp">
 
 
@@ -1689,8 +1273,7 @@
                     android:id="@+id/edtPsiquica"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
+                    android:layout_gravity="left"
                     android:textSize="20sp">
 
                 </EditText>
@@ -1716,8 +1299,7 @@
                     android:id="@+id/edtInsomnioPanico"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
+                    android:layout_gravity="left"
                     android:textSize="20sp">
 
                 </EditText>
@@ -1728,12 +1310,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
+
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="right"
-                    android:text="Otros:"
+                    android:text="Otros"
                     android:textSize="20dp">
 
 
@@ -1743,8 +1326,7 @@
                     android:id="@+id/edtOtrosMiedos"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
+                    android:layout_gravity="left"
                     android:textSize="20sp">
 
                 </EditText>
@@ -1771,19 +1353,18 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="right"
-                    android:text="Parado:"
+                    android:text="Describe en que posicion:"
                     android:textSize="20dp">
 
 
                 </TextView>
 
                 <EditText
-                    android:id="@+id/edtTiempoParado"
+                    android:id="@+id/edtPosicionDetenido"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="right"
-                    android:hint="Cuanto Tiempo?"
                     android:textSize="20dp">
 
                 </EditText>
@@ -1799,75 +1380,19 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="right"
-                    android:text="Arrodillado:"
+                    android:text="Cuanto Tiempo:"
                     android:textSize="20dp">
 
 
                 </TextView>
 
                 <EditText
-                    android:id="@+id/edtTiempoArrodillado"
+                    android:id="@+id/edtCuantoTiempoDetenido"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="right"
-                    android:hint="Cuanto Tiempo?"
-                    android:textSize="20dp">
-
-                </EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Acostado:"
-                    android:textSize="20dp">
-
-
-                </TextView>
-
-                <EditText
-                    android:id="@+id/edtTiempoAcostado"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:hint="Cuanto Tiempo?"
-                    android:textSize="20dp">
-
-                </EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Otro:"
-                    android:textSize="20dp">
-
-
-                </TextView>
-
-                <EditText
-                    android:id="@+id/edtOtraModalidad"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:hint="Describe"
+                    android:inputType="number"
                     android:textSize="20dp">
 
                 </EditText>
@@ -1889,49 +1414,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
+                <RadioButton
+                    android:id="@+id/rbtNoTrasladaron"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
                     android:text="No"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/noTrasladaron"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
 
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/siTrasladaron"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                </RadioButton>
 
             </LinearLayout>
 
@@ -1941,20 +1433,12 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="¿Donde?"
-                    android:textSize="20dp">
-
-                </TextView>
-
                 <EditText
-                    android:id="@+id/dondeTrasladaron"
-                    android:layout_width="150dp"
+                    android:id="@+id/edtDondeTrasladaron"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:hint="Donde"
                     android:textSize="20dp">
 
                 </EditText>
@@ -1978,20 +1462,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
+                <RadioButton
+                    android:id="@+id/rbtNoComisaria"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
                     android:text="No"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/noComisaria"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -1999,30 +1475,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/siComisaria"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                </RadioButton>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -2030,20 +1482,12 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="¿A cual?"
-                    android:textSize="20dp">
-
-                </TextView>
-
                 <EditText
                     android:id="@+id/edtCualComisaria"
-                    android:layout_width="150dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:hint="¿Cual?"
                     android:textSize="20dp">
 
                 </EditText>
@@ -2069,20 +1513,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="No"
-                    android:textSize="20dp">
-
-                </TextView>
-
                 <RadioButton
-                    android:id="@+id/noEsposados"
+                    android:id="@+id/rbtNoEsposados"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="No"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -2095,20 +1531,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si"
-                    android:textSize="20dp">
-
-                </TextView>
-
                 <RadioButton
-                    android:id="@+id/siEsposados"
+                    android:id="@+id/rbtSiEsposados"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Si"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -2143,20 +1571,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="No"
-                    android:textSize="20dp">
-
-                </TextView>
-
                 <RadioButton
-                    android:id="@+id/noOrdenAllanamiento"
+                    android:id="@+id/rbtNoOrdenAllanamiento"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="No"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -2169,20 +1589,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si"
-                    android:textSize="20dp">
-
-                </TextView>
-
                 <RadioButton
-                    android:id="@+id/siOrdenAllanamiento"
+                    android:id="@+id/rbtSiOrdenAllanamiento"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Si"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -2194,7 +1606,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
-                android:text="¿Las personas que estaban en el domicilio recibieron agresiones?"
+                android:text="¿Las personas que estaban en el domicilio sufrieron agresiones?"
                 android:textSize="20dp"
                 android:textStyle="normal">
 
@@ -2205,49 +1617,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
+                <RadioButton
+                    android:id="@+id/rbtNoAgresionesDomicilio"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
                     android:text="No"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/noAgresionesDomicilio"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
 
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/siAgresionesDomicilio"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                </RadioButton>
 
             </LinearLayout>
 
@@ -2257,21 +1636,12 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="¿Cuales?"
-                    android:textSize="20dp">
-
-                </TextView>
-
                 <EditText
                     android:id="@+id/edtCualesAgresionesDomicilio"
-                    android:layout_width="150dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:hint="Describe"
+                    android:hint="Describe cuales"
                     android:textSize="20dp">
 
                 </EditText>
@@ -2295,49 +1665,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
+                <RadioButton
+                    android:id="@+id/rbtNoPertenenciasRobadas"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
                     android:text="No"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/noPertenenciasRobadas"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
 
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/siPertenenciasRobadas"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                </RadioButton>
 
             </LinearLayout>
 
@@ -2385,20 +1722,11 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="No"
-                    android:textSize="20dp">
-
-                </TextView>
-
                 <RadioButton
-                    android:id="@+id/noOmitieronPertenencias"
+                    android:id="@+id/rbtNoOmitieronPertenencias"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="No omitieron pertenencias"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -2406,30 +1734,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/siOmitieronPertenencias"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                </RadioButton>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -2475,49 +1779,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
+                <RadioButton
+                    android:id="@+id/rbtNoDetenidos"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
                     android:text="No"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/noDetenidos"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
 
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si"
-                    android:textSize="20dp">
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/siDetenidos"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                </RadioButton>
 
             </LinearLayout>
 
@@ -2566,15 +1837,22 @@
 
                 </TextView>
 
-                <EditText
-                    android:id="@+id/edtTiempoAllanamiento"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:textSize="20dp">
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                </EditText>
+                <EditText
+                android:id="@+id/edtTiempoAllanamiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="number"
+                android:textSize="20dp">
+
+            </EditText>
             </LinearLayout>
 
             <TextView
@@ -2593,20 +1871,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Parado"
-                    android:textSize="20dp">
-
-                </TextView>
-
                 <RadioButton
                     android:id="@+id/rbtParado"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Parado"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -2618,21 +1888,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Arrodillado"
-                    android:textSize="20dp">
-
-                </TextView>
 
                 <RadioButton
                     android:id="@+id/rbtArrodillado"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Arrodillado"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -2645,20 +1907,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Acostado"
-                    android:textSize="20dp">
-
-                </TextView>
-
                 <RadioButton
                     android:id="@+id/rbtAcostado"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Acostado"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -2711,20 +1965,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="No"
-                    android:textSize="20dp">
-
-                </TextView>
-
                 <RadioButton
-                    android:id="@+id/noEsposadosAllanamiento"
+                    android:id="@+id/rbtNoEsposadosAllanamiento"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="No"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -2737,20 +1983,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si"
-                    android:textSize="20dp">
-
-                </TextView>
-
                 <RadioButton
-                    android:id="@+id/SiEsposadosAllanamiento"
+                    android:id="@+id/rbtSiEsposadosAllanamiento"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Si"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -2840,50 +2078,17 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="No"
-                    android:textSize="20dp">
-
-
-                </TextView>
-
                 <RadioButton
                     android:id="@+id/rbtNoDenuncia"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="No"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si"
-                    android:textSize="20dp">
-
-
-                </TextView>
-
-                <RadioButton
-                    android:id="@+id/rbtSiDenuncia"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                </RadioButton>
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -2902,7 +2107,7 @@
                 </TextView>
 
                 <EditText
-                    android:id="@+id/edtMotivos"
+                    android:id="@+id/edtMotivosDenunciaRechazada"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -2928,21 +2133,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="No"
-                    android:textSize="20dp">
-
-
-                </TextView>
 
                 <RadioButton
                     android:id="@+id/rbtNoViolentado"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="No"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -2953,21 +2150,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si"
-                    android:textSize="20dp">
-
-
-                </TextView>
 
                 <RadioButton
                     android:id="@+id/rbtSiViolentado"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Si"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -3001,21 +2190,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si"
-                    android:textSize="20dp">
-
-
-                </TextView>
-
                 <RadioButton
                     android:id="@+id/rbtSiHizoDenuncia"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Si"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -3038,7 +2218,7 @@
                 </TextView>
 
                 <EditText
-                    android:id="@+id/edtDonde"
+                    android:id="@+id/edtDondeDenuncia"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -3053,21 +2233,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="No"
-                    android:textSize="20dp">
-
-
-                </TextView>
-
                 <RadioButton
                     android:id="@+id/rbtNoHizoDenuncia"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="No"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -3090,7 +2261,7 @@
                 </TextView>
 
                 <EditText
-                    android:id="@+id/edtPorQueNo"
+                    android:id="@+id/edtPorQueNoDenuncia"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -3105,31 +2276,21 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="No Sabe"
-                    android:textSize="20dp">
-
-
-                </TextView>
-
                 <RadioButton
                     android:id="@+id/rbtNoSabeHacerDenuncia"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="No sabe"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
             </LinearLayout>
 
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="right"
                 android:text="Resultado de la investigacion"
                 android:textSize="20dp">
 
@@ -3141,21 +2302,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Condena"
-                    android:textSize="20dp">
-
-
-                </TextView>
 
                 <RadioButton
                     android:id="@+id/rbtCondena"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Condena"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -3165,22 +2318,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Absolucion"
-                    android:textSize="20dp">
-
-
-                </TextView>
 
                 <RadioButton
                     android:id="@+id/rbtAbsolucion"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Absolucion"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -3190,22 +2334,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Causa en tramite"
-                    android:textSize="20dp">
-
-
-                </TextView>
 
                 <RadioButton
                     android:id="@+id/rbtCausaEnTramite"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Causa en Tramite"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -3215,22 +2350,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Archivo/Desestimacion"
-                    android:textSize="20dp">
-
-
-                </TextView>
 
                 <RadioButton
                     android:id="@+id/rbtArchivo"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Archivo/Desestimacion"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -3241,21 +2367,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="No Sabe"
-                    android:textSize="20dp">
-
-
-                </TextView>
-
                 <RadioButton
                     android:id="@+id/rbtNoSabeResultado"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="No Sabe"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -3277,21 +2394,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="No"
-                    android:textSize="20dp">
-
-
-                </TextView>
-
                 <RadioButton
                     android:id="@+id/rbtNoTrabajaMas"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="No"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
@@ -3302,36 +2410,17 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:text="Si"
-                    android:textSize="20dp">
-
-
-                </TextView>
-
                 <RadioButton
                     android:id="@+id/rbtSiTrabaja"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Si"
+                    android:textSize="20dp"
                     android:layout_gravity="center">
 
                 </RadioButton>
             </LinearLayout>
 
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="right"
-                android:text=""
-                android:textSize="20dp">
-
-
-            </TextView>
 
             <Button
                 android:id="@+id/btnGuardar"
@@ -3352,5 +2441,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.50121653" />
+        app:layout_constraintGuide_end="411dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

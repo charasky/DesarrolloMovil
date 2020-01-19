@@ -21,22 +21,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <EditText
+
+                <SearchView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
-                    android:ems="10"
-                    android:hint="Ingresa Busqueda"
-                    android:inputType="textPersonName" />
-
-                <ImageView
-                    android:id="@+id/edtBuscar"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:padding="10dp"
-                    android:src="@drawable/lupa" />
-
+                    android:id="@+id/search_view"
+                    android:queryHint="nombre victima, lugar del reporte"
+                    android:inputType="text"/>
             </LinearLayout>
 
             <LinearLayout

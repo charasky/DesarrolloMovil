@@ -50,7 +50,8 @@ public class RecuperarCuentaActivity extends MasterClass {
     private void recuperar() {
         inicializarStringVariables();
         if (!email.isEmpty()) {
-            ejecutarServicio("http://ec2-3-136-55-99.us-east-2.compute.amazonaws.com/proyecto/validar_email.php");
+            ejecutarServicio("http://192.168.0.8/proyecto/validar_email.php");
+            //ejecutarServicio("http://ec2-3-136-55-99.us-east-2.compute.amazonaws.com/proyecto/validar_email.php");
         } else {
             Toast.makeText(RecuperarCuentaActivity.this, "Ingrese email", Toast.LENGTH_SHORT).show();
         }

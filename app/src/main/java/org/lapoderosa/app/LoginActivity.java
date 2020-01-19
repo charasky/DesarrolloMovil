@@ -1,5 +1,6 @@
 package org.lapoderosa.app;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,15 +13,13 @@ import android.widget.Toast;
 
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
 import com.lapoderosa.app.R;
 
-import org.json.JSONArray;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.lapoderosa.app.admin.AdminInicioActivity;
+import org.lapoderosa.app.admin.SharedPrefManager;
 
 import java.util.Map;
 
@@ -28,7 +27,7 @@ public class LoginActivity extends MasterClass {
     private EditText editUsuario, editPassword;
     private TextView etRegistrarse, etOlvidastesContraseña;
     private Button btnLogin;
-    private String usuario, password, respuestaAdmin;
+    private String usuario, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +39,7 @@ public class LoginActivity extends MasterClass {
         etRegistrarse = findViewById(R.id.etRegistrarse);
         btnLogin = findViewById(R.id.btLogin);
         etOlvidastesContraseña = findViewById(R.id.etOlvidastesContraseña);
+        progressDialog = new ProgressDialog(this);
 
         recuperarPreferencias();
 
@@ -62,39 +62,40 @@ public class LoginActivity extends MasterClass {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iniciar();
+                usuarioLogin();
             }
         });
     }
 
-    private void iniciar() {
+    private void usuarioLogin() {
         inicializarStringVariables();
         if (!usuario.isEmpty() && !password.isEmpty()) {
-            ejecutarServicio("http://3.136.55.99/proyecto/validar_usuario.php");
-            //validarAdmin("http://3.136.55.99/proyecto/validar_administrador.php");
+            //ejecutarServicio("http://192.168.0.8/android/v1/userLogin.php");
+            ejecutarServicio("http://3.136.55.99/proyecto/v1/userLogin.php");
         } else {
             Toast.makeText(LoginActivity.this, "Ingrese usuario y contraseña", Toast.LENGTH_SHORT).show();
         }
     }
 
+
     private void guardarPreferencias() {
         SharedPreferences preferences = getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("usuario", usuario);
-        editor.putString("password", password);
+        editor.putString("usu_usuario", usuario);
+        editor.putString("usu_password", password);
         editor.commit();
     }
 
     private void recuperarPreferencias() {
         SharedPreferences preferences = getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
-        editUsuario.setText(preferences.getString("usuario", ""));
-        editPassword.setText(preferences.getString("password", ""));
+        editUsuario.setText(preferences.getString("usu_usuario", ""));
+        editPassword.setText(preferences.getString("usu_password", ""));
     }
 
     @Override
     protected void putParams(Map<String, String> parametros) throws AuthFailureError {
-        parametros.put("usuario", usuario);
-        parametros.put("password", password);
+        parametros.put("usu_usuario", usuario);
+        parametros.put("usu_password", password);
     }
 
     @Override
@@ -105,41 +106,36 @@ public class LoginActivity extends MasterClass {
 
     @Override
     protected void responseConexion(String response) {
-        if (!response.isEmpty()) {
-            //todo response cambiara el sentido del activity para activity admin
-            guardarPreferencias();
-            Intent intent = new Intent(getApplicationContext(), InicioActivity.class);
-            startActivity(intent);
+        String admin = "";
+        String habilitado = "";
+        try {
+            JSONObject obj = new JSONObject(response);
+            if (!obj.getBoolean("error")) {
+                SharedPrefManager.getInstance(getApplicationContext())
+                        .userLogin(
+                                obj.getInt("id"),
+                                obj.getString("usu_usuario")
+                        );
+                admin = obj.getString("usu_administrador");
+                habilitado = obj.getString("usu_validacion");
+                guardarPreferencias();
+            } else {
+                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if(admin.equals("FALSE") && habilitado.equals("FALSE")){
+            Toast.makeText(getApplicationContext(), "El usuario aun no tiene acceso por Administradores", Toast.LENGTH_LONG).show();
+        }
+        if(admin.equals("TRUE") && habilitado.equals("TRUE")){
+            startActivity(new Intent(getApplicationContext(), AdminInicioActivity.class));
             finish();
-        } else {
-            Toast.makeText(LoginActivity.this, "Usuario o Contraseña incorrectos", Toast.LENGTH_SHORT).show();
+        }
+        if(habilitado.equals("TRUE") && admin.equals("FALSE")){
+            startActivity(new Intent(getApplicationContext(), InicioActivity.class));
+            finish();
         }
     }
-
-    //TODO VERIFICAR el admintrador
-    private void validarAdmin(String URL) {
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                JSONObject jsonObject = null;
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        jsonObject = response.getJSONObject(i);
-                        respuestaAdmin = jsonObject.getString("usu_administrador");
-                    } catch (JSONException e) {
-                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "ERROR DE CONEXION", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonArrayRequest);
-    }
 }
-

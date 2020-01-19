@@ -1,12 +1,12 @@
 package org.lapoderosa.app;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,13 +15,16 @@ import androidx.annotation.Nullable;
 import com.android.volley.AuthFailureError;
 import com.lapoderosa.app.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.lapoderosa.app.admin.SharedPrefManager;
+
 import java.util.Map;
 
 public class RegistrarseActivity extends MasterClass {
     private EditText dmNombres, dmApellidos, dmEmail, dmPassword, dmPassword2, dmAsamblea;
     private Button dmRegistrarBtn;
     private TextView dmLogin;
-    private ProgressBar progressBar;
     private String name, surname, email, password1, password2, asamblea;
 
     @Override
@@ -38,7 +41,7 @@ public class RegistrarseActivity extends MasterClass {
 
         dmRegistrarBtn = findViewById(R.id.dmRegistrarseBtn);
         dmLogin = findViewById(R.id.dmLogin);
-        //progressBar = findViewById(R.id.progressBar);
+        progressDialog = new ProgressDialog(this);
 
         dmLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,23 +64,40 @@ public class RegistrarseActivity extends MasterClass {
         if (!validate()) {
             Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
         } else {
-            ejecutarServicio("http://ec2-3-136-55-99.us-east-2.compute.amazonaws.com/proyecto/registrar_usuario.php");
+            //ejecutarServicio("http://192.168.0.8/android/v1/registerUser.php");
+            ejecutarServicio("http://3.136.55.99/proyecto/v1/registerUser.php");
         }
     }
 
     protected void inicializarStringVariables() {
-        email = dmEmail.getText().toString();
-        password2 = dmPassword2.getText().toString();
-        password1 = dmPassword.getText().toString();
-        name = dmNombres.getText().toString();
-        surname = dmApellidos.getText().toString();
-        asamblea = dmAsamblea.getText().toString();
+        email = dmEmail.getText().toString().trim();
+        password2 = dmPassword2.getText().toString().trim();
+        password1 = dmPassword.getText().toString().trim();
+        name = dmNombres.getText().toString().trim();
+        surname = dmApellidos.getText().toString().trim();
+        asamblea = dmAsamblea.getText().toString().trim();
     }
 
     @Override
     protected void responseConexion(String response) {
-        Toast.makeText(getApplicationContext(), "Nueva cuenta con exito", Toast.LENGTH_SHORT).show();
-        volverLogin();
+        String mensaje = "";
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+            mensaje = jsonObject.getString("existe");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if(mensaje.equals("asamblea")){
+            dmAsamblea.setError("Ingrese asamblea existente");
+        }
+        if(mensaje.equals("email")){
+            dmEmail.setError("Este email ya existe");
+        }
+        if(mensaje.isEmpty()){
+            volverLogin();
+        }
     }
 
     protected void putParams(Map<String, String> parametros) throws AuthFailureError {
@@ -86,8 +106,6 @@ public class RegistrarseActivity extends MasterClass {
         parametros.put("usu_nombres", name);
         parametros.put("usu_apellidos", surname);
         parametros.put("usu_asamblea", asamblea);
-        parametros.put("usu_validacion", "FALSE");
-        parametros.put("usu_administrador", "FALSE");
     }
 
     private boolean validate() {
@@ -116,8 +134,8 @@ public class RegistrarseActivity extends MasterClass {
         }
         //TODO CONTRASEÑA CARACTER ESPECIAL
         if (!(password1.matches(".*[!@#$%^&*+=?-].*") || password2.matches(".*[!@#$%^&*+=?-].*"))) {
-            dmPassword.setError("la contrasela debe contener un caracter especial: !@#$%^&*+=?-");
-            dmPassword2.setError("la contrasela debe contener un caracter especial: !@#$%^&*+=?-");
+            dmPassword.setError("la contraseña debe contener un caracter especial: !@#$%^&*+=?-");
+            dmPassword2.setError("la contraseña debe contener un caracter especial: !@#$%^&*+=?-");
             valid = false;
         }
         //TODO CONTRASEÑA DEBE TENER ALMENOS 1 NUMERO
@@ -154,7 +172,7 @@ public class RegistrarseActivity extends MasterClass {
         }
         if (!password1.equals(password2)) {
             dmPassword.setError("Contraseñas no coinciden");
-            dmPassword2.setError("Contraseñas no coinciden");
+            //dmPassword2.setError("Contraseñas no coinciden");
             valid = false;
         }
         return valid;

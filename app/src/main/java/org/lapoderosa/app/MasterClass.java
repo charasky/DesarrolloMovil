@@ -1,5 +1,6 @@
 package org.lapoderosa.app;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.widget.Toast;
 
@@ -7,22 +8,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+
+import org.lapoderosa.app.admin.RequestHandler;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class MasterClass extends AppCompatActivity {
-    RequestQueue requestQueue;
-
+    //TODO RECORDAR PONER EL progressDialog = new ProgressDialog(this); EN LA ACTIVITY QUE USE MASTERCLASS
+    ProgressDialog progressDialog;
     protected void ejecutarServicio(String URL) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                progressDialog.dismiss();
                 responseConexion(response);
             }
         }, new Response.ErrorListener() {
@@ -38,8 +40,7 @@ public abstract class MasterClass extends AppCompatActivity {
                 return parametros;
             }
         };
-        requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 
     public void volverLogin() {
@@ -52,5 +53,4 @@ public abstract class MasterClass extends AppCompatActivity {
     protected abstract void inicializarStringVariables();
 
     protected abstract void responseConexion(String response);
-
 }

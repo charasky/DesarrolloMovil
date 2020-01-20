@@ -450,10 +450,12 @@ public class ReporteActivity extends MasterClass{
             denunciaFinal = rbtNoSabeHacerDenuncia.getText().toString();
         }
 
-        if(!dondeDenuncia.isEmpty() ){
+        if(!emptyString(edtDondeDenuncia) ){
             denunciaFinal = dondeDenuncia;
         }
-        if(!porQueNoDenuncia.isEmpty()){
+
+
+        if(!emptyString(edtPorQueNoDenuncia)){
             denunciaFinal = porQueNoDenuncia;
         }
 

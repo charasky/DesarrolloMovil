@@ -1,6 +1,7 @@
 package org.lapoderosa.app;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -115,6 +116,7 @@ public class ReporteActivity extends MasterClass{
         setContentView(R.layout.activity_reporte);
 
         guardar = findViewById(R.id.btnGuardar);
+        progressDialog = new ProgressDialog(this);
 
         //ENTREVISTADOR
         edtNombreEntrevistador = findViewById(R.id.edtNombreEntrevistador);

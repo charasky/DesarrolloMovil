@@ -1,5 +1,6 @@
 package org.lapoderosa.app;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,10 @@ import androidx.annotation.Nullable;
 
 import com.android.volley.AuthFailureError;
 import com.lapoderosa.app.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.lapoderosa.app.admin.SharedPrefManager;
 
 import java.util.Map;
 
@@ -30,6 +35,7 @@ public class RecuperarCuentaActivity extends MasterClass {
         rBtSiguiente = findViewById(R.id.rBtSiguiente);
         rLogin = findViewById(R.id.rLogin);
         rEmail = findViewById(R.id.rEmail);
+        progressDialog = new ProgressDialog(this);
 
         rLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,8 +56,8 @@ public class RecuperarCuentaActivity extends MasterClass {
     private void recuperar() {
         inicializarStringVariables();
         if (!email.isEmpty()) {
-            ejecutarServicio("http://192.168.0.8/proyecto/validar_email.php");
-            //ejecutarServicio("http://ec2-3-136-55-99.us-east-2.compute.amazonaws.com/proyecto/validar_email.php");
+            ejecutarServicio("http://192.168.0.8/android/v1/accountRecovery.php");
+
         } else {
             Toast.makeText(RecuperarCuentaActivity.this, "Ingrese email", Toast.LENGTH_SHORT).show();
         }
@@ -59,7 +65,7 @@ public class RecuperarCuentaActivity extends MasterClass {
 
     @Override
     protected void putParams(Map<String, String> parametros) throws AuthFailureError {
-        parametros.put("usuario", email);
+        parametros.put("usu_usuario", email);
     }
 
     @Override
@@ -69,13 +75,21 @@ public class RecuperarCuentaActivity extends MasterClass {
 
     @Override
     protected void responseConexion(String response) {
-        if (!response.isEmpty()) {
-            //TODO revisar que es lo que responde
-            Toast.makeText(RecuperarCuentaActivity.this, "Revise su casilla de Email", Toast.LENGTH_SHORT).show();
-            enviarEmail(email);
+        String mensaje = "";
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+            mensaje = jsonObject.getString("existe");
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if(mensaje.equals("0")){
+            rEmail.setError("Este email no existe");
+        }else{
             volverLogin();
-        } else {
-            Toast.makeText(RecuperarCuentaActivity.this, "No hay cuenta registrada con ese Email", Toast.LENGTH_SHORT).show();
         }
     }
 

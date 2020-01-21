@@ -56,8 +56,8 @@ public class RecuperarCuentaActivity extends MasterClass {
     private void recuperar() {
         inicializarStringVariables();
         if (!email.isEmpty()) {
-            ejecutarServicio("http://192.168.0.8/android/v1/accountRecovery.php");
-
+            //ejecutarServicio("http://192.168.0.8/android/v1/accountRecovery.php");
+            ejecutarServicio("http://3.136.55.99/proyecto/v1/accountRecovery.php");
         } else {
             Toast.makeText(RecuperarCuentaActivity.this, "Ingrese email", Toast.LENGTH_SHORT).show();
         }

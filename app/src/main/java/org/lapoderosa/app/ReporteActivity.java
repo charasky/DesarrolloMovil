@@ -39,7 +39,7 @@ public class ReporteActivity extends MasterClass{
     private DatePickerDialog.OnDateSetListener m1DateSetListener;
     private DatePickerDialog.OnDateSetListener m2DateSetListener;
     private TimePickerDialog.OnTimeSetListener timeSetListener;
-    private Button guardar;
+    private Button guardar,cancelar;
     private int mHour, mMinute;
     //ENTREVISTADOR
     private String nombreEntrevistador,apellidoEntrevistador,asamblea,fecha;
@@ -56,7 +56,6 @@ public class ReporteActivity extends MasterClass{
     private String motivoProcedimiento;
     //MALTRATOS
     private String maltratos, otraAgresion;
-
     //LESIONES
     private String lesiones;
     //MODALIDAD DE DETENCION
@@ -116,6 +115,7 @@ public class ReporteActivity extends MasterClass{
         setContentView(R.layout.activity_reporte);
 
         guardar = findViewById(R.id.btnGuardar);
+        cancelar = findViewById(R.id.btnCancelar);
         progressDialog = new ProgressDialog(this);
 
         //ENTREVISTADOR
@@ -260,225 +260,71 @@ public class ReporteActivity extends MasterClass{
         //logica caracteristica del procedimiento
 
         listenerMotivoProcedimiento(rbtDelito,rbtAveriguacion,rbtRequiza,rbtNoMotivos);
-        listenerMotivoProcedimiento(rbtAveriguacion,rbtDelito,rbtRequiza,rbtNoMotivos);
-        listenerMotivoProcedimiento(rbtRequiza,rbtDelito,rbtAveriguacion,rbtNoMotivos);
-        listenerMotivoProcedimiento(rbtNoMotivos,rbtDelito,rbtAveriguacion,rbtRequiza);
 
         //logica maltratos
 
-        listenerMaltratos(rbtNoMaltratos,rbtVerbales,rbtFisicos,rbtAmenazas,rbtDañoPertenencias,rbtRequizaHumillante);
-        listenerMaltratos(rbtVerbales,rbtNoMaltratos,rbtFisicos,rbtAmenazas,rbtDañoPertenencias,rbtRequizaHumillante);
-        listenerMaltratos(rbtFisicos,rbtVerbales,rbtNoMaltratos,rbtAmenazas,rbtDañoPertenencias,rbtRequizaHumillante);
-        listenerMaltratos(rbtAmenazas,rbtFisicos,rbtVerbales,rbtNoMaltratos,rbtDañoPertenencias,rbtRequizaHumillante);
-        listenerMaltratos(rbtDañoPertenencias,rbtAmenazas,rbtFisicos,rbtVerbales,rbtNoMaltratos,rbtRequizaHumillante);
-        listenerMaltratos(rbtRequizaHumillante,rbtDañoPertenencias,rbtAmenazas,rbtFisicos,rbtVerbales,rbtNoMaltratos);
+        listenerMaltratos(rbtNoMaltratos,rbtVerbales,rbtFisicos,rbtAmenazas,rbtDañoPertenencias,rbtRequizaHumillante,edtOtraAgresion);
 
         //logica lesiones
 
-        if(rbtNoLesiones.isChecked()){
+        listenerLesiones(rbtNoLesiones,edtFisica,edtPsiquica,edtInsomnioPanico,edtOtrosMiedos);
 
-            limpiarEditText(edtFisica);
-            limpiarEditText(edtPsiquica);
-            limpiarEditText(edtInsomnioPanico);
-            limpiarEditText(edtOtrosMiedos);
-            lesiones = rbtNoLesiones.getText().toString();
-        }
-
-        if(!emptyString(edtFisica)){
-            rbtNoLesiones.setChecked(false);
-            limpiarEditText(edtPsiquica);
-            limpiarEditText(edtInsomnioPanico);
-            limpiarEditText(edtOtrosMiedos);
-            lesiones = edtFisica.getText().toString();
-        }
-
-        if(!emptyString(edtPsiquica)){
-            rbtNoLesiones.setChecked(false);
-            limpiarEditText(edtFisica);
-            limpiarEditText(edtInsomnioPanico);
-            limpiarEditText(edtOtrosMiedos);
-            lesiones = edtPsiquica.getText().toString();
-        }
-        if(!emptyString(edtInsomnioPanico)){
-            rbtNoLesiones.setChecked(false);
-            limpiarEditText(edtFisica);
-            limpiarEditText(edtPsiquica);
-            limpiarEditText(edtOtrosMiedos);
-            lesiones = edtInsomnioPanico.getText().toString();
-        }
-        if(!emptyString(edtOtrosMiedos)){
-            rbtNoLesiones.setChecked(false);
-            limpiarEditText(edtFisica);
-            limpiarEditText(edtInsomnioPanico);
-            limpiarEditText(edtPsiquica);
-            lesiones = edtOtrosMiedos.getText().toString();
-        }
-
-        //TRASLADO
-        /*
-        if(rbtNoTrasladaron.isChecked()){
-            limpiarEditText(edtDondeTrasladaron);
-            traslado = rbtNoTrasladaron.getText().toString();
-        }else if(!emptyString(edtDondeTrasladaron)){
-            rbtNoTrasladaron.setChecked(false);
-            traslado = edtDondeTrasladaron.getText().toString();
-
-        }*/
-        rbtYEdt(edtDondeTrasladaron,rbtNoTrasladaron,traslado);
+        //logica traslado
+        rbtYEdtTraslado(edtDondeTrasladaron,rbtNoTrasladaron);
 
         //COMISARIA/DEPENDENCIA
 
-        rbtYEdt(edtCualComisaria,rbtNoComisaria,comisaria);
+        rbtYEdtComisaria(edtCualComisaria,rbtNoComisaria);
 
         //ESPOSADOS
 
-        if(rbtNoEsposados.isChecked()){
-            rbtSiEsposados.setChecked(false);
-            esposado = rbtNoEsposados.getText().toString();
-        }
-        if(rbtSiEsposados.isChecked()){
-            rbtNoEsposados.setChecked(false);
-            esposado = rbtSiEsposados.getText().toString();
-        }
+        listenerEsposado(rbtNoEsposados,rbtSiEsposados);
 
         //ALLANAMIENTO
 
-        if (rbtNoOrdenAllanamiento.isChecked()){
-            rbtSiOrdenAllanamiento.setChecked(false);
-            ordenAllanamiento = rbtNoOrdenAllanamiento.getText().toString();
-        }
-        if(rbtSiOrdenAllanamiento.isChecked()){
-            rbtNoOrdenAllanamiento.setChecked(false);
-            ordenAllanamiento = rbtSiOrdenAllanamiento.getText().toString();
-        }
+        listenerOrdenAllanamiento(rbtNoOrdenAllanamiento,rbtSiOrdenAllanamiento);
 
         //AGRESIONES ALLANAMIENTO
 
-        rbtYEdt(edtCualesAgresionesDomicilio,rbtNoAgresionesDomicilio,agresionAllanamiento);
+        rbtYEdtAgresionAllanamiento(edtCualesAgresionesDomicilio,rbtNoAgresionesDomicilio);
 
         //pertenencias Domicilio
-        rbtYEdt(edtCualesPertenencias,rbtNoPertenenciasRobadas,pertenenciasAllanamiento);
+        rbtYEdtPertenenciasAllanamiento(edtCualesPertenencias,rbtNoPertenenciasRobadas);
 
         //omision de pertenencias
 
-        rbtYEdt(edtCualesOmitieron,rbtNoOmitieronPertenencias,omisionPertenencias);
+        rbtYEdtOmisionPertenencias(edtCualesOmitieron,rbtNoOmitieronPertenencias);
 
         //detenidos allanamiento
 
-        rbtYEdt(edtCuantosDetenidos,rbtNoDetenidos,detenidosAllanamiento);
+        rbtYEdtDetenidosAllanamiento(edtCuantosDetenidos,rbtNoDetenidos);
 
-        //modalidad detencion allanamiento
+        //posicion detenidos allanamiento
 
-
-        if(rbtParado.isChecked()){
-            rbtArrodillado.setChecked(false);
-            rbtAcostado.setChecked(false);
-            limpiarEditText(edtOtraPosicion);
-        }
-
-        if(rbtArrodillado.isChecked()){
-            rbtParado.setChecked(false);
-            rbtAcostado.setChecked(false);
-            limpiarEditText(edtOtraPosicion);
-        }
-
-        if(rbtAcostado.isChecked()){
-            rbtArrodillado.setChecked(false);
-            rbtParado.setChecked(false);
-            limpiarEditText(edtOtraPosicion);
-        }
-        if(!emptyString(edtOtraPosicion)){
-            rbtArrodillado.setChecked(false);
-            rbtParado.setChecked(false);
-            rbtAcostado.setChecked(false);
-
-        }
+        listenerPosicionAllanamiento(rbtParado,rbtArrodillado,rbtAcostado,edtOtraPosicion);
 
         //ESPOSADOS ALLANAMIENTO
 
-        if(rbtNoEsposadosAllanamiento.isChecked()){
-            rbtSiEsposadosAllanamiento.setChecked(false);
-            esposados = rbtNoEsposadosAllanamiento.getText().toString();
-        }
-        if (rbtSiEsposadosAllanamiento.isChecked()){
-            rbtNoEsposadosAllanamiento.setChecked(false);
-            esposados = rbtSiEsposadosAllanamiento.getText().toString();
-        }
+        listenerEsposadosAllanamiento(rbtNoEsposadosAllanamiento,rbtSiEsposadosAllanamiento);
+
+        //OMISION AL ACTUAR
 
         //logica concurrio a denuncia y no la tomaron
+        listenerDenunciaRechazada(rbtNoDenuncia,edtMotivosDenunciaRechazada);
 
-        if(rbtNoDenuncia.isChecked()){
-            limpiarEditText(edtMotivosDenunciaRechazada);
-            rbtNoViolentado.setChecked(false);
-            rbtSiViolentado.setChecked(false);
-            denunciaRechazada = rbtNoDenuncia.getText().toString();
-        }
-        if(!emptyString(edtMotivosDenunciaRechazada)){
-            rbtNoDenuncia.setChecked(false);
-            denunciaRechazada = edtMotivosDenunciaRechazada.getText().toString();
-        }
-
-        if(emptyString(edtMotivosDenunciaRechazada)){
-            rbtNoViolentado.setChecked(false);
-            rbtSiViolentado.setChecked(false);
-        }
-
-        if(rbtNoViolentado.isChecked()){
-            rbtSiViolentado.setChecked(false);
-            violentado = rbtNoViolentado.getText().toString();
-        }
-        if(rbtSiViolentado.isChecked()){
-            rbtNoViolentado.setChecked(false);
-            violentado = rbtSiViolentado.getText().toString();
-        }
+        listenerViolentado(rbtSiViolentado,rbtNoViolentado);
 
         //logica denuncia
 
-        if(rbtSiHizoDenuncia.isChecked()){
-            rbtNoHizoDenuncia.setChecked(false);
-            hizoDenuncia = rbtSiHizoDenuncia.getText().toString();
-            dondeDenuncia = edtDondeDenuncia.getText().toString();
-        }
-        if(rbtNoHizoDenuncia.isChecked()){
-            rbtSiHizoDenuncia.setChecked(false);
-            hizoDenuncia = rbtNoHizoDenuncia.getText().toString();
-            porQueNoDenuncia = edtPorQueNoDenuncia.getText().toString();
-        }
-        if(rbtNoSabeHacerDenuncia.isChecked()){
-            rbtSiHizoDenuncia.setChecked(false);
-            rbtNoHizoDenuncia.setChecked(false);
-            limpiarEditText(edtDondeDenuncia);
-            limpiarEditText(edtPorQueNoDenuncia);
-            denunciaFinal = rbtNoSabeHacerDenuncia.getText().toString();
-        }
-
-        if(!emptyString(edtDondeDenuncia) ){
-            denunciaFinal = dondeDenuncia;
-        }
-
-
-        if(!emptyString(edtPorQueNoDenuncia)){
-            denunciaFinal = porQueNoDenuncia;
-        }
+        listenerDenuncia(rbtSiHizoDenuncia,edtDondeDenuncia,rbtNoHizoDenuncia,edtPorQueNoDenuncia,rbtNoSabeHacerDenuncia);
 
         //RESULTADO INVESTIGACION
 
         logicaResultadoInvestigacion(rbtCondena,rbtAbsolucion,rbtCausaEnTramite,rbtArchivo,rbtNoSabeResultado);
-        logicaResultadoInvestigacion(rbtAbsolucion,rbtCondena,rbtCausaEnTramite,rbtArchivo,rbtNoSabeResultado);
-        logicaResultadoInvestigacion(rbtCausaEnTramite,rbtCondena,rbtAbsolucion,rbtArchivo,rbtNoSabeResultado);
-        logicaResultadoInvestigacion(rbtArchivo,rbtCondena,rbtAbsolucion,rbtCausaEnTramite,rbtNoSabeResultado);
-        logicaResultadoInvestigacion(rbtNoSabeResultado,rbtCondena,rbtAbsolucion,rbtCausaEnTramite,rbtArchivo);
 
         //TRABAJAN LOS OFICIALES
 
-        if(rbtNoTrabajaMas.isChecked()){
-            rbtSiTrabaja.setChecked(false);
-            trabajanLosOficiales = rbtNoTrabajaMas.getText().toString();
-        }
-        if(rbtSiTrabaja.isChecked()){
-            rbtNoTrabajaMas.setChecked(false);
-            trabajanLosOficiales = rbtSiTrabaja.getText().toString();
-        }
+        listenerOficiales(rbtSiTrabaja,rbtNoTrabajaMas);
 
 
         tvDateEntrevista.setOnClickListener(new View.OnClickListener() {
@@ -519,14 +365,7 @@ public class ReporteActivity extends MasterClass{
             }
         });
 
-        guardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                ejecutarServicio("http://ec2-3-136-55-99.us-east-2.compute.amazonaws.com/proyecto/insertar_datos_entrevistador.php");
-
-            }
-        });
 
         tvHoraHecho.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -549,7 +388,28 @@ public class ReporteActivity extends MasterClass{
             }
         });
 
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ejecutarServicio("http://ec2-3-136-55-99.us-east-2.compute.amazonaws.com/proyecto/insertar_datos_entrevistador.php");
+
+            }
+        });
+
+        cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                    startActivity(new Intent(getApplicationContext(), InicioActivity.class));
+                    finish();
+
+            }
+        });
+
     }
+
+
 
     @Override
     protected void putParams(Map<String, String> parametros) throws AuthFailureError {
@@ -591,7 +451,6 @@ public class ReporteActivity extends MasterClass{
         parametros.put("usu_motivo_procedimiento",motivoProcedimiento);
         parametros.put("usu_maltratos",maltratos);
         parametros.put("usu_lesiones",lesiones);
-        parametros.put("usu_maltratos",maltratos);
         //MODALIDAD DE DETENCION
         parametros.put("usu_posicion_detenido",posicionDetenido);
         parametros.put("usu_tiempo_detenido",cuantoTiempoDetenido);
@@ -606,6 +465,7 @@ public class ReporteActivity extends MasterClass{
         parametros.put("usu_omision_pertenencias",omisionPertenencias);
         parametros.put("usu_detenidos_allanamiento",detenidosAllanamiento);
         parametros.put("usu_duracion_allanamiento",duracionAllanamiento);
+        parametros.put("usu_posicion_allanamiento",posicionDetenidos);
         parametros.put("usu_esposados",esposados);
         //OMISION AL ACTUAR
         parametros.put("usu_medios_de_asistencia",mediosDeAsistencia);
@@ -656,9 +516,6 @@ public class ReporteActivity extends MasterClass{
         //CARACTERISTICA DEL PROCEDIMIENTO
         //motivoProcedimiento
         otraAgresion = edtOtraAgresion.getText().toString();
-        if(!TextUtils.isEmpty(otraAgresion)){
-            maltratos = otraAgresion;
-        }
         //lesiones
         //MODALIDAD DE DETENCION
         posicionDetenido = edtPosicionDetenido.getText().toString();
@@ -732,10 +589,40 @@ public class ReporteActivity extends MasterClass{
             }
         });
 
+        rbt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbtTrue.setChecked(false);
+                rbt2.setChecked(false);
+                rbt3.setChecked(false);
+                motivoProcedimiento = rbt1.getText().toString();
+            }
+        });
+
+        rbt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                rbtTrue.setChecked(false);
+                rbt3.setChecked(false);
+                motivoProcedimiento = rbt2.getText().toString();
+            }
+        });
+
+        rbt3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                rbt2.setChecked(false);
+                rbtTrue.setChecked(false);
+                motivoProcedimiento = rbt3.getText().toString();
+            }
+        });
+
     }
 
-    public void listenerMaltratos(final RadioButton rbtTrue, final RadioButton rbt1, final RadioButton rbt2,final RadioButton rbt3, final RadioButton rbt4, final RadioButton rbt5){
-            rbtTrue.setOnClickListener(new View.OnClickListener() {
+    public void listenerMaltratos(final RadioButton rbtTrue, final RadioButton rbt1, final RadioButton rbt2,final RadioButton rbt3, final RadioButton rbt4, final RadioButton rbt5,final EditText edt){
+        rbtTrue.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     rbt1.setChecked(false);
@@ -747,6 +634,404 @@ public class ReporteActivity extends MasterClass{
                     maltratos = rbtTrue.getText().toString();
                 }
             });
+        rbt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbtTrue.setChecked(false);
+                rbt2.setChecked(false);
+                rbt3.setChecked(false);
+                rbt4.setChecked(false);
+                rbt5.setChecked(false);
+                limpiarEditText(edtOtraAgresion);
+                maltratos = rbt1.getText().toString();
+            }
+        });
+        rbt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                rbtTrue.setChecked(false);
+                rbt3.setChecked(false);
+                rbt4.setChecked(false);
+                rbt5.setChecked(false);
+                limpiarEditText(edtOtraAgresion);
+                maltratos = rbt2.getText().toString();
+            }
+        });
+
+        rbt3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                rbt2.setChecked(false);
+                rbtTrue.setChecked(false);
+                rbt4.setChecked(false);
+                rbt5.setChecked(false);
+                limpiarEditText(edtOtraAgresion);
+                maltratos = rbt3.getText().toString();
+            }
+        });
+        rbt4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                rbt2.setChecked(false);
+                rbt3.setChecked(false);
+                rbtTrue.setChecked(false);
+                rbt5.setChecked(false);
+                limpiarEditText(edtOtraAgresion);
+                maltratos = rbt4.getText().toString();
+            }
+        });
+        rbt5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                rbt2.setChecked(false);
+                rbt3.setChecked(false);
+                rbt4.setChecked(false);
+                rbtTrue.setChecked(false);
+                limpiarEditText(edtOtraAgresion);
+                maltratos = rbt5.getText().toString();
+            }
+        });
+        edt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                rbt2.setChecked(false);
+                rbt3.setChecked(false);
+                rbt4.setChecked(false);
+                rbt5.setChecked(false);
+                rbtTrue.setChecked(false);
+                maltratos = edt.getText().toString();
+            }
+        });
+    }
+
+    private void listenerLesiones(final RadioButton rbtTrue, final EditText edt1, final EditText edt2, final EditText edt3, final EditText edt4) {
+        rbtTrue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                limpiarEditText(edt1);
+                limpiarEditText(edt2);
+                limpiarEditText(edt3);
+                limpiarEditText(edt4);
+                lesiones = rbtTrue.getText().toString();
+            }
+        });
+
+        edt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbtTrue.setChecked(false);
+                limpiarEditText(edt2);
+                limpiarEditText(edt3);
+                limpiarEditText(edt4);
+                lesiones = edt1.getText().toString();
+            }
+        });
+        edt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbtTrue.setChecked(false);
+                limpiarEditText(edt1);
+                limpiarEditText(edt3);
+                limpiarEditText(edt4);
+                lesiones = edt2.getText().toString();
+            }
+        });
+        edt3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbtTrue.setChecked(false);
+                limpiarEditText(edt1);
+                limpiarEditText(edt2);
+                limpiarEditText(edt4);
+                lesiones = edt3.getText().toString();
+            }
+        });
+        edt4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbtTrue.setChecked(false);
+                limpiarEditText(edt1);
+                limpiarEditText(edt2);
+                limpiarEditText(edt3);
+                lesiones = edt4.getText().toString();
+            }
+        });
+    }
+
+
+    private void listenerEsposado(final RadioButton rbt1, final RadioButton rbt2){
+        rbt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt2.setChecked(false);
+                esposado = rbt1.getText().toString();
+            }
+        });
+
+        rbt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                esposado = rbt1.getText().toString();
+            }
+        });
+    }
+
+    private void listenerOrdenAllanamiento(final RadioButton rbt1, final RadioButton rbt2){
+        rbt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               rbt2.setChecked(false);
+               ordenAllanamiento = rbt1.getText().toString();
+            }
+        });
+
+        rbt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                ordenAllanamiento= rbt2.getText().toString();
+            }
+        });
+    }
+
+     private void rbtYEdtAgresionAllanamiento(final EditText edt, final RadioButton rbt) {
+
+        rbt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                limpiarEditText(edt);
+                agresionAllanamiento = rbt.getText().toString();
+            }
+        });
+
+        edt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt.setChecked(false);
+                agresionAllanamiento = edt.getText().toString();
+            }
+        });
+
+     }
+
+     private void rbtYEdtTraslado(final EditText edt, final RadioButton rbt){
+        rbt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                limpiarEditText(edt);
+                traslado = rbt.getText().toString();
+            }
+        });
+
+        edt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt.setChecked(false);
+                traslado = edt.getText().toString();
+            }
+        });
+     }
+
+     private void rbtYEdtComisaria(final EditText edt, final RadioButton rbt){
+         rbt.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 limpiarEditText(edt);
+                 comisaria = rbt.getText().toString();
+             }
+         });
+
+         edt.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 rbt.setChecked(false);
+                 comisaria = edt.getText().toString();
+             }
+         });
+     }
+
+    private void rbtYEdtPertenenciasAllanamiento(final EditText edt, final RadioButton rbt){
+        rbt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                limpiarEditText(edt);
+                pertenenciasAllanamiento = rbt.getText().toString();
+            }
+        });
+
+        edt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt.setChecked(false);
+                pertenenciasAllanamiento = edt.getText().toString();
+            }
+        });
+    }
+
+    private void rbtYEdtOmisionPertenencias(final EditText edt, final RadioButton rbt){
+        rbt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                limpiarEditText(edt);
+                omisionPertenencias = rbt.getText().toString();
+            }
+        });
+
+        edt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt.setChecked(false);
+                omisionPertenencias = edt.getText().toString();
+            }
+        });
+    }
+
+    private void rbtYEdtDetenidosAllanamiento(final EditText edt, final RadioButton rbt){
+        rbt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                limpiarEditText(edt);
+                detenidosAllanamiento = rbt.getText().toString();
+            }
+        });
+
+        edt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt.setChecked(false);
+                detenidosAllanamiento = edt.getText().toString();
+            }
+        });
+    }
+
+    private void listenerEsposadosAllanamiento(final RadioButton rbt1, final RadioButton rbt2){
+        rbt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt2.setChecked(false);
+                esposados = rbt1.getText().toString();
+            }
+        });
+        rbt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                esposados = rbt2.getText().toString();
+            }
+        });
+    }
+
+    private void listenerPosicionAllanamiento(final RadioButton rbtTrue,final RadioButton rbt1, final RadioButton rbt2,final EditText edt1){
+        rbtTrue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                rbt2.setChecked(false);
+                limpiarEditText(edt1);
+                posicionDetenidos = rbtTrue.getText().toString();
+            }
+        });
+        rbt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbtTrue.setChecked(false);
+                rbt2.setChecked(false);
+                limpiarEditText(edt1);
+                posicionDetenidos = rbt1.getText().toString();
+            }
+        });
+        rbt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                rbtTrue.setChecked(false);
+                limpiarEditText(edt1);
+                posicionDetenidos = rbt2.getText().toString();
+            }
+        });
+        edt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                rbt2.setChecked(false);
+                rbtTrue.setChecked(false);
+                posicionDetenidos = edt1.getText().toString();
+            }
+        });
+    }
+
+    private void listenerDenunciaRechazada(final RadioButton rbt1,final EditText edt){
+        rbt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                limpiarEditText(edt);
+                denunciaRechazada = rbt1.getText().toString();
+            }
+        });
+
+        edt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                denunciaRechazada = rbt1.getText().toString();
+            }
+        });
+    }
+
+    private void listenerViolentado(final RadioButton rbt1, final RadioButton rbt2){
+        rbt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt2.setChecked(false);
+                violentado = rbt1.getText().toString();
+            }
+        });
+
+        rbt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                violentado = rbt2.getText().toString();
+            }
+        });
+    }
+
+    private void listenerDenuncia(final RadioButton rbtSi,final EditText edtDonde, final RadioButton rbtNo, final EditText porQueNo, final RadioButton noSabe){
+
+        rbtSi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbtNo.setChecked(false);
+                noSabe.setChecked(false);
+                limpiarEditText(porQueNo);
+                denunciaFinal = rbtSi.getText().toString() + edtDonde.getText().toString();
+            }
+        });
+        rbtNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbtSi.setChecked(false);
+                noSabe.setChecked(false);
+                limpiarEditText(edtDonde);
+                denunciaFinal = rbtNo.getText().toString() + porQueNo.getText().toString();
+            }
+        });
+        noSabe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbtNo.setChecked(false);
+                rbtSi.setChecked(false);
+                limpiarEditText(porQueNo);
+                limpiarEditText(edtDonde);
+                denunciaFinal = noSabe.getText().toString();
+            }
+        });
     }
 
     public void logicaResultadoInvestigacion(final RadioButton rbtTrue, final RadioButton rbt1, final RadioButton rbt2 , final RadioButton rbt3 , final RadioButton rbt4){
@@ -760,24 +1045,73 @@ public class ReporteActivity extends MasterClass{
                 resultadoInvestigacion = rbtTrue.getText().toString();
             }
         });
+
+        rbt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbtTrue.setChecked(false);
+                rbt2.setChecked(false);
+                rbt3.setChecked(false);
+                rbt4.setChecked(false);
+                resultadoInvestigacion = rbt1.getText().toString();
+            }
+        });
+        rbt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                rbtTrue.setChecked(false);
+                rbt3.setChecked(false);
+                rbt4.setChecked(false);
+                resultadoInvestigacion = rbt2.getText().toString();
+            }
+        });
+        rbt3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                rbt2.setChecked(false);
+                rbtTrue.setChecked(false);
+                rbt4.setChecked(false);
+                resultadoInvestigacion = rbt3.getText().toString();
+            }
+        });
+        rbt4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbt1.setChecked(false);
+                rbt2.setChecked(false);
+                rbt3.setChecked(false);
+                rbtTrue.setChecked(false);
+                resultadoInvestigacion = rbt4.getText().toString();
+            }
+        });
+    }
+
+    public void listenerOficiales(final RadioButton rbtSi,final RadioButton rbtNo){
+        rbtSi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbtNo.setChecked(false);
+                trabajanLosOficiales = rbtSi.getText().toString();
+            }
+        });
+        rbtNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rbtSi.setChecked(false);
+                trabajanLosOficiales = rbtNo.getText().toString();
+            }
+        });
     }
 
     public void limpiarEditText(EditText edtText){
         edtText.setText("");
+        //TODO que el editext pierda el focus al limpiarse.
+        //edtText.setFocus;
     }
 
-    public boolean emptyString(EditText edt){
+    public boolean isEmptyString(EditText edt){
         return TextUtils.isEmpty(edt.getText().toString());
     }
-
-     private void rbtYEdt(EditText edt,RadioButton rbt,String variable) {
-         if (rbt.isChecked()) {
-             limpiarEditText(edt);
-             variable = rbt.getText().toString();
-         } else if (!emptyString(edt)) {
-             rbt.setChecked(false);
-             variable = edt.getText().toString();
-
-         }
-     }
 }

@@ -64,8 +64,7 @@ public class RegistrarseActivity extends MasterClass {
         if (!validate()) {
             Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
         } else {
-            //ejecutarServicio("http://192.168.0.8/android/v1/registerUser.php");
-            ejecutarServicio("http://3.136.55.99/proyecto/v1/registerUser.php");
+            ejecutarServicio(getResources().getString(R.string.URL_SIGN_UP));
         }
     }
 

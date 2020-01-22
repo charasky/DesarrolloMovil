@@ -69,8 +69,7 @@ public class LoginActivity extends MasterClass {
     private void usuarioLogin() {
         inicializarStringVariables();
         if (!usuario.isEmpty() && !password.isEmpty()) {
-            //ejecutarServicio("http://192.168.0.8/android/v1/userLogin.php");
-            ejecutarServicio("http://3.136.55.99/proyecto/v1/userLogin.php");
+            ejecutarServicio(getResources().getString(R.string.URL_LOGIN));
         } else {
             Toast.makeText(LoginActivity.this, "Ingrese usuario y contraseña", Toast.LENGTH_SHORT).show();
         }

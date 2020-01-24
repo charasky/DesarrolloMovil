@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.lapoderosa.app.R;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.admin.AdminInicioActivity;
@@ -111,11 +110,13 @@ public class LoginActivity extends MasterClass {
             if (!obj.getBoolean("error")) {
                 SharedPrefManager.getInstance(getApplicationContext())
                         .userLogin(
-                                obj.getInt("id"),
-                                obj.getString("usu_usuario")
+                                obj.getString("usu_asamblea"),
+                                obj.getString("usu_usuario"),
+                                obj.getString("usu_validacion"),
+                                obj.getString("usu_administrador")
                         );
-                admin = obj.getString("usu_administrador");
-                habilitado = obj.getString("usu_validacion");
+                admin = SharedPrefManager.getInstance(this).getKeyTypeUser();
+                habilitado = SharedPrefManager.getInstance(this).getKeyEnabledUser();
                 guardarPreferencias();
             } else {
                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();

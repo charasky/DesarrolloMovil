@@ -23,7 +23,7 @@
         android:layout_above="@+id/rEmail"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="Complete los campos del email y contraseña a cambiar"
+        android:text="Complete los campos del fecha y contraseña a cambiar"
         android:textSize="18sp" />
 
     <EditText

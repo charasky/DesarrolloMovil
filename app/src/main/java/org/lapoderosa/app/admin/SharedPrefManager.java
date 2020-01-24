@@ -7,9 +7,11 @@ public class SharedPrefManager {
     private static SharedPrefManager instance;
     private static Context mCtx;
 
-    private static final String SHARED_PREF_NAME = "mysharedpref10";
-    private static final String KEY_ID = "id";
+    private static final String SHARED_PREF_NAME = "mysharedpref";
+    private static final String KEY_ASAMBLEA = "usu_asamble";
     private static final String KEY_USUARIO = "usu_usuario";
+    private static final String KEY_ENABLED_USER = "usu_validacion";
+    private static final String KEY_TYPE_USER = "usu_administrador";
 
     private SharedPrefManager(Context context) {
         mCtx = context;
@@ -22,26 +24,28 @@ public class SharedPrefManager {
         return instance;
     }
 
-    public boolean userLogin(int id, String usu_usuario){
+    public boolean userLogin(String usu_asamblea, String usu_usuario, String usu_validacion, String usu_administrador) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putInt(KEY_ID, id);
+        editor.putString(KEY_ASAMBLEA, usu_asamblea);
         editor.putString(KEY_USUARIO, usu_usuario);
+        editor.putString(KEY_ENABLED_USER, usu_validacion);
+        editor.putString(KEY_TYPE_USER, usu_administrador);
 
         editor.apply();
         return true;
     }
 
-    public boolean isLoggedIn(){
+    public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        if(sharedPreferences.getString(KEY_USUARIO,null) != null){
+        if (sharedPreferences.getString(KEY_USUARIO, null) != null) {
             return true;
         }
         return false;
     }
 
-    public boolean logout(){
+    public boolean logout() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
@@ -49,8 +53,25 @@ public class SharedPrefManager {
         return true;
     }
 
-    public String getUsuario(){
+    public String getKeyUsuario() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(KEY_USUARIO,null);
+        return sharedPreferences.getString(KEY_USUARIO, null);
+    }
+
+    //get de si el usuario esta habilitado
+    public String getKeyEnabledUser() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_ENABLED_USER, null);
+    }
+
+    //get de si el usuario es administrador
+    public String getKeyTypeUser() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_TYPE_USER, null);
+    }
+
+    public String getKeyAsamblea() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_ASAMBLEA, null);
     }
 }

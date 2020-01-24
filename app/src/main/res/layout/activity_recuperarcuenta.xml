@@ -24,7 +24,7 @@
         android:layout_above="@+id/rEmail"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="ingrese el correo electronico del usuario que quiere recuperar la cuenta"
+        android:text="ingrese el correo electronico del v_nombre que quiere recuperar la cuenta"
         android:textSize="18sp" />
 
     <EditText

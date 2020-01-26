@@ -204,7 +204,8 @@
                     android:id="@+id/edtNombreVictima"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
+                    android:gravity="right"
                     android:textSize="20sp">
 
                 </EditText>
@@ -258,7 +259,8 @@
                     android:id="@+id/edtGenero"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
+                    android:gravity="right"
                     android:textSize="20sp">
 
                 </EditText>
@@ -313,7 +315,8 @@
                     android:id="@+id/edtNacionalidad"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
+                    android:gravity="right"
                     android:textSize="20sp">
 
                 </EditText>
@@ -342,7 +345,6 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:inputType="number"
                     android:textSize="20sp">
 
                 </EditText>
@@ -606,6 +608,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="right"
                     android:inputType="number"
                     android:textSize="20sp">
 
@@ -615,7 +618,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
+                android:layout_gravity="center"
                 android:layout_margin="15dp"
                 android:text="¿Donde se encontraba?"
                 android:textSize="20sp"
@@ -644,7 +647,8 @@
                     android:id="@+id/edtCualLugar"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
+                    android:gravity="right"
                     android:hint="Especifique"
                     android:textSize="20sp">
 
@@ -683,7 +687,8 @@
                     android:id="@+id/edtFuerzasIntervinientes"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
+                    android:gravity="right"
                     android:textSize="20sp">
 
                 </EditText>
@@ -733,7 +738,8 @@
                     android:id="@+id/edtCantidadAgentes"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
+                    android:gravity="right"
                     android:inputType="number"
                     android:textSize="20sp">
 
@@ -761,7 +767,8 @@
                     android:id="@+id/edtNombresAgentes"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
+                    android:gravity="right"
                     android:textSize="20sp">
 
                 </EditText>
@@ -787,7 +794,8 @@
                     android:id="@+id/edtApodos"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
+                    android:gravity="right"
                     android:textSize="20sp">
 
                 </EditText>
@@ -826,7 +834,8 @@
                     android:id="@+id/edtCantidadVehiculos"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
+                    android:gravity="right"
                     android:inputType="number"
                     android:textSize="20sp">
 
@@ -854,7 +863,8 @@
                     android:id="@+id/edtNumMovil"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
+                    android:gravity="right"
                     android:inputType="number"
                     android:textSize="20sp">
 
@@ -882,7 +892,8 @@
                     android:id="@+id/edtDominio"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
+                    android:gravity="right"
                     android:textSize="20sp">
 
                 </EditText>
@@ -920,8 +931,8 @@
                     android:id="@+id/edtConductaAgentes"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:hint="Describa"
+                    android:layout_gravity="right"
+                    android:gravity="right"
                     android:textSize="20sp">
 
                 </EditText>
@@ -946,7 +957,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
                 android:text="Seleccione el motivo del procedimiento:"
-                android:textSize="20sp"
+                android:textSize="23sp"
                 android:textStyle="normal">
 
             </TextView>
@@ -1165,6 +1176,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="right"
                     android:hint="Otro"
                     android:textAlignment="center"
                     android:textSize="20sp">
@@ -1326,7 +1338,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
                 android:text="Modalidad De Detencion"
-                android:textSize="23sp"
+                android:textSize="20sp"
                 android:textStyle="normal">
 
             </TextView>
@@ -1352,6 +1364,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="right"
                     android:textSize="20dp">
 
                 </EditText>
@@ -1378,6 +1391,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="right"
                     android:inputType="number"
                     android:textSize="20dp">
 
@@ -1423,7 +1437,7 @@
                     android:id="@+id/edtDondeTrasladaron"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:gravity="center"
                     android:hint="Donde"
                     android:textSize="20dp">
 
@@ -1472,7 +1486,7 @@
                     android:id="@+id/edtCualComisaria"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:gravity="center"
                     android:hint="¿Cual?"
                     android:textSize="20dp">
 
@@ -1536,8 +1550,8 @@
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
                 android:text="Solo Allanamientos"
-                android:textSize="23dp"
-                android:textStyle="bold">
+                android:textSize="20dp"
+                android:textStyle="normal">
 
             </TextView>
 
@@ -1626,6 +1640,7 @@
                     android:id="@+id/edtCualesAgresionesDomicilio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:hint="Describe cuales"
                     android:textSize="20dp">
 
@@ -1682,6 +1697,7 @@
                     android:id="@+id/edtCualesPertenencias"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:hint="Describe"
                     android:textSize="20dp">
 
@@ -1738,6 +1754,7 @@
                     android:id="@+id/edtCualesOmitieron"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:hint="Describe"
                     android:textSize="20dp">
 
@@ -1794,6 +1811,7 @@
                     android:id="@+id/edtCuantosDetenidos"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:inputType="number"
                     android:textSize="20dp">
 
@@ -1830,6 +1848,7 @@
                 android:id="@+id/edtTiempoAllanamiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:inputType="number"
                 android:textSize="20dp">
 
@@ -1922,6 +1941,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="right"
                     android:hint="Describe"
                     android:textSize="20dp">
 
@@ -2008,7 +2028,8 @@
                     android:id="@+id/edtMedioAsistencia"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
+                    android:gravity="right"
                     android:textSize="20sp">
 
                 </EditText>
@@ -2034,7 +2055,8 @@
                     android:id="@+id/edtAQuien"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
+                    android:gravity="right"
                     android:textSize="20dp">
 
                 </EditText>
@@ -2089,6 +2111,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="right"
                     android:textSize="20dp">
 
                 </EditText>
@@ -2199,6 +2222,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="right"
                     android:textSize="20dp">
 
                 </EditText>
@@ -2241,6 +2265,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="right"
                     android:textSize="20dp">
 
                 </EditText>
@@ -2265,11 +2290,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
                 android:layout_gravity="center"
                 android:text="Resultado de la investigacion"
-                android:textSize="23dp"
-                android:textStyle="bold">
+                android:textSize="20dp">
 
 
             </TextView>
@@ -2330,7 +2353,7 @@
 
                 <RadioButton
                     android:id="@+id/rbtArchivo"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:text="Archivo/Desestimacion"
                     android:textSize="20dp"
@@ -2358,7 +2381,6 @@
             <TextView
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
                 android:layout_gravity="center"
                 android:gravity="right"
                 android:text="¿El o los oficiales siguen trabajando en la fuerza de seguridad?"
@@ -2405,18 +2427,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FA5858"
-                android:layout_margin="30dp"
                 android:text="GUARDAR"
-                android:textColor="#FFF"
-                android:textSize="20dp" />
-
-            <Button
-                android:id="@+id/btnCancelar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#FA5858"
-                android:layout_margin="30dp"
-                android:text="CANCELAR"
                 android:textColor="#FFF"
                 android:textSize="20dp" />
 

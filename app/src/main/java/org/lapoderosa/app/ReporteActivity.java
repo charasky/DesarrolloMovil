@@ -40,6 +40,7 @@ public class ReporteActivity extends MasterClass{
     private DatePickerDialog.OnDateSetListener m2DateSetListener;
     private TimePickerDialog.OnTimeSetListener timeSetListener;
     private Button guardar,cancelar;
+
     private int mHour, mMinute;
     //ENTREVISTADOR
     private String nombreEntrevistador,apellidoEntrevistador,asamblea,fecha;
@@ -48,7 +49,7 @@ public class ReporteActivity extends MasterClass{
     //VICTIMA
     private String nombreVictima,apellidoVictima,generoVictima,edadVictima,nacionalidadVictima,documentoVictima,direccionVictima,barrioVictima,telefonoVictima;
     //HECHO POLICIAL
-    private String direccionHecho,barrioHecho,ciudadHecho,provinciaHecho,cuantosAcompañan,cualLugar,diaHecho,horaHecho;
+    private String cuantosAcompañan,cualLugar,diaHecho,horaHecho;
     private String ubicacionHecho;
     //FUERZAS INTERVINIENTES
     private String fuerzasIntervinientes,cantidadAgentes,nombresAgentes,apodos,cantidadVehiculos,numMovil,dominio,conductaAgentes;
@@ -71,7 +72,7 @@ public class ReporteActivity extends MasterClass{
 
     //**************//
     //ENTREVISTADOR
-    private EditText edtNombreEntrevistador,edtApellidoEntrevistador,edtAsamblea,diaEntrevista;
+    private EditText edtNombreEntrevistador,edtApellidoEntrevistador,edtAsamblea;
     //ENTREVISTADO
     private EditText edtParentesco;
     //VICTIMA
@@ -387,15 +388,19 @@ public class ReporteActivity extends MasterClass{
                 dialog.show();
             }
         });
+        try{
+            guardar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    inicializarStringVariables();
+                    ejecutarServicio("http://ec2-3-136-55-99.us-east-2.compute.amazonaws.com/proyecto/insertar_datos_entrevistador.php");
 
-        guardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                }
+            });
+        }catch (Exception e){
+            Toast.makeText( getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
 
-                ejecutarServicio("http://ec2-3-136-55-99.us-east-2.compute.amazonaws.com/proyecto/insertar_datos_entrevistador.php");
-
-            }
-        });
 
         cancelar.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,21 +1,22 @@
 <resources>
     <string name="app_name">Garganta Poderosa</string>
 
-    <!-- //todo URLS AWS
+    <!-- //todo URLS AWS -->
 
     <string name="URL_LOGIN">http://3.136.55.99/proyecto/v1/userLogin.php</string>
     <string name="URL_SIGN_UP">http://3.136.55.99/proyecto/v1/registerUser.php</string>
     <string name="URL_ACCOUNT_RECOVERY">http://3.136.55.99/proyecto/v1/accountRecovery.php</string>
     <string name="URL_USUARIOS">http://3.136.55.99/proyecto/v1/searchReport.php</string>
     <string name="URL_REPORTE">http://3.136.55.99/proyecto/insertar_datos_entrevistador.php</string>
--->
+    <string name="URL_USUARIOS_TO_ENABLED">http://192.168.0.8/proyecto/v1/disabledUsers.php</string>
 
-    <!-- //todo URL local-host-->
+
+    <!-- //todo URL local-host
     <string name="URL_LOGIN">http://192.168.0.8/android/v1/userLogin.php</string>
     <string name="URL_SIGN_UP">http://192.168.0.8/android/v1/registerUser.php</string>
     <string name="URL_ACCOUNT_RECOVERY">http://192.168.0.8/android/v1/accountRecovery.php</string>
     <string name="URL_USUARIOS">http://192.168.0.8/android/v1/searchReport.php</string>
     <string name="URL_USUARIOS_TO_ENABLED">http://192.168.0.8/android/v1/disabledUsers.php</string>
     <string name="URL_REPORTE">192.168.0.8/android/insertar_datos_entrevistador.php</string>
-
+-->
 </resources>

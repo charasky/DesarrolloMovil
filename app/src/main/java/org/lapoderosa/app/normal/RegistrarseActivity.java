@@ -1,4 +1,4 @@
-package org.lapoderosa.app;
+package org.lapoderosa.app.normal;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import com.lapoderosa.app.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.lapoderosa.app.admin.SharedPrefManager;
+import org.lapoderosa.app.MasterClass;
 
 import java.util.Map;
 

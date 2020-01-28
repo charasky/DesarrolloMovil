@@ -1,4 +1,4 @@
-package org.lapoderosa.app;
+package org.lapoderosa.app.normal;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -13,7 +13,8 @@ import com.lapoderosa.app.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.lapoderosa.app.admin.SharedPrefManager;
+import org.lapoderosa.app.MasterClass;
+import org.lapoderosa.app.SharedPrefManager;
 import org.lapoderosa.app.user.AdaptadorUsuarios;
 import org.lapoderosa.app.user.Reporte;
 

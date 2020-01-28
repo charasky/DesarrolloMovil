@@ -7,7 +7,7 @@
     android:layout_margin="25dp"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="org.lapoderosa.app.RegistrarseActivity">
+    tools:context="org.lapoderosa.app.normal.RegistrarseActivity">
 
     <TextView
         android:id="@+id/textRegistrase"

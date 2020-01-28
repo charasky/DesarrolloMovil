@@ -1,4 +1,4 @@
-package org.lapoderosa.app;
+package org.lapoderosa.app.normal;
 
 import androidx.appcompat.app.AppCompatActivity;
 

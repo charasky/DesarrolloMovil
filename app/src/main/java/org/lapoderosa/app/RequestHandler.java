@@ -1,4 +1,4 @@
-package org.lapoderosa.app.admin;
+package org.lapoderosa.app;
 
 import android.content.Context;
 

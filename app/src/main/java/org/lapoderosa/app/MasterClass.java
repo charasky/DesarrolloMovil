@@ -12,16 +12,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.lapoderosa.app.normal.LoginActivity;
 import org.lapoderosa.app.admin.AdminInicioActivity;
-import org.lapoderosa.app.admin.RequestHandler;
-import org.lapoderosa.app.admin.SharedPrefManager;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class MasterClass extends AppCompatActivity {
     //TODO RECORDAR PONER EL progressDialog = new ProgressDialog(this); EN LA ACTIVITY QUE USE MASTERCLASS
-    ProgressDialog progressDialog;
+    public ProgressDialog progressDialog;
     protected void ejecutarServicio(String URL) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override

@@ -23,26 +23,35 @@
         android:layout_above="@+id/rEmail"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="Complete los campos del fecha y contraseña a cambiar"
+        android:text="Ingrese email y la nueva contraseña a cambiar"
         android:textSize="18sp" />
 
     <EditText
         android:id="@+id/rEmail"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/icon_email"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:hint="correo electronico" />
+        android:layout_above="@+id/dmPassword"
+        android:hint="Ingrese email" />
 
     <EditText
         android:id="@+id/dmPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rEmail"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:drawableLeft="@drawable/icon_lock"
-        android:hint="Contraseña"
+        android:hint="Nueva contraseña"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/dmPassword2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dmPassword"
+        android:drawableLeft="@drawable/icon_lock"
+        android:hint="Confirmar contraseña"
         android:inputType="textPassword" />
 
 
@@ -51,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/dmPassword"
+        android:layout_below="@+id/dmPassword2"
         android:background="#FA5858"
         android:text="GUARDAR"
         android:textColor="#FFF"

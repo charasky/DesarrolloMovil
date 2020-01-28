@@ -12,9 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lapoderosa.app.R;
 
-import org.lapoderosa.app.BusquedaActivity;
-import org.lapoderosa.app.LoginActivity;
-import org.lapoderosa.app.ReporteActivity;
+import org.lapoderosa.app.normal.BusquedaActivity;
+import org.lapoderosa.app.normal.LoginActivity;
+import org.lapoderosa.app.normal.ReporteActivity;
 
 public class AdminInicioActivity extends AppCompatActivity {
 
@@ -49,7 +49,7 @@ public class AdminInicioActivity extends AppCompatActivity {
         btHabilitarCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminInicioActivity.this, AdminRestablecerContraseñaActivity.class);
+                Intent intent = new Intent(AdminInicioActivity.this, AdminHabilitarCuenta.class);
                 startActivity(intent);
             }
         });

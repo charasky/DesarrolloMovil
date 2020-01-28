@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lapoderosa.app.R;
 
+import org.lapoderosa.app.normal.LoginActivity;
+
 import java.util.Timer;
 import java.util.TimerTask;
 

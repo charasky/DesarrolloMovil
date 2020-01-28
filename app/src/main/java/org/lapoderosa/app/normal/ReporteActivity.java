@@ -1,9 +1,8 @@
-package org.lapoderosa.app;
+package org.lapoderosa.app.normal;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,22 +17,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.lapoderosa.app.R;
 
+import org.lapoderosa.app.MasterClass;
+
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Map;
 
-public class ReporteActivity extends MasterClass{
+public class ReporteActivity extends MasterClass {
     private static final String TAG = "ReporteActivity";
     private TextView tvDateEntrevista,tvDateHecho,tvHoraHecho;
     private DatePickerDialog.OnDateSetListener m1DateSetListener;
@@ -391,9 +383,7 @@ public class ReporteActivity extends MasterClass{
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                ejecutarServicio("http://ec2-3-136-55-99.us-east-2.compute.amazonaws.com/proyecto/insertar_datos_entrevistador.php");
-
+                ejecutarServicio(getResources().getString(R.string.URL_REPORTE));
             }
         });
         /*
@@ -552,9 +542,7 @@ public class ReporteActivity extends MasterClass{
     @Override
     protected void responseConexion(String response) {
         if (!response.isEmpty()) {
-            Intent intent = new Intent(getApplicationContext(), InicioActivity.class);
-            startActivity(intent);
-            finish();
+            this.volverLogin();
         } else {
             Toast.makeText( getApplicationContext(), "Verifica los campos obligatorios", Toast.LENGTH_SHORT).show();
         }

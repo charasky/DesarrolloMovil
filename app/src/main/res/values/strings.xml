@@ -6,7 +6,7 @@
     <string name="URL_LOGIN">http://3.136.55.99/proyecto/v1/userLogin.php</string>
     <string name="URL_SIGN_UP">http://3.136.55.99/proyecto/v1/registerUser.php</string>
     <string name="URL_ACCOUNT_RECOVERY">http://3.136.55.99/proyecto/v1/accountRecovery.php</string>
-    <string name="URL_USUARIOS">hhttp://3.136.55.99/proyecto/v1/searchReport.php</string>
+    <string name="URL_USUARIOS">http://3.136.55.99/proyecto/v1/searchReport.php</string>
 
 
     <!-- //todo URL local-host

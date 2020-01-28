@@ -12,7 +12,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.lapoderosa.app.admin.AdminInicioActivity;
 import org.lapoderosa.app.admin.RequestHandler;
+import org.lapoderosa.app.admin.SharedPrefManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,8 +46,13 @@ public abstract class MasterClass extends AppCompatActivity {
     }
 
     public void volverLogin() {
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        finish();
+        if(SharedPrefManager.getInstance(this).getKeyTypeUser().equals("TRUE")){
+            startActivity(new Intent(getApplicationContext(), AdminInicioActivity.class));
+            finish();
+        }else{
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            finish();
+        }
     }
 
     protected abstract void putParams(Map<String, String> parametros) throws AuthFailureError;

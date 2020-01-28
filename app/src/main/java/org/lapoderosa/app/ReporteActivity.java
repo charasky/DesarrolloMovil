@@ -31,9 +31,12 @@ import com.lapoderosa.app.R;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class ReporteActivity extends MasterClass{
+    List<String> strings = new LinkedList<String>();
     private static final String TAG = "ReporteActivity";
     private TextView tvDateEntrevista,tvDateHecho,tvHoraHecho;
     private DatePickerDialog.OnDateSetListener m1DateSetListener;
@@ -48,7 +51,7 @@ public class ReporteActivity extends MasterClass{
     //VICTIMA
     private String nombreVictima,apellidoVictima,generoVictima,edadVictima,nacionalidadVictima,documentoVictima,direccionVictima,barrioVictima,telefonoVictima;
     //HECHO POLICIAL
-    private String direccionHecho,barrioHecho,ciudadHecho,provinciaHecho,cuantosAcompañan,cualLugar,diaHecho,horaHecho;
+    private String cuantosAcompañan,cualLugar,diaHecho,horaHecho;
     private String ubicacionHecho;
     //FUERZAS INTERVINIENTES
     private String fuerzasIntervinientes,cantidadAgentes,nombresAgentes,apodos,cantidadVehiculos,numMovil,dominio,conductaAgentes;
@@ -65,7 +68,7 @@ public class ReporteActivity extends MasterClass{
     //OMISION AL ACTUAR
     private String mediosDeAsistencia,aQuienAsistencia,denunciaRechazada,violentado;
     //DENUNCIA
-    private String hizoDenuncia,dondeDenuncia,porQueNoDenuncia,denunciaFinal;
+    private String denunciaFinal;
     //RESULTADO DE LA INVESTIGACION
     private String resultadoInvestigacion,trabajanLosOficiales;
 
@@ -107,6 +110,7 @@ public class ReporteActivity extends MasterClass{
     //RESULTADO DE LA INVESTIGACION
 
     private RadioButton rbtCondena,rbtAbsolucion,rbtCausaEnTramite,rbtArchivo,rbtNoSabeResultado,rbtNoTrabajaMas,rbtSiTrabaja;
+
 
 
     @Override
@@ -338,7 +342,7 @@ public class ReporteActivity extends MasterClass{
                 DatePickerDialog dialog = new DatePickerDialog(
                         ReporteActivity.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        crearListener(tvDateEntrevista),
+                        crearListener1(),
                         year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
@@ -358,7 +362,7 @@ public class ReporteActivity extends MasterClass{
                 DatePickerDialog dialog = new DatePickerDialog(
                         ReporteActivity.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        crearListener(tvDateHecho),
+                        crearListener2(),
                         year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
@@ -392,7 +396,18 @@ public class ReporteActivity extends MasterClass{
             @Override
             public void onClick(View v) {
 
-                ejecutarServicio("http://ec2-3-136-55-99.us-east-2.compute.amazonaws.com/proyecto/insertar_datos_entrevistador.php");
+                inicializarStringVariables();
+
+                crearLista();
+                if(!verificarStrings()){
+
+                }else{
+                    ejecutarServicio("http://ec2-3-136-55-99.us-east-2.compute.amazonaws.com/proyecto/insertar_datos_reporte.php");
+                    Toast.makeText( getApplicationContext(),"Reporte Guardado con Exito.", Toast.LENGTH_SHORT).show();
+                }
+
+
+
 
             }
         });
@@ -406,7 +421,7 @@ public class ReporteActivity extends MasterClass{
 
             }
         });
-        
+
          */
 
     }
@@ -436,7 +451,7 @@ public class ReporteActivity extends MasterClass{
         parametros.put("usu_dia_hecho",diaHecho);
         parametros.put("usu_hora_hecho",horaHecho);
         parametros.put("usu_ubicacion_hecho",ubicacionHecho);
-        parametros.put("usu_cuantos_acompañan",cuantosAcompañan);
+        parametros.put("usu_cuantos_acompanan",cuantosAcompañan);
         parametros.put("usu_cual_lugar",cualLugar);
         //FUERZAS INTERVINIENTES
         parametros.put("usu_fuerzas_intervinientes",fuerzasIntervinientes);
@@ -475,20 +490,27 @@ public class ReporteActivity extends MasterClass{
         parametros.put("usu_denuncia_rechazada",denunciaRechazada);
         parametros.put("usu_violentado",violentado);
         parametros.put("usu_denuncia_final",denunciaFinal);
+        //RESULTADO INVESTIGACION
         parametros.put("usu_resultado_investigacion",resultadoInvestigacion);
         parametros.put("usu_trabajan_los_oficiales",trabajanLosOficiales);
     }
 
     @Override
     protected void inicializarStringVariables() {
+
         //ENTREVISTADOR
+
         nombreEntrevistador = edtNombreEntrevistador.getText().toString();
         apellidoEntrevistador = edtApellidoEntrevistador.getText().toString();
         asamblea = edtAsamblea.getText().toString();
         fecha = tvDateEntrevista.getText().toString();
+
         //ENTREVISTADO
+
         parentesco = edtParentesco.getText().toString();
+
         //VICTIMA
+
         nombreVictima = edtNombreVictima.getText().toString();
         apellidoVictima = edtApellidoVictima.getText().toString();
         generoVictima = edtGeneroVictima.getText().toString();
@@ -498,51 +520,79 @@ public class ReporteActivity extends MasterClass{
         direccionVictima = edtDireccionVictima.getText().toString();
         barrioVictima = edtBarrioVictima.getText().toString();
         telefonoVictima = edtTelefonoVictima.getText().toString();
+
         //HECHO POLICIAL
+
         diaHecho = tvDateHecho.getText().toString();
         horaHecho = tvHoraHecho.getText().toString();
         ubicacionHecho = edtDireccionHecho.getText().toString() + " " +edtBarrioHecho.getText().toString() + " " + edtCiudadHecho.getText().toString() + " " + edtProvinciaHecho.getText().toString();
         cuantosAcompañan = edtCuantosAcompañan.getText().toString();
         cualLugar = edtCualLugar.getText().toString();
         //FUERZAS INTERVINIENTES
+
         //agentes
+
         fuerzasIntervinientes = edtFuerzasIntervinientes.getText().toString();
         cantidadAgentes = edtCantidadAgentes.getText().toString();
         nombresAgentes = edtNombresAgentes.getText().toString();
         apodos = edtApodos.getText().toString();
+
         //vehiculos
+
         cantidadVehiculos = edtCantidadVehiculos.getText().toString();
         numMovil = edtNumMovil.getText().toString();
         dominio = edtDominio.getText().toString();
         conductaAgentes = edtConductaAgentes.getText().toString();
         //CARACTERISTICA DEL PROCEDIMIENTO
+
         //motivoProcedimiento
+
+        maltratos = " ";
         otraAgresion = edtOtraAgresion.getText().toString();
-        //lesiones
+        lesiones= " ";
+
         //MODALIDAD DE DETENCION
+
         posicionDetenido = edtPosicionDetenido.getText().toString();
         cuantoTiempoDetenido = edtCuantoTiempoDetenido.getText().toString();
+
         //TRASLADO
-        //traslado
+
+        traslado= "";
+
         //COMISARIA
-        //comisaria
+
+        comisaria = " ";
+
         //ESPOSADOS
-        //esposado
-        //ordenAllanmiento
-        //agresionesAllanmiento
-        //pertenenciasDomicilio
-        //omision de pertenencias
-        //detenidos allanamiento
+
+        esposado=" ";
+
+        //ALLANAMIENTOS
+
+        ordenAllanamiento= " ";
+        agresionAllanamiento= " ";
+        pertenenciasAllanamiento= " ";
+        omisionPertenencias= " ";
+        detenidosAllanamiento= " ";
         duracionAllanamiento = edtTiempoAllanamiento.getText().toString();
-        //esposados
+        esposados= " ";
+
         //OMISION AL ACTUAR
+
         mediosDeAsistencia = edtMedioAsistencia.getText().toString();
         aQuienAsistencia = edtAQuien.getText().toString();
-        //denunciaRechazada
-        //violentado
-        //denunciaFinal
-        //resultadoInvestigacion
-        //trabajanLosOficiales
+        denunciaRechazada= " ";
+        violentado= " ";
+
+        //DENUNCIA
+
+        denunciaFinal= " ";
+
+        //RESULTADO INVESTIGACION
+
+        resultadoInvestigacion= " ";
+        trabajanLosOficiales= " ";
 
 
 
@@ -562,7 +612,7 @@ public class ReporteActivity extends MasterClass{
     }
 
 
-    public DatePickerDialog.OnDateSetListener crearListener(final TextView tvDate) {
+    public DatePickerDialog.OnDateSetListener crearListener1() {
 
         DatePickerDialog.OnDateSetListener DateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -571,7 +621,7 @@ public class ReporteActivity extends MasterClass{
                 Log.d(TAG, "onDateSet: mm/dd/yyyy: " + month + "/" + dayOfMonth + "/" + year);
 
                 String date = month + "/" + dayOfMonth + "/" + year;
-                tvDate.setText(date);
+                tvDateEntrevista.setText(date);
             }
 
 
@@ -579,6 +629,22 @@ public class ReporteActivity extends MasterClass{
         return DateSetListener;
     }
 
+    public DatePickerDialog.OnDateSetListener crearListener2() {
+
+        DatePickerDialog.OnDateSetListener DateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month += 1;
+                Log.d(TAG, "onDateSet: mm/dd/yyyy: " + month + "/" + dayOfMonth + "/" + year);
+
+                String date = month + "/" + dayOfMonth + "/" + year;
+                tvDateHecho.setText(date);
+            }
+
+
+        };
+        return DateSetListener;
+    }
     public void listenerMotivoProcedimiento(final RadioButton rbtTrue, final RadioButton rbt1, final RadioButton rbt2, final RadioButton rbt3){
 
         rbtTrue.setOnClickListener(new View.OnClickListener() {
@@ -1113,7 +1179,83 @@ public class ReporteActivity extends MasterClass{
         //edtText.setFocus;
     }
 
-    public boolean isEmptyString(EditText edt){
-        return TextUtils.isEmpty(edt.getText().toString());
+    public boolean isEmptyString(String valor){
+        return TextUtils.isEmpty(valor);
     }
+
+    public void crearLista(){
+
+        strings.add(nombreEntrevistador);
+        strings.add(apellidoEntrevistador);
+        strings.add(asamblea);
+        strings.add(fecha);
+        strings.add(parentesco);
+        strings.add(nombreVictima);
+        strings.add(apellidoVictima);
+        strings.add(generoVictima);
+        strings.add(edadVictima);
+        strings.add(nacionalidadVictima);
+        strings.add(documentoVictima);
+        strings.add(documentoVictima);
+        strings.add(direccionVictima);
+        strings.add(barrioVictima);
+        strings.add(telefonoVictima);
+        strings.add(cuantosAcompañan);
+        strings.add(cualLugar);
+        strings.add(diaHecho);
+        strings.add(horaHecho);
+        strings.add(ubicacionHecho);
+        strings.add(fuerzasIntervinientes);
+        strings.add(cantidadAgentes);
+        strings.add(nombresAgentes);
+        strings.add(apodos);
+        strings.add(cantidadVehiculos);
+        strings.add(numMovil);
+        strings.add(dominio);
+        strings.add(conductaAgentes);
+        strings.add(motivoProcedimiento);
+        strings.add(maltratos);
+        strings.add(otraAgresion);
+        strings.add(lesiones);
+        strings.add(posicionDetenido);
+        strings.add(cuantoTiempoDetenido);
+        strings.add(traslado);
+        strings.add(comisaria);
+        strings.add(esposado);
+        strings.add(ordenAllanamiento);
+        strings.add(agresionAllanamiento);
+        strings.add(pertenenciasAllanamiento);
+        strings.add(omisionPertenencias);
+        strings.add(detenidosAllanamiento);
+        strings.add(duracionAllanamiento);
+        strings.add(posicionDetenidos);
+        strings.add(esposados);
+        strings.add(mediosDeAsistencia);
+        strings.add(aQuienAsistencia);
+        strings.add(denunciaRechazada);
+        strings.add(violentado);
+        strings.add(denunciaFinal);
+        strings.add(resultadoInvestigacion);
+        strings.add(trabajanLosOficiales);
+
+
+    }
+    public boolean verificarStrings(){
+        Boolean verificar = true;
+        for (int i = 0; i < strings.size(); i++) {
+            return !strings.get(i).equals(" ");
+        }
+
+        return verificar;
+
+        /*for (String str: strings){
+            if(str.equals(" ") ){
+                Toast.makeText( getApplicationContext(), str + " Esta Vacio", Toast.LENGTH_SHORT).show();
+                return false;
+            }else{
+                return true;
+            }
+        }*/
+    }
+
 }

@@ -19,8 +19,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class MasterClass extends AppCompatActivity {
+
     //TODO RECORDAR PONER EL progressDialog = new ProgressDialog(this); EN LA ACTIVITY QUE USE MASTERCLASS
     public ProgressDialog progressDialog;
+
     protected void ejecutarServicio(String URL) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override

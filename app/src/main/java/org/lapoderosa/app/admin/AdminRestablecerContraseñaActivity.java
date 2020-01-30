@@ -113,7 +113,7 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
         }
         if (!password1.equals(password2)) {
             rPassword1.setError("Contraseñas no coinciden");
-            //dmPassword2.setError("Contraseñas no coinciden");
+            //rPassword2.setError("Contraseñas no coinciden");
             valid = false;
         }
         return valid;
@@ -145,7 +145,8 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
 
         if(!mensaje.isEmpty()){
             rEmail.setError("Este email ingresado no existe");
+        }else {
+            this.volverLogin();
         }
-        this.volverLogin();
     }
 }

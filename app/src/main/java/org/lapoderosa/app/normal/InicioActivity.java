@@ -45,7 +45,7 @@ public class InicioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SharedPreferences preferences = getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
-                preferences.edit().clear().commit();
+                preferences.edit().clear().apply();
 
                 Intent intent3 = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent3);

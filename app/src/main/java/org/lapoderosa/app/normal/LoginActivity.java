@@ -23,6 +23,8 @@ import org.lapoderosa.app.SharedPrefManager;
 import java.util.Map;
 
 public class LoginActivity extends MasterClass {
+    private Integer cont = 1;
+    private String user = "";
     private EditText editUsuario, editPassword;
     private TextView etRegistrarse, etOlvidastesContraseña;
     private Button btnLogin;
@@ -40,7 +42,7 @@ public class LoginActivity extends MasterClass {
         etOlvidastesContraseña = findViewById(R.id.etOlvidastesContraseña);
         progressDialog = new ProgressDialog(this);
 
-        recuperarPreferencias();
+
 
         etOlvidastesContraseña.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,23 +77,9 @@ public class LoginActivity extends MasterClass {
         }
     }
 
-
-    private void guardarPreferencias() {
-        SharedPreferences preferences = getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("usu_usuario", usuario);
-        editor.putString("usu_password", password);
-        editor.commit();
-    }
-
-    private void recuperarPreferencias() {
-        SharedPreferences preferences = getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
-        editUsuario.setText(preferences.getString("usu_usuario", ""));
-        editPassword.setText(preferences.getString("usu_password", ""));
-    }
-
     @Override
     protected void putParams(Map<String, String> parametros) throws AuthFailureError {
+        parametros.put("contador", cont.toString());
         parametros.put("usu_usuario", usuario);
         parametros.put("usu_password", password);
     }
@@ -118,24 +106,38 @@ public class LoginActivity extends MasterClass {
                         );
                 admin = SharedPrefManager.getInstance(this).getKeyTypeUser();
                 habilitado = SharedPrefManager.getInstance(this).getKeyEnabledUser();
-                guardarPreferencias();
             } else {
                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                this.metodoUsuarioContador();
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        if(admin.equals("FALSE") && habilitado.equals("FALSE")){
+        if (admin.equals("FALSE") && habilitado.equals("FALSE")) {
             Toast.makeText(getApplicationContext(), "El usuario aun no tiene acceso por Administradores", Toast.LENGTH_LONG).show();
         }
-        if(admin.equals("TRUE") && habilitado.equals("TRUE")){
+
+        if(admin.equals("TRUE") && habilitado.equals("FALSE")){
+            Toast.makeText(getApplicationContext(), "El usuario aun no tiene acceso", Toast.LENGTH_LONG).show();
+        }
+
+        if (admin.equals("TRUE") && habilitado.equals("TRUE")) {
             startActivity(new Intent(getApplicationContext(), AdminInicioActivity.class));
             finish();
         }
-        if(habilitado.equals("TRUE") && admin.equals("FALSE")){
+        if (habilitado.equals("TRUE") && admin.equals("FALSE")) {
             startActivity(new Intent(getApplicationContext(), InicioActivity.class));
             finish();
+        }
+    }
+
+    private void metodoUsuarioContador() {
+        if (!user.equals(usuario)) {
+            user = usuario;
+            cont = 2;
+        }else{
+            cont++;
         }
     }
 }

@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.lapoderosa.app.normal.InicioActivity;
 import org.lapoderosa.app.normal.LoginActivity;
 import org.lapoderosa.app.admin.AdminInicioActivity;
 
@@ -46,9 +47,12 @@ public abstract class MasterClass extends AppCompatActivity {
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-    public void volverLogin() {
+    protected void volverLogin() {
         if(SharedPrefManager.getInstance(this).getKeyTypeUser().equals("TRUE")){
             startActivity(new Intent(getApplicationContext(), AdminInicioActivity.class));
+            finish();
+        }else if(SharedPrefManager.getInstance(this).getKeyEnabledUser().equals("TRUE")) {
+            startActivity(new Intent(getApplicationContext(), InicioActivity.class));
             finish();
         }else{
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));

@@ -39,22 +39,30 @@
         android:drawableLeft="@drawable/ic_email_black_36dp"
         android:hint="Email" />
 
-    <EditText
-        android:id="@+id/dmPassword1"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutPass"
+        android:layout_below="@+id/etUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etUserName"
-        android:drawableLeft="@drawable/ic_lock_black_24dp"
-        android:hint="Contraseña"
-        android:inputType="textPassword" />
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/dmPassword1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_lock_black_24dp"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:drawableStart="@drawable/ic_lock_black_24dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btLogin"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/dmPassword1"
-        android:background="#FA5858"
+        android:layout_below="@+id/layoutPass"
+        android:background="@drawable/custom_bottom"
         android:text="LOGIN"
         android:textColor="#FFF"
         android:textSize="18sp" />

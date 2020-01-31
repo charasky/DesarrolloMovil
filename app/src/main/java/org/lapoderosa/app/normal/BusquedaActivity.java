@@ -15,8 +15,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.SharedPrefManager;
-import org.lapoderosa.app.user.AdaptadorUsuarios;
-import org.lapoderosa.app.user.Reporte;
+import org.lapoderosa.app.adapter.ReportAdapter;
+import org.lapoderosa.app.util.Report;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +26,8 @@ public class BusquedaActivity extends MasterClass {
 
     private EditText etBuscador;
     private RecyclerView rvLista;
-    private AdaptadorUsuarios adaptador;
-    private List<Reporte> listaUsuarios;
+    private ReportAdapter adaptador;
+    private List<Report> listaUsuarios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +56,14 @@ public class BusquedaActivity extends MasterClass {
 
         ejecutarServicio(getResources().getString(R.string.URL_USUARIOS));
 
-        adaptador = new AdaptadorUsuarios(BusquedaActivity.this, listaUsuarios);
+        adaptador = new ReportAdapter(BusquedaActivity.this, listaUsuarios);
         rvLista.setAdapter(adaptador);
     }
 
     public void filtrar(String texto) {
-        ArrayList<Reporte> filtrarLista = new ArrayList<>();
+        ArrayList<Report> filtrarLista = new ArrayList<>();
             //TODO con los if pueda ir filtrando tmbien por otro tipo fecha
-        for(Reporte usuario : listaUsuarios) {
+        for(Report usuario : listaUsuarios) {
             if(usuario.getFullName().toLowerCase().contains(texto.toLowerCase())) {
                 filtrarLista.add(usuario);
             }
@@ -87,7 +87,7 @@ public class BusquedaActivity extends MasterClass {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                 listaUsuarios.add(
-                        new Reporte(
+                        new Report(
                                 jsonObject1.getString("id"),
                                 jsonObject1.getString("r_pais"),
                                 jsonObject1.getString("r_ciudad"),
@@ -98,7 +98,7 @@ public class BusquedaActivity extends MasterClass {
                 );
             }
 
-            adaptador = new AdaptadorUsuarios(BusquedaActivity.this, listaUsuarios);
+            adaptador = new ReportAdapter(BusquedaActivity.this, listaUsuarios);
             rvLista.setAdapter(adaptador);
 
         } catch (JSONException e) {

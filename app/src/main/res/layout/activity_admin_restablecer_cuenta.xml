@@ -18,17 +18,18 @@
 
     <TextView
         android:id="@+id/textTitulo"
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/rEmail"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="Ingrese email y la nueva contraseña a cambiar"
+        android:text="Ingrese email y la nueva contraseña."
         android:textSize="18sp" />
 
     <EditText
         android:id="@+id/rEmail"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_above="@+id/layoutPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

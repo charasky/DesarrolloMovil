@@ -1,4 +1,4 @@
-package org.lapoderosa.app.user;
+package org.lapoderosa.app.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,35 +11,40 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lapoderosa.app.R;
 
+import org.lapoderosa.app.util.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdaptadorUsuariosValidar extends RecyclerView.Adapter<AdaptadorUsuariosValidar.UserViewHolder>  {
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder>  {
     private Context context;
-    private List<Usuario> listaUsuariosValidar;
+    private List<User> userList;
 
-    public AdaptadorUsuariosValidar(Context context, List<Usuario> listaUsuariosValidar) {
+    public UserAdapter(Context context, List<User> userList) {
         this.context = context;
-        this.listaUsuariosValidar = listaUsuariosValidar;
+        this.userList = userList;
     }
 
     @NonNull
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_rv_usuario_validar, viewGroup, false);
-        return new AdaptadorUsuariosValidar.UserViewHolder(v);
+        View view = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.rv_user_row, viewGroup, false);
+        return new UserViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserViewHolder userViewHolder, int i) {
-        userViewHolder.user.setText(listaUsuariosValidar.get(i).getUsuario());
-        userViewHolder.fullName.setText(listaUsuariosValidar.get(i).getFullName());
-        userViewHolder.asamblea.setText(listaUsuariosValidar.get(i).getAsamblea());
+    public void onBindViewHolder(@NonNull UserViewHolder userViewHolder, int position) {
+        User user = userList.get(position);
+
+        userViewHolder.user.setText(user.getUsuario());
+        userViewHolder.fullName.setText(user.getFullName());
+        userViewHolder.asamblea.setText(user.getAsamblea());
     }
 
     @Override
     public int getItemCount() {
-        return listaUsuariosValidar.size();
+        return userList.size();
     }
 
     public class UserViewHolder extends RecyclerView.ViewHolder {
@@ -54,8 +59,8 @@ public class AdaptadorUsuariosValidar extends RecyclerView.Adapter<AdaptadorUsua
         }
     }
 
-    public void filtrar(ArrayList<Usuario> filtroUsuarios) {
-        this.listaUsuariosValidar = filtroUsuarios;
+    public void filtrar(ArrayList<User> filtroUsers) {
+        this.userList = filtroUsers;
         notifyDataSetChanged();
     }
 }

@@ -18,8 +18,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.SharedPrefManager;
-import org.lapoderosa.app.user.AdaptadorUsuariosValidar;
-import org.lapoderosa.app.user.Usuario;
+import org.lapoderosa.app.adapter.UserAdapter;
+import org.lapoderosa.app.util.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +28,8 @@ import java.util.Map;
 public class AdminHabilitarCuenta extends MasterClass {
     private EditText buscarValidar;
     private RecyclerView rvListaValidar;
-    private AdaptadorUsuariosValidar adaptadorValidar;
-    private List<Usuario> listaUsuariosValidar;
+    private UserAdapter adaptadorValidar;
+    private List<User> listaUsuariosValidar;
 
 
     @Override
@@ -59,14 +59,14 @@ public class AdminHabilitarCuenta extends MasterClass {
 
         ejecutarServicio(getResources().getString(R.string.URL_USUARIOS_TO_ENABLED));
 
-        adaptadorValidar = new AdaptadorUsuariosValidar(AdminHabilitarCuenta.this, listaUsuariosValidar);
+        adaptadorValidar = new UserAdapter(AdminHabilitarCuenta.this, listaUsuariosValidar);
         rvListaValidar.setAdapter(adaptadorValidar);
     }
 
     public void filtrarValidar(String texto) {
-        ArrayList<Usuario> filtrarListaValidar = new ArrayList<>();
+        ArrayList<User> filtrarListaValidar = new ArrayList<>();
 
-        for(Usuario user : listaUsuariosValidar) {
+        for(User user : listaUsuariosValidar) {
             if(user.getUsuario().toLowerCase().contains(texto.toLowerCase())) {
                 filtrarListaValidar.add(user);
             }
@@ -87,7 +87,7 @@ public class AdminHabilitarCuenta extends MasterClass {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                 listaUsuariosValidar.add(
-                        new Usuario(
+                        new User(
                                 jsonObject1.getString("usu_usuario"),
                                 jsonObject1.getString("usu_nombres"),
                                 jsonObject1.getString("usu_apellidos"),
@@ -96,7 +96,7 @@ public class AdminHabilitarCuenta extends MasterClass {
                 );
             }
 
-            adaptadorValidar = new AdaptadorUsuariosValidar(AdminHabilitarCuenta.this, listaUsuariosValidar);
+            adaptadorValidar = new UserAdapter(AdminHabilitarCuenta.this, listaUsuariosValidar);
             rvListaValidar.setAdapter(adaptadorValidar);
 
         } catch (JSONException e) {

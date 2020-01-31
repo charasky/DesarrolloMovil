@@ -49,12 +49,14 @@
                     <RadioButton
                         android:id="@+id/radioButton"
                         android:text="aceptar"
+                        android:onClick="showSelectedItems"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"/>
                     <RadioButton
                         android:id="@+id/radioButton2"
                         android:layout_width="0dp"
+                        android:onClick="showSelectedItems"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="eliminar"/>

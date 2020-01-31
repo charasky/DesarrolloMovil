@@ -1,12 +1,12 @@
-package org.lapoderosa.app.user;
+package org.lapoderosa.app.util;
 
-public class Usuario {
+public class User {
     private String nombre;
     private String apellido;
     private String usuario;
     private String asamblea;
 
-    public Usuario(String usuario, String nombre, String apellido, String asamblea) {
+    public User(String usuario, String nombre, String apellido, String asamblea) {
         this.usuario = usuario;
         this.nombre = nombre;
         this.apellido = apellido;

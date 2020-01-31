@@ -9,7 +9,7 @@
     <string name="URL_REPORTE">http://3.136.55.99/proyecto/insertar_datos_entrevistador.php</string>
     <string name="URL_USUARIOS_TO_ENABLED">http://3.136.55.99/proyecto/v1/disabledUsers.php</string>
     <string name="URL_RESTORE_PASSWORD">http://3.136.55.99/proyecto/v1/restorePassword.php</string>
-
+    
 
     <!-- //todo URL local-host
     <string name="URL_LOGIN">http://192.168.0.8/android/v1/userLogin.php</string>

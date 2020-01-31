@@ -1,4 +1,4 @@
-package org.lapoderosa.app.user;
+package org.lapoderosa.app.util;
 
 import android.annotation.SuppressLint;
 
@@ -6,7 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Reporte {
+public class Report {
     @SuppressLint("SimpleDateFormat")
     private static SimpleDateFormat formatoFecha_DMA = new SimpleDateFormat("dd-MM-yyyy");
     @SuppressLint("SimpleDateFormat")
@@ -18,7 +18,7 @@ public class Reporte {
     private String v_nombre;
     private String v_apellido;
 
-    public Reporte(String idReporte, String pais, String ciudad, String fecha, String v_nombre, String v_apellido) {
+    public Report(String idReporte, String pais, String ciudad, String fecha, String v_nombre, String v_apellido) {
         this.idReporte = idReporte;
         this.pais = pais;
         this.ciudad = ciudad;

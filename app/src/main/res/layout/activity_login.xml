@@ -44,7 +44,9 @@
         android:layout_below="@+id/etUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        app:passwordToggleDrawable="@drawable/icon_selector"
+        app:passwordToggleTint="@color/colorPrimary">
 
         <EditText
             android:id="@+id/dmPassword1"
@@ -58,9 +60,10 @@
 
     <Button
         android:id="@+id/btLogin"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/layoutPass"
         android:background="@drawable/custom_bottom"
         android:text="LOGIN"

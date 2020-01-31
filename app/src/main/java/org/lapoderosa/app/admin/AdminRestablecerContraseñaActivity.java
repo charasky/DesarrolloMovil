@@ -27,7 +27,7 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_adminrestablecercuenta);
+        setContentView(R.layout.activity_admin_restablecer_cuenta);
         progressDialog = new ProgressDialog(this);
 
         rEmail = findViewById(R.id.rEmail);

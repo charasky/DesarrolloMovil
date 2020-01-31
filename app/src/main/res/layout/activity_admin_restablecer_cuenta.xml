@@ -32,7 +32,7 @@
         android:layout_above="@+id/layoutPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/icon_email"
+        android:drawableLeft="@drawable/ic_email_black_36dp"
         android:hint="Ingrese email" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -41,16 +41,18 @@
         android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        app:passwordToggleDrawable="@drawable/icon_selector"
+        app:passwordToggleTint="@color/colorPrimary">
 
         <EditText
             android:id="@+id/rPassword1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/icon_lock"
+            android:drawableLeft="@drawable/ic_lock_black_24dp"
+            android:drawableStart="@drawable/ic_lock_black_24dp"
             android:hint="Nueva contraseña"
-            android:inputType="textPassword"
-            android:drawableStart="@drawable/icon_lock" />
+            android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -58,17 +60,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/layoutPass"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        app:passwordToggleDrawable="@drawable/icon_selector"
+        app:passwordToggleTint="@color/colorPrimary">
 
         <EditText
             android:id="@+id/rPassword2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/layoutPass"
-            android:drawableLeft="@drawable/icon_lock"
+            android:drawableLeft="@drawable/ic_lock_black_24dp"
+            android:drawableStart="@drawable/ic_lock_black_24dp"
             android:hint="Confirmar contraseña"
-            android:inputType="textPassword"
-            android:drawableStart="@drawable/icon_lock" />
+            android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -78,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/layout2Pass"
-        android:background="#FA5858"
+        android:background="@drawable/custom_bottom"
         android:text="GUARDAR"
         android:textColor="#FFF"
         android:textSize="18sp"/>

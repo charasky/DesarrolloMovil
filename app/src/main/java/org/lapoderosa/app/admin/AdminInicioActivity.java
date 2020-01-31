@@ -21,7 +21,7 @@ public class AdminInicioActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admininicio);
+        setContentView(R.layout.activity_admin_inicio);
 
         Button btBusqueda = findViewById(R.id.btAdminBusqueda);
         Button btReporte = findViewById(R.id.btAdminReporte);

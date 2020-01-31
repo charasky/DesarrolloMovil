@@ -35,7 +35,7 @@ public class AdminHabilitarCuenta extends MasterClass {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_busqueda_validar);
+        setContentView(R.layout.activity_admin_busqueda_validar);
 
         progressDialog = new ProgressDialog(this);
         buscarValidar = findViewById(R.id.buscarValidar);

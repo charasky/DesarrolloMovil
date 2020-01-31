@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textRegistrase"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:hint="Asamblea"
         android:textSize="18dp" />
 
@@ -53,26 +53,53 @@
         android:hint="Email"
         android:textSize="18dp" />
 
-    <!--
-    <EditText
-        android:id="@+id/dmPassword1"
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dmEmail"
-        android:layout_marginTop="5dp"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:textSize="18dp" />
+        app:passwordToggleEnabled="true"
+        app:passwordToggleDrawable="@drawable/icon_selector"
+        app:passwordToggleTint="@color/colorPrimary">
 
-    -->
+        <EditText
+            android:id="@+id/dmPassword1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:textSize="18dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout2Pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutPass"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleDrawable="@drawable/icon_selector"
+        app:passwordToggleTint="@color/colorPrimary">
+
+        <EditText
+            android:id="@+id/dmPassword2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutPass"
+            android:hint="Confirmar contraseña"
+            android:inputType="textPassword"
+            android:textSize="18dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/dmRegistrarseBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/layout2Pass"
-        android:layout_marginTop="15dp"
-        android:background="#FA5858"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_bottom"
         android:gravity="center"
         android:text="Registrarse"
         android:textColor="#FFF"
@@ -87,50 +114,5 @@
         android:gravity="center"
         android:text="¿Ya tienes cuenta?, Inicia Sesion"
         android:textSize="15sp" />
-    <!--
-    <ProgressBar
-        android:layout_below="@+id/dmLogin"
-        android:id="@+id/progressBar"
-        android:layout_marginTop="15dp"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible" />
-    -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutPass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dmEmail"
-        app:passwordToggleEnabled="true">
-
-        <EditText
-            android:id="@+id/dmPassword1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:textSize="18dp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout2Pass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layoutPass"
-        app:passwordToggleEnabled="true">
-
-        <EditText
-            android:id="@+id/dmPassword2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layoutPass"
-            android:layout_marginTop="5dp"
-            android:hint="Confirmar contraseña"
-            android:inputType="textPassword"
-            android:textSize="18dp" />
-    </com.google.android.material.textfield.TextInputLayout>
 
 </RelativeLayout>

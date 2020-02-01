@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
 import androidx.annotation.Nullable;
@@ -17,20 +18,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
-import org.lapoderosa.app.SharedPrefManager;
+import org.lapoderosa.app.util.SharedPrefManager;
 import org.lapoderosa.app.adapter.UserAdapter;
-import org.lapoderosa.app.util.User;
+import org.lapoderosa.app.model.User;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class AdminHabilitarCuenta extends MasterClass {
-    private EditText buscarValidar;
-    private RecyclerView rvListaValidar;
-    private UserAdapter adaptadorValidar;
-    private List<User> listaUsuariosValidar;
-
+    private RecyclerView recyclerView;
+    private UserAdapter userAdapter;
+    private ArrayList<User> userArrayList;
+    private ArrayAdapter<User> arrayAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,55 +37,27 @@ public class AdminHabilitarCuenta extends MasterClass {
         setContentView(R.layout.activity_admin_busqueda_validar);
 
         progressDialog = new ProgressDialog(this);
-        buscarValidar = findViewById(R.id.buscarValidar);
-        buscarValidar.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                filtrarValidar(s.toString());
-            }
-        });
-
-        rvListaValidar = findViewById(R.id.rvListaValidar);
-        rvListaValidar.setLayoutManager(new GridLayoutManager(this, 1));
-
-        listaUsuariosValidar = new ArrayList<>();
+        userArrayList = new ArrayList<>();
 
         ejecutarServicio(getResources().getString(R.string.URL_USUARIOS_TO_ENABLED));
 
-        adaptadorValidar = new UserAdapter(AdminHabilitarCuenta.this, listaUsuariosValidar);
-        rvListaValidar.setAdapter(adaptadorValidar);
-    }
-
-    public void filtrarValidar(String texto) {
-        ArrayList<User> filtrarListaValidar = new ArrayList<>();
-
-        for(User user : listaUsuariosValidar) {
-            if(user.getUsuario().toLowerCase().contains(texto.toLowerCase())) {
-                filtrarListaValidar.add(user);
-            }
-            if(user.getAsamblea().toLowerCase().contains(texto.toLowerCase())) {
-                filtrarListaValidar.add(user);
-            }
-        }
-
-        adaptadorValidar.filtrar(filtrarListaValidar);
+        userAdapter = new UserAdapter(AdminHabilitarCuenta.this, userArrayList);
+        recyclerView.setAdapter(userAdapter);
     }
 
     @Override
     protected void responseConexion(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
-            JSONArray jsonArray = jsonObject.getJSONArray("Reportes");
+            JSONArray jsonArray = jsonObject.getJSONArray("Users");
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                listaUsuariosValidar.add(
+                userArrayList.add(
                         new User(
                                 jsonObject1.getString("usu_usuario"),
                                 jsonObject1.getString("usu_nombres"),
@@ -95,10 +66,6 @@ public class AdminHabilitarCuenta extends MasterClass {
                         )
                 );
             }
-
-            adaptadorValidar = new UserAdapter(AdminHabilitarCuenta.this, listaUsuariosValidar);
-            rvListaValidar.setAdapter(adaptadorValidar);
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lapoderosa.app.R;
 
-import org.lapoderosa.app.util.Report;
+import org.lapoderosa.app.model.Report;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -16,7 +16,7 @@
         <activity android:name="org.lapoderosa.app.normal.BusquedaActivity" />
         <activity android:name="org.lapoderosa.app.normal.InicioActivity" />
         <activity android:name="org.lapoderosa.app.normal.LoginActivity" />
-        <activity android:name="org.lapoderosa.app.SplashActivity">
+        <activity android:name="org.lapoderosa.app.normal.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

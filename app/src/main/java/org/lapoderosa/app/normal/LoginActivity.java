@@ -1,9 +1,7 @@
 package org.lapoderosa.app.normal;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.admin.AdminInicioActivity;
-import org.lapoderosa.app.SharedPrefManager;
+import org.lapoderosa.app.util.SharedPrefManager;
 
 import java.util.Map;
 

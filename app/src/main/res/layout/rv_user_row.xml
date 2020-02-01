@@ -1,102 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    card_view:cardElevation="4dp"
-    card_view:cardUseCompatPadding="true">
+    android:layout_height="wrap_content">
 
-    <RelativeLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        tools:ignore="MissingConstraints">
 
-        <LinearLayout
-            android:layout_below="@+id/userEmail"
-            android:id="@+id/info"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
+            android:layout_height="match_parent"
+            android:padding="4dp">
 
             <TextView
-                android:id="@+id/tipoAsamblea"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="15dp"
-                android:hint="Asamblea" />
+                android:id="@+id/rvEmail"
+                android:gravity="right"
+                android:text="Email"
+                android:paddingRight="8sp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-            <RelativeLayout
-                android:layout_weight="1"
-                android:layout_width="0dp"
+            <TextView
+                android:layout_below="@+id/rvEmail"
+                android:id="@+id/rvFullName"
+                android:text="Nombre Completo"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_below="@+id/rvFullName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/rvAsamblea"
+                    android:padding="2dp"
+                    android:text="Asamblea"
+                    android:textSize="16sp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton"
-                        android:text="aceptar"
-                        android:onClick="showSelectedItems"
+                    <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
-                    <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:layout_width="0dp"
-                        android:onClick="showSelectedItems"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="eliminar"/>
+                        android:orientation="horizontal"
+                        tools:ignore="Suspicious0dp">
 
-                </LinearLayout>
+                        <RadioButton
+                            android:id="@+id/userRadioButton1"
+                            android:text="aceptar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <RadioButton
+                            android:id="@+id/userRadioButton2"
+                            android:text="eliminar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
 
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/userEmail"
-            android:layout_below="@+id/fullName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:textSize="16dp"
-            android:hint="email"
-
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"/>
-
-        <TextView
-            android:gravity="right"
-            android:id="@+id/fullName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:textSize="16dp"
-            android:hint="Nombre Completo"
-
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"/>
-
-    </RelativeLayout>
-
-</androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

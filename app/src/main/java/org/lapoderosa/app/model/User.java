@@ -1,4 +1,4 @@
-package org.lapoderosa.app.util;
+package org.lapoderosa.app.model;
 
 public class User {
     private String nombre;

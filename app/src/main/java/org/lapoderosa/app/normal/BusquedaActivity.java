@@ -14,9 +14,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
-import org.lapoderosa.app.SharedPrefManager;
+import org.lapoderosa.app.util.SharedPrefManager;
 import org.lapoderosa.app.adapter.ReportAdapter;
-import org.lapoderosa.app.util.Report;
+import org.lapoderosa.app.model.Report;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.lapoderosa.app;
+package org.lapoderosa.app.normal;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.lapoderosa.app.R;
-
-import org.lapoderosa.app.normal.LoginActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;

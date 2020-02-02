@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -59,6 +60,8 @@ public class AdminHabilitarCuenta extends MasterClass {
                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                 userArrayList.add(
                         new User(
+                                //todo falta agregar al php que devuelva el id :v
+                                //jsonObject1.getInt("id"),
                                 jsonObject1.getString("usu_usuario"),
                                 jsonObject1.getString("usu_nombres"),
                                 jsonObject1.getString("usu_apellidos"),

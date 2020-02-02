@@ -63,13 +63,13 @@
                         tools:ignore="Suspicious0dp">
 
                         <RadioButton
-                            android:id="@+id/userRadioButton1"
+                            android:id="@+id/rvRadioButton1"
                             android:text="aceptar"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"/>
                         <RadioButton
-                            android:id="@+id/userRadioButton2"
+                            android:id="@+id/rvRadioButton2"
                             android:text="eliminar"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"

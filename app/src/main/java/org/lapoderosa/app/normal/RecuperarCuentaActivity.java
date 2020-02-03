@@ -40,8 +40,7 @@ public class RecuperarCuentaActivity extends MasterClass {
         rLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RecuperarCuentaActivity.this, LoginActivity.class);
-                startActivity(intent);
+                irLogin();
             }
         });
 
@@ -88,7 +87,7 @@ public class RecuperarCuentaActivity extends MasterClass {
         if(mensaje.equals("0")){
             rEmail.setError("Este email no existe");
         }else{
-            volverLogin();
+            irLogin();
         }
     }
 

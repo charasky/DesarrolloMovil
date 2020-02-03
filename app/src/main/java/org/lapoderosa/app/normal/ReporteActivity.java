@@ -21,6 +21,7 @@ import com.android.volley.AuthFailureError;
 import com.lapoderosa.app.R;
 
 import org.lapoderosa.app.MasterClass;
+import org.lapoderosa.app.util.SharedPrefManager;
 
 import java.util.Calendar;
 import java.util.Map;
@@ -539,14 +540,25 @@ public class ReporteActivity extends MasterClass {
 
     }
 
+
     @Override
     protected void responseConexion(String response) {
+        //TODO verificar si lo hace correctamente el shared
         if (!response.isEmpty()) {
-            this.volverLogin();
+            this.chooseInicio(Boolean.parseBoolean(SharedPrefManager.getInstance(this).getKeyTypeUser()), Boolean.parseBoolean(SharedPrefManager.getInstance(this).getKeyEnabledUser()));
+            //this.volverLogin();
         } else {
             Toast.makeText( getApplicationContext(), "Verifica los campos obligatorios", Toast.LENGTH_SHORT).show();
         }
+    }
 
+    private void chooseInicio(Boolean admin, Boolean habilitado) {
+        if (admin && habilitado) {
+            this.irInicioAdmin();
+        }
+        if (!admin && habilitado) {
+            this.irInicio();
+        }
     }
 
 

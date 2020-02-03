@@ -95,7 +95,7 @@ public class RegistrarseActivity extends MasterClass {
             dmEmail.setError("Este email ya existe");
         }
         if(mensaje.isEmpty()){
-            volverLogin();
+            irLogin();
         }
     }
 
@@ -125,37 +125,37 @@ public class RegistrarseActivity extends MasterClass {
             dmEmail.setError("Ingrese email valido");
             valid = false;
         }
-        //todo PASSWORD
+        //PASSWORD contraseña con 8 caracteres
         if (!(password1.matches(".{8,20}") || password2.matches(".{8,20}"))) {
             dmPassword.setError("la contraseña debe ser mayor a 8 digitos");
             dmPassword2.setError("la contraseña debe ser mayor a 8 digitos");
             valid = false;
         }
-        //TODO CONTRASEÑA CARACTER ESPECIAL
+        //CONTRASEÑA CARACTER ESPECIAL
         if (!(password1.matches(".*[!@#$%^&*+=?-].*") || password2.matches(".*[!@#$%^&*+=?-].*"))) {
             dmPassword.setError("la contraseña debe contener un caracter especial: !@#$%^&*+=?-");
             dmPassword2.setError("la contraseña debe contener un caracter especial: !@#$%^&*+=?-");
             valid = false;
         }
-        //TODO CONTRASEÑA DEBE TENER ALMENOS 1 NUMERO
+        //CONTRASEÑA DEBE TENER ALMENOS 1 NUMERO
         if (!(password1.matches(".*\\d.*") || password2.matches(".*\\d.*"))) {
             dmPassword.setError("la contraseña debe contener almenos un numero");
             dmPassword2.setError("la contraseña debe contener almenos un numero");
             valid = false;
         }
-        //TODO DEBE TENER UNA LETRA MINUSCULA
+        //DEBE TENER UNA LETRA MINUSCULA
         if (!(password1.matches(".*[a-z].*") || password2.matches(".*[a-z].*"))) {
             dmPassword.setError("Contraseña debe contener almenos una letra minuscula");
             dmPassword2.setError("Contraseña debe contener almenos una letra minuscula");
             valid = false;
         }
-        //TODO DEBE TENER UNA LETRA MAYUSCULA
+        //DEBE TENER UNA LETRA MAYUSCULA
         if (!(password1.matches(".*[A-Z].*") || password2.matches(".*[A-Z].*"))) {
             dmPassword.setError("Contraseña debe contener almenos una letra mayuscula");
             dmPassword2.setError("Contraseña debe contener almenos una letra mayuscula");
             valid = false;
         }
-        //TODO NO DEBE TENER ESPACIOS
+        //NO DEBE TENER ESPACIOS
         if (password1.matches(".*\\s.*") || password2.matches(".*\\s.*")) {
             dmPassword.setError("Contraseña no debe contener espacios");
             dmPassword2.setError("Contraseña no debe contener espacios");

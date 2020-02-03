@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class AdminRestablecerContraseñaActivity extends MasterClass {
     private EditText rPassword1, rPassword2, rEmail;
-    private TextView rLogin;
+    private TextView rVolver;
     private Button rBtSiguiente;
     private String password1, password2, email;
     @Override
@@ -33,13 +33,13 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
         rEmail = findViewById(R.id.rEmail);
         rPassword1 = findViewById(R.id.rPassword1);
         rPassword2 = findViewById(R.id.rPassword2);
-        rLogin = findViewById(R.id.rLogin);
+        rVolver = findViewById(R.id.rVolver);
         rBtSiguiente = findViewById(R.id.rBtSiguiente);
 
-        rLogin.setOnClickListener(new View.OnClickListener() {
+        rVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                volverLogin();
+                irInicioAdmin();
             }
         });
 
@@ -67,37 +67,37 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
             valid = false;
         }
 
-        //todo PASSWORD
+        //PASSWORD contraseña con 8 caracteres
         if (!(password1.matches(".{8,20}") || password2.matches(".{8,20}"))) {
             rPassword1.setError("la contraseña debe ser mayor a 8 digitos");
             rPassword2.setError("la contraseña debe ser mayor a 8 digitos");
             valid = false;
         }
-        //TODO CONTRASEÑA CARACTER ESPECIAL
+        //CONTRASEÑA CARACTER ESPECIAL
         if (!(password1.matches(".*[!@#$%^&*+=?-].*") || password2.matches(".*[!@#$%^&*+=?-].*"))) {
             rPassword1.setError("la contraseña debe contener un caracter especial: !@#$%^&*+=?-");
             rPassword2.setError("la contraseña debe contener un caracter especial: !@#$%^&*+=?-");
             valid = false;
         }
-        //TODO CONTRASEÑA DEBE TENER ALMENOS 1 NUMERO
+        //CONTRASEÑA DEBE TENER ALMENOS 1 NUMERO
         if (!(password1.matches(".*\\d.*") || password2.matches(".*\\d.*"))) {
             rPassword1.setError("la contraseña debe contener almenos un numero");
             rPassword2.setError("la contraseña debe contener almenos un numero");
             valid = false;
         }
-        //TODO DEBE TENER UNA LETRA MINUSCULA
+        //DEBE TENER UNA LETRA MINUSCULA
         if (!(password1.matches(".*[a-z].*") || password2.matches(".*[a-z].*"))) {
             rPassword1.setError("Contraseña debe contener almenos una letra minuscula");
             rPassword2.setError("Contraseña debe contener almenos una letra minuscula");
             valid = false;
         }
-        //TODO DEBE TENER UNA LETRA MAYUSCULA
+        //DEBE TENER UNA LETRA MAYUSCULA
         if (!(password1.matches(".*[A-Z].*") || password2.matches(".*[A-Z].*"))) {
             rPassword1.setError("Contraseña debe contener almenos una letra mayuscula");
             rPassword2.setError("Contraseña debe contener almenos una letra mayuscula");
             valid = false;
         }
-        //TODO NO DEBE TENER ESPACIOS
+        //NO DEBE TENER ESPACIOS
         if (password1.matches(".*\\s.*") || password2.matches(".*\\s.*")) {
             rPassword1.setError("Contraseña no debe contener espacios");
             rPassword2.setError("Contraseña no debe contener espacios");
@@ -134,6 +134,7 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
 
     @Override
     protected void responseConexion(String response) {
+        //todo el php debe revisar si o no existe el email
         String mensaje = "";
         try {
             JSONObject jsonObject = new JSONObject(response);
@@ -146,7 +147,7 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
         if(!mensaje.isEmpty()){
             rEmail.setError("Este email ingresado no existe");
         }else {
-            this.volverLogin();
+            irInicioAdmin();
         }
     }
 }

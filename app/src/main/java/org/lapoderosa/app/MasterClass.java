@@ -16,7 +16,6 @@ import org.lapoderosa.app.normal.InicioActivity;
 import org.lapoderosa.app.normal.LoginActivity;
 import org.lapoderosa.app.admin.AdminInicioActivity;
 import org.lapoderosa.app.util.RequestHandler;
-import org.lapoderosa.app.util.SharedPrefManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +48,7 @@ public abstract class MasterClass extends AppCompatActivity {
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 
+    /* //todo verificar si no hace falta
     protected void volverLogin() {
         if(SharedPrefManager.getInstance(this).getKeyTypeUser().equals("TRUE")){
             startActivity(new Intent(getApplicationContext(), AdminInicioActivity.class));
@@ -60,13 +60,12 @@ public abstract class MasterClass extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             finish();
         }
-    }
+    }*/
 
     protected void irLogin(){
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         finish();
     }
-
 
     protected void irInicioAdmin(){
         startActivity(new Intent(getApplicationContext(), AdminInicioActivity.class));
@@ -76,17 +75,6 @@ public abstract class MasterClass extends AppCompatActivity {
     protected void irInicio(){
         startActivity(new Intent(getApplicationContext(), InicioActivity.class));
         finish();
-    }
-
-    protected void chooseInicio(String admin, String habilitado){
-        //String admin = SharedPrefManager.getInstance(this).getKeyTypeUser();
-        //String habilitado = SharedPrefManager.getInstance(this).getKeyEnabledUser();
-        if (admin.equals("TRUE") && habilitado.equals("TRUE")) {
-            this.irInicioAdmin();
-        }
-        if (habilitado.equals("TRUE") && admin.equals("FALSE")) {
-            this.irInicio();
-        }
     }
 
     protected abstract void putParams(Map<String, String> parametros) throws AuthFailureError;

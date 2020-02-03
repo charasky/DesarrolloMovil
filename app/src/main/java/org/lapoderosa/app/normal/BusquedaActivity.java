@@ -62,7 +62,7 @@ public class BusquedaActivity extends MasterClass {
 
     public void filtrar(String texto) {
         ArrayList<Report> filtrarLista = new ArrayList<>();
-            //TODO con los if pueda ir filtrando tmbien por otro tipo fecha
+            //con los if pueda ir filtrando tmbien por otro tipo fecha
         for(Report usuario : listaUsuarios) {
             if(usuario.getFullName().toLowerCase().contains(texto.toLowerCase())) {
                 filtrarLista.add(usuario);

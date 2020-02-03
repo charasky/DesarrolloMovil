@@ -41,7 +41,6 @@ public class LoginActivity extends MasterClass {
         progressDialog = new ProgressDialog(this);
 
 
-
         etOlvidastesContraseña.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,8 +89,6 @@ public class LoginActivity extends MasterClass {
 
     @Override
     protected void responseConexion(String response) {
-        String admin = "";
-        String habilitado = "";
         try {
             JSONObject obj = new JSONObject(response);
             if (!obj.getBoolean("error")) {
@@ -102,8 +99,7 @@ public class LoginActivity extends MasterClass {
                                 obj.getString("usu_validacion"),
                                 obj.getString("usu_administrador")
                         );
-                admin = SharedPrefManager.getInstance(this).getKeyTypeUser();
-                habilitado = SharedPrefManager.getInstance(this).getKeyEnabledUser();
+                this.chooseInicio(Boolean.parseBoolean(SharedPrefManager.getInstance(this).getKeyTypeUser()), Boolean.parseBoolean(SharedPrefManager.getInstance(this).getKeyEnabledUser()));
             } else {
                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
                 this.metodoUsuarioContador();
@@ -111,22 +107,23 @@ public class LoginActivity extends MasterClass {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
 
-        if (admin.equals("FALSE") && habilitado.equals("FALSE")) {
+    private void chooseInicio(Boolean admin, Boolean habilitado) {
+        if (!habilitado && !admin) {
             Toast.makeText(getApplicationContext(), "El usuario aun no tiene acceso por Administradores", Toast.LENGTH_LONG).show();
         }
 
-        if(admin.equals("TRUE") && habilitado.equals("FALSE")){
+        if (!habilitado && admin) {
             Toast.makeText(getApplicationContext(), "El usuario aun no tiene acceso", Toast.LENGTH_LONG).show();
         }
 
-        if (admin.equals("TRUE") && habilitado.equals("TRUE")) {
-            startActivity(new Intent(getApplicationContext(), AdminInicioActivity.class));
-            finish();
+        if (admin && habilitado) {
+            this.irInicioAdmin();
         }
-        if (habilitado.equals("TRUE") && admin.equals("FALSE")) {
-            startActivity(new Intent(getApplicationContext(), InicioActivity.class));
-            finish();
+
+        if (!admin && habilitado) {
+            this.irInicio();
         }
     }
 
@@ -134,7 +131,7 @@ public class LoginActivity extends MasterClass {
         if (!user.equals(usuario)) {
             user = usuario;
             cont = 2;
-        }else{
+        } else {
             cont++;
         }
     }

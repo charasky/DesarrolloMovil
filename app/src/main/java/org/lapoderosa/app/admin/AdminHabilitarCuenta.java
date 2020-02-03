@@ -1,6 +1,5 @@
 package org.lapoderosa.app.admin;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,6 +62,7 @@ public class AdminHabilitarCuenta extends MasterClass {
             @Override
             public void onClick(View v) {
                 enviarSelecionRadioButton(getResources().getString(R.string.URL_ENVIAR_RESPUESTA), userArrayList);
+                //todo revisar si realmente se podria cambiar el ir inicio dentro del nuevo response
                 irInicioAdmin();
             }
         });

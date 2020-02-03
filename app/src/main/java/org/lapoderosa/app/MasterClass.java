@@ -62,6 +62,33 @@ public abstract class MasterClass extends AppCompatActivity {
         }
     }
 
+    protected void irLogin(){
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        finish();
+    }
+
+
+    protected void irInicioAdmin(){
+        startActivity(new Intent(getApplicationContext(), AdminInicioActivity.class));
+        finish();
+    }
+
+    protected void irInicio(){
+        startActivity(new Intent(getApplicationContext(), InicioActivity.class));
+        finish();
+    }
+
+    protected void chooseInicio(String admin, String habilitado){
+        //String admin = SharedPrefManager.getInstance(this).getKeyTypeUser();
+        //String habilitado = SharedPrefManager.getInstance(this).getKeyEnabledUser();
+        if (admin.equals("TRUE") && habilitado.equals("TRUE")) {
+            this.irInicioAdmin();
+        }
+        if (habilitado.equals("TRUE") && admin.equals("FALSE")) {
+            this.irInicio();
+        }
+    }
+
     protected abstract void putParams(Map<String, String> parametros) throws AuthFailureError;
 
     protected abstract void inicializarStringVariables();

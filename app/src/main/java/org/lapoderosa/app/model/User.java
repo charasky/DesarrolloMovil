@@ -8,8 +8,7 @@ public class User {
     private String asamblea;
     private String enabled = null;
 
-    public User(String usuario, String nombre, String apellido, String asamblea) {
-        //falta agregar al php que devuelva el id :v
+    public User(int id, String usuario, String nombre, String apellido, String asamblea) {
         this.id = id;
         this.usuario = usuario;
         this.nombre = nombre;

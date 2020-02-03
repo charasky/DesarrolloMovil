@@ -69,7 +69,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                 public void onClick(View v) {
                     radioButton2.setChecked(false);
                     user.setEnabled("TRUE");
-                    Log.d("Clicked","onClick: " + user.getFullName()+" "+user.getEnabled());
                 }
             });
 
@@ -78,7 +77,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                 public void onClick(View v) {
                     radioButton1.setChecked(false);
                     user.setEnabled("FALSE");
-                    Log.d("Clicked","onClick: " + user.getFullName()+" "+user.getEnabled());
                 }
             });
         }

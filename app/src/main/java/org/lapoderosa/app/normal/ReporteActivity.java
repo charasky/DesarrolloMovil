@@ -3,12 +3,14 @@ package org.lapoderosa.app.normal;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -16,6 +18,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.android.volley.AuthFailureError;
 import com.lapoderosa.app.R;
@@ -107,13 +111,13 @@ public class ReporteActivity extends MasterClass {
     //RESULTADO DE LA INVESTIGACION
 
     private RadioButton rbtCondena, rbtAbsolucion, rbtCausaEnTramite, rbtArchivo, rbtNoSabeResultado, rbtNoTrabajaMas, rbtSiTrabaja;
-
-
+    private ConstraintLayout constraintLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_r);
 
+        constraintLayout = findViewById(R.id.layoutReporte);
         guardar = findViewById(R.id.btnGuardar);
         cancelar = findViewById(R.id.btnCancelar);
         progressDialog = new ProgressDialog(this);
@@ -407,6 +411,14 @@ public class ReporteActivity extends MasterClass {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+
+        constraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager inputMethodManager = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
             }
         });
     }

@@ -1,12 +1,15 @@
 package org.lapoderosa.app.normal;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,12 +29,14 @@ public class RegistrarseActivity extends MasterClass {
     private Button dmRegistrarBtn;
     private TextView dmLogin;
     private String name, surname, email, password1, password2, asamblea;
+    private RelativeLayout layout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrarse);
 
+        layout = findViewById(R.id.layoutRegistrarse);
         dmAsamblea = findViewById(R.id.dmAsamblea);
         dmNombres = findViewById(R.id.dmName);
         dmApellidos = findViewById(R.id.dmApellido);
@@ -56,6 +61,14 @@ public class RegistrarseActivity extends MasterClass {
             @Override
             public void onClick(View v) {
                 registrar();
+            }
+        });
+
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager inputMethodManager = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
             }
         });
     }

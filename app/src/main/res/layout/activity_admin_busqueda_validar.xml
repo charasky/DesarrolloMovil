@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A09F9F"
     android:orientation="vertical"
     android:padding="10dp">
 
-    <EditText
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
-
-    <TextView
-        android:paddingRight="30dp"
-        android:padding="10dp"
+    <LinearLayout
+        android:id="@+id/ly1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ACEPTAR  -  ELIMINAR"
-        android:gravity="right"/>
+        android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="560dp" />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+        <TextView
+            android:paddingRight="30dp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ACEPTAR  -  ELIMINAR"
+            android:gravity="right"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
 
     <LinearLayout
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
@@ -47,4 +56,4 @@
             android:background="@drawable/custom_bottom"
             android:text="Cancelar" />
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

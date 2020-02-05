@@ -43,6 +43,7 @@ public class RegistrarseActivity extends MasterClass {
         dmLogin = findViewById(R.id.dmLogin);
         progressDialog = new ProgressDialog(this);
 
+        //todo ver el tema de cambiar de class siendo administrador y usuario normal
         dmLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

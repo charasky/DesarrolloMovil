@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/btAdminReporte"
         android:layout_margin="10dp"
-        android:background="#FA5858"
+        android:background="@drawable/custom_bottom"
         android:text="BUSQUEDA"
         android:textColor="#FFF"
         android:textSize="18sp" />
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/btAdminHabilitar"
         android:layout_margin="10dp"
-        android:background="#FA5858"
+        android:background="@drawable/custom_bottom"
         android:text="REPORTE"
         android:textColor="#FFF"
         android:textSize="18sp" />
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="10dp"
-        android:background="#FA5858"
+        android:background="@drawable/custom_bottom"
         android:text="HABILITAR CUENTA"
         android:textColor="#FFF"
         android:textSize="18sp" />
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btAdminHabilitar"
         android:layout_margin="10dp"
-        android:background="#FA5858"
+        android:background="@drawable/custom_bottom"
         android:text="RESTABLECER CONTRASEÑA"
         android:textColor="#FFF"
         android:textSize="18sp" />
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btAdminRestablecer"
         android:layout_margin="10dp"
-        android:background="#FA5858"
+        android:background="@drawable/custom_bottom"
         android:text="MOVIMIENTOS"
         android:textColor="#FFF"
         android:textSize="18sp" />

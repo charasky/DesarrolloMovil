@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/btReporte"
         android:layout_margin="10dp"
-        android:background="#FA5858"
+        android:background="@drawable/custom_bottom"
         android:text="BUSQUEDA"
         android:textColor="#FFF"
         android:textSize="18sp" />
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="10dp"
-        android:background="#FA5858"
+        android:background="@drawable/custom_bottom"
         android:text="REPORTE"
         android:textColor="#FFF"
         android:textSize="18sp" />

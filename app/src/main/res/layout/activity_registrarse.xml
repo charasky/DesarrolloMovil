@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textRegistrase"
         android:layout_marginTop="10dp"
+        android:inputType="text"
         android:hint="Asamblea"
         android:textSize="18dp" />
 
@@ -33,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/dmAsamblea"
         android:layout_marginTop="5dp"
+        android:inputType="textPersonName"
         android:hint="Nombre"
         android:textSize="18dp" />
 
@@ -43,6 +45,7 @@
         android:layout_below="@+id/dmName"
         android:layout_marginTop="5dp"
         android:hint="Apellido"
+        android:inputType="textPersonName"
         android:textSize="18dp" />
 
     <EditText
@@ -52,6 +55,7 @@
         android:layout_below="@+id/dmApellido"
         android:layout_marginTop="5dp"
         android:hint="Email"
+        android:inputType="textEmailAddress"
         android:textSize="18dp" />
 
 

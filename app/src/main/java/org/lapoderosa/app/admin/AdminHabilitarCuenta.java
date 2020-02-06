@@ -1,11 +1,14 @@
 package org.lapoderosa.app.admin;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -37,21 +40,21 @@ public class AdminHabilitarCuenta extends MasterClass {
     private UserAdapter userAdapter;
     private ArrayList<User> userArrayList;
     private Button button1, button2;
+    private RelativeLayout layout;
     private ArrayAdapter<User> arrayAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_busqueda_validar);
-
+        setContentView(R.layout.activity_admin_busqueda_habilitar);
         progressDialog = new ProgressDialog(this);
+        userArrayList = new ArrayList<>();
 
+        layout = findViewById(R.id.adBusquedaHabilitar);
         button1 = findViewById(R.id.eAbutton1);
         button2 = findViewById(R.id.eAbutton2);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
-
-        userArrayList = new ArrayList<>();
 
         ejecutarServicio(getResources().getString(R.string.URL_USUARIOS_TO_ENABLED));
 
@@ -71,6 +74,14 @@ public class AdminHabilitarCuenta extends MasterClass {
             @Override
             public void onClick(View v) {
                 irInicioAdmin();
+            }
+        });
+
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager inputMethodManager = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
             }
         });
     }

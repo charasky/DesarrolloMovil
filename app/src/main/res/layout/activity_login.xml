@@ -3,6 +3,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutLogin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="22dp"
@@ -12,7 +13,7 @@
     app:layout_editor_absoluteY="10dp">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/splashView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/centerTextView"
@@ -37,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/centerTextView"
         android:drawableLeft="@drawable/ic_email_black_36dp"
+        android:inputType="textEmailAddress"
         android:hint="Email" />
 
     <com.google.android.material.textfield.TextInputLayout

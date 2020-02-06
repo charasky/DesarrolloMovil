@@ -48,20 +48,6 @@ public abstract class MasterClass extends AppCompatActivity {
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-    /* //todo verificar si no hace falta
-    protected void volverLogin() {
-        if(SharedPrefManager.getInstance(this).getKeyTypeUser().equals("TRUE")){
-            startActivity(new Intent(getApplicationContext(), AdminInicioActivity.class));
-            finish();
-        }else if(SharedPrefManager.getInstance(this).getKeyEnabledUser().equals("TRUE")) {
-            startActivity(new Intent(getApplicationContext(), InicioActivity.class));
-            finish();
-        }else{
-            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-            finish();
-        }
-    }*/
-
     protected void irLogin(){
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         finish();

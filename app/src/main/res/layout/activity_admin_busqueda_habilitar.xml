@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/adBusquedaHabilitar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -14,15 +15,15 @@
 
         <EditText
             android:layout_width="0dp"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp" />
 
         <TextView
-            android:paddingRight="30dp"
-            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="right"
             android:hint="ACEPTAR  -  ELIMINAR"
-            android:gravity="right"/>
+            android:padding="10dp"
+            android:paddingRight="30dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -33,9 +34,9 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
         <Button
@@ -43,17 +44,17 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#fff"
             android:background="@drawable/custom_bottom"
-            android:text="Guardar" />
+            android:text="Guardar"
+            android:textColor="#fff" />
 
         <Button
             android:id="@+id/eAbutton2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#fff"
             android:background="@drawable/custom_bottom"
-            android:text="Cancelar" />
+            android:text="Cancelar"
+            android:textColor="#fff" />
     </LinearLayout>
 </RelativeLayout>

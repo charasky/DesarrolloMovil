@@ -52,13 +52,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         TextView email, asamblea, fullName;
         RadioButton radioButton1,radioButton2;
 
-
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
+
             email = itemView.findViewById(R.id.rvEmail);
             fullName = itemView.findViewById(R.id.rvFullName);
             asamblea = itemView.findViewById(R.id.rvAsamblea);
-
             radioButton1 = itemView.findViewById(R.id.rvRadioButton1);
             radioButton2 = itemView.findViewById(R.id.rvRadioButton2);
         }

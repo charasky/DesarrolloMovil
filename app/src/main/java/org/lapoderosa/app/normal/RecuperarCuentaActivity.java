@@ -1,11 +1,14 @@
 package org.lapoderosa.app.normal;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,16 +29,18 @@ public class RecuperarCuentaActivity extends MasterClass {
     private TextView rLogin;
     private EditText rEmail;
     private String email;
+    private RelativeLayout layout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recuperarcuenta);
+        progressDialog = new ProgressDialog(this);
 
+        layout = findViewById(R.id.layoutRecuperarCuenta);
         rBtSiguiente = findViewById(R.id.rBtSiguiente);
         rLogin = findViewById(R.id.rLogin);
         rEmail = findViewById(R.id.rEmail);
-        progressDialog = new ProgressDialog(this);
 
         rLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +53,14 @@ public class RecuperarCuentaActivity extends MasterClass {
             @Override
             public void onClick(View v) {
                 recuperar();
+            }
+        });
+
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager inputMethodManager = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
             }
         });
     }

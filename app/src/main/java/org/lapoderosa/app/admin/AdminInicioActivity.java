@@ -1,6 +1,7 @@
 package org.lapoderosa.app.admin;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,16 +9,17 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.lapoderosa.app.R;
 
 import org.lapoderosa.app.normal.BusquedaActivity;
+import org.lapoderosa.app.normal.InicioActivity;
 import org.lapoderosa.app.normal.LoginActivity;
 import org.lapoderosa.app.normal.ReporteActivity;
 
 public class AdminInicioActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,5 +83,28 @@ public class AdminInicioActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        //si da click si sale de la app
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¿Esta seguro que quiere salir?")
+                .setCancelable(false)
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AdminInicioActivity.super.onBackPressed();
+                    }
+                })
+
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

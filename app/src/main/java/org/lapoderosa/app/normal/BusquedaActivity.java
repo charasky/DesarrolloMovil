@@ -1,10 +1,15 @@
 package org.lapoderosa.app.normal;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.AuthFailureError;
@@ -29,13 +34,19 @@ public class BusquedaActivity extends MasterClass {
     private ReportAdapter adaptador;
     private List<Report> listaUsuarios;
 
+    private LinearLayout layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda);
-
         progressDialog = new ProgressDialog(this);
+        listaUsuarios = new ArrayList<>();
+
+        layout = findViewById(R.id.layoutBusqueda);
         etBuscador = findViewById(R.id.etBuscar);
+        rvLista = findViewById(R.id.rvLista);
+
         etBuscador.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
@@ -49,15 +60,20 @@ public class BusquedaActivity extends MasterClass {
             }
         });
 
-        rvLista = findViewById(R.id.rvLista);
         rvLista.setLayoutManager(new GridLayoutManager(this, 1));
-
-        listaUsuarios = new ArrayList<>();
 
         ejecutarServicio(getResources().getString(R.string.URL_USUARIOS));
 
         adaptador = new ReportAdapter(BusquedaActivity.this, listaUsuarios);
         rvLista.setAdapter(adaptador);
+
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager inputMethodManager = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
+            }
+        });
     }
 
     public void filtrar(String texto) {
@@ -74,7 +90,6 @@ public class BusquedaActivity extends MasterClass {
                 filtrarLista.add(usuario);
             }
         }
-
         adaptador.filtrar(filtrarLista);
     }
 

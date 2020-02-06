@@ -35,6 +35,7 @@ public class RegistrarseActivity extends MasterClass {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrarse);
+        progressDialog = new ProgressDialog(this);
 
         layout = findViewById(R.id.layoutRegistrarse);
         dmAsamblea = findViewById(R.id.dmAsamblea);
@@ -43,17 +44,13 @@ public class RegistrarseActivity extends MasterClass {
         dmEmail = findViewById(R.id.dmEmail);
         dmPassword = findViewById(R.id.dmPassword1);
         dmPassword2 = findViewById(R.id.dmPassword2);
-
         dmRegistrarBtn = findViewById(R.id.dmRegistrarseBtn);
         dmLogin = findViewById(R.id.dmLogin);
-        progressDialog = new ProgressDialog(this);
 
-        //todo ver el tema de cambiar de class siendo administrador y usuario normal
         dmLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegistrarseActivity.this, LoginActivity.class);
-                startActivity(intent);
+                irLogin();
             }
         });
 

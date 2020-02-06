@@ -1,10 +1,13 @@
 package org.lapoderosa.app.admin;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,12 +27,15 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
     private TextView rVolver;
     private Button rBtSiguiente;
     private String password1, password2, email;
+    private RelativeLayout layout;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_restablecer_cuenta);
         progressDialog = new ProgressDialog(this);
 
+        layout = findViewById(R.id.adRestablecerContraseña);
         rEmail = findViewById(R.id.rEmail);
         rPassword1 = findViewById(R.id.rPassword1);
         rPassword2 = findViewById(R.id.rPassword2);
@@ -47,6 +53,14 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
             @Override
             public void onClick(View v) {
                 restorePassword();
+            }
+        });
+
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager inputMethodManager = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
             }
         });
     }

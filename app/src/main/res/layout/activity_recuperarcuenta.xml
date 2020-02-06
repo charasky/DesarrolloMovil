@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutRecuperarCuenta"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="40dp"
@@ -35,6 +36,7 @@
         android:drawableLeft="@drawable/ic_email_black_36dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:inputType="textEmailAddress"
         android:hint="Correo electronico" />
 
     <Button

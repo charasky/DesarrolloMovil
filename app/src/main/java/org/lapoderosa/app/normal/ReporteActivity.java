@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,12 +20,14 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.android.volley.AuthFailureError;
 import com.lapoderosa.app.R;
 
 import org.lapoderosa.app.MasterClass;
+import org.lapoderosa.app.admin.AdminInicioActivity;
 import org.lapoderosa.app.util.SharedPrefManager;
 
 import java.util.Calendar;
@@ -115,12 +118,12 @@ public class ReporteActivity extends MasterClass {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_r);
+        setContentView(R.layout.activity_report);
+        progressDialog = new ProgressDialog(this);
 
         constraintLayout = findViewById(R.id.layoutReporte);
         guardar = findViewById(R.id.btnGuardar);
         cancelar = findViewById(R.id.btnCancelar);
-        progressDialog = new ProgressDialog(this);
 
         //ENTREVISTADOR
         eNombreEntrevistador = findViewById(R.id.edtNombreEntrevistador);
@@ -410,11 +413,12 @@ public class ReporteActivity extends MasterClass {
         cancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                chooseInicio();
             }
         });
 
         constraintLayout.setOnClickListener(new View.OnClickListener() {
+            //hace que el teclado se oculte cuando presionas en otra parte visual del mismo layout
             @Override
             public void onClick(View v) {
                 InputMethodManager inputMethodManager = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -423,6 +427,30 @@ public class ReporteActivity extends MasterClass {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        //vuelve al activity anterior
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¿Desea cancelar el reporte?")
+                .setCancelable(true)
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        ReporteActivity.this.finish();
+                        return;
+                    }
+                })
+
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
 
     //todo enviar reporte
     private void enviarReporte() {
@@ -646,7 +674,8 @@ public class ReporteActivity extends MasterClass {
         //TODO verificar si lo hace correctamente el shared
 
         if (!response.isEmpty()) {
-            this.chooseInicio(Boolean.parseBoolean(SharedPrefManager.getInstance(this).getKeyTypeUser()), Boolean.parseBoolean(SharedPrefManager.getInstance(this).getKeyEnabledUser()));
+            this.chooseInicio();
+            //this.chooseInicio(Boolean.parseBoolean(SharedPrefManager.getInstance(this).getKeyTypeUser()), Boolean.parseBoolean(SharedPrefManager.getInstance(this).getKeyEnabledUser()));
             //this.volverLogin();
         }
         /*
@@ -655,7 +684,10 @@ public class ReporteActivity extends MasterClass {
         }*/
     }
 
-    private void chooseInicio(Boolean admin, Boolean habilitado) {
+    private void chooseInicio() {
+        //recoge los datos y le asigna a que activity ir
+        Boolean admin = Boolean.parseBoolean(SharedPrefManager.getInstance(this).getKeyTypeUser());
+        Boolean habilitado =  Boolean.parseBoolean(SharedPrefManager.getInstance(this).getKeyEnabledUser());
         if (admin && habilitado) {
             this.irInicioAdmin();
         }
@@ -664,9 +696,7 @@ public class ReporteActivity extends MasterClass {
         }
     }
 
-
     public DatePickerDialog.OnDateSetListener crearListener(final TextView tvDate) {
-
         DatePickerDialog.OnDateSetListener DateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -681,7 +711,6 @@ public class ReporteActivity extends MasterClass {
     }
 
     public void listenerMotivoProcedimiento(final RadioButton rbtTrue, final RadioButton rbt1, final RadioButton rbt2, final RadioButton rbt3) {
-
         rbtTrue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -721,7 +750,6 @@ public class ReporteActivity extends MasterClass {
                 motivoProcedimiento = rbt3.getText().toString();
             }
         });
-
     }
 
     public void listenerMaltratos(final RadioButton rbt0, final RadioButton rbt1, final RadioButton rbt2, final RadioButton rbt3, final RadioButton rbt4, final RadioButton rbt5, final EditText edt, final RadioButton rbt6) {
@@ -1235,17 +1263,5 @@ public class ReporteActivity extends MasterClass {
         edtText.setText("");
         //TODO que el editext pierda el focus al limpiarse.
         //edtText.setFocus;
-    }
-
-    public boolean isEmptyString(EditText edt) {
-        return TextUtils.isEmpty(edt.getText().toString());
-    }
-
-    public void setAgresionAllanamiento(String agresionAllanamiento) {
-        this.agresionAllanamiento = agresionAllanamiento;
-    }
-
-    public String getAgresionAllanamiento() {
-        return agresionAllanamiento;
     }
 }

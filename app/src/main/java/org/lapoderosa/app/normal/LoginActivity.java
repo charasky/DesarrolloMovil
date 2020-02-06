@@ -1,11 +1,14 @@
 package org.lapoderosa.app.normal;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +18,6 @@ import com.lapoderosa.app.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
-import org.lapoderosa.app.admin.AdminInicioActivity;
 import org.lapoderosa.app.util.SharedPrefManager;
 
 import java.util.Map;
@@ -28,18 +30,20 @@ public class LoginActivity extends MasterClass {
     private Button btnLogin;
     private String usuario, password;
 
+    private RelativeLayout layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        progressDialog = new ProgressDialog(this);
 
+        layout = findViewById(R.id.layoutLogin);
         editUsuario = findViewById(R.id.etUserName);
         editPassword = findViewById(R.id.dmPassword1);
         etRegistrarse = findViewById(R.id.etRegistrarse);
         btnLogin = findViewById(R.id.btLogin);
         etOlvidastesContraseña = findViewById(R.id.etOlvidastesContraseña);
-        progressDialog = new ProgressDialog(this);
-
 
         etOlvidastesContraseña.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +65,14 @@ public class LoginActivity extends MasterClass {
             @Override
             public void onClick(View v) {
                 usuarioLogin();
+            }
+        });
+
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager inputMethodManager = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
             }
         });
     }

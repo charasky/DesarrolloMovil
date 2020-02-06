@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportViewHolder> {
-
     private Context context;
     private List<Report> reportList;
 
@@ -48,7 +47,6 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     }
 
     public class ReportViewHolder extends RecyclerView.ViewHolder {
-
         TextView tvLugar, tvCiudad, tvName, tvDate;
 
         public ReportViewHolder(@NonNull View itemView) {

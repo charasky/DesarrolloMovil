@@ -868,7 +868,7 @@
                         android:text="Seleccione el motivo del procedimiento:"
                         android:textSize="18sp" />
 
-                    <LinearLayout
+                    <RadioGroup
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
@@ -903,7 +903,7 @@
                             android:layout_height="wrap_content"
                             android:text="No se me informo el motivo"
                             android:textSize="16sp" />
-                    </LinearLayout>
+                    </RadioGroup>
                 </LinearLayout>
 
                 <LinearLayout
@@ -952,7 +952,7 @@
                         android:text="Cual/es:"
                         android:textSize="18sp" />
 
-                    <LinearLayout
+                    <RadioGroup
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
@@ -962,35 +962,35 @@
 
                         <RadioButton
                             android:id="@+id/rbtVerbales"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Verbales"
                             android:textSize="16sp" />
 
                         <RadioButton
                             android:id="@+id/rbtFisicos"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Fisicos"
                             android:textSize="16dp" />
 
                         <RadioButton
                             android:id="@+id/rbtAmenazas"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Amenazas"
                             android:textSize="16dp" />
 
                         <RadioButton
                             android:id="@+id/rbtDañoPertenencias"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Robo/Daño de pertenencias"
                             android:textSize="16dp" />
 
                         <RadioButton
                             android:id="@+id/rbtRequizaHumillante"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Requiza humillante o vejatoria"
                             android:textSize="16dp" />
@@ -1015,7 +1015,7 @@
                                 android:hint="aclarar"
                                 android:textSize="16sp" />
                         </LinearLayout>
-                    </LinearLayout>
+                    </RadioGroup>
                 </LinearLayout>
 
                 <LinearLayout
@@ -2005,35 +2005,35 @@
 
                         <RadioButton
                             android:id="@+id/rbtCondena"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Condena"
                             android:textSize="16sp" />
 
                         <RadioButton
                             android:id="@+id/rbtAbsolucion"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Absolucion"
                             android:textSize="16sp" />
 
                         <RadioButton
                             android:id="@+id/rbtCausaEnTramite"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Causa en Tramite"
                             android:textSize="16sp" />
 
                         <RadioButton
                             android:id="@+id/rbtArchivo"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Archivo/Desestimacion"
                             android:textSize="16sp" />
 
                         <RadioButton
                             android:id="@+id/rbtNoSabeResultado"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="No Sabe"
                             android:textSize="16sp" />

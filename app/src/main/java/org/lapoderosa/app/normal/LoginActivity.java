@@ -29,7 +29,6 @@ public class LoginActivity extends MasterClass {
     private TextView etRegistrarse, etOlvidastesContraseña;
     private Button btnLogin;
     private String usuario, password;
-
     private RelativeLayout layout;
 
     @Override

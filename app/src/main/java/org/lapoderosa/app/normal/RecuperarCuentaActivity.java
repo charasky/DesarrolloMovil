@@ -24,7 +24,6 @@ import org.lapoderosa.app.MasterClass;
 import java.util.Map;
 
 public class RecuperarCuentaActivity extends MasterClass {
-
     private Button rBtSiguiente;
     private TextView rLogin;
     private EditText rEmail;

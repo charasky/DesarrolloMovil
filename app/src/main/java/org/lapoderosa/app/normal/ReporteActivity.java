@@ -413,7 +413,7 @@ public class ReporteActivity extends MasterClass {
         cancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chooseInicio();
+                onBackPressed();
             }
         });
 
@@ -431,12 +431,11 @@ public class ReporteActivity extends MasterClass {
     public void onBackPressed() {
         //vuelve al activity anterior
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("¿Desea cancelar el reporte?")
+        builder.setMessage("¿Desea salir de reporte?")
                 .setCancelable(true)
                 .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         ReporteActivity.this.finish();
                         return;
                     }

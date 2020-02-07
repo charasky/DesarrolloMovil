@@ -28,12 +28,10 @@ import java.util.List;
 import java.util.Map;
 
 public class BusquedaActivity extends MasterClass {
-
     private EditText etBuscador;
     private RecyclerView rvLista;
     private ReportAdapter adaptador;
     private List<Report> listaUsuarios;
-
     private LinearLayout layout;
 
     @Override

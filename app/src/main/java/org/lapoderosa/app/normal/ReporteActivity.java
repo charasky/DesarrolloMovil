@@ -118,7 +118,7 @@ public class ReporteActivity extends MasterClass {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report);
+        setContentView(R.layout.activity_r);
         progressDialog = new ProgressDialog(this);
 
         constraintLayout = findViewById(R.id.layoutReporte);
@@ -223,10 +223,10 @@ public class ReporteActivity extends MasterClass {
         rbtSiOrdenAllanamiento = findViewById(R.id.rbtSiOrdenAllanamiento);
         rbtNoAgresionesDomicilio = findViewById(R.id.rbtNoAgresionesDomicilio);
         rbtSiAgresionesDomicilio = findViewById(R.id.rbtSiAgresionesDomicilio);
-        edtCualesAgresionesDomicilio = findViewById(R.id.txtAgresionAllanamiento);
+        edtCualesAgresionesDomicilio = findViewById(R.id.edtAgresionAllanamiento);
         rbtNoPertenenciasRobadas = findViewById(R.id.rbtNoPertenenciasRobadas);
         rbtSiPertenenciasRobadas = findViewById(R.id.rbtSiPertenenciasRobadas);
-        edtCualesPertenencias = findViewById(R.id.txtPertenenciasAllanamiento);
+        edtCualesPertenencias = findViewById(R.id.edtPertenenciasAllanamiento);
         rbtNoOmitieronPertenencias = findViewById(R.id.rbtNoOmitieronPertenencias);
         rbtSiOmitieronPertenencias = findViewById(R.id.rbtSiOmitieronPertenencias);
         edtCualesOmitieron = findViewById(R.id.edtCualesOmitieron);

@@ -26,7 +26,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
-import org.lapoderosa.app.util.RequestHandler;
+import org.lapoderosa.app.util.VolleySingleton;
 import org.lapoderosa.app.util.SharedPrefManager;
 import org.lapoderosa.app.adapter.UserAdapter;
 import org.lapoderosa.app.model.User;
@@ -80,8 +80,8 @@ public class AdminHabilitarCuenta extends MasterClass {
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager inputMethodManager = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
+                InputMethodManager inputMethodManager = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
     }
@@ -150,6 +150,6 @@ public class AdminHabilitarCuenta extends MasterClass {
                 return parametros;
             }
         };
-        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 }

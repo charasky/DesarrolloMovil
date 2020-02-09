@@ -15,7 +15,7 @@ import com.android.volley.toolbox.StringRequest;
 import org.lapoderosa.app.normal.InicioActivity;
 import org.lapoderosa.app.normal.LoginActivity;
 import org.lapoderosa.app.admin.AdminInicioActivity;
-import org.lapoderosa.app.util.RequestHandler;
+import org.lapoderosa.app.util.VolleySingleton;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,20 +45,20 @@ public abstract class MasterClass extends AppCompatActivity {
                 return parametros;
             }
         };
-        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-    protected void irLogin(){
+    protected void irLogin() {
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         finish();
     }
 
-    protected void irInicioAdmin(){
+    protected void irInicioAdmin() {
         startActivity(new Intent(getApplicationContext(), AdminInicioActivity.class));
         finish();
     }
 
-    protected void irInicio(){
+    protected void irInicio() {
         startActivity(new Intent(getApplicationContext(), InicioActivity.class));
         finish();
     }

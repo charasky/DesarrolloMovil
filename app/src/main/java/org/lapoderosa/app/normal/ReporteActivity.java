@@ -31,7 +31,7 @@ import org.lapoderosa.app.util.SharedPrefManager;
 
 import java.util.Calendar;
 import java.util.Map;
-
+//todo verificar que los campos de strings no esten vacios
 public class ReporteActivity extends MasterClass {
     private static final String TAG = "ReporteActivity";
     private TextView tvDateEntrevista, tvDateHecho, tvHoraHecho;
@@ -331,8 +331,7 @@ public class ReporteActivity extends MasterClass {
     //todo enviar reporte
     private void enviarReporte() {
         inicializarStringVariables();
-        //!validateVictima() && !validateEntEntrevistador() &&
-        if (validacionRadioButtons()) {
+        if (!validateVictima() && !validateEntEntrevistador() && validacionRadioButtons()) {
             Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
         } else {
             ejecutarServicio(getResources().getString(R.string.URL_REPORTE));

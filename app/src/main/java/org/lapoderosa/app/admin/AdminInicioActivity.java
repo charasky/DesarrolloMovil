@@ -1,9 +1,7 @@
 package org.lapoderosa.app.admin;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.lapoderosa.app.R;
 
 import org.lapoderosa.app.normal.BusquedaActivity;
-import org.lapoderosa.app.normal.InicioActivity;
 import org.lapoderosa.app.normal.LoginActivity;
 import org.lapoderosa.app.normal.ReporteActivity;
 import org.lapoderosa.app.util.SharedPrefManager;
@@ -25,7 +22,6 @@ public class AdminInicioActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_inicio);
-
         Button btBusqueda = findViewById(R.id.btAdminBusqueda);
         Button btReporte = findViewById(R.id.btAdminReporte);
         Button btHabilitarCuenta = findViewById(R.id.btAdminHabilitar);

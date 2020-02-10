@@ -45,7 +45,7 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
         rVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                irInicioAdmin();
+                onBackPressed();
             }
         });
 

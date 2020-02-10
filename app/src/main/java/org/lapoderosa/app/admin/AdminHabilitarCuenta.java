@@ -32,23 +32,22 @@ import org.lapoderosa.app.model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AdminHabilitarCuenta extends MasterClass {
     private RecyclerView rvHabilitar;
     private UserAdapter adaptador;
-    private ArrayList<User> userArrayList;
+    private List<User> listaUsuarios;
     private Button button1, button2;
-    private ConstraintLayout layout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_habilitar_usuarios);
         progressDialog = new ProgressDialog(this);
-        userArrayList = new ArrayList<>();
+        listaUsuarios = new ArrayList<>();
 
-        layout = findViewById(R.id.clHabilitarUsuario);
         button1 = findViewById(R.id.huAbutton1);
         button2 = findViewById(R.id.huAbutton2);
         rvHabilitar = findViewById(R.id.rvHabilitar);
@@ -56,13 +55,13 @@ public class AdminHabilitarCuenta extends MasterClass {
 
         ejecutarServicio(getResources().getString(R.string.URL_USUARIOS_TO_ENABLED));
 
-        adaptador = new UserAdapter(AdminHabilitarCuenta.this, userArrayList);
+        adaptador = new UserAdapter(AdminHabilitarCuenta.this, listaUsuarios);
         rvHabilitar.setAdapter(adaptador);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enviarSelecionRadioButton(getResources().getString(R.string.URL_ENVIAR_RESPUESTA), userArrayList);
+                enviarSelecionRadioButton(getResources().getString(R.string.URL_ENVIAR_RESPUESTA), listaUsuarios);
                 //todo revisar si realmente se podria cambiar el ir inicio dentro del nuevo response
                 irInicioAdmin();
             }
@@ -72,14 +71,6 @@ public class AdminHabilitarCuenta extends MasterClass {
             @Override
             public void onClick(View v) {
                 irInicioAdmin();
-            }
-        });
-
-        layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InputMethodManager inputMethodManager = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
     }
@@ -92,7 +83,7 @@ public class AdminHabilitarCuenta extends MasterClass {
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                userArrayList.add(
+                listaUsuarios.add(
                         new User(
                                 jsonObject1.getInt("id"),
                                 jsonObject1.getString("usu_usuario"),
@@ -103,7 +94,7 @@ public class AdminHabilitarCuenta extends MasterClass {
                 );
             }
 
-            adaptador = new UserAdapter(AdminHabilitarCuenta.this, userArrayList);
+            adaptador = new UserAdapter(AdminHabilitarCuenta.this, listaUsuarios);
             rvHabilitar.setAdapter(adaptador);
 
         } catch (JSONException e) {
@@ -121,7 +112,7 @@ public class AdminHabilitarCuenta extends MasterClass {
     protected void inicializarStringVariables() {
     }
 
-    private void enviarSelecionRadioButton(String URL, final ArrayList<User> userArrayList) {
+    private void enviarSelecionRadioButton(String URL, final List<User> listaUsuarios) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -138,7 +129,7 @@ public class AdminHabilitarCuenta extends MasterClass {
             protected Map<String, String> getParams() throws AuthFailureError {
                 //envio un object a php
                 JSONObject jsonObjecUsers = new JSONObject();
-                for (User user : userArrayList) {
+                for (User user : listaUsuarios) {
                     try {
                         jsonObjecUsers.put(String.valueOf(user.getId()), user.getEnabled());
                     } catch (JSONException e) {

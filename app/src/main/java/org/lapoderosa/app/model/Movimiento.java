@@ -4,13 +4,15 @@ public class Movimiento {
     private String usuario;
     private String queHizo;
     private String fecha;
-    private String Hora;
+    private String hora;
+    private String usuarioInteraccion;
 
-    public Movimiento(String usuario, String queHizo, String fecha, String hora) {
+    public Movimiento(String usuario, String queHizo, String fecha, String hora, String usuarioInteraccion) {
         this.usuario = usuario;
         this.queHizo = queHizo;
         this.fecha = fecha;
-        Hora = hora;
+        this.hora = hora;
+        this.usuarioInteraccion = usuarioInteraccion;
     }
 
     public String getUsuario() {
@@ -26,6 +28,10 @@ public class Movimiento {
     }
 
     public String getHora() {
-        return Hora;
+        return hora;
+    }
+
+    public String getUsuarioInteraccion() {
+        return usuarioInteraccion;
     }
 }

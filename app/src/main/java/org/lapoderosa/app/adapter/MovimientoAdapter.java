@@ -29,13 +29,18 @@ public class MovimientoAdapter extends RecyclerView.Adapter<MovimientoAdapter.Mo
     public MovimientoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.rv_movimiento_row, viewGroup, false);
-
         return new MovimientoViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovimientoViewHolder holder, int position) {
-        //todo completar
+    public void onBindViewHolder(@NonNull MovimientoViewHolder movimientoViewHolder, int position) {
+        Movimiento movimiento = movimientoList.get(position);
+        
+        movimientoViewHolder.rvUsuario.setText(movimiento.getUsuario());
+        movimientoViewHolder.rvFecha.setText(movimiento.getFecha());
+        movimientoViewHolder.rvQueHizo.setText(movimiento.getQueHizo());
+        movimientoViewHolder.rvHora.setText(movimiento.getHora());
+        movimientoViewHolder.rvUsuarioInteraccion.setText(movimiento.getUsuarioInteraccion());
     }
 
     @Override
@@ -44,7 +49,7 @@ public class MovimientoAdapter extends RecyclerView.Adapter<MovimientoAdapter.Mo
     }
 
     public class MovimientoViewHolder extends RecyclerView.ViewHolder {
-        TextView rvUsuario, rvFecha, rvQueHizo, rvHora, rvUsuarioAceptado;
+        TextView rvUsuario, rvFecha, rvQueHizo, rvHora, rvUsuarioInteraccion;
 
         public MovimientoViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -53,7 +58,7 @@ public class MovimientoAdapter extends RecyclerView.Adapter<MovimientoAdapter.Mo
             rvFecha = itemView.findViewById(R.id.rvFecha);
             rvQueHizo = itemView.findViewById(R.id.rvQueHizo);
             rvHora = itemView.findViewById(R.id.rvHora);
-            rvUsuarioAceptado = itemView.findViewById(R.id.rvUsuarioAceptado);
+            rvUsuarioInteraccion = itemView.findViewById(R.id.rvUsuarioInteraccion);
         }
     }
 }

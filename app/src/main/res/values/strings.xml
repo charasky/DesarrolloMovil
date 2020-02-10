@@ -10,6 +10,7 @@
     <string name="URL_USUARIOS_TO_ENABLED">http://3.136.55.99/proyecto/v1/disabledUsers.php</string>
     <string name="URL_RESTORE_PASSWORD">http://3.136.55.99/proyecto/v1/restorePassword.php</string>
     <string name="URL_ENVIAR_RESPUESTA">http://3.136.55.99/proyecto/v1/sendReply.php</string>
+    <string name="URL_MOVIMIENTO">http://3.136.55.99/proyecto/v1/movimiento.php</string>
 
 
     <!-- //todo URL local-host
@@ -21,6 +22,7 @@
     <string name="URL_RESTORE_PASSWORD">http://192.168.0.8/android/v1/restorePassword.php</string>
     <string name="URL_ENVIAR_RESPUESTA">http://192.168.0.8/android/v1/sendReply.php</string>
     <string name="URL_REPORTE">http://192.168.0.8/android/insertar_datos_reporte.php</string>
+    <string name="URL_MOVIMIENTO">http://192.168.0.8/android/v1/movimiento.php</string>
     -->
 
 </resources>

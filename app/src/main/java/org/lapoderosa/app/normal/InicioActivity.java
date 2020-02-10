@@ -13,6 +13,8 @@ import android.widget.Button;
 
 import com.lapoderosa.app.R;
 
+import org.lapoderosa.app.util.SharedPrefManager;
+
 public class InicioActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,30 +28,31 @@ public class InicioActivity extends AppCompatActivity {
         btBusqueda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(InicioActivity.this, BusquedaActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(InicioActivity.this, BusquedaActivity.class));
             }
         });
 
         btReporte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(InicioActivity.this, ReporteActivity.class);
-                startActivity(intent2);
+                startActivity(new Intent(InicioActivity.this, ReporteActivity.class));
             }
         });
 
         btCerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences preferences = getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
-                preferences.edit().clear().apply();
-
-                Intent intent3 = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent3);
-                finish();
+                /*SharedPreferences preferences = getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
+                preferences.edit().clear().apply(); */
+                cerrarSesion();
             }
         });
+    }
+
+    private void cerrarSesion() {
+        SharedPrefManager.getInstance(this).logout();
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        finish();
     }
 
     @Override
@@ -63,9 +66,7 @@ public class InicioActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         InicioActivity.super.onBackPressed();
                     }
-                })
-
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         dialog.cancel();

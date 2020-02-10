@@ -18,6 +18,7 @@ import org.lapoderosa.app.normal.BusquedaActivity;
 import org.lapoderosa.app.normal.InicioActivity;
 import org.lapoderosa.app.normal.LoginActivity;
 import org.lapoderosa.app.normal.ReporteActivity;
+import org.lapoderosa.app.util.SharedPrefManager;
 
 public class AdminInicioActivity extends AppCompatActivity {
     @Override
@@ -35,54 +36,50 @@ public class AdminInicioActivity extends AppCompatActivity {
         btBusqueda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminInicioActivity.this, BusquedaActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(AdminInicioActivity.this, BusquedaActivity.class));
             }
         });
 
         btReporte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminInicioActivity.this, ReporteActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(AdminInicioActivity.this, ReporteActivity.class));
             }
         });
 
         btHabilitarCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminInicioActivity.this, AdminHabilitarCuenta.class);
-                startActivity(intent);
+                startActivity(new Intent(AdminInicioActivity.this, AdminHabilitarCuenta.class));
             }
         });
 
         btRestablecerContraseña.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminInicioActivity.this,AdminRestablecerContraseñaActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(AdminInicioActivity.this,AdminRestablecerContraseñaActivity.class));
             }
         });
 
         btMovimientos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminInicioActivity.this,AdminMovimientosActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(AdminInicioActivity.this,AdminMovimientosActivity.class));
             }
         });
 
         btCerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences preferences = getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
-                preferences.edit().clear().commit();
-
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-                finish();
+                cerrarSesion();
             }
         });
+    }
+
+    private void cerrarSesion() {
+        SharedPrefManager.getInstance(this).logout();
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        finish();
     }
 
     @Override
@@ -96,9 +93,7 @@ public class AdminInicioActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         AdminInicioActivity.super.onBackPressed();
                     }
-                })
-
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         dialog.cancel();

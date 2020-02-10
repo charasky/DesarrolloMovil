@@ -6,12 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,30 +35,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AdminHabilitarCuenta extends MasterClass {
-    private RecyclerView recyclerView;
-    private UserAdapter userAdapter;
+    private RecyclerView rvHabilitar;
+    private UserAdapter adaptador;
     private ArrayList<User> userArrayList;
     private Button button1, button2;
-    private RelativeLayout layout;
-    private ArrayAdapter<User> arrayAdapter;
+    private ConstraintLayout layout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_busqueda_habilitar);
+        setContentView(R.layout.activity_admin_habilitar_usuarios);
         progressDialog = new ProgressDialog(this);
         userArrayList = new ArrayList<>();
 
-        layout = findViewById(R.id.adBusquedaHabilitar);
-        button1 = findViewById(R.id.eAbutton1);
-        button2 = findViewById(R.id.eAbutton2);
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+        layout = findViewById(R.id.clHabilitarUsuario);
+        button1 = findViewById(R.id.huAbutton1);
+        button2 = findViewById(R.id.huAbutton2);
+        rvHabilitar = findViewById(R.id.rvHabilitar);
+        rvHabilitar.setLayoutManager(new GridLayoutManager(this, 1));
 
         ejecutarServicio(getResources().getString(R.string.URL_USUARIOS_TO_ENABLED));
 
-        userAdapter = new UserAdapter(AdminHabilitarCuenta.this, userArrayList);
-        recyclerView.setAdapter(userAdapter);
+        adaptador = new UserAdapter(AdminHabilitarCuenta.this, userArrayList);
+        rvHabilitar.setAdapter(adaptador);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +102,10 @@ public class AdminHabilitarCuenta extends MasterClass {
                         )
                 );
             }
+
+            adaptador = new UserAdapter(AdminHabilitarCuenta.this, userArrayList);
+            rvHabilitar.setAdapter(adaptador);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

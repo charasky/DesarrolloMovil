@@ -50,7 +50,7 @@ public class RegistrarseActivity extends MasterClass {
         dmLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                irLogin();
+                onBackPressed();
             }
         });
 

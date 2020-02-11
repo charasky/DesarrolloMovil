@@ -42,17 +42,15 @@ public class InicioActivity extends AppCompatActivity {
         btCerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*SharedPreferences preferences = getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
-                preferences.edit().clear().apply(); */
                 cerrarSesion();
+                startActivity(new Intent(InicioActivity.this, LoginActivity.class));
+                finish();
             }
         });
     }
 
     private void cerrarSesion() {
         SharedPrefManager.getInstance(this).logout();
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        finish();
     }
 
     @Override

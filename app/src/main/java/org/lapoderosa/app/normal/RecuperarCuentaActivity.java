@@ -20,6 +20,7 @@ import com.lapoderosa.app.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
+import org.lapoderosa.app.util.JavaMailAPI;
 
 import java.util.Map;
 
@@ -44,7 +45,7 @@ public class RecuperarCuentaActivity extends MasterClass {
         rLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                irLogin();
+                onBackPressed();
             }
         });
 
@@ -99,11 +100,13 @@ public class RecuperarCuentaActivity extends MasterClass {
         if(mensaje.equals("0")){
             rEmail.setError("Este email no existe");
         }else{
+            enviarEmail(email);
             irLogin();
         }
     }
 
     private void enviarEmail(String email) {
-        //Todo rellenar para que recuperen la cuenta
+        JavaMailAPI javaMailAPI = new JavaMailAPI(this,email);
+        javaMailAPI.execute();
     }
 }

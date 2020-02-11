@@ -47,16 +47,14 @@ public class LoginActivity extends MasterClass {
         etOlvidastesContraseña.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RecuperarCuentaActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(LoginActivity.this, RecuperarCuentaActivity.class));
             }
         });
 
         etRegistrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegistrarseActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(LoginActivity.this, RegistrarseActivity.class));
             }
         });
 

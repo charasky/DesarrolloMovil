@@ -1,5 +1,6 @@
 package org.lapoderosa.app.admin;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,9 +28,13 @@ import org.lapoderosa.app.util.SharedPrefManager;
 import org.lapoderosa.app.adapter.UserAdapter;
 import org.lapoderosa.app.model.User;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class AdminHabilitarCuenta extends MasterClass {
@@ -37,6 +42,10 @@ public class AdminHabilitarCuenta extends MasterClass {
     private UserAdapter adaptador;
     private List<User> listaUsuarios;
     private Button button1, button2;
+    private String user, hora, fecha;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+    @SuppressLint("SimpleDateFormat")
+    private DateFormat dateHourFormat = new SimpleDateFormat("HH:mm");
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,9 +67,7 @@ public class AdminHabilitarCuenta extends MasterClass {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enviarSelecionRadioButton(getResources().getString(R.string.URL_ENVIAR_RESPUESTA), listaUsuarios);
-                //todo revisar si realmente se podria cambiar el ir inicio dentro del nuevo response
-                irInicioAdmin();
+                habilitarCuentas();
             }
         });
 
@@ -70,6 +77,13 @@ public class AdminHabilitarCuenta extends MasterClass {
                 onBackPressed();
             }
         });
+    }
+
+    private void habilitarCuentas() {
+        inicializarStringVariables();
+        respuestaQueUsuariosAprobarOrEliminar(getResources().getString(R.string.URL_ENVIAR_RESPUESTA), listaUsuarios);
+        //todo revisar si realmente se podria cambiar el ir inicio dentro del nuevo response
+        irInicioAdmin();
     }
 
     @Override
@@ -107,12 +121,16 @@ public class AdminHabilitarCuenta extends MasterClass {
 
     @Override
     protected void inicializarStringVariables() {
+        fecha = dateFormat.format(new Date());
+        hora = dateHourFormat.format(new Date());
+        user = SharedPrefManager.getInstance(this).getKeyUsuario();
     }
 
-    private void enviarSelecionRadioButton(String URL, final List<User> listaUsuarios) {
+    private void respuestaQueUsuariosAprobarOrEliminar(String URL, final List<User> listaUsuarios) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                //todo responder a lo que devuelva el php
                 //progressDialog.dismiss();
                 //responseConexion(response);
             }
@@ -124,7 +142,6 @@ public class AdminHabilitarCuenta extends MasterClass {
         }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                //envio un object a php
                 JSONObject jsonObjecUsers = new JSONObject();
                 for (User user : listaUsuarios) {
                     try {
@@ -133,9 +150,11 @@ public class AdminHabilitarCuenta extends MasterClass {
                         e.printStackTrace();
                     }
                 }
-                Log.d("Clicked", "onMapa: " + jsonObjecUsers);
-
+                //Log.d("Clicked", "usuario: " + user);
                 Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("usu_usuario", user);
+                parametros.put("usu_fecha", fecha);
+                parametros.put("usu_hora", hora);
                 parametros.put("params", jsonObjecUsers.toString());
                 return parametros;
             }

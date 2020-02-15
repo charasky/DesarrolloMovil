@@ -41,14 +41,14 @@ public class InicioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cerrarSesion();
-                startActivity(new Intent(InicioActivity.this, LoginActivity.class));
-                finish();
             }
         });
     }
 
     private void cerrarSesion() {
         SharedPrefManager.getInstance(this).logout();
+        startActivity(new Intent(InicioActivity.this, LoginActivity.class));
+        finish();
     }
 
     @Override

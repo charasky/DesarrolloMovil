@@ -15,6 +15,7 @@ import com.android.volley.toolbox.StringRequest;
 import org.lapoderosa.app.normal.InicioActivity;
 import org.lapoderosa.app.normal.LoginActivity;
 import org.lapoderosa.app.admin.AdminInicioActivity;
+import org.lapoderosa.app.normal.ReporteActivity;
 import org.lapoderosa.app.util.VolleySingleton;
 
 import java.util.HashMap;
@@ -68,4 +69,9 @@ public abstract class MasterClass extends AppCompatActivity {
     protected abstract void inicializarStringVariables();
 
     protected abstract void responseConexion(String response);
+    //todo fotma de implementar
+    /*
+    private void makeTxt(String mensaje) {
+        Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
+    }*/
 }

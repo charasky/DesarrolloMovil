@@ -130,9 +130,12 @@ public class AdminHabilitarCuenta extends MasterClass {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //todo responder a lo que devuelva el php
-                //progressDialog.dismiss();
-                //responseConexion(response);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override

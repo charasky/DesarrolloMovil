@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Garganta Poderosa</string>
 
-    <!-- //todo URLS AWS     -->
+    <!-- //todo URLS AWS    -->
     <string name="URL_LOGIN">http://3.136.55.99/proyecto/v1/userLogin.php</string>
     <string name="URL_SIGN_UP">http://3.136.55.99/proyecto/v1/registerUser.php</string>
     <string name="URL_ACCOUNT_RECOVERY">http://3.136.55.99/proyecto/v1/accountRecovery.php</string>

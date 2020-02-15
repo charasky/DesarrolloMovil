@@ -14,7 +14,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name="org.lapoderosa.app.normal.ReportVisualizacion"></activity>
         <activity android:name="org.lapoderosa.app.normal.ReporteActivity" />
-        <activity android:name="org.lapoderosa.app.normal.BusquedaActivity" />
+        <activity android:name="org.lapoderosa.app.normal.BusquedarReporteActivity" />
         <activity android:name="org.lapoderosa.app.normal.InicioActivity" />
         <activity android:name="org.lapoderosa.app.normal.LoginActivity" />
         <activity android:name="org.lapoderosa.app.normal.SplashActivity">

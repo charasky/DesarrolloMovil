@@ -3,10 +3,8 @@ package org.lapoderosa.app.normal;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +26,7 @@ public class InicioActivity extends AppCompatActivity {
         btBusqueda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(InicioActivity.this, BusquedaActivity.class));
+                startActivity(new Intent(InicioActivity.this, BusquedarReporteActivity.class));
             }
         });
 

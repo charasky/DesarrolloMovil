@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class BusquedaActivity extends MasterClass {
+public class BusquedarReporteActivity extends MasterClass {
     private EditText etBuscador;
     private RecyclerView rvLista;
     private ReportAdapter adaptador;
@@ -37,7 +37,7 @@ public class BusquedaActivity extends MasterClass {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_busqueda);
+        setContentView(R.layout.activity_busqueda_reporte);
         progressDialog = new ProgressDialog(this);
         listaUsuarios = new ArrayList<>();
 
@@ -62,7 +62,7 @@ public class BusquedaActivity extends MasterClass {
 
         ejecutarServicio(getResources().getString(R.string.URL_USUARIOS));
 
-        adaptador = new ReportAdapter(BusquedaActivity.this, listaUsuarios);
+        adaptador = new ReportAdapter(BusquedarReporteActivity.this, listaUsuarios);
         rvLista.setAdapter(adaptador);
 
         layout.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +111,7 @@ public class BusquedaActivity extends MasterClass {
                 );
             }
 
-            adaptador = new ReportAdapter(BusquedaActivity.this, listaUsuarios);
+            adaptador = new ReportAdapter(BusquedarReporteActivity.this, listaUsuarios);
             rvLista.setAdapter(adaptador);
 
         } catch (JSONException e) {

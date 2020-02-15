@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lapoderosa.app.R;
 
-import org.lapoderosa.app.normal.BusquedaActivity;
+import org.lapoderosa.app.normal.BusquedarReporteActivity;
 import org.lapoderosa.app.normal.LoginActivity;
 import org.lapoderosa.app.normal.ReporteActivity;
 import org.lapoderosa.app.util.SharedPrefManager;
@@ -32,7 +32,7 @@ public class AdminInicioActivity extends AppCompatActivity {
         btBusqueda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminInicioActivity.this, BusquedaActivity.class));
+                startActivity(new Intent(AdminInicioActivity.this, BusquedarReporteActivity.class));
             }
         });
 

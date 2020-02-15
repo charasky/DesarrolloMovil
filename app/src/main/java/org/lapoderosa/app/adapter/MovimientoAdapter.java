@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lapoderosa.app.R;
 
 import org.lapoderosa.app.model.Movimiento;
+import org.lapoderosa.app.model.Report;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovimientoAdapter extends RecyclerView.Adapter<MovimientoAdapter.MovimientoViewHolder>{
@@ -60,5 +62,10 @@ public class MovimientoAdapter extends RecyclerView.Adapter<MovimientoAdapter.Mo
             rvHora = itemView.findViewById(R.id.rvHora);
             rvUsuarioInteraccion = itemView.findViewById(R.id.rvUsuarioInteraccion);
         }
+    }
+
+    public void filtrar(ArrayList<Movimiento> filtroMovimientos) {
+        this.movimientoList = filtroMovimientos;
+        notifyDataSetChanged();
     }
 }

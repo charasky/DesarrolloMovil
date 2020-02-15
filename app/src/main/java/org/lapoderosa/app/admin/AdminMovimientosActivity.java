@@ -2,6 +2,9 @@ package org.lapoderosa.app.admin;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -16,6 +19,7 @@ import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.adapter.MovimientoAdapter;
 import org.lapoderosa.app.model.Movimiento;
+import org.lapoderosa.app.model.Report;
 import org.lapoderosa.app.util.SharedPrefManager;
 
 import java.util.ArrayList;
@@ -25,6 +29,7 @@ import java.util.Map;
 public class AdminMovimientosActivity extends MasterClass {
     private RecyclerView rvMovimiento;
     private MovimientoAdapter adaptador;
+    private EditText etBuscador;
     private List<Movimiento> listaMovimientos;
 
     @Override
@@ -34,7 +39,21 @@ public class AdminMovimientosActivity extends MasterClass {
         progressDialog = new ProgressDialog(this);
         listaMovimientos = new ArrayList<>();
 
+        etBuscador = findViewById(R.id.etBuscarM);
         rvMovimiento = findViewById(R.id.rvMovimiento);
+
+        etBuscador.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filtrar(s.toString());
+            }
+        });
 
         rvMovimiento.setLayoutManager(new GridLayoutManager(this, 1));
 
@@ -44,15 +63,29 @@ public class AdminMovimientosActivity extends MasterClass {
         rvMovimiento.setAdapter(adaptador);
     }
 
+    public void filtrar(String texto) {
+        ArrayList<Movimiento> filtrarLista = new ArrayList<>();
+        for(Movimiento movimiento : listaMovimientos) {
+            if(movimiento.getUsuario().toLowerCase().contains(texto.toLowerCase())) {
+                filtrarLista.add(movimiento);
+            }
+            if(movimiento.getUsuarioInteraccion().toLowerCase().contains(texto.toLowerCase())) {
+                filtrarLista.add(movimiento);
+            }
+            if(movimiento.getFecha().contains(texto)){
+                filtrarLista.add(movimiento);
+            }
+        }
+        adaptador.filtrar(filtrarLista);
+    }
+
     @Override
     protected void putParams(Map<String, String> parametros) throws AuthFailureError {
         parametros.put("usu_usuario", SharedPrefManager.getInstance(this).getKeyUsuario());
     }
 
     @Override
-    protected void inicializarStringVariables() {
-
-    }
+    protected void inicializarStringVariables() {}
 
     @Override
     protected void responseConexion(String response) {

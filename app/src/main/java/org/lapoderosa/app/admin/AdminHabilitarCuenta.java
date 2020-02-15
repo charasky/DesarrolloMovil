@@ -82,7 +82,6 @@ public class AdminHabilitarCuenta extends MasterClass {
     private void habilitarCuentas() {
         inicializarStringVariables();
         respuestaQueUsuariosAprobarOrEliminar(getResources().getString(R.string.URL_ENVIAR_RESPUESTA), listaUsuarios);
-        //todo revisar si realmente se podria cambiar el ir inicio dentro del nuevo response
         irInicioAdmin();
     }
 

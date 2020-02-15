@@ -68,14 +68,14 @@ public class AdminInicioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cerrarSesion();
-                startActivity(new Intent(AdminInicioActivity.this, LoginActivity.class));
-                finish();
             }
         });
     }
 
     private void cerrarSesion() {
         SharedPrefManager.getInstance(this).logout();
+        startActivity(new Intent(AdminInicioActivity.this, LoginActivity.class));
+        finish();
     }
 
     @Override

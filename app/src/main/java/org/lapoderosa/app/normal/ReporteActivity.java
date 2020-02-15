@@ -335,6 +335,7 @@ public class ReporteActivity extends MasterClass {
             Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
         } else {
             ejecutarServicio(getResources().getString(R.string.URL_REPORTE));
+            //chooseInicio();
         }
     }
 

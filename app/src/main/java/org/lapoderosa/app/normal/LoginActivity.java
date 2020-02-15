@@ -74,6 +74,11 @@ public class LoginActivity extends MasterClass {
         });
     }
 
+    @Override
+    public void onBackPressed(){
+        moveTaskToBack(true);
+    }
+
     private void usuarioLogin() {
         inicializarStringVariables();
         if (!usuario.isEmpty() && !password.isEmpty()) {

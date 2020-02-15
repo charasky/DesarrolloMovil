@@ -25,7 +25,7 @@
             <TextView
                 android:id="@+id/rvEmail"
                 android:padding="3dp"
-                android:text="Email"
+                android:text="@string/email"
                 android:textStyle="bold"
                 android:textSize="19sp"
                 android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             <TextView
                 android:layout_below="@+id/rvEmail"
                 android:id="@+id/rvFullName"
-                android:text="Nombre Completo"
+                android:text="@string/nombre_completo"
                 android:padding="3dp"
                 android:textSize="16sp"
                 android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                 <TextView
                     android:id="@+id/rvAsamblea"
                     android:padding="3dp"
-                    android:text="Asamblea"
+                    android:text="@string/asamblea"
                     android:textSize="16sp"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -63,13 +63,14 @@
 
                         <RadioButton
                             android:id="@+id/rvRadioButton1"
-                            android:text="aceptar"
+                            android:text="@string/aceptar"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1"
+                            tools:ignore="NestedWeights" />
                         <RadioButton
                             android:id="@+id/rvRadioButton2"
-                            android:text="eliminar"
+                            android:text="@string/eliminar"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"/>

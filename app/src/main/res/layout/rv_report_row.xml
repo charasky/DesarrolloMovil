@@ -24,7 +24,7 @@
             <TextView
                 android:id="@+id/tvLugar"
                 android:padding="3dp"
-                android:text="Lugar"
+                android:text="@string/lugar"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_width="match_parent"
@@ -33,11 +33,12 @@
             <TextView
                 android:layout_below="@+id/tvLugar"
                 android:id="@+id/tvCiudad"
-                android:text="ciudad"
-                android:paddingLeft="3dp"
+                android:text="@string/ciudad"
+                android:paddingLeft="3sp"
                 android:textSize="16sp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
             <TextView
                 android:layout_below="@+id/tvCiudad"
@@ -45,20 +46,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:hint="Nombre"
+                android:hint="@string/nombre"
                 android:paddingRight="4dp"
                 android:textSize="17sp"
-                android:gravity="right"/>
+                android:gravity="right"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
             <TextView
                 android:layout_below="@+id/tvName"
                 android:id="@+id/tvDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="17dp"
+                android:textSize="17sp"
                 android:gravity="right"
                 android:paddingRight="4dp"
-                android:hint="Fecha"/>
+                android:hint="@string/fecha"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

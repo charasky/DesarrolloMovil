@@ -1,28 +1,46 @@
 <resources>
     <string name="app_name">Garganta Poderosa</string>
-
-    <!-- //todo URLS AWS    -->
-    <string name="URL_LOGIN">http://3.136.55.99/proyecto/v1/userLogin.php</string>
-    <string name="URL_SIGN_UP">http://3.136.55.99/proyecto/v1/registerUser.php</string>
-    <string name="URL_ACCOUNT_RECOVERY">http://3.136.55.99/proyecto/v1/accountRecovery.php</string>
-    <string name="URL_USUARIOS">http://3.136.55.99/proyecto/v1/searchReport.php</string>
-    <string name="URL_REPORTE">http://192.168.0.8/android/insertar_datos_reporte.php</string>
-    <string name="URL_USUARIOS_TO_ENABLED">http://3.136.55.99/proyecto/v1/disabledUsers.php</string>
-    <string name="URL_RESTORE_PASSWORD">http://3.136.55.99/proyecto/v1/restorePassword.php</string>
-    <string name="URL_ENVIAR_RESPUESTA">http://3.136.55.99/proyecto/v1/sendReply.php</string>
-    <string name="URL_MOVIMIENTO">http://3.136.55.99/proyecto/v1/movimiento.php</string>
-
-
-    <!-- //todo URL local-host
-    <string name="URL_LOGIN">http://192.168.0.8/android/v1/userLogin.php</string>
-    <string name="URL_SIGN_UP">http://192.168.0.8/android/v1/registerUser.php</string>
-    <string name="URL_ACCOUNT_RECOVERY">http://192.168.0.8/android/v1/accountRecovery.php</string>
-    <string name="URL_USUARIOS">http://192.168.0.8/android/v1/searchReport.php</string>
-    <string name="URL_USUARIOS_TO_ENABLED">http://192.168.0.8/android/v1/disabledUsers.php</string>
-    <string name="URL_RESTORE_PASSWORD">http://192.168.0.8/android/v1/restorePassword.php</string>
-    <string name="URL_ENVIAR_RESPUESTA">http://192.168.0.8/android/v1/sendReply.php</string>
-    <string name="URL_REPORTE">http://192.168.0.8/android/insertar_datos_reporte.php</string>
-    <string name="URL_MOVIMIENTO">http://192.168.0.8/android/v1/movimiento.php</string>
-    -->
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="cerrar_sesion">Cerrar Sesión</string>
+    <string name="contrasenia">Contraseña</string>
+    <string name="email">Email</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="olvidastes_la_contrasenia">¿Olvidastes la contraseña?</string>
+    <string name="login">LOGIN</string>
+    <string name="aceptar_eliminar">ACEPTAR - ELIMINAR</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="busqueda">Busqueda</string>
+    <string name="reporte">Reporte</string>
+    <string name="habilitar_cuenta">Habilitar Cuenta</string>
+    <string name="restablecer_contrasenia">Restablecer Contraseña</string>
+    <string name="movimientos">Movimientos</string>
+    <string name="buscar_por_fecha_email">Buscar por fecha, email</string>
+    <string name="ingrese_email">Ingrese email</string>
+    <string name="ingrese_email_y_la_nueva_contrasenia">Ingrese email y la nueva contraseña.</string>
+    <string name="nueva_contrasenia">Nueva contraseña</string>
+    <string name="confirmar_contrase_a">Confirmar contraseña</string>
+    <string name="volver">volver</string>
+    <string name="buscar_por_fecha_nombre_ciudad">buscar por fecha, nombre, ciudad</string>
+    <string name="recuperar_cuenta">Recuperar Cuenta</string>
+    <string name="ingrese_el_correo_electronico_del_usuario_que_quiere_recuperar_la_cuenta">Ingrese el correo electronico del usuario que quiere recuperar la cuenta.</string>
+    <string name="correo_electronico">Correo electronico</string>
+    <string name="siguiente">SIGUIENTE</string>
+    <string name="volver_a_iniciar_sesion">Volver a iniciar Sesión</string>
+    <string name="asamblea">Asamblea</string>
+    <string name="apellido">Apellido</string>
+    <string name="confirmar_contrasenia">Confirmar contraseña</string>
+    <string name="ya_tienes_cuenta_inicia_sesion">¿Ya tienes cuenta?, Inicia Sesion</string>
+    <string name="usuario">Usuario</string>
+    <string name="que_hizo">Que Hizo</string>
+    <string name="hora">Hora</string>
+    <string name="usuario_interactuado">Usuario Interactuado</string>
+    <string name="lugar">Lugar</string>
+    <string name="ciudad">ciudad</string>
+    <string name="nombre">Nombre</string>
+    <string name="fecha">Fecha</string>
+    <string name="nombre_completo">Nombre Completo</string>
+    <string name="aceptar">aceptar</string>
+    <string name="eliminar">eliminar</string>
 
 </resources>

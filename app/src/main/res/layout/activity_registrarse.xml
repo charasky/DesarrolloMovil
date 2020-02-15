@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Registrarse"
+        android:text="@string/registrarse"
         android:textSize="30sp" />
 
     <EditText
@@ -25,8 +25,9 @@
         android:layout_below="@+id/textRegistrase"
         android:layout_marginTop="10dp"
         android:inputType="text"
-        android:hint="Asamblea"
-        android:textSize="18dp" />
+        android:hint="@string/asamblea"
+        android:textSize="18sp"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/dmName"
@@ -35,8 +36,9 @@
         android:layout_below="@+id/dmAsamblea"
         android:layout_marginTop="5dp"
         android:inputType="textPersonName"
-        android:hint="Nombre"
-        android:textSize="18dp" />
+        android:hint="@string/nombre"
+        android:textSize="18sp"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/dmApellido"
@@ -44,9 +46,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/dmName"
         android:layout_marginTop="5dp"
-        android:hint="Apellido"
+        android:hint="@string/apellido"
         android:inputType="textPersonName"
-        android:textSize="18dp" />
+        android:textSize="18sp"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/dmEmail"
@@ -54,11 +57,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/dmApellido"
         android:layout_marginTop="5dp"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
-        android:textSize="18dp" />
-
-
+        android:textSize="18sp"
+        android:importantForAutofill="no" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutPass"
@@ -73,9 +75,10 @@
             android:id="@+id/dmPassword1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Contraseña"
+            android:hint="@string/contrasenia"
             android:inputType="textPassword"
-            android:textSize="18dp" />
+            android:textSize="18sp"
+            android:importantForAutofill="no" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -92,9 +95,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/layoutPass"
-            android:hint="Confirmar contraseña"
+            android:hint="@string/confirmar_contrasenia"
             android:inputType="textPassword"
-            android:textSize="18dp" />
+            android:textSize="18sp"
+            android:importantForAutofill="no" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -106,7 +110,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/custom_bottom"
         android:gravity="center"
-        android:text="Registrarse"
+        android:text="@string/registrarse"
         android:textColor="#FFF"
         android:textSize="18sp" />
 
@@ -117,7 +121,7 @@
         android:layout_below="@+id/dmRegistrarseBtn"
         android:layout_marginTop="15dp"
         android:gravity="center"
-        android:text="¿Ya tienes cuenta?, Inicia Sesion"
+        android:text="@string/ya_tienes_cuenta_inicia_sesion"
         android:textSize="15sp" />
 
 </RelativeLayout>

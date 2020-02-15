@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutRecuperarCuenta"
     android:layout_width="match_parent"
@@ -15,7 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_above="@+id/textTitulo"
-        android:text="Recuperar Cuenta"
+        android:text="@string/recuperar_cuenta"
         android:textSize="30sp" />
 
     <TextView
@@ -25,7 +24,7 @@
         android:layout_above="@+id/rEmail"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="Ingrese el correo electronico del usuario que quiere recuperar la cuenta."
+        android:text="@string/ingrese_el_correo_electronico_del_usuario_que_quiere_recuperar_la_cuenta"
         android:textSize="18sp" />
 
     <EditText
@@ -37,7 +36,9 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:inputType="textEmailAddress"
-        android:hint="Correo electronico" />
+        android:hint="@string/correo_electronico"
+        android:drawableStart="@drawable/ic_email_black_36dp"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/rBtSiguiente"
@@ -47,7 +48,7 @@
         android:layout_marginTop="30dp"
         android:layout_below="@+id/rEmail"
         android:background="@drawable/custom_bottom"
-        android:text="SIGUIENTE"
+        android:text="@string/siguiente"
         android:textColor="#FFF"
         android:textSize="18sp"
         />
@@ -59,6 +60,6 @@
         android:layout_below="@+id/rBtSiguiente"
         android:gravity="center"
         android:padding="20dp"
-        android:text="Volver a iniciar Sesión"
+        android:text="@string/volver_a_iniciar_sesion"
         android:textSize="15sp" />
 </RelativeLayout>

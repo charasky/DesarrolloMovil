@@ -25,11 +25,12 @@
                 android:id="@+id/rvUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Usuario"
+                android:hint="@string/usuario"
                 android:textStyle="bold"
-                android:paddingRight="4dp"
+                android:paddingRight="4sp"
                 android:textSize="18sp"
-                android:gravity="center"/>
+                android:gravity="center"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
             <LinearLayout
                 android:id="@+id/lyMovimiento1"
@@ -41,7 +42,7 @@
                 <TextView
                     android:id="@+id/rvFecha"
                     android:padding="3dp"
-                    android:text="Fecha"
+                    android:text="@string/fecha"
                     android:textStyle="bold"
                     android:textSize="17sp"
                     android:layout_width="0dp"
@@ -53,11 +54,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="17dp"
+                    android:textSize="17sp"
                     android:gravity="right"
                     android:textStyle="bold"
                     android:paddingRight="4dp"
-                    android:hint="Que Hizo"/>
+                    android:hint="@string/que_hizo"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
             </LinearLayout>
 
             <LinearLayout
@@ -69,7 +71,7 @@
                 <TextView
                     android:id="@+id/rvHora"
                     android:padding="3dp"
-                    android:text="Hora"
+                    android:text="@string/hora"
                     android:textSize="17sp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -80,10 +82,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="17dp"
+                    android:textSize="17sp"
                     android:gravity="right"
-                    android:paddingRight="4dp"
-                    android:hint="Usuario Interactuado"/>
+                    android:paddingRight="4sp"
+                    android:hint="@string/usuario_interactuado"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
             </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

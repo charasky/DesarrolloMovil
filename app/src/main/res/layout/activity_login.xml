@@ -3,6 +3,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutLogin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,7 +20,8 @@
         android:layout_above="@id/centerTextView"
         android:foregroundGravity="center"
         android:padding="5dp"
-        app:srcCompat="@drawable/splash" />
+        app:srcCompat="@drawable/splash"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/centerTextView"
@@ -29,7 +31,7 @@
         android:layout_centerVertical="true"
         android:layout_margin="20dp"
         android:gravity="center"
-        android:text="Iniciar sesión"
+        android:text="@string/iniciar_sesion"
         android:textSize="30sp" />
 
     <EditText
@@ -39,7 +41,9 @@
         android:layout_below="@+id/centerTextView"
         android:drawableLeft="@drawable/ic_email_black_36dp"
         android:inputType="textEmailAddress"
-        android:hint="Email" />
+        android:hint="@string/email"
+        android:drawableStart="@drawable/ic_email_black_36dp"
+        android:importantForAutofill="no" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutPass"
@@ -55,9 +59,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_lock_black_24dp"
-            android:hint="Contraseña"
+            android:hint="@string/contrasenia"
             android:inputType="textPassword"
-            android:drawableStart="@drawable/ic_lock_black_24dp" />
+            android:drawableStart="@drawable/ic_lock_black_24dp"
+            android:importantForAutofill="no" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -68,7 +73,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/layoutPass"
         android:background="@drawable/custom_bottom"
-        android:text="LOGIN"
+        android:text="@string/login"
         android:textColor="#FFF"
         android:textSize="18sp" />
 
@@ -79,7 +84,7 @@
         android:layout_above="@+id/etRegistrarse"
         android:gravity="center"
         android:layout_marginTop="10dp"
-        android:text="¿Olvidastes la contraseña?"
+        android:text="@string/olvidastes_la_contrasenia"
         android:textSize="15sp" />
 
     <TextView
@@ -89,6 +94,6 @@
         android:layout_alignParentBottom="true"
         android:gravity="center"
         android:layout_marginTop="10dp"
-        android:text="Registrarse"
+        android:text="@string/registrarse"
         android:textSize="15sp" />
 </RelativeLayout>

@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Movimientos"
+            android:text="@string/movimientos"
             android:textSize="30sp"
             tools:ignore="MissingConstraints" />
 
@@ -27,7 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:hint="Buscar por fecha, email" />
+            android:hint="@string/buscar_por_fecha_email"
+            android:importantForAutofill="no"
+            android:inputType="text"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_below="@+id/etBuscarM"

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20dp"
@@ -14,7 +13,7 @@
         android:layout_above="@id/btReporte"
         android:layout_margin="10dp"
         android:background="@drawable/custom_bottom"
-        android:text="BUSQUEDA"
+        android:text="@string/busqueda"
         android:textColor="#FFF"
         android:textSize="18sp" />
 
@@ -25,7 +24,7 @@
         android:layout_centerInParent="true"
         android:layout_margin="10dp"
         android:background="@drawable/custom_bottom"
-        android:text="REPORTE"
+        android:text="@string/reporte"
         android:textColor="#FFF"
         android:textSize="18sp" />
 
@@ -36,7 +35,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
         android:background="#000"
-        android:text="Cerrar Sesión"
+        android:text="@string/cerrar_sesion"
         android:textColor="#fff"
         android:textSize="18sp" />
 </RelativeLayout>

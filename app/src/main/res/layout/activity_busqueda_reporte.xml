@@ -9,14 +9,16 @@
     android:orientation="vertical">
 
     <EditText
+        android:inputType="text"
         android:id="@+id/etBuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:hint="buscar por fecha, nombre, ciudad"
+        android:hint="@string/buscar_por_fecha_nombre_ciudad"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLista"

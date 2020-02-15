@@ -1,6 +1,7 @@
 package org.lapoderosa.app.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lapoderosa.app.R;
 
+import org.lapoderosa.app.normal.ReportVisualizacion;
 import org.lapoderosa.app.model.Report;
 
 import java.util.ArrayList;
@@ -46,7 +48,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
         return reportList.size();
     }
 
-    public class ReportViewHolder extends RecyclerView.ViewHolder {
+    public class ReportViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvLugar, tvCiudad, tvName, tvDate;
 
         public ReportViewHolder(@NonNull View itemView) {
@@ -56,6 +58,17 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
             tvCiudad = itemView.findViewById(R.id.tvCiudad);
             tvName = itemView.findViewById(R.id.tvName);
             tvDate = itemView.findViewById(R.id.tvDate);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            Report report = reportList.get(position);
+
+            Intent intent = new Intent(context, ReportVisualizacion.class);
+            context.startActivity(intent);
+            //Log.d("Clicked", "onClick: " + report.getIdReporte());
         }
     }
 

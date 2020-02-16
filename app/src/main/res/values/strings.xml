@@ -42,5 +42,9 @@
     <string name="nombre_completo">Nombre Completo</string>
     <string name="aceptar">aceptar</string>
     <string name="eliminar">eliminar</string>
+    <string name="ingresar">INGRESAR</string>
+    <string name="reporte_anonimo">REPORTE ANONIMO</string>
+    <string name="contacto">CONTACTO</string>
+    <string name="año">©2020</string>
 
 </resources>

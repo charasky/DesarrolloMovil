@@ -12,11 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="org.lapoderosa.app.normal.ReportVisualizacion"></activity>
-        <activity android:name="org.lapoderosa.app.normal.ReporteActivity" />
-        <activity android:name="org.lapoderosa.app.normal.BusquedarReporteActivity" />
-        <activity android:name="org.lapoderosa.app.normal.InicioActivity" />
-        <activity android:name="org.lapoderosa.app.normal.LoginActivity" />
+        <activity android:name="org.lapoderosa.app.normal.HomeActivity"/>
         <activity android:name="org.lapoderosa.app.normal.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="org.lapoderosa.app.normal.ReportVisualizacion" />
+        <activity android:name="org.lapoderosa.app.normal.ReporteActivity" />
+        <activity android:name="org.lapoderosa.app.normal.BusquedarReporteActivity" />
+        <activity android:name="org.lapoderosa.app.normal.InicioActivity" />
+        <activity android:name="org.lapoderosa.app.normal.LoginActivity" />
         <activity android:name="org.lapoderosa.app.normal.RegistrarseActivity" />
         <activity android:name="org.lapoderosa.app.normal.RecuperarCuentaActivity" />
         <activity android:name="org.lapoderosa.app.admin.AdminRestablecerContraseñaActivity" />

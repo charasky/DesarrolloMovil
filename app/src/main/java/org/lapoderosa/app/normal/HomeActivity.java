@@ -18,8 +18,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         Button ingresar = findViewById(R.id.homeIngresar);
-        final TextView reporteAnonimo = findViewById(R.id.homeReporteAnonimo);
+        TextView reporteAnonimo = findViewById(R.id.homeReporteAnonimo);
         TextView contacto = findViewById(R.id.homeContacto);
+        TextView registrarse = findViewById(R.id.homeRegistrarse);
 
         ingresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +41,13 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //startActivity(new Intent());
+            }
+        });
+
+        registrarse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, RegistrarseActivity.class));
             }
         });
     }

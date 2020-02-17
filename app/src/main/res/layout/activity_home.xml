@@ -38,11 +38,23 @@
             tools:ignore="LabelFor" />
 
         <TextView
-            android:id="@+id/homeReporteAnonimo"
+            android:id="@+id/homeRegistrarse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/homeIngresar"
             android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="@string/REGISTRARSE3"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+
+            android:id="@+id/homeReporteAnonimo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/homeRegistrarse"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/reporte_anonimo"
             android:textSize="16sp"
@@ -53,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/homeReporteAnonimo"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/contacto"
             android:textSize="16sp"

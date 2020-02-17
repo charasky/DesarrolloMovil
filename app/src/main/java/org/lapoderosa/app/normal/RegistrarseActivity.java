@@ -106,7 +106,8 @@ public class RegistrarseActivity extends MasterClass {
             dmEmail.setError("Este email ya existe");
         }
         if(mensaje.isEmpty()){
-            irLogin();
+            startActivity(new Intent(RegistrarseActivity.this, HomeActivity.class));
+            finish();
         }
     }
 

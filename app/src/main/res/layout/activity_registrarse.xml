@@ -121,7 +121,7 @@
         android:layout_below="@+id/dmRegistrarseBtn"
         android:layout_marginTop="15dp"
         android:gravity="center"
-        android:text="@string/ya_tienes_cuenta_inicia_sesion"
+        android:text="@string/volver"
         android:textSize="15sp" />
 
 </RelativeLayout>

@@ -78,22 +78,13 @@
         android:textSize="18sp" />
 
     <TextView
+        android:layout_below="@id/btLogin"
         android:id="@+id/etOlvidastesContraseña"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/etRegistrarse"
         android:gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:text="@string/olvidastes_la_contrasenia"
         android:textSize="15sp" />
 
-    <TextView
-        android:id="@+id/etRegistrarse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="@string/registrarse"
-        android:textSize="15sp" />
 </RelativeLayout>

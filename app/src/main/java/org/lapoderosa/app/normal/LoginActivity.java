@@ -26,7 +26,7 @@ public class LoginActivity extends MasterClass {
     private Integer cont = 1;
     private String user = "";
     private EditText editUsuario, editPassword;
-    private TextView etRegistrarse, etOlvidastesContraseña;
+    private TextView etOlvidastesContraseña;
     private Button btnLogin;
     private String usuario, password;
     private RelativeLayout layout;
@@ -40,7 +40,6 @@ public class LoginActivity extends MasterClass {
         layout = findViewById(R.id.layoutLogin);
         editUsuario = findViewById(R.id.etUserName);
         editPassword = findViewById(R.id.dmPassword1);
-        etRegistrarse = findViewById(R.id.etRegistrarse);
         btnLogin = findViewById(R.id.btLogin);
         etOlvidastesContraseña = findViewById(R.id.etOlvidastesContraseña);
 
@@ -48,13 +47,6 @@ public class LoginActivity extends MasterClass {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, RecuperarCuentaActivity.class));
-            }
-        });
-
-        etRegistrarse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RegistrarseActivity.class));
             }
         });
 
@@ -72,6 +64,12 @@ public class LoginActivity extends MasterClass {
                 inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
     }
 
     private void usuarioLogin() {

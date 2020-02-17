@@ -2,6 +2,7 @@ package org.lapoderosa.app.admin;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -82,7 +83,8 @@ public class AdminHabilitarCuenta extends MasterClass {
     private void habilitarCuentas() {
         inicializarStringVariables();
         respuestaQueUsuariosAprobarOrEliminar(getResources().getString(R.string.URL_ENVIAR_RESPUESTA), listaUsuarios);
-        irInicioAdmin();
+        startActivity(new Intent(AdminHabilitarCuenta.this, AdminInicioActivity.class));
+        finish();
     }
 
     @Override

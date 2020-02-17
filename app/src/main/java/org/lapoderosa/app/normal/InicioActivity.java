@@ -47,7 +47,7 @@ public class InicioActivity extends AppCompatActivity {
 
     private void cerrarSesion() {
         SharedPrefManager.getInstance(this).logout();
-        startActivity(new Intent(InicioActivity.this, LoginActivity.class));
+        startActivity(new Intent(InicioActivity.this, HomeActivity.class));
         finish();
     }
 

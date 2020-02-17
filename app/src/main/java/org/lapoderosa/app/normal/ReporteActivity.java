@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.android.volley.AuthFailureError;
 import com.lapoderosa.app.R;
 
 import org.lapoderosa.app.MasterClass;
+import org.lapoderosa.app.admin.AdminInicioActivity;
 import org.lapoderosa.app.util.SharedPrefManager;
 
 import java.util.Calendar;
@@ -582,10 +584,11 @@ public class ReporteActivity extends MasterClass {
         Boolean admin = Boolean.parseBoolean(SharedPrefManager.getInstance(this).getKeyTypeUser());
         Boolean habilitado = Boolean.parseBoolean(SharedPrefManager.getInstance(this).getKeyEnabledUser());
         if (admin && habilitado) {
-            this.irInicioAdmin();
+            startActivity(new Intent(ReporteActivity.this, AdminInicioActivity.class));
+            finish();
         }
         if (!admin && habilitado) {
-            this.irInicio();
+            startActivity(new Intent(ReporteActivity.this, InicioActivity.class));
         }
     }
 
@@ -731,8 +734,8 @@ public class ReporteActivity extends MasterClass {
     }
 
     private boolean seSeleccionoAlmenosUnoEn(RadioGroup grupo) {
-        int id = grupo.getCheckedRadioButtonId();
-        return id != -1;
+        //int id = grupo.getCheckedRadioButtonId();
+        return grupo.getCheckedRadioButtonId() != -1;
     }
 
     private void makeTxt(String mensaje) {

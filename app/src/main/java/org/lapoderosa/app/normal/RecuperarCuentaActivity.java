@@ -101,7 +101,8 @@ public class RecuperarCuentaActivity extends MasterClass {
             rEmail.setError("Este email no existe");
         }else{
             enviarEmail(email);
-            irLogin();
+            startActivity(new Intent(RecuperarCuentaActivity.this, HomeActivity.class));
+            finish();
         }
     }
 

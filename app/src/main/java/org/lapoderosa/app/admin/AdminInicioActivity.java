@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.lapoderosa.app.R;
 
 import org.lapoderosa.app.normal.BusquedarReporteActivity;
+import org.lapoderosa.app.normal.HomeActivity;
 import org.lapoderosa.app.normal.LoginActivity;
 import org.lapoderosa.app.normal.ReporteActivity;
 import org.lapoderosa.app.util.SharedPrefManager;
@@ -74,7 +75,7 @@ public class AdminInicioActivity extends AppCompatActivity {
 
     private void cerrarSesion() {
         SharedPrefManager.getInstance(this).logout();
-        startActivity(new Intent(AdminInicioActivity.this, LoginActivity.class));
+        startActivity(new Intent(AdminInicioActivity.this, HomeActivity.class));
         finish();
     }
 

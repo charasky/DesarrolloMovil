@@ -2,6 +2,7 @@ package org.lapoderosa.app.admin;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -161,7 +162,8 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
         if(!mensaje.isEmpty()){
             rEmail.setError("Este email ingresado no existe");
         }else {
-            irInicioAdmin();
+            startActivity(new Intent(AdminRestablecerContraseñaActivity.this, AdminInicioActivity.class));
+            finish();
         }
     }
 }

@@ -49,21 +49,6 @@ public abstract class MasterClass extends AppCompatActivity {
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-    protected void irLogin() {
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        finish();
-    }
-
-    protected void irInicioAdmin() {
-        startActivity(new Intent(getApplicationContext(), AdminInicioActivity.class));
-        finish();
-    }
-
-    protected void irInicio() {
-        startActivity(new Intent(getApplicationContext(), InicioActivity.class));
-        finish();
-    }
-
     protected abstract void putParams(Map<String, String> parametros) throws AuthFailureError;
 
     protected abstract void inicializarStringVariables();

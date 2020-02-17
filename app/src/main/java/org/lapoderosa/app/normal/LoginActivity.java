@@ -18,6 +18,7 @@ import com.lapoderosa.app.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
+import org.lapoderosa.app.admin.AdminInicioActivity;
 import org.lapoderosa.app.util.SharedPrefManager;
 
 import java.util.Map;
@@ -126,11 +127,13 @@ public class LoginActivity extends MasterClass {
         }
 
         if (admin && habilitado) {
-            this.irInicioAdmin();
+            startActivity(new Intent(LoginActivity.this, AdminInicioActivity.class));
+            finish();
         }
 
         if (!admin && habilitado) {
-            this.irInicio();
+            startActivity(new Intent(LoginActivity.this, InicioActivity.class));
+            finish();
         }
     }
 

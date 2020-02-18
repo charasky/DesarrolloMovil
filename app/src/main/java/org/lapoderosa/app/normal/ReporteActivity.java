@@ -1,5 +1,6 @@
 package org.lapoderosa.app.normal;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
@@ -27,14 +28,25 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.android.volley.AuthFailureError;
 import com.lapoderosa.app.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.admin.AdminInicioActivity;
 import org.lapoderosa.app.util.SharedPrefManager;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 //todo verificar que los campos de strings no esten vacios
 public class ReporteActivity extends MasterClass {
+    private Date date = new Date();
+    private String fechaCreacionReporte, horaCreacionReporte;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+    @SuppressLint("SimpleDateFormat")
+    private DateFormat dateHourFormat = new SimpleDateFormat("HH:mm");
     private static final String TAG = "ReporteActivity";
     private TextView tvDateEntrevista, tvDateHecho, tvHoraHecho;
     private DatePickerDialog.OnDateSetListener m1DateSetListener;
@@ -49,8 +61,8 @@ public class ReporteActivity extends MasterClass {
     //VICTIMA
     private String nombreVictima, apellidoVictima, generoVictima, edadVictima, nacionalidadVictima, documentoVictima, direccionVictima, barrioVictima, telefonoVictima;
     //HECHO POLICIAL
-    private String direccionHecho, barrioHecho, ciudadHecho, provinciaHecho, cuantosAcompañan, cualLugar, diaHecho, horaHecho;
-    private String ubicacionHecho;
+    private String direccionHecho, barrioHecho, ciudadHecho, cuantosAcompañan, cualLugar, diaHecho, horaHecho;
+    private String ubicacionHecho, provinciaHecho, paisHecho;
     //FUERZAS INTERVINIENTES
     private String fuerzasIntervinientes, cantidadAgentes, nombresAgentes, apodos, cantidadVehiculos, numMovil, dominio, conductaAgentes;
     //CARACTERISTICAS DEL PROCEDIMIENTO
@@ -80,7 +92,7 @@ public class ReporteActivity extends MasterClass {
     private EditText edtNombreVictima, edtApellidoVictima, edtGeneroVictima, edtEdadVictima, edtNacionalidadVictima,
             edtDocumentoVictima, edtDireccionVictima, edtBarrioVictima, edtTelefonoVictima;
     //HECHO POLICIAL
-    private EditText edtDireccionHecho, edtBarrioHecho, edtCiudadHecho, edtProvinciaHecho, edtCuantosAcompañan, edtCualLugar;
+    private EditText edtDireccionHecho, edtBarrioHecho, edtCiudadHecho, edtProvinciaHecho, edtPaisHecho, edtCuantosAcompañan, edtCualLugar;
     //FUERZAS INTERVINIENTES
     private EditText edtFuerzasIntervinientes, edtCantidadAgentes, edtNombresAgentes, edtApodos, edtCantidadVehiculos, edtNumMovil, edtDominio, edtConductaAgentes;
 
@@ -180,6 +192,7 @@ public class ReporteActivity extends MasterClass {
         edtProvinciaHecho = findViewById(R.id.edtProvinciaHecho);
         edtCuantosAcompañan = findViewById(R.id.edtCuantosAcompañan);
         edtCualLugar = findViewById(R.id.edtCualLugar);
+        edtPaisHecho = findViewById(R.id.edtPaisHecho);
 
         //MODALIDAD DE DETENCION
         edtPosicionDetenido = findViewById(R.id.edtPosicionDetenido);
@@ -343,74 +356,91 @@ public class ReporteActivity extends MasterClass {
 
     @Override
     protected void putParams(Map<String, String> parametros) throws AuthFailureError {
-        //ALLANAMIENTO
-        parametros.put("usu_orden_allanamiento", ordenAllanamiento);
-        parametros.put("usu_agresion_allanamiento", agresionAllanamiento);
-        parametros.put("usu_pertenencias_allanamiento", pertenenciasAllanamiento);
-        parametros.put("usu_omision_pertenencias", omisionPertenencias);
-        parametros.put("usu_detenidos_allanamiento", detenidosAllanamiento);
-        parametros.put("usu_duracion_allanamiento", duracionAllanamiento);
-        //todo falta agregar a php y tabla usu_posicion_allanamiento
-        parametros.put("usu_posicion_allanamiento", posicionDetenidos);
-        parametros.put("usu_esposados", esposados);
-        //CARACTERISTICA DEL PROCEDIMIENTO
-        parametros.put("usu_motivo_procedimiento", motivoProcedimiento);
-        parametros.put("usu_maltratos", maltratos);
-        parametros.put("usu_lesiones", lesiones);
-        //Entrevistado
-        parametros.put("usu_parentesco_entrevistado", parentesco);
-        //Entrevistador
-        parametros.put("usu_nombre", nombreEntrevistador);
-        parametros.put("usu_apellido", apellidoEntrevistador);
-        parametros.put("usu_asamblea", asamblea);
-        parametros.put("usu_fecha", fecha);
-        //FUERZAS INTERVINIENTES
-        parametros.put("usu_fuerzas_intervinientes", fuerzasIntervinientes);
-        //agentes
-        parametros.put("usu_cantidad_agentes", cantidadAgentes);
-        parametros.put("usu_nombres_agentes", nombresAgentes);
-        parametros.put("usu_apodos", apodos);
-        //vehiculos
-        parametros.put("usu_cantidad_vehiculos", cantidadVehiculos);
-        parametros.put("usu_num_movil", numMovil);
-        parametros.put("usu_dominio", dominio);
-        parametros.put("usu_conducta_agentes", conductaAgentes);
-        //Hecho policial
-        parametros.put("usu_dia_hecho", diaHecho);
-        parametros.put("usu_hora_hecho", horaHecho);
-        parametros.put("usu_ubicacion_hecho", ubicacionHecho);
-        parametros.put("usu_cuantos_acompañan", cuantosAcompañan);
-        parametros.put("usu_cual_lugar", cualLugar);
-        //MODALIDAD DE DETENCION
-        parametros.put("usu_posicion_detenido", posicionDetenido);
-        parametros.put("usu_tiempo_detenido", cuantoTiempoDetenido);
-        //OMISION AL ACTUAR
-        parametros.put("usu_medios_de_asistencia", mediosDeAsistencia);
-        parametros.put("usu_a_quien_asistencia", aQuienAsistencia);
-        parametros.put("usu_denuncia_rechazada", denunciaRechazada);
-        parametros.put("usu_violentado", violentado);
-        parametros.put("usu_denuncia_final", denunciaFinal);
-        //RESULTADO INVESTIGACION
-        parametros.put("usu_resultado_investigacion", resultadoInvestigacion);
-        parametros.put("usu_trabajan_los_oficiales", trabajanLosOficiales);
-        //TRASLADO
-        parametros.put("usu_traslado", traslado);
-        parametros.put("usu_comisaria", comisaria);
-        parametros.put("usu_esposado", esposado);
-        //Victima
-        parametros.put("usu_nombre_victima", nombreVictima);
-        parametros.put("usu_apellido_victima", apellidoVictima);
-        parametros.put("usu_genero_victima", generoVictima);
-        parametros.put("usu_edad_victima", edadVictima);
-        parametros.put("usu_nacionalidad_victima", nacionalidadVictima);
-        parametros.put("usu_documento_victima", documentoVictima);
-        parametros.put("usu_direccion_victima", direccionVictima);
-        parametros.put("usu_barrio_victima", barrioVictima);
-        parametros.put("usu_telefono_victima", telefonoVictima);
+        parametros.put("fechaReporte", fechaCreacionReporte);
+        parametros.put("horaReporte", horaCreacionReporte);
+        parametros.put("reporte", jsonObject().toString());
+    }
+
+    private JSONObject jsonObject(){
+        JSONObject parametros = new JSONObject();
+        try {
+            //ALLANAMIENTO
+            parametros.put("usu_orden_allanamiento", ordenAllanamiento);
+            parametros.put("usu_agresion_allanamiento", agresionAllanamiento);
+            parametros.put("usu_pertenencias_allanamiento", pertenenciasAllanamiento);
+            parametros.put("usu_omision_pertenencias", omisionPertenencias);
+            parametros.put("usu_detenidos_allanamiento", detenidosAllanamiento);
+            parametros.put("usu_duracion_allanamiento", duracionAllanamiento);
+            parametros.put("usu_esposados", esposados);
+            parametros.put("usu_posicion_allanamiento", posicionDetenidos);
+            //CARACTERISTICA DEL PROCEDIMIENTO
+            parametros.put("usu_motivo_procedimiento", motivoProcedimiento);
+            parametros.put("usu_maltratos", maltratos);
+            parametros.put("usu_lesiones", lesiones);
+            //Entrevistado
+            parametros.put("usu_parentesco_entrevistado", parentesco);
+            //Entrevistador
+            parametros.put("usu_nombre", nombreEntrevistador);
+            parametros.put("usu_apellido", apellidoEntrevistador);
+            parametros.put("usu_asamblea", asamblea);
+            parametros.put("usu_fecha", fecha);
+            //FUERZAS INTERVINIENTES
+            parametros.put("usu_fuerzas_intervinientes", fuerzasIntervinientes);
+            //agentes
+            parametros.put("usu_cantidad_agentes", cantidadAgentes);
+            parametros.put("usu_nombres_agentes", nombresAgentes);
+            parametros.put("usu_apodos", apodos);
+            //vehiculos
+            parametros.put("usu_cantidad_vehiculos", cantidadVehiculos);
+            parametros.put("usu_num_movil", numMovil);
+            parametros.put("usu_dominio", dominio);
+            parametros.put("usu_conducta_agentes", conductaAgentes);
+            //Hecho policial
+            parametros.put("usu_dia_hecho", diaHecho);
+            parametros.put("usu_hora_hecho", horaHecho);
+            parametros.put("usu_ubicacion_hecho", ubicacionHecho);
+            parametros.put("usu_cuantos_acompañan", cuantosAcompañan);
+            parametros.put("usu_cual_lugar", cualLugar);
+            parametros.put("usu_provincia_hecho", provinciaHecho);
+            parametros.put("usu_pais_hecho", paisHecho);
+            //MODALIDAD DE DETENCION
+            parametros.put("usu_posicion_detenido", posicionDetenido);
+            parametros.put("usu_tiempo_detenido", cuantoTiempoDetenido);
+            //OMISION AL ACTUAR
+            parametros.put("usu_medios_de_asistencia", mediosDeAsistencia);
+            parametros.put("usu_a_quien_asistencia", aQuienAsistencia);
+            parametros.put("usu_denuncia_rechazada", denunciaRechazada);
+            parametros.put("usu_violentado", violentado);
+            parametros.put("usu_denuncia_final", denunciaFinal);
+            //RESULTADO INVESTIGACION
+            parametros.put("usu_resultado_investigacion", resultadoInvestigacion);
+            parametros.put("usu_trabajan_los_oficiales", trabajanLosOficiales);
+            //TRASLADO
+            parametros.put("usu_traslado", traslado);
+            parametros.put("usu_comisaria", comisaria);
+            parametros.put("usu_esposado", esposado);
+            //Victima
+            parametros.put("usu_nombre_victima", nombreVictima);
+            parametros.put("usu_apellido_victima", apellidoVictima);
+            parametros.put("usu_genero_victima", generoVictima);
+            parametros.put("usu_edad_victima", edadVictima);
+            parametros.put("usu_nacionalidad_victima", nacionalidadVictima);
+            parametros.put("usu_documento_victima", documentoVictima);
+            parametros.put("usu_direccion_victima", direccionVictima);
+            parametros.put("usu_barrio_victima", barrioVictima);
+            parametros.put("usu_telefono_victima", telefonoVictima);
+        }catch (JSONException e){
+            e.printStackTrace();
         }
+
+        return parametros;
+    }
 
     @Override
     protected void inicializarStringVariables() {
+        fechaCreacionReporte = dateFormat.format(date);
+        horaCreacionReporte = dateHourFormat.format(date);
+
         //ALLANAMIENTO
         ordenAllanamiento = checkeoRadioGroupSinEditText(rgOrdenAllanamientoSiNo, "Seleccione opcion en Orden de Allanamiento");
         agresionAllanamiento = checkeoRadioGroupConEditText(rgAgresionDomicilioSiNo, edtCualesAgresionesDomicilio, "Seleccione agresion en Allanamiento a Domicilio");
@@ -463,9 +493,11 @@ public class ReporteActivity extends MasterClass {
         //HECHO POLICIAL
         diaHecho = tvDateHecho.getText().toString().trim();
         horaHecho = tvHoraHecho.getText().toString().trim();
-        ubicacionHecho = edtDireccionHecho.getText().toString() + " " + edtBarrioHecho.getText().toString() + " " + edtCiudadHecho.getText().toString() + " " + edtProvinciaHecho.getText().toString();
+        ubicacionHecho = edtDireccionHecho.getText().toString() + " " + edtBarrioHecho.getText().toString() + " " + edtCiudadHecho.getText().toString();
         cuantosAcompañan = edtCuantosAcompañan.getText().toString().trim();
         cualLugar = edtCualLugar.getText().toString().trim();
+        provinciaHecho = edtProvinciaHecho.getText().toString();
+        paisHecho = edtPaisHecho.getText().toString();
 
         //MODALIDAD DE DETENCION
         posicionDetenido = edtPosicionDetenido.getText().toString();

@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- //todo URLS AWS    -->
-    <string name="URL_LOGIN">http://3.136.55.99/proyecto/v1/userLogin.php</string>
-    <string name="URL_SIGN_UP">http://3.136.55.99/proyecto/v1/registerUser.php</string>
-    <string name="URL_ACCOUNT_RECOVERY">http://3.136.55.99/proyecto/v1/accountRecovery.php</string>
-    <string name="URL_USUARIOS">http://3.136.55.99/proyecto/v1/searchReport.php</string>
-    <string name="URL_REPORTE">http://192.168.0.8/android/insertar_datos_reporte.php</string>
-    <string name="URL_USUARIOS_TO_ENABLED">http://3.136.55.99/proyecto/v1/disabledUsers.php</string>
-    <string name="URL_RESTORE_PASSWORD">http://3.136.55.99/proyecto/v1/restorePassword.php</string>
-    <string name="URL_ENVIAR_RESPUESTA">http://3.136.55.99/proyecto/v1/sendReply.php</string>
-    <string name="URL_MOVIMIENTO">http://3.136.55.99/proyecto/v1/movimiento.php</string>
-
-
     <!-- //todo URL local-host
-    <string name="URL_LOGIN">http://192.168.0.8/android/v1/userLogin.php</string>
-    <string name="URL_SIGN_UP">http://192.168.0.8/android/v1/registerUser.php</string>
-    <string name="URL_ACCOUNT_RECOVERY">http://192.168.0.8/android/v1/accountRecovery.php</string>
-    <string name="URL_USUARIOS">http://192.168.0.8/android/v1/searchReport.php</string>
-    <string name="URL_USUARIOS_TO_ENABLED">http://192.168.0.8/android/v1/disabledUsers.php</string>
-    <string name="URL_RESTORE_PASSWORD">http://192.168.0.8/android/v1/restorePassword.php</string>
-    <string name="URL_ENVIAR_RESPUESTA">http://192.168.0.8/android/v1/sendReply.php</string>
-    <string name="URL_REPORTE">http://192.168.0.8/android/insertar_datos_reporte.php</string>
-    <string name="URL_MOVIMIENTO">http://192.168.0.8/android/v1/movimiento.php</string>
+    <string name="URL_REPORTE">/android/insertar_datos_reporte.php</string>
     -->
+    <string name="HOST">http://192.168.0.8</string>
+
+    <!-- //todo URLS AWS
+   <string name="HOST">http://3.136.55.99</string>
+   -->
+
+    <string name="URL_LOGIN">/android/v1/userLogin.php</string>
+    <string name="URL_SIGN_UP">/android/v1/registerUser.php</string>
+    <string name="URL_ACCOUNT_RECOVERY">/android/v1/accountRecovery.php</string>
+    <string name="URL_USUARIOS">/android/v1/searchReport.php</string>
+    <string name="URL_USUARIOS_TO_ENABLED">/android/v1/disabledUsers.php</string>
+    <string name="URL_RESTORE_PASSWORD">/android/v1/restorePassword.php</string>
+    <string name="URL_ENVIAR_RESPUESTA">/android/v1/sendReply.php</string>
+    <string name="URL_MOVIMIENTO">/android/v1/movimiento.php</string>
+    <string name="URL_REPORTE">/android/v1/registerReporte.php</string>
 
 </resources>

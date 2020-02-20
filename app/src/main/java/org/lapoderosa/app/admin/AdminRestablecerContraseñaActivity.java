@@ -60,18 +60,18 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager inputMethodManager = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
+                InputMethodManager inputMethodManager = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
     }
 
-    protected void restorePassword(){
+    protected void restorePassword() {
         inicializarStringVariables();
         if (!validate()) {
             Toast.makeText(this, "Complete los campos", Toast.LENGTH_SHORT).show();
         } else {
-            ejecutarServicio(getResources().getString(R.string.URL_RESTORE_PASSWORD));
+            ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_RESTORE_PASSWORD));
         }
     }
 
@@ -153,15 +153,15 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
         String mensaje = "";
         try {
             JSONObject jsonObject = new JSONObject(response);
-            Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
             mensaje = jsonObject.getString("revisar");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        if(!mensaje.isEmpty()){
+        if (!mensaje.isEmpty()) {
             rEmail.setError("Este email ingresado no existe");
-        }else {
+        } else {
             startActivity(new Intent(AdminRestablecerContraseñaActivity.this, AdminInicioActivity.class));
             finish();
         }

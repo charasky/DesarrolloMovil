@@ -64,8 +64,8 @@ public class RegistrarseActivity extends MasterClass {
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager inputMethodManager = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
+                InputMethodManager inputMethodManager = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
     }
@@ -75,7 +75,7 @@ public class RegistrarseActivity extends MasterClass {
         if (!validate()) {
             Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
         } else {
-            ejecutarServicio(getResources().getString(R.string.URL_SIGN_UP));
+            ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_SIGN_UP));
         }
     }
 
@@ -93,19 +93,19 @@ public class RegistrarseActivity extends MasterClass {
         String mensaje = "";
         try {
             JSONObject jsonObject = new JSONObject(response);
-            Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
             mensaje = jsonObject.getString("existe");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        if(mensaje.equals("asamblea")){
+        if (mensaje.equals("asamblea")) {
             dmAsamblea.setError("Ingrese asamblea existente");
         }
-        if(mensaje.equals("email")){
+        if (mensaje.equals("email")) {
             dmEmail.setError("Este email ya existe");
         }
-        if(mensaje.isEmpty()){
+        if (mensaje.isEmpty()) {
             startActivity(new Intent(RegistrarseActivity.this, HomeActivity.class));
             finish();
         }

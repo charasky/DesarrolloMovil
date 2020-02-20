@@ -76,7 +76,7 @@ public class LoginActivity extends MasterClass {
     private void usuarioLogin() {
         inicializarStringVariables();
         if (!usuario.isEmpty() && !password.isEmpty()) {
-            ejecutarServicio(getResources().getString(R.string.URL_LOGIN));
+            ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_LOGIN));
         } else {
             Toast.makeText(LoginActivity.this, "Ingrese usuario y contraseña", Toast.LENGTH_SHORT).show();
         }

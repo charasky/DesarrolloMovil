@@ -59,8 +59,8 @@ public class RecuperarCuentaActivity extends MasterClass {
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager inputMethodManager = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
+                InputMethodManager inputMethodManager = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
     }
@@ -68,7 +68,7 @@ public class RecuperarCuentaActivity extends MasterClass {
     private void recuperar() {
         inicializarStringVariables();
         if (!email.isEmpty()) {
-            ejecutarServicio(getResources().getString(R.string.URL_ACCOUNT_RECOVERY));
+            ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_ACCOUNT_RECOVERY));
         } else {
             Toast.makeText(RecuperarCuentaActivity.this, "Ingrese email", Toast.LENGTH_SHORT).show();
         }
@@ -89,7 +89,7 @@ public class RecuperarCuentaActivity extends MasterClass {
         String mensaje = "";
         try {
             JSONObject jsonObject = new JSONObject(response);
-            Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
             mensaje = jsonObject.getString("existe");
 
 
@@ -97,9 +97,9 @@ public class RecuperarCuentaActivity extends MasterClass {
             e.printStackTrace();
         }
 
-        if(mensaje.equals("0")){
+        if (mensaje.equals("0")) {
             rEmail.setError("Este email no existe");
-        }else{
+        } else {
             enviarEmail(email);
             startActivity(new Intent(RecuperarCuentaActivity.this, HomeActivity.class));
             finish();
@@ -107,7 +107,7 @@ public class RecuperarCuentaActivity extends MasterClass {
     }
 
     private void enviarEmail(String email) {
-        JavaMailAPI javaMailAPI = new JavaMailAPI(this,email);
+        JavaMailAPI javaMailAPI = new JavaMailAPI(this, email);
         javaMailAPI.execute();
     }
 }

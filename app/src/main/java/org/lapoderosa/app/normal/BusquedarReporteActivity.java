@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.AuthFailureError;
 import com.lapoderosa.app.R;
 
@@ -47,10 +48,12 @@ public class BusquedarReporteActivity extends MasterClass {
 
         etBuscador.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -60,7 +63,7 @@ public class BusquedarReporteActivity extends MasterClass {
 
         rvLista.setLayoutManager(new GridLayoutManager(this, 1));
 
-        ejecutarServicio(getResources().getString(R.string.URL_USUARIOS));
+        ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_USUARIOS));
 
         adaptador = new ReportAdapter(BusquedarReporteActivity.this, listaUsuarios);
         rvLista.setAdapter(adaptador);
@@ -68,23 +71,23 @@ public class BusquedarReporteActivity extends MasterClass {
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager inputMethodManager = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
+                InputMethodManager inputMethodManager = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
     }
 
     public void filtrar(String texto) {
         ArrayList<Report> filtrarLista = new ArrayList<>();
-            //con los if pueda ir filtrando tmbien por otro tipo fecha
-        for(Report usuario : listaUsuarios) {
-            if(usuario.getFullName().toLowerCase().contains(texto.toLowerCase())) {
+        //con los if pueda ir filtrando tmbien por otro tipo fecha
+        for (Report usuario : listaUsuarios) {
+            if (usuario.getFullName().toLowerCase().contains(texto.toLowerCase())) {
                 filtrarLista.add(usuario);
             }
-            if(usuario.getCiudad().toLowerCase().contains(texto.toLowerCase())) {
+            if (usuario.getCiudad().toLowerCase().contains(texto.toLowerCase())) {
                 filtrarLista.add(usuario);
             }
-            if(usuario.getFecha().contains(texto)){
+            if (usuario.getFecha().contains(texto)) {
                 filtrarLista.add(usuario);
             }
         }

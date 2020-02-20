@@ -44,10 +44,12 @@ public class AdminMovimientosActivity extends MasterClass {
 
         etBuscador.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -57,7 +59,7 @@ public class AdminMovimientosActivity extends MasterClass {
 
         rvMovimiento.setLayoutManager(new GridLayoutManager(this, 1));
 
-        ejecutarServicio(getResources().getString(R.string.URL_MOVIMIENTO));
+        ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_MOVIMIENTO));
 
         adaptador = new MovimientoAdapter(AdminMovimientosActivity.this, listaMovimientos);
         rvMovimiento.setAdapter(adaptador);
@@ -65,14 +67,14 @@ public class AdminMovimientosActivity extends MasterClass {
 
     public void filtrar(String texto) {
         ArrayList<Movimiento> filtrarLista = new ArrayList<>();
-        for(Movimiento movimiento : listaMovimientos) {
-            if(movimiento.getUsuario().toLowerCase().contains(texto.toLowerCase())) {
+        for (Movimiento movimiento : listaMovimientos) {
+            if (movimiento.getUsuario().toLowerCase().contains(texto.toLowerCase())) {
                 filtrarLista.add(movimiento);
             }
-            if(movimiento.getUsuarioInteraccion().toLowerCase().contains(texto.toLowerCase())) {
+            if (movimiento.getUsuarioInteraccion().toLowerCase().contains(texto.toLowerCase())) {
                 filtrarLista.add(movimiento);
             }
-            if(movimiento.getFecha().contains(texto)){
+            if (movimiento.getFecha().contains(texto)) {
                 filtrarLista.add(movimiento);
             }
         }
@@ -85,7 +87,8 @@ public class AdminMovimientosActivity extends MasterClass {
     }
 
     @Override
-    protected void inicializarStringVariables() {}
+    protected void inicializarStringVariables() {
+    }
 
     @Override
     protected void responseConexion(String response) {

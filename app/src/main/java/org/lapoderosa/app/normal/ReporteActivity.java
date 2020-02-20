@@ -40,13 +40,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
+
 //todo verificar que los campos de strings no esten vacios
 public class ReporteActivity extends MasterClass {
     private Date date = new Date();
     private String fechaCreacionReporte, horaCreacionReporte;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
     @SuppressLint("SimpleDateFormat")
-    private DateFormat dateHourFormat = new SimpleDateFormat("HH:mm");
+    private DateFormat dateHourFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
     private static final String TAG = "ReporteActivity";
     private TextView tvDateEntrevista, tvDateHecho, tvHoraHecho;
     private DatePickerDialog.OnDateSetListener m1DateSetListener;
@@ -346,10 +347,11 @@ public class ReporteActivity extends MasterClass {
     //todo enviar reporte
     private void enviarReporte() {
         inicializarStringVariables();
-        if (!validateVictima() && !validateEntEntrevistador() && validacionRadioButtons()) {
+        //!validateVictima() && !validateEntEntrevistador() && validacionRadioButtons()
+        if (!validateEntEntrevistador()) {
             Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
         } else {
-            ejecutarServicio(getResources().getString(R.string.URL_REPORTE));
+            ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_REPORTE));
             //chooseInicio();
         }
     }
@@ -358,82 +360,82 @@ public class ReporteActivity extends MasterClass {
     protected void putParams(Map<String, String> parametros) throws AuthFailureError {
         parametros.put("fechaReporte", fechaCreacionReporte);
         parametros.put("horaReporte", horaCreacionReporte);
-        parametros.put("reporte", jsonObject().toString());
+        parametros.put("reporte", this.jsonObject().toString());
     }
 
-    private JSONObject jsonObject(){
-        JSONObject parametros = new JSONObject();
+    private JSONObject jsonObject() {
+        JSONObject jsonObject = new JSONObject();
         try {
             //ALLANAMIENTO
-            parametros.put("usu_orden_allanamiento", ordenAllanamiento);
-            parametros.put("usu_agresion_allanamiento", agresionAllanamiento);
-            parametros.put("usu_pertenencias_allanamiento", pertenenciasAllanamiento);
-            parametros.put("usu_omision_pertenencias", omisionPertenencias);
-            parametros.put("usu_detenidos_allanamiento", detenidosAllanamiento);
-            parametros.put("usu_duracion_allanamiento", duracionAllanamiento);
-            parametros.put("usu_esposados", esposados);
-            parametros.put("usu_posicion_allanamiento", posicionDetenidos);
+            jsonObject.put("usu_orden_allanamiento", ordenAllanamiento);
+            jsonObject.put("usu_agresion_allanamiento", agresionAllanamiento);
+            jsonObject.put("usu_pertenencias_allanamiento", pertenenciasAllanamiento);
+            jsonObject.put("usu_omision_pertenencias", omisionPertenencias);
+            jsonObject.put("usu_detenidos_allanamiento", detenidosAllanamiento);
+            jsonObject.put("usu_duracion_allanamiento", duracionAllanamiento);
+            jsonObject.put("usu_esposados", esposados);
+            jsonObject.put("usu_posicion_allanamiento", posicionDetenidos);
             //CARACTERISTICA DEL PROCEDIMIENTO
-            parametros.put("usu_motivo_procedimiento", motivoProcedimiento);
-            parametros.put("usu_maltratos", maltratos);
-            parametros.put("usu_lesiones", lesiones);
+            jsonObject.put("usu_motivo_procedimiento", motivoProcedimiento);
+            jsonObject.put("usu_maltratos", maltratos);
+            jsonObject.put("usu_lesiones", lesiones);
             //Entrevistado
-            parametros.put("usu_parentesco_entrevistado", parentesco);
+            jsonObject.put("usu_parentesco_entrevistado", parentesco);
             //Entrevistador
-            parametros.put("usu_nombre", nombreEntrevistador);
-            parametros.put("usu_apellido", apellidoEntrevistador);
-            parametros.put("usu_asamblea", asamblea);
-            parametros.put("usu_fecha", fecha);
+            jsonObject.put("usu_nombre", nombreEntrevistador);
+            jsonObject.put("usu_apellido", apellidoEntrevistador);
+            jsonObject.put("usu_asamblea", asamblea);
+            jsonObject.put("usu_fecha", fecha);
             //FUERZAS INTERVINIENTES
-            parametros.put("usu_fuerzas_intervinientes", fuerzasIntervinientes);
+            jsonObject.put("usu_fuerzas_intervinientes", fuerzasIntervinientes);
             //agentes
-            parametros.put("usu_cantidad_agentes", cantidadAgentes);
-            parametros.put("usu_nombres_agentes", nombresAgentes);
-            parametros.put("usu_apodos", apodos);
+            jsonObject.put("usu_cantidad_agentes", cantidadAgentes);
+            jsonObject.put("usu_nombres_agentes", nombresAgentes);
+            jsonObject.put("usu_apodos", apodos);
             //vehiculos
-            parametros.put("usu_cantidad_vehiculos", cantidadVehiculos);
-            parametros.put("usu_num_movil", numMovil);
-            parametros.put("usu_dominio", dominio);
-            parametros.put("usu_conducta_agentes", conductaAgentes);
+            jsonObject.put("usu_cantidad_vehiculos", cantidadVehiculos);
+            jsonObject.put("usu_num_movil", numMovil);
+            jsonObject.put("usu_dominio", dominio);
+            jsonObject.put("usu_conducta_agentes", conductaAgentes);
             //Hecho policial
-            parametros.put("usu_dia_hecho", diaHecho);
-            parametros.put("usu_hora_hecho", horaHecho);
-            parametros.put("usu_ubicacion_hecho", ubicacionHecho);
-            parametros.put("usu_cuantos_acompañan", cuantosAcompañan);
-            parametros.put("usu_cual_lugar", cualLugar);
-            parametros.put("usu_provincia_hecho", provinciaHecho);
-            parametros.put("usu_pais_hecho", paisHecho);
+            jsonObject.put("usu_dia_hecho", diaHecho);
+            jsonObject.put("usu_hora_hecho", horaHecho);
+            jsonObject.put("usu_ubicacion_hecho", ubicacionHecho);
+            jsonObject.put("usu_cuantos_acompañan", cuantosAcompañan);
+            jsonObject.put("usu_cual_lugar", cualLugar);
+            jsonObject.put("usu_provincia_hecho", provinciaHecho);
+            jsonObject.put("usu_pais_hecho", paisHecho);
             //MODALIDAD DE DETENCION
-            parametros.put("usu_posicion_detenido", posicionDetenido);
-            parametros.put("usu_tiempo_detenido", cuantoTiempoDetenido);
+            jsonObject.put("usu_posicion_detenido", posicionDetenido);
+            jsonObject.put("usu_tiempo_detenido", cuantoTiempoDetenido);
             //OMISION AL ACTUAR
-            parametros.put("usu_medios_de_asistencia", mediosDeAsistencia);
-            parametros.put("usu_a_quien_asistencia", aQuienAsistencia);
-            parametros.put("usu_denuncia_rechazada", denunciaRechazada);
-            parametros.put("usu_violentado", violentado);
-            parametros.put("usu_denuncia_final", denunciaFinal);
+            jsonObject.put("usu_medios_de_asistencia", mediosDeAsistencia);
+            jsonObject.put("usu_a_quien_asistencia", aQuienAsistencia);
+            jsonObject.put("usu_denuncia_rechazada", denunciaRechazada);
+            jsonObject.put("usu_violentado", violentado);
+            jsonObject.put("usu_denuncia_final", denunciaFinal);
             //RESULTADO INVESTIGACION
-            parametros.put("usu_resultado_investigacion", resultadoInvestigacion);
-            parametros.put("usu_trabajan_los_oficiales", trabajanLosOficiales);
+            jsonObject.put("usu_resultado_investigacion", resultadoInvestigacion);
+            jsonObject.put("usu_trabajan_los_oficiales", trabajanLosOficiales);
             //TRASLADO
-            parametros.put("usu_traslado", traslado);
-            parametros.put("usu_comisaria", comisaria);
-            parametros.put("usu_esposado", esposado);
+            jsonObject.put("usu_traslado", traslado);
+            jsonObject.put("usu_comisaria", comisaria);
+            jsonObject.put("usu_esposado", esposado);
             //Victima
-            parametros.put("usu_nombre_victima", nombreVictima);
-            parametros.put("usu_apellido_victima", apellidoVictima);
-            parametros.put("usu_genero_victima", generoVictima);
-            parametros.put("usu_edad_victima", edadVictima);
-            parametros.put("usu_nacionalidad_victima", nacionalidadVictima);
-            parametros.put("usu_documento_victima", documentoVictima);
-            parametros.put("usu_direccion_victima", direccionVictima);
-            parametros.put("usu_barrio_victima", barrioVictima);
-            parametros.put("usu_telefono_victima", telefonoVictima);
-        }catch (JSONException e){
+            jsonObject.put("usu_nombre_victima", nombreVictima);
+            jsonObject.put("usu_apellido_victima", apellidoVictima);
+            jsonObject.put("usu_genero_victima", generoVictima);
+            jsonObject.put("usu_edad_victima", edadVictima);
+            jsonObject.put("usu_nacionalidad_victima", nacionalidadVictima);
+            jsonObject.put("usu_documento_victima", documentoVictima);
+            jsonObject.put("usu_direccion_victima", direccionVictima);
+            jsonObject.put("usu_barrio_victima", barrioVictima);
+            jsonObject.put("usu_telefono_victima", telefonoVictima);
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return parametros;
+        return jsonObject;
     }
 
     @Override
@@ -455,16 +457,16 @@ public class ReporteActivity extends MasterClass {
         motivoProcedimiento = checkeoRadioGroupSinEditText(rgProcesamiento, "Seleccione procedimiento");
         maltratos = checkeoRadioGroupConEditText(rgMalosTratosAgresiones, edtOtraAgresion, "Seleccione opcion en maltratos");
         if (!edtFisica.getText().toString().isEmpty()) {
-            lesiones += edtFisica.getText().toString();
+            lesiones += edtFisica.getText().toString().trim();
         }
         if (!edtPsiquica.getText().toString().isEmpty()) {
-            lesiones += edtPsiquica.getText().toString();
+            lesiones += edtPsiquica.getText().toString().trim();
         }
         if (!edtInsomnioPanico.getText().toString().isEmpty()) {
-            lesiones += edtInsomnioPanico.getText().toString();
+            lesiones += edtInsomnioPanico.getText().toString().trim();
         }
         if (!edtOtrosMiedos.getText().toString().isEmpty()) {
-            lesiones += edtOtrosMiedos.getText().toString();
+            lesiones += edtOtrosMiedos.getText().toString().trim();
         }
         listenerLesiones(rbtNoLesiones, edtFisica, edtPsiquica, edtInsomnioPanico, edtOtrosMiedos);
 
@@ -609,7 +611,12 @@ public class ReporteActivity extends MasterClass {
 
     @Override
     protected void responseConexion(String response) {
-
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void chooseInicio() {
@@ -631,7 +638,7 @@ public class ReporteActivity extends MasterClass {
                 month += 1;
                 Log.d(TAG, "onDateSet: mm/dd/yyyy: " + month + "/" + dayOfMonth + "/" + year);
 
-                String date = month + "/" + dayOfMonth + "/" + year;
+                String date = dayOfMonth + "/" + month + "/" + year;
                 tvDate.setText(date);
             }
         };

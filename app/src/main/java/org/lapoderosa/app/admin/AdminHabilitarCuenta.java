@@ -39,6 +39,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class AdminHabilitarCuenta extends MasterClass {
+    private Date date = new Date();
     private RecyclerView rvHabilitar;
     private UserAdapter adaptador;
     private List<User> listaUsuarios;
@@ -46,7 +47,7 @@ public class AdminHabilitarCuenta extends MasterClass {
     private String user, hora, fecha;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
     @SuppressLint("SimpleDateFormat")
-    private DateFormat dateHourFormat = new SimpleDateFormat("HH:mm");
+    private DateFormat dateHourFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class AdminHabilitarCuenta extends MasterClass {
         rvHabilitar = findViewById(R.id.rvHabilitar);
         rvHabilitar.setLayoutManager(new GridLayoutManager(this, 1));
 
-        ejecutarServicio(getResources().getString(R.string.URL_USUARIOS_TO_ENABLED));
+        ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_USUARIOS_TO_ENABLED));
 
         adaptador = new UserAdapter(AdminHabilitarCuenta.this, listaUsuarios);
         rvHabilitar.setAdapter(adaptador);
@@ -82,7 +83,7 @@ public class AdminHabilitarCuenta extends MasterClass {
 
     private void habilitarCuentas() {
         inicializarStringVariables();
-        respuestaQueUsuariosAprobarOrEliminar(getResources().getString(R.string.URL_ENVIAR_RESPUESTA), listaUsuarios);
+        respuestaQueUsuariosAprobarOrEliminar(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_ENVIAR_RESPUESTA), listaUsuarios);
         startActivity(new Intent(AdminHabilitarCuenta.this, AdminInicioActivity.class));
         finish();
     }
@@ -122,8 +123,8 @@ public class AdminHabilitarCuenta extends MasterClass {
 
     @Override
     protected void inicializarStringVariables() {
-        fecha = dateFormat.format(new Date());
-        hora = dateHourFormat.format(new Date());
+        fecha = dateFormat.format(date);
+        hora = dateHourFormat.format(date);
         user = SharedPrefManager.getInstance(this).getKeyUsuario();
     }
 
@@ -133,7 +134,7 @@ public class AdminHabilitarCuenta extends MasterClass {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

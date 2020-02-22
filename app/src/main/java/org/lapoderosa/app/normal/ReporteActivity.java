@@ -347,8 +347,8 @@ public class ReporteActivity extends MasterClass {
     //todo enviar reporte
     private void enviarReporte() {
         inicializarStringVariables();
-        //!validateVictima() && !validateEntEntrevistador() && validacionRadioButtons()
-        if (!validateEntEntrevistador()) {
+        //!validateVictima() && !validateEntrevistador() && validacionRadioButtons()
+        if (!validateEntrevistador()) {
             Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
         } else {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_REPORTE));
@@ -540,74 +540,36 @@ public class ReporteActivity extends MasterClass {
                 trabajanLosOficiales.isEmpty();
     }
 
-    private boolean validateEntEntrevistador() {
-        boolean valid = true;
-        if (nombreEntrevistador.isEmpty()) {
-            eNombreEntrevistador.setError("Ingrese nombre");
-            valid = false;
-        }
-        if (apellidoEntrevistador.isEmpty()) {
-            eApellidoEntrevistador.setError("Ingrese nombre");
-            valid = false;
-        }
-        if (asamblea.isEmpty()) {
-            eAsamblea.setError("Ingrese nombre");
-            valid = false;
-        }
-        if (fecha.isEmpty()) {
-            tvDateEntrevista.setError("Ingrese nombre");
-            valid = false;
-        }
-        if (parentesco.isEmpty()) {
-            edtParentesco.setError("Ingrese nombre");
-            valid = false;
-        }
-
-        return valid;
+    private boolean validateEntrevistador() {
+        /*todo falta ingresar la fecha de entrevistador;
+        tvDateEntrevista.setError("Ingrese nombre"); */
+        return vGeneric(nombreEntrevistador, eNombreEntrevistador, "ingrese entrevistador") || vGeneric(apellidoEntrevistador, eApellidoEntrevistador, "ingrese apellido entrevistador")
+                || vGeneric(asamblea, eAsamblea, "ingrese asamblea") || vGeneric(parentesco, edtParentesco, "ingrese parentesco");
     }
 
     private boolean validateVictima() {
-        boolean valid = true;
-        if (nombreVictima.isEmpty()) {
-            edtNombreVictima.setError("Ingrese nombre");
-            valid = false;
-        }
-        if (apellidoVictima.isEmpty()) {
-            edtApellidoVictima.setError("Ingrese nombre");
-            valid = false;
-        }
-        if (generoVictima.isEmpty()) {
-            edtGeneroVictima.setError("Ingrese nombre");
-            valid = false;
-        }
-        if (edadVictima.isEmpty()) {
-            edtEdadVictima.setError("Ingrese nombre");
-            valid = false;
-        }
-        if (nacionalidadVictima.isEmpty()) {
-            edtNacionalidadVictima.setError("Ingrese nombre");
-            valid = false;
-        }
-        if (documentoVictima.isEmpty()) {
-            edtDocumentoVictima.setError("Ingrese nombre");
-            valid = false;
-        }
-        if (direccionVictima.isEmpty()) {
-            edtDireccionVictima.setError("Ingrese nombre");
-            valid = false;
-        }
-        if (barrioVictima.isEmpty()) {
-            edtBarrioVictima.setError("Ingrese nombre");
-            valid = false;
-        }
-        if (telefonoVictima.isEmpty()) {
-            edtTelefonoVictima.setError("Ingrese nombre");
-            valid = false;
-        }
-
-        return valid;
+        return vGeneric(nombreVictima, edtNombreVictima, "ingrese nombre de victima") || vGeneric(apellidoVictima, edtApellidoVictima, "ingrese apellido victima")
+                || vGeneric(generoVictima, edtGeneroVictima, "ingrese genero victima") || vGeneric(edadVictima, edtEdadVictima, "ingrese edad victima")
+                || vGeneric(nacionalidadVictima, edtNacionalidadVictima, "ingrese nacionalidad") || vGeneric(documentoVictima, edtDocumentoVictima, "ingrese documento victima")
+                || vGeneric(direccionVictima, edtDireccionVictima, "ingrese direccion victima") || vGeneric(barrioVictima, edtBarrioVictima, "ingrese barrio victima")
+                || vGeneric(telefonoVictima, edtTelefonoVictima, "ingrese telefono victima");
     }
 
+    private boolean validateHecho() {
+        //todo verificiar de otra forma diaHecho - tvDateHecho; horaHecho - tvHoraHecho
+        return vGeneric(ubicacionHecho, edtDireccionHecho, "ingrese la ubicacion") || vGeneric(cuantosAcompañan, edtCuantosAcompañan, "ingrese acompañantes")
+                || vGeneric(cualLugar, edtCualLugar, "ingrese lugar") || vGeneric(provinciaHecho, edtProvinciaHecho, "ingrese provincia")
+                || vGeneric(paisHecho, edtPaisHecho, "ingrese pais hecho");
+    }
+
+    private boolean vGeneric(String string, EditText txt, String mensaje) {
+        if (string.isEmpty()) {
+            txt.setError(mensaje);
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     @Override
     protected void responseConexion(String response) {

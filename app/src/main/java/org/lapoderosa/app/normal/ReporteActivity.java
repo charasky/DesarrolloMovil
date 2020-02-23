@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -37,9 +36,12 @@ import org.lapoderosa.app.util.SharedPrefManager;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 //todo verificar que los campos de strings no esten vacios
 public class ReporteActivity extends MasterClass {
@@ -54,7 +56,6 @@ public class ReporteActivity extends MasterClass {
     private DatePickerDialog.OnDateSetListener m2DateSetListener;
     private TimePickerDialog.OnTimeSetListener timeSetListener;
     private Button guardar, cancelar;
-    private int mHour, mMinute;
     //ENTREVISTADOR
     private String nombreEntrevistador, apellidoEntrevistador, asamblea, fecha;
     //ENTREVISTADO
@@ -237,6 +238,7 @@ public class ReporteActivity extends MasterClass {
         edtBarrioVictima = findViewById(R.id.edtBarrioVictim);
         edtTelefonoVictima = findViewById(R.id.edtTelefono);
 
+        tvDateEntrevista.setText(dateFormat.format(date));
         tvDateEntrevista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -248,13 +250,16 @@ public class ReporteActivity extends MasterClass {
                 DatePickerDialog dialog = new DatePickerDialog(
                         ReporteActivity.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        crearListener(tvDateEntrevista),
+                        listenerFecha(tvDateEntrevista),
                         year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });
 
+        listenerLesiones(rbtNoLesiones, edtFisica, edtPsiquica, edtInsomnioPanico, edtOtrosMiedos);
+
+        denunciaFinalSeleccion(rbtSiHizoDenuncia, edtDondeDenuncia, rbtNoHizoDenuncia, edtPorQueNoDenuncia, rbtNoSabeHacerDenuncia);
 
         tvDateHecho.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -267,7 +272,7 @@ public class ReporteActivity extends MasterClass {
                 DatePickerDialog dialog = new DatePickerDialog(
                         ReporteActivity.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        crearListener(tvDateHecho),
+                        listenerFecha(tvDateHecho),
                         year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
@@ -278,20 +283,16 @@ public class ReporteActivity extends MasterClass {
         tvHoraHecho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar c = Calendar.getInstance();
-                int mYear = c.get(Calendar.YEAR);
-                int mMonth = c.get(Calendar.MONTH);
-                int mDay = c.get(Calendar.DAY_OF_MONTH);
-
                 TimePickerDialog dialog = new TimePickerDialog(
                         ReporteActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         new TimePickerDialog.OnTimeSetListener() {
-
+                            @SuppressLint("SetTextI18n")
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                tvHoraHecho.setText(String.valueOf(hourOfDay) + " : " + String.valueOf(minute));
+                                tvHoraHecho.setText(hourOfDay + ":" + minute);
                             }
-                        }, mHour, mMinute, true);
+                        }, 0, 0, true);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });
@@ -347,8 +348,14 @@ public class ReporteActivity extends MasterClass {
     //todo enviar reporte
     private void enviarReporte() {
         inicializarStringVariables();
-        //!validateVictima() && !validateEntrevistador() && validacionRadioButtons()
-        if (!validateEntrevistador()) {
+        //!vAllanamiento() && !vEntrevistador() && !vfuerzasIntervinientes() &&
+        //!vHechoPolicial() && !vModalidadDetencion() && !vOmisionActuar() && !vResultadoInvestigacion() &&
+        //!vTraslado() && !vVictima())
+
+        //todo no pasa check
+        // !vCaracteristicasProcedimiento()  && !vHechoPolicial() && !vOmisionActuar()
+
+        if (!vHechoPolicial()) {
             Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
         } else {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_REPORTE));
@@ -361,6 +368,7 @@ public class ReporteActivity extends MasterClass {
         parametros.put("fechaReporte", fechaCreacionReporte);
         parametros.put("horaReporte", horaCreacionReporte);
         parametros.put("reporte", this.jsonObject().toString());
+        //parametros.put("reporte", new JSONObject(this.mapaDeVariables()).toString());
     }
 
     private JSONObject jsonObject() {
@@ -444,18 +452,18 @@ public class ReporteActivity extends MasterClass {
         horaCreacionReporte = dateHourFormat.format(date);
 
         //ALLANAMIENTO
-        ordenAllanamiento = checkeoRadioGroupSinEditText(rgOrdenAllanamientoSiNo, "Seleccione opcion en Orden de Allanamiento");
-        agresionAllanamiento = checkeoRadioGroupConEditText(rgAgresionDomicilioSiNo, edtCualesAgresionesDomicilio, "Seleccione agresion en Allanamiento a Domicilio");
-        pertenenciasAllanamiento = checkeoRadioGroupConEditText(rgPertenenciasRobadasSiNo, edtCualesPertenencias, "Seleccione opcion en pertenencias Allanamiento");
-        omisionPertenencias = checkeoRadioGroupConEditText(rgOmitieronPertenenciasSiNo, edtCualesOmitieron, "Seleccione opcion en omision de pertenencias");
-        detenidosAllanamiento = checkeoRadioGroupConEditText(rgPersonasDetenidasSiNo, edtCuantosDetenidos, "Seleccione opcion en personas detenidas");
+        ordenAllanamiento = checkeoRadioGroupSinEditText(rgOrdenAllanamientoSiNo);
+        agresionAllanamiento = checkeoRadioGroupConEditText(rgAgresionDomicilioSiNo, edtCualesAgresionesDomicilio);
+        pertenenciasAllanamiento = checkeoRadioGroupConEditText(rgPertenenciasRobadasSiNo, edtCualesPertenencias);
+        omisionPertenencias = checkeoRadioGroupConEditText(rgOmitieronPertenenciasSiNo, edtCualesOmitieron);
+        detenidosAllanamiento = checkeoRadioGroupConEditText(rgPersonasDetenidasSiNo, edtCuantosDetenidos);
         duracionAllanamiento = edtTiempoAllanamiento.getText().toString();
-        posicionDetenidos = checkeoRadioGroupConEditText(rgPosicionFisicaEleccion, edtOtraPosicion, "Seleccione opdion en posicion fisica");
-        esposados = checkeoRadioGroupSinEditText(rgEsposadosAllanamientoSiNo, "Selecione opcion en esposados");
+        posicionDetenidos = checkeoRadioGroupConEditText(rgPosicionFisicaEleccion, edtOtraPosicion);
+        esposados = checkeoRadioGroupSinEditText(rgEsposadosAllanamientoSiNo);
 
         //CARACTERISTICAS_PROCESAMIENTO
-        motivoProcedimiento = checkeoRadioGroupSinEditText(rgProcesamiento, "Seleccione procedimiento");
-        maltratos = checkeoRadioGroupConEditText(rgMalosTratosAgresiones, edtOtraAgresion, "Seleccione opcion en maltratos");
+        motivoProcedimiento = checkeoRadioGroupSinEditText(rgProcesamiento);
+        maltratos = checkeoRadioGroupConEditText(rgMalosTratosAgresiones, edtOtraAgresion);
         if (!edtFisica.getText().toString().isEmpty()) {
             lesiones += edtFisica.getText().toString().trim();
         }
@@ -468,8 +476,6 @@ public class ReporteActivity extends MasterClass {
         if (!edtOtrosMiedos.getText().toString().isEmpty()) {
             lesiones += edtOtrosMiedos.getText().toString().trim();
         }
-        listenerLesiones(rbtNoLesiones, edtFisica, edtPsiquica, edtInsomnioPanico, edtOtrosMiedos);
-
 
         //ENTREVISTADO
         parentesco = edtParentesco.getText().toString().trim();
@@ -508,18 +514,17 @@ public class ReporteActivity extends MasterClass {
         //OMISION AL ACTUAR
         mediosDeAsistencia = edtMedioAsistencia.getText().toString().trim();
         aQuienAsistencia = edtAQuien.getText().toString().trim();
-        denunciaRechazada = checkeoRadioGroupConEditText(rgDenunciaTomadaSiNo, edtMotivosDenunciaRechazada, "Seleccione en denuencia rechazada");
-        violentado = checkeoRadioGroupSinEditText(rgViolentadoSiNo, "Seleccione en violentado");
-        denunciaFinalSeleccion(rbtSiHizoDenuncia, edtDondeDenuncia, rbtNoHizoDenuncia, edtPorQueNoDenuncia, rbtNoSabeHacerDenuncia);
+        denunciaRechazada = checkeoRadioGroupConEditText(rgDenunciaTomadaSiNo, edtMotivosDenunciaRechazada);
+        violentado = checkeoRadioGroupSinEditText(rgViolentadoSiNo);
 
         //RESULTADO_INVESTIGACION
-        resultadoInvestigacion = checkeoRadioGroupSinEditText(rgEtapaDeInvestigacion, "Seleccione en resultado de investigacion");
-        trabajanLosOficiales = checkeoRadioGroupSinEditText(rgOficialesTrabajanSiNo, "Seleccione si los oficiales aun trabajan");
+        resultadoInvestigacion = checkeoRadioGroupSinEditText(rgEtapaDeInvestigacion);
+        trabajanLosOficiales = checkeoRadioGroupSinEditText(rgOficialesTrabajanSiNo);
 
         //TRASLADO
-        traslado = checkeoRadioGroupConEditText(rgTrasladoSiNo, edtDondeTrasladaron, "Seleccione traslado");
-        comisaria = checkeoRadioGroupConEditText(rgComisariaSiNo, edtCualComisaria, "Seleceione opcion en comisaria");
-        esposado = checkeoRadioGroupSinEditText(rgEsposadosSiNo, "Seleccione opcion en esposado");
+        traslado = checkeoRadioGroupConEditText(rgTrasladoSiNo, edtDondeTrasladaron);
+        comisaria = checkeoRadioGroupConEditText(rgComisariaSiNo, edtCualComisaria);
+        esposado = checkeoRadioGroupSinEditText(rgEsposadosSiNo);
 
         //VICTIMA
         nombreVictima = edtNombreVictima.getText().toString().trim();
@@ -533,38 +538,103 @@ public class ReporteActivity extends MasterClass {
         telefonoVictima = edtTelefonoVictima.getText().toString().trim();
     }
 
-    private boolean validacionRadioButtons() {
-        return maltratos.isEmpty() || motivoProcedimiento.isEmpty() || traslado.isEmpty() || comisaria.isEmpty() || esposado.isEmpty() || ordenAllanamiento.isEmpty() ||
-                agresionAllanamiento.isEmpty() || pertenenciasAllanamiento.isEmpty() || omisionPertenencias.isEmpty() || detenidosAllanamiento.isEmpty() ||
-                posicionDetenidos.isEmpty() || esposados.isEmpty() || denunciaRechazada.isEmpty() || violentado.isEmpty() || resultadoInvestigacion.isEmpty() ||
-                trabajanLosOficiales.isEmpty();
+    private boolean vAllanamiento() {
+        return vGeneric(ordenAllanamiento, "Seleccione opcion en Orden de Allanamiento") ||
+                vGeneric(agresionAllanamiento, "Seleccione agresion en Allanamiento a Domicilio") ||
+                vGeneric(pertenenciasAllanamiento, "Seleccione opcion en pertenencias Allanamiento") ||
+                vGeneric(omisionPertenencias, "Seleccione opcion en omision de pertenencias") ||
+                vGeneric(detenidosAllanamiento, "Seleccione opcion en personas detenidas") ||
+                vGeneric(duracionAllanamiento, edtTiempoAllanamiento, "Ingrese tiempo detenido") ||
+                vGeneric(posicionDetenidos, "Seleccione opcion en posicion fisica") ||
+                vGeneric(esposados, "Selecione opcion en esposados");
     }
 
-    private boolean validateEntrevistador() {
-        /*todo falta ingresar la fecha de entrevistador;
-        tvDateEntrevista.setError("Ingrese nombre"); */
-        return vGeneric(nombreEntrevistador, eNombreEntrevistador, "ingrese entrevistador") || vGeneric(apellidoEntrevistador, eApellidoEntrevistador, "ingrese apellido entrevistador")
-                || vGeneric(asamblea, eAsamblea, "ingrese asamblea") || vGeneric(parentesco, edtParentesco, "ingrese parentesco");
+    private boolean vCaracteristicasProcedimiento() {
+        return vGeneric(motivoProcedimiento, "Seleccione procedimiento") ||
+                vGeneric(maltratos, "Seleccione opcion en maltratos") ;
+                //todo revisar lesiones
+                //vGeneric(lesiones, "Seleccione opcion en Lesiones y/ complete");
     }
 
-    private boolean validateVictima() {
-        return vGeneric(nombreVictima, edtNombreVictima, "ingrese nombre de victima") || vGeneric(apellidoVictima, edtApellidoVictima, "ingrese apellido victima")
-                || vGeneric(generoVictima, edtGeneroVictima, "ingrese genero victima") || vGeneric(edadVictima, edtEdadVictima, "ingrese edad victima")
-                || vGeneric(nacionalidadVictima, edtNacionalidadVictima, "ingrese nacionalidad") || vGeneric(documentoVictima, edtDocumentoVictima, "ingrese documento victima")
-                || vGeneric(direccionVictima, edtDireccionVictima, "ingrese direccion victima") || vGeneric(barrioVictima, edtBarrioVictima, "ingrese barrio victima")
-                || vGeneric(telefonoVictima, edtTelefonoVictima, "ingrese telefono victima");
+    private boolean vEntrevistador() {
+        //la fecha de entrevistador ya viene por default completa si no la rellenan
+        return vGeneric(parentesco, edtParentesco, "ingrese parentesco") ||
+                vGeneric(nombreEntrevistador, eNombreEntrevistador, "ingrese entrevistador") ||
+                vGeneric(apellidoEntrevistador, eApellidoEntrevistador, "ingrese apellido entrevistador") ||
+                vGeneric(asamblea, eAsamblea, "ingrese asamblea");
     }
 
-    private boolean validateHecho() {
-        //todo verificiar de otra forma diaHecho - tvDateHecho; horaHecho - tvHoraHecho
-        return vGeneric(ubicacionHecho, edtDireccionHecho, "ingrese la ubicacion") || vGeneric(cuantosAcompañan, edtCuantosAcompañan, "ingrese acompañantes")
-                || vGeneric(cualLugar, edtCualLugar, "ingrese lugar") || vGeneric(provinciaHecho, edtProvinciaHecho, "ingrese provincia")
-                || vGeneric(paisHecho, edtPaisHecho, "ingrese pais hecho");
+    private boolean vfuerzasIntervinientes() {
+        return vGeneric(fuerzasIntervinientes, edtFuerzasIntervinientes, "Ingrese fuerzas intervinientes") ||
+                vGeneric(cantidadAgentes, edtCantidadAgentes, "Ingrese cantidad de agentes") ||
+                vGeneric(nombresAgentes, edtNombresAgentes, "Ingrese nombre agente") ||
+                vGeneric(apodos, edtApodos, "Ingrese apodos") ||
+                vGeneric(cantidadVehiculos, edtCantidadVehiculos, "Ingrese cantidad de vehiculos") ||
+                vGeneric(numMovil, edtNumMovil, "Ingrese numero movil") ||
+                vGeneric(dominio, edtDominio, "Ingrese dominio") ||
+                vGeneric(conductaAgentes, edtConductaAgentes, "Ingrese conducta agentes");
+    }
+
+    private boolean vHechoPolicial() {
+        return vGeneric(diaHecho, "Ingrese dia") ||
+                vGeneric(horaHecho, "Ingrese hora") ||
+                vGeneric(ubicacionHecho, "Ingrese ubicacion") ||
+                vGeneric(cuantosAcompañan, edtCuantosAcompañan, "Ingrese cuantos acompañan") ||
+                vGeneric(cualLugar, edtCualLugar, "Ingrese cual lugar") ||
+                vGeneric(provinciaHecho, edtProvinciaHecho, "Ingrese provincia") ||
+                vGeneric(paisHecho, edtPaisHecho, "Ingrese pais");
+    }
+
+    private boolean vModalidadDetencion() {
+        return vGeneric(posicionDetenido, edtPosicionDetenido, "Ingrese posicion detenido") ||
+                vGeneric(cuantoTiempoDetenido, edtCuantoTiempoDetenido, "Ingrese cuanto tiempo detenido");
+    }
+
+    private boolean vOmisionActuar() {
+        return vGeneric(mediosDeAsistencia, edtMedioAsistencia, "Ingrese medios de asistencia") ||
+                vGeneric(aQuienAsistencia, edtAQuien, "Ingrese quien lo asistio") ||
+                vGeneric(denunciaRechazada, "Selecione en denuncia") ||
+                vGeneric(violentado, "Seleccione si fue violentado")
+                ;
+                //todo revisar :v
+                //vGeneric(denunciaFinal, "Seleccione en denuncia final");
+    }
+
+    private boolean vResultadoInvestigacion() {
+        return vGeneric(resultadoInvestigacion, "Selecione resultado de investigacion") ||
+                vGeneric(trabajanLosOficiales, "Seleccione si trabajan los oficiales");
+    }
+
+    private boolean vTraslado() {
+        return vGeneric(traslado, "Selecione en traslado") ||
+                vGeneric(comisaria, "Selecione en comisaria") ||
+                vGeneric(esposado, "Seleccione en esposado");
+    }
+
+    private boolean vVictima() {
+        return vGeneric(nombreVictima, edtNombreVictima, "ingrese nombre de victima") ||
+                vGeneric(apellidoVictima, edtApellidoVictima, "ingrese apellido victima") ||
+                vGeneric(generoVictima, edtGeneroVictima, "ingrese genero victima") ||
+                vGeneric(edadVictima, edtEdadVictima, "ingrese edad victima") ||
+                vGeneric(nacionalidadVictima, edtNacionalidadVictima, "ingrese nacionalidad") ||
+                vGeneric(documentoVictima, edtDocumentoVictima, "ingrese documento victima") ||
+                vGeneric(direccionVictima, edtDireccionVictima, "ingrese direccion victima") ||
+                vGeneric(barrioVictima, edtBarrioVictima, "ingrese barrio victima") ||
+                vGeneric(telefonoVictima, edtTelefonoVictima, "ingrese telefono victima");
     }
 
     private boolean vGeneric(String string, EditText txt, String mensaje) {
         if (string.isEmpty()) {
             txt.setError(mensaje);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean vGeneric(String string, String mensaje) {
+        if (string.isEmpty()) {
+            makeTxt(mensaje);
             return false;
         } else {
             return true;
@@ -593,15 +663,12 @@ public class ReporteActivity extends MasterClass {
         }
     }
 
-    public DatePickerDialog.OnDateSetListener crearListener(final TextView tvDate) {
+    public DatePickerDialog.OnDateSetListener listenerFecha(final TextView tvDate) {
         DatePickerDialog.OnDateSetListener DateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month += 1;
-                Log.d(TAG, "onDateSet: mm/dd/yyyy: " + month + "/" + dayOfMonth + "/" + year);
-
-                String date = dayOfMonth + "/" + month + "/" + year;
-                tvDate.setText(date);
+                tvDate.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
             }
         };
         return DateSetListener;
@@ -695,11 +762,9 @@ public class ReporteActivity extends MasterClass {
 
     public void limpiarEditText(EditText edtText) {
         edtText.setText("");
-        //TODO que el editext pierda el focus al limpiarse.
-        //edtText.setFocus;
     }
 
-    private String checkeoRadioGroupConEditText(RadioGroup grupoGroup, EditText text, String mensajeError) {
+    private String checkeoRadioGroupConEditText(RadioGroup grupoGroup, EditText text) {
         final RadioButton algo;
 
         if (seSeleccionoAlmenosUnoEn(grupoGroup)) {
@@ -717,25 +782,24 @@ public class ReporteActivity extends MasterClass {
                 return algo.getText().toString().trim();
             }
         } else {
-            makeTxt(mensajeError);
+            //makeTxt(mensajeError);
             return "";
         }
     }
 
-    private String checkeoRadioGroupSinEditText(RadioGroup radioGroup, String mensajeError) {
+    private String checkeoRadioGroupSinEditText(RadioGroup radioGroup) {
         final RadioButton algo;
 
         if (this.seSeleccionoAlmenosUnoEn(radioGroup)) {
             algo = findViewById(radioGroup.getCheckedRadioButtonId());
             return algo.getText().toString().trim();
         } else {
-            makeTxt(mensajeError);
+            //makeTxt(mensajeError);
             return "";
         }
     }
 
     private boolean seSeleccionoAlmenosUnoEn(RadioGroup grupo) {
-        //int id = grupo.getCheckedRadioButtonId();
         return grupo.getCheckedRadioButtonId() != -1;
     }
 

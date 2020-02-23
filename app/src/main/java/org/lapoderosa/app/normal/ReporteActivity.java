@@ -9,7 +9,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -41,6 +44,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 //todo verificar que los campos de strings no esten vacios
@@ -101,8 +105,7 @@ public class ReporteActivity extends MasterClass {
     //MALTRATOS
     private EditText edtOtraAgresion;
     //LESIONES
-    private RadioButton rbtNoLesiones;
-    private EditText edtFisica, edtPsiquica, edtInsomnioPanico, edtOtrosMiedos;
+    private EditText edtAclararLesiones;
     //MODALIDAD DE DETENCION
     private EditText edtPosicionDetenido, edtCuantoTiempoDetenido, edtDondeTrasladaron, edtCualComisaria;
     //ALLANAMIENTO
@@ -120,7 +123,7 @@ public class ReporteActivity extends MasterClass {
 
     private RadioGroup rgProcesamiento, rgMalosTratosAgresiones, rgTrasladoSiNo, rgComisariaSiNo, rgEsposadosSiNo, rgOrdenAllanamientoSiNo,
             rgAgresionDomicilioSiNo, rgPertenenciasRobadasSiNo, rgOmitieronPertenenciasSiNo, rgPersonasDetenidasSiNo, rgPosicionFisicaEleccion, rgEsposadosAllanamientoSiNo,
-            rgDenunciaTomadaSiNo, rgViolentadoSiNo, rgEtapaDeInvestigacion, rgOficialesTrabajanSiNo;
+            rgDenunciaTomadaSiNo, rgViolentadoSiNo, rgEtapaDeInvestigacion, rgOficialesTrabajanSiNo, rgLesionesSiNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,11 +163,8 @@ public class ReporteActivity extends MasterClass {
         rgMalosTratosAgresiones = findViewById(R.id.rgMalosTratosAgresiones);
         edtOtraAgresion = findViewById(R.id.edtOtraAgresion);
 
-        rbtNoLesiones = findViewById(R.id.rbtNoLesiones);
-        edtFisica = findViewById(R.id.edtFisica);
-        edtPsiquica = findViewById(R.id.edtPsiquica);
-        edtInsomnioPanico = findViewById(R.id.edtInsomnioPanico);
-        edtOtrosMiedos = findViewById(R.id.edtOtrosMiedos);
+        rgLesionesSiNo = findViewById(R.id.rgLesionesSiNo);
+        edtAclararLesiones = findViewById(R.id.edtAclararLesiones);
 
         //ENTREVISTADO
         edtParentesco = findViewById(R.id.edtParentesco);
@@ -240,6 +240,7 @@ public class ReporteActivity extends MasterClass {
 
         tvDateEntrevista.setText(dateFormat.format(date));
         tvDateEntrevista.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 Calendar cal = Calendar.getInstance();
@@ -252,16 +253,15 @@ public class ReporteActivity extends MasterClass {
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         listenerFecha(tvDateEntrevista),
                         year, month, day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });
 
-        listenerLesiones(rbtNoLesiones, edtFisica, edtPsiquica, edtInsomnioPanico, edtOtrosMiedos);
-
         denunciaFinalSeleccion(rbtSiHizoDenuncia, edtDondeDenuncia, rbtNoHizoDenuncia, edtPorQueNoDenuncia, rbtNoSabeHacerDenuncia);
 
         tvDateHecho.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 Calendar cal = Calendar.getInstance();
@@ -274,13 +274,14 @@ public class ReporteActivity extends MasterClass {
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         listenerFecha(tvDateHecho),
                         year, month, day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });
 
 
         tvHoraHecho.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 TimePickerDialog dialog = new TimePickerDialog(
@@ -292,7 +293,7 @@ public class ReporteActivity extends MasterClass {
                                 tvHoraHecho.setText(hourOfDay + ":" + minute);
                             }
                         }, 0, 0, true);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });
@@ -313,10 +314,11 @@ public class ReporteActivity extends MasterClass {
 
         constraintLayout.setOnClickListener(new View.OnClickListener() {
             //hace que el teclado se oculte cuando presionas en otra parte visual del mismo layout
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 InputMethodManager inputMethodManager = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                Objects.requireNonNull(inputMethodManager).hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
     }
@@ -353,9 +355,9 @@ public class ReporteActivity extends MasterClass {
         //!vTraslado() && !vVictima())
 
         //todo no pasa check
-        // !vCaracteristicasProcedimiento()  && !vHechoPolicial() && !vOmisionActuar()
+        //!vHechoPolicial() && !vOmisionActuar()  && !faltantes()
 
-        if (!vHechoPolicial()) {
+        if (!faltantes()) {
             Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
         } else {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_REPORTE));
@@ -464,18 +466,8 @@ public class ReporteActivity extends MasterClass {
         //CARACTERISTICAS_PROCESAMIENTO
         motivoProcedimiento = checkeoRadioGroupSinEditText(rgProcesamiento);
         maltratos = checkeoRadioGroupConEditText(rgMalosTratosAgresiones, edtOtraAgresion);
-        if (!edtFisica.getText().toString().isEmpty()) {
-            lesiones += edtFisica.getText().toString().trim();
-        }
-        if (!edtPsiquica.getText().toString().isEmpty()) {
-            lesiones += edtPsiquica.getText().toString().trim();
-        }
-        if (!edtInsomnioPanico.getText().toString().isEmpty()) {
-            lesiones += edtInsomnioPanico.getText().toString().trim();
-        }
-        if (!edtOtrosMiedos.getText().toString().isEmpty()) {
-            lesiones += edtOtrosMiedos.getText().toString().trim();
-        }
+        lesiones = checkeoRadioGroupConEditText(rgLesionesSiNo, edtAclararLesiones);
+        Log.d("Ver","lesiones: " + lesiones);
 
         //ENTREVISTADO
         parentesco = edtParentesco.getText().toString().trim();
@@ -551,9 +543,8 @@ public class ReporteActivity extends MasterClass {
 
     private boolean vCaracteristicasProcedimiento() {
         return vGeneric(motivoProcedimiento, "Seleccione procedimiento") ||
-                vGeneric(maltratos, "Seleccione opcion en maltratos") ;
-                //todo revisar lesiones
-                //vGeneric(lesiones, "Seleccione opcion en Lesiones y/ complete");
+                vGeneric(maltratos, "Seleccione opcion en maltratos") ||
+                vGeneric(lesiones, "Seleccione opcion en Lesiones y/ complete");
     }
 
     private boolean vEntrevistador() {
@@ -575,14 +566,21 @@ public class ReporteActivity extends MasterClass {
                 vGeneric(conductaAgentes, edtConductaAgentes, "Ingrese conducta agentes");
     }
 
+    private boolean faltantes(){
+        //vGeneric(diaHecho, "Ingrese dia") ||
+        //vGeneric(horaHecho, "Ingrese hora") ||
+        //vGeneric(ubicacionHecho, "Ingrese ubicacion") ||
+        return vGeneric(denunciaFinal, "Seleccione en denuncia final");
+    }
+
     private boolean vHechoPolicial() {
-        return vGeneric(diaHecho, "Ingrese dia") ||
-                vGeneric(horaHecho, "Ingrese hora") ||
-                vGeneric(ubicacionHecho, "Ingrese ubicacion") ||
+        return //vGeneric(diaHecho, "Ingrese dia") ||
+                //vGeneric(horaHecho, "Ingrese hora") ||
+                //vGeneric(ubicacionHecho, "Ingrese ubicacion") ||
                 vGeneric(cuantosAcompañan, edtCuantosAcompañan, "Ingrese cuantos acompañan") ||
-                vGeneric(cualLugar, edtCualLugar, "Ingrese cual lugar") ||
-                vGeneric(provinciaHecho, edtProvinciaHecho, "Ingrese provincia") ||
-                vGeneric(paisHecho, edtPaisHecho, "Ingrese pais");
+                        vGeneric(cualLugar, edtCualLugar, "Ingrese cual lugar") ||
+                        vGeneric(provinciaHecho, edtProvinciaHecho, "Ingrese provincia") ||
+                        vGeneric(paisHecho, edtPaisHecho, "Ingrese pais");
     }
 
     private boolean vModalidadDetencion() {
@@ -591,13 +589,12 @@ public class ReporteActivity extends MasterClass {
     }
 
     private boolean vOmisionActuar() {
+        //todo revisar :v
+        //vGeneric(denunciaFinal, "Seleccione en denuncia final");
         return vGeneric(mediosDeAsistencia, edtMedioAsistencia, "Ingrese medios de asistencia") ||
                 vGeneric(aQuienAsistencia, edtAQuien, "Ingrese quien lo asistio") ||
                 vGeneric(denunciaRechazada, "Selecione en denuncia") ||
-                vGeneric(violentado, "Seleccione si fue violentado")
-                ;
-                //todo revisar :v
-                //vGeneric(denunciaFinal, "Seleccione en denuncia final");
+                vGeneric(violentado, "Seleccione si fue violentado");
     }
 
     private boolean vResultadoInvestigacion() {
@@ -664,14 +661,13 @@ public class ReporteActivity extends MasterClass {
     }
 
     public DatePickerDialog.OnDateSetListener listenerFecha(final TextView tvDate) {
-        DatePickerDialog.OnDateSetListener DateSetListener = new DatePickerDialog.OnDateSetListener() {
+        return new DatePickerDialog.OnDateSetListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 tvDate.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
             }
         };
-        return DateSetListener;
     }
 
     private void listenerLesiones(final RadioButton rbtTrue, final EditText edt1, final EditText edt2, final EditText edt3, final EditText edt4) {

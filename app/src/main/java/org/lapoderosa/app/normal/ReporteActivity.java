@@ -101,7 +101,8 @@ public class ReporteActivity extends MasterClass {
     //DENUNCIA
     private EditText edtDondeDenuncia, edtPorQueNoDenuncia;
     //RESULTADO DE LA INVESTIGACION
-    private RadioButton rbtSiHizoDenuncia, rbtNoHizoDenuncia, rbtNoSabeHacerDenuncia;
+    //private RadioButton rbtSiHizoDenuncia, rbtNoHizoDenuncia, rbtNoSabeHacerDenuncia;
+    private RadioGroup rgDenuncia;
     //VICTIMA
     private EditText edtNombreVictima, edtApellidoVictima, edtGeneroVictima, edtEdadVictima, edtNacionalidadVictima, edtDocumentoVictima, edtDireccionVictima, edtBarrioVictima, edtTelefonoVictima;
 
@@ -195,11 +196,12 @@ public class ReporteActivity extends MasterClass {
         edtMotivosDenunciaRechazada = findViewById(R.id.edtMotivosDenunciaRechazada);
         rgViolentadoSiNo = findViewById(R.id.rgViolentadoSiNo);
         //denuncia
-        rbtSiHizoDenuncia = findViewById(R.id.rbtSiHizoDenuncia);
+        //rbtSiHizoDenuncia = findViewById(R.id.rbtSiHizoDenuncia);
+        rgDenuncia = findViewById(R.id.rgDenuncia);
         edtDondeDenuncia = findViewById(R.id.edtDondeDenuncia);
-        rbtNoHizoDenuncia = findViewById(R.id.rbtNoHizoDenuncia);
+        //rbtNoHizoDenuncia = findViewById(R.id.rbtNoHizoDenuncia);
         edtPorQueNoDenuncia = findViewById(R.id.edtPorQueNoDenuncia);
-        rbtNoSabeHacerDenuncia = findViewById(R.id.rbtNoSabeHacerDenuncia);
+        //rbtNoSabeHacerDenuncia = findViewById(R.id.rbtNoSabeHacerDenuncia);
 
         //RESULTADO DE LA INVERTIGACION
         rgEtapaDeInvestigacion = findViewById(R.id.rgEtapaDeInvestigacion);
@@ -244,7 +246,7 @@ public class ReporteActivity extends MasterClass {
             }
         });
 
-        denunciaFinalSeleccion(rbtSiHizoDenuncia, edtDondeDenuncia, rbtNoHizoDenuncia, edtPorQueNoDenuncia, rbtNoSabeHacerDenuncia);
+        //denunciaFinalSeleccion(rbtSiHizoDenuncia, edtDondeDenuncia, rbtNoHizoDenuncia, edtPorQueNoDenuncia, rbtNoSabeHacerDenuncia);
 
         tvDateHecho.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -336,14 +338,12 @@ public class ReporteActivity extends MasterClass {
     //todo enviar reporte
     private void enviarReporte() {
         inicializarStringVariables();
-        //!vAllanamiento() && !vEntrevistador() && !vfuerzasIntervinientes() &&
-        //!vHechoPolicial() && !vModalidadDetencion() && !vOmisionActuar() && !vResultadoInvestigacion() &&
-        //!vTraslado() && !vVictima())
-
         //todo no pasa check
         //!vHechoPolicial() && !vOmisionActuar()  && !faltantes()
 
-        if (!vfuerzasIntervinientes()) {
+        if (!vAllanamiento() && !vEntrevistador() && !vfuerzasIntervinientes() && !vHechoPolicial()
+                && !vModalidadDetencion() && !vOmisionActuar() && !vResultadoInvestigacion()
+                && !vTraslado() && !vVictima()) {
             Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
         } else {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_REPORTE));
@@ -440,20 +440,19 @@ public class ReporteActivity extends MasterClass {
         horaCreacionReporte = dateHourFormat.format(date);
 
         //ALLANAMIENTO
-        ordenAllanamiento = checkeoRadioGroupSinEditText(rgOrdenAllanamientoSiNo);
-        agresionAllanamiento = checkeoRadioGroupConEditText(rgAgresionDomicilioSiNo, edtCualesAgresionesDomicilio);
-        pertenenciasAllanamiento = checkeoRadioGroupConEditText(rgPertenenciasRobadasSiNo, edtCualesPertenencias);
-        omisionPertenencias = checkeoRadioGroupConEditText(rgOmitieronPertenenciasSiNo, edtCualesOmitieron);
-        detenidosAllanamiento = checkeoRadioGroupConEditText(rgPersonasDetenidasSiNo, edtCuantosDetenidos);
+        ordenAllanamiento = checkRadioGroup(rgOrdenAllanamientoSiNo);
+        agresionAllanamiento = checkRadioGroup(rgAgresionDomicilioSiNo, edtCualesAgresionesDomicilio);
+        pertenenciasAllanamiento = checkRadioGroup(rgPertenenciasRobadasSiNo, edtCualesPertenencias);
+        omisionPertenencias = checkRadioGroup(rgOmitieronPertenenciasSiNo, edtCualesOmitieron);
+        detenidosAllanamiento = checkRadioGroup(rgPersonasDetenidasSiNo, edtCuantosDetenidos);
         duracionAllanamiento = edtTiempoAllanamiento.getText().toString();
-        posicionDetenidos = checkeoRadioGroupConEditText(rgPosicionFisicaEleccion, edtOtraPosicion);
-        esposados = checkeoRadioGroupSinEditText(rgEsposadosAllanamientoSiNo);
+        posicionDetenidos = checkRadioGroup(rgPosicionFisicaEleccion, edtOtraPosicion);
+        esposados = checkRadioGroup(rgEsposadosAllanamientoSiNo);
 
         //CARACTERISTICAS_PROCESAMIENTO
-        motivoProcedimiento = checkeoRadioGroupSinEditText(rgProcesamiento);
-        maltratos = checkeoRadioGroupConEditText(rgMalosTratosAgresiones, edtOtraAgresion);
-        lesiones = checkeoRadioGroupConEditText(rgLesionesSiNo, edtAclararLesiones);
-        Log.d("Ver", "lesiones: " + lesiones);
+        motivoProcedimiento = checkRadioGroup(rgProcesamiento);
+        maltratos = checkRadioGroup(rgMalosTratosAgresiones, edtOtraAgresion);
+        lesiones = checkRadioGroup(rgLesionesSiNo, edtAclararLesiones);
 
         //ENTREVISTADO
         parentesco = edtParentesco.getText().toString().trim();
@@ -492,17 +491,18 @@ public class ReporteActivity extends MasterClass {
         //OMISION AL ACTUAR
         mediosDeAsistencia = edtMedioAsistencia.getText().toString().trim();
         aQuienAsistencia = edtAQuien.getText().toString().trim();
-        denunciaRechazada = checkeoRadioGroupConEditText(rgDenunciaTomadaSiNo, edtMotivosDenunciaRechazada);
-        violentado = checkeoRadioGroupSinEditText(rgViolentadoSiNo);
+        denunciaRechazada = checkRadioGroup(rgDenunciaTomadaSiNo, edtMotivosDenunciaRechazada);
+        violentado = checkRadioGroup(rgViolentadoSiNo);
+        denunciaFinal = checkRadioGroup(rgDenuncia, edtDondeDenuncia, edtPorQueNoDenuncia);
 
         //RESULTADO_INVESTIGACION
-        resultadoInvestigacion = checkeoRadioGroupSinEditText(rgEtapaDeInvestigacion);
-        trabajanLosOficiales = checkeoRadioGroupSinEditText(rgOficialesTrabajanSiNo);
+        resultadoInvestigacion = checkRadioGroup(rgEtapaDeInvestigacion);
+        trabajanLosOficiales = checkRadioGroup(rgOficialesTrabajanSiNo);
 
         //TRASLADO
-        traslado = checkeoRadioGroupConEditText(rgTrasladoSiNo, edtDondeTrasladaron);
-        comisaria = checkeoRadioGroupConEditText(rgComisariaSiNo, edtCualComisaria);
-        esposado = checkeoRadioGroupSinEditText(rgEsposadosSiNo);
+        traslado = checkRadioGroup(rgTrasladoSiNo, edtDondeTrasladaron);
+        comisaria = checkRadioGroup(rgComisariaSiNo, edtCualComisaria);
+        esposado = checkRadioGroup(rgEsposadosSiNo);
 
         //VICTIMA
         nombreVictima = edtNombreVictima.getText().toString().trim();
@@ -552,21 +552,15 @@ public class ReporteActivity extends MasterClass {
                 vGeneric(conductaAgentes, edtConductaAgentes, "Ingrese conducta agentes");
     }
 
-    private boolean faltantes() {
-        //vGeneric(diaHecho, "Ingrese dia") ||
-        //vGeneric(horaHecho, "Ingrese hora") ||
-        //vGeneric(ubicacionHecho, "Ingrese ubicacion") ||
-        return vGeneric(denunciaFinal, "Seleccione en denuncia final");
-    }
-
     private boolean vHechoPolicial() {
-        return //vGeneric(diaHecho, "Ingrese dia") ||
-                //vGeneric(horaHecho, "Ingrese hora") ||
-                //vGeneric(ubicacionHecho, "Ingrese ubicacion") ||
+        return vGeneric(diaHecho, "Ingrese dia en Descripcion del Hecho") ||
+                vGeneric(horaHecho, "Ingrese hora en Descripcion del Hecho") ||
+                //check
+                vGeneric(ubicacionHecho, "Ingrese ubicacion") ||
                 vGeneric(cuantosAcompañan, edtCuantosAcompañan, "Ingrese cuantos acompañan") ||
-                        vGeneric(cualLugar, edtCualLugar, "Ingrese cual lugar") ||
-                        vGeneric(provinciaHecho, edtProvinciaHecho, "Ingrese provincia") ||
-                        vGeneric(paisHecho, edtPaisHecho, "Ingrese pais");
+                vGeneric(cualLugar, edtCualLugar, "Ingrese cual lugar") ||
+                vGeneric(provinciaHecho, edtProvinciaHecho, "Ingrese provincia") ||
+                vGeneric(paisHecho, edtPaisHecho, "Ingrese pais");
     }
 
     private boolean vModalidadDetencion() {
@@ -575,12 +569,11 @@ public class ReporteActivity extends MasterClass {
     }
 
     private boolean vOmisionActuar() {
-        //todo revisar :v
-        //vGeneric(denunciaFinal, "Seleccione en denuncia final");
         return vGeneric(mediosDeAsistencia, edtMedioAsistencia, "Ingrese medios de asistencia") ||
                 vGeneric(aQuienAsistencia, edtAQuien, "Ingrese quien lo asistio") ||
                 vGeneric(denunciaRechazada, "Selecione en denuncia") ||
-                vGeneric(violentado, "Seleccione si fue violentado");
+                vGeneric(violentado, "Seleccione si fue agredido, en omision") ||
+                vGeneric(denunciaFinal, "Seleccione en si hizo una denuncia");
     }
 
     private boolean vResultadoInvestigacion() {
@@ -607,21 +600,19 @@ public class ReporteActivity extends MasterClass {
     }
 
     private boolean vGeneric(String string, EditText txt, String mensaje) {
-        if (string.isEmpty()) {
+        if (string.isEmpty() || string.length() <= 1) {
             txt.setError(mensaje);
             return false;
-        } else {
-            return true;
         }
+        return true;
     }
 
     private boolean vGeneric(String string, String mensaje) {
-        if (string.isEmpty()) {
+        if (string.equals("dd/mm/yyyy") || string.equals("HH:mm") || string.length() <= 2) {
             makeTxt(mensaje);
             return false;
-        } else {
-            return true;
         }
+        return true;
     }
 
     @Override
@@ -656,127 +647,49 @@ public class ReporteActivity extends MasterClass {
         };
     }
 
-    private void listenerLesiones(final RadioButton rbtTrue, final EditText edt1, final EditText edt2, final EditText edt3, final EditText edt4) {
-        rbtTrue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                limpiarEditText(edt1);
-                limpiarEditText(edt2);
-                limpiarEditText(edt3);
-                limpiarEditText(edt4);
-                lesiones = rbtTrue.getText().toString();
-            }
-        });
-
-        edt1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rbtTrue.setChecked(false);
-                limpiarEditText(edt2);
-                limpiarEditText(edt3);
-                limpiarEditText(edt4);
-                lesiones = edt1.getText().toString();
-            }
-        });
-        edt2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rbtTrue.setChecked(false);
-                limpiarEditText(edt1);
-                limpiarEditText(edt3);
-                limpiarEditText(edt4);
-                lesiones = edt2.getText().toString();
-            }
-        });
-        edt3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rbtTrue.setChecked(false);
-                limpiarEditText(edt1);
-                limpiarEditText(edt2);
-                limpiarEditText(edt4);
-                lesiones = edt3.getText().toString();
-            }
-        });
-        edt4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rbtTrue.setChecked(false);
-                limpiarEditText(edt1);
-                limpiarEditText(edt2);
-                limpiarEditText(edt3);
-                lesiones = edt4.getText().toString();
-            }
-        });
-    }
-
-    private void denunciaFinalSeleccion(final RadioButton rbtSi, final EditText edtDonde, final RadioButton rbtNo, final EditText porQueNo, final RadioButton noSabe) {
-
-        rbtSi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rbtNo.setChecked(false);
-                noSabe.setChecked(false);
-                limpiarEditText(porQueNo);
-                denunciaFinal = rbtSi.getText().toString() + edtDonde.getText().toString();
-            }
-        });
-        rbtNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rbtSi.setChecked(false);
-                noSabe.setChecked(false);
-                limpiarEditText(edtDonde);
-                denunciaFinal = rbtNo.getText().toString() + porQueNo.getText().toString();
-            }
-        });
-        noSabe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rbtNo.setChecked(false);
-                rbtSi.setChecked(false);
-                limpiarEditText(porQueNo);
-                limpiarEditText(edtDonde);
-                denunciaFinal = noSabe.getText().toString();
-            }
-        });
-    }
-
-    public void limpiarEditText(EditText edtText) {
-        edtText.setText("");
-    }
-
-    private String checkeoRadioGroupConEditText(RadioGroup grupoGroup, EditText text) {
+    private String checkRadioGroup(RadioGroup grupoGroup, EditText text) {
         final RadioButton algo;
 
         if (seSeleccionoAlmenosUnoEn(grupoGroup)) {
             algo = findViewById(grupoGroup.getCheckedRadioButtonId());
 
             if (algo.getText().toString().equals("Otro:") || algo.getText().toString().equals("Si")) {
-                if (text.getText().toString().isEmpty()) {
-                    makeTxt("Seleccionó la opcion " + algo.getText().toString() + ", especifique");
-                    text.setError("completar");
-                    return "";
-                } else {
-                    return text.getText().toString().trim();
-                }
+                return this.chooseSeleccion(text, algo);
             } else {
                 return algo.getText().toString().trim();
             }
         } else {
-            //makeTxt(mensajeError);
             return "";
         }
     }
 
-    private String checkeoRadioGroupSinEditText(RadioGroup radioGroup) {
+    private String checkRadioGroup(RadioGroup grupoGroup, EditText text, EditText text2) {
+        final RadioButton algo;
+
+        if (seSeleccionoAlmenosUnoEn(grupoGroup)) {
+            algo = findViewById(grupoGroup.getCheckedRadioButtonId());
+
+            if (algo.getText().toString().equals("Si")) {
+                text2.setText("");
+                return this.chooseSeleccion(text, algo);
+            } else if (algo.getText().toString().equals("No")) {
+                text.setText("");
+                return this.chooseSeleccion(text2, algo);
+            } else {
+                return algo.getText().toString().trim();
+            }
+        } else {
+            return "";
+        }
+    }
+
+    private String checkRadioGroup(RadioGroup radioGroup) {
         final RadioButton algo;
 
         if (this.seSeleccionoAlmenosUnoEn(radioGroup)) {
             algo = findViewById(radioGroup.getCheckedRadioButtonId());
             return algo.getText().toString().trim();
         } else {
-            //makeTxt(mensajeError);
             return "";
         }
     }
@@ -787,5 +700,16 @@ public class ReporteActivity extends MasterClass {
 
     private void makeTxt(String mensaje) {
         Toast.makeText(ReporteActivity.this, mensaje, Toast.LENGTH_SHORT).show();
+    }
+
+    private String chooseSeleccion(EditText text, RadioButton algo) {
+        if (text.getText().toString().isEmpty()) {
+            makeTxt("Seleccionó la opcion " + algo.getText().toString() + ", especifique");
+            text.setError("completar");
+            return "";
+        } else {
+            text.requestFocus();
+            return algo.getText().toString().trim() + ": " + text.getText().toString().trim();
+        }
     }
 }

@@ -39,13 +39,10 @@ import org.lapoderosa.app.util.SharedPrefManager;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 
 //todo verificar que los campos de strings no esten vacios
 public class ReporteActivity extends MasterClass {
@@ -54,70 +51,59 @@ public class ReporteActivity extends MasterClass {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
     @SuppressLint("SimpleDateFormat")
     private DateFormat dateHourFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
-    private static final String TAG = "ReporteActivity";
     private TextView tvDateEntrevista, tvDateHecho, tvHoraHecho;
     private DatePickerDialog.OnDateSetListener m1DateSetListener;
     private DatePickerDialog.OnDateSetListener m2DateSetListener;
     private TimePickerDialog.OnTimeSetListener timeSetListener;
     private Button guardar, cancelar;
-    //ENTREVISTADOR
-    private String nombreEntrevistador, apellidoEntrevistador, asamblea, fecha;
+    //ALLANAMIENTO
+    private String ordenAllanamiento, agresionAllanamiento, pertenenciasAllanamiento, omisionPertenencias, detenidosAllanamiento, duracionAllanamiento, posicionDetenidos, esposados;
+    //CARACTERISTICAS DEL PROCEDIMIENTO
+    private String motivoProcedimiento, maltratos, lesiones;
     //ENTREVISTADO
     private String parentesco;
-    //VICTIMA
-    private String nombreVictima, apellidoVictima, generoVictima, edadVictima, nacionalidadVictima, documentoVictima, direccionVictima, barrioVictima, telefonoVictima;
-    //HECHO POLICIAL
-    private String direccionHecho, barrioHecho, ciudadHecho, cuantosAcompañan, cualLugar, diaHecho, horaHecho;
-    private String ubicacionHecho, provinciaHecho, paisHecho;
+    //ENTREVISTADOR
+    private String nombreEntrevistador, apellidoEntrevistador, asamblea, fecha;
     //FUERZAS INTERVINIENTES
     private String fuerzasIntervinientes, cantidadAgentes, nombresAgentes, apodos, cantidadVehiculos, numMovil, dominio, conductaAgentes;
-    //CARACTERISTICAS DEL PROCEDIMIENTO
-    private String motivoProcedimiento;
-    //MALTRATOS
-    private String maltratos;
-    //LESIONES
-    private String lesiones;
+    //HECHO POLICIAL todo revisar direccion barrio ciudad
+    private String direccionHecho, barrioHecho, ciudadHecho, diaHecho, horaHecho, ubicacionHecho, cuantosAcompañan, cualLugar, provinciaHecho, paisHecho;
     //MODALIDAD DE DETENCION
-    private String posicionDetenido, cuantoTiempoDetenido, traslado, comisaria, esposado;
-    //ALLANAMIENTO
-    private String ordenAllanamiento, agresionAllanamiento, pertenenciasAllanamiento,
-            omisionPertenencias, detenidosAllanamiento, duracionAllanamiento, posicionDetenidos, esposados;
+    private String posicionDetenido, cuantoTiempoDetenido;
     //OMISION AL ACTUAR
-    private String mediosDeAsistencia, aQuienAsistencia, denunciaRechazada, violentado;
-    //DENUNCIA
-    private String hizoDenuncia, dondeDenuncia, porQueNoDenuncia, denunciaFinal;
+    private String mediosDeAsistencia, aQuienAsistencia, denunciaRechazada, violentado, denunciaFinal;
     //RESULTADO DE LA INVESTIGACION
     private String resultadoInvestigacion, trabajanLosOficiales;
+    //TRASLADO
+    private String traslado, comisaria, esposado;
+    //VICTIMA
+    private String nombreVictima, apellidoVictima, generoVictima, edadVictima, nacionalidadVictima, documentoVictima, direccionVictima, barrioVictima, telefonoVictima;
 
     //**************//
+    //ALLANAMIENTO
+    private EditText edtCualesAgresionesDomicilio, edtCualesPertenencias, edtCualesOmitieron, edtCuantosDetenidos, edtTiempoAllanamiento, edtOtraPosicion;
     //ENTREVISTADOR
-    private EditText eNombreEntrevistador, eApellidoEntrevistador, eAsamblea, diaEntrevista;
+    private EditText edtNombreEntrevistador, edtApellidoEntrevistador, edtAsamblea;
     //ENTREVISTADO
     private EditText edtParentesco;
-    //VICTIMA
-    private EditText edtNombreVictima, edtApellidoVictima, edtGeneroVictima, edtEdadVictima, edtNacionalidadVictima,
-            edtDocumentoVictima, edtDireccionVictima, edtBarrioVictima, edtTelefonoVictima;
-    //HECHO POLICIAL
-    private EditText edtDireccionHecho, edtBarrioHecho, edtCiudadHecho, edtProvinciaHecho, edtPaisHecho, edtCuantosAcompañan, edtCualLugar;
     //FUERZAS INTERVINIENTES
     private EditText edtFuerzasIntervinientes, edtCantidadAgentes, edtNombresAgentes, edtApodos, edtCantidadVehiculos, edtNumMovil, edtDominio, edtConductaAgentes;
-
+    //HECHO POLICIAL
+    private EditText edtDireccionHecho, edtBarrioHecho, edtCiudadHecho, edtProvinciaHecho, edtPaisHecho, edtCuantosAcompañan, edtCualLugar;
+    //MODALIDAD DE DETENCION
+    private EditText edtPosicionDetenido, edtCuantoTiempoDetenido, edtDondeTrasladaron, edtCualComisaria;
+    //OMISION AL ACTUAR
+    private EditText edtMedioAsistencia, edtAQuien, edtMotivosDenunciaRechazada;
     //MALTRATOS
     private EditText edtOtraAgresion;
     //LESIONES
     private EditText edtAclararLesiones;
-    //MODALIDAD DE DETENCION
-    private EditText edtPosicionDetenido, edtCuantoTiempoDetenido, edtDondeTrasladaron, edtCualComisaria;
-    //ALLANAMIENTO
-    private EditText edtCualesAgresionesDomicilio, edtCualesPertenencias, edtCualesOmitieron, edtCuantosDetenidos, edtTiempoAllanamiento, edtOtraPosicion;
-    //OMISION AL ACTUAR
-
-    private EditText edtMedioAsistencia, edtAQuien, edtMotivosDenunciaRechazada;
     //DENUNCIA
-
     private EditText edtDondeDenuncia, edtPorQueNoDenuncia;
-    private RadioButton rbtSiHizoDenuncia, rbtNoHizoDenuncia, rbtNoSabeHacerDenuncia;
     //RESULTADO DE LA INVESTIGACION
+    private RadioButton rbtSiHizoDenuncia, rbtNoHizoDenuncia, rbtNoSabeHacerDenuncia;
+    //VICTIMA
+    private EditText edtNombreVictima, edtApellidoVictima, edtGeneroVictima, edtEdadVictima, edtNacionalidadVictima, edtDocumentoVictima, edtDireccionVictima, edtBarrioVictima, edtTelefonoVictima;
 
     private ConstraintLayout constraintLayout;
 
@@ -170,9 +156,9 @@ public class ReporteActivity extends MasterClass {
         edtParentesco = findViewById(R.id.edtParentesco);
 
         //ENTREVISTADOR
-        eNombreEntrevistador = findViewById(R.id.edtNombreEntrevistador);
-        eApellidoEntrevistador = findViewById(R.id.edtApellidoEntrevistador);
-        eAsamblea = findViewById(R.id.edtAsamblea);
+        edtNombreEntrevistador = findViewById(R.id.edtNombreEntrevistador);
+        edtApellidoEntrevistador = findViewById(R.id.edtApellidoEntrevistador);
+        edtAsamblea = findViewById(R.id.edtAsamblea);
         tvDateEntrevista = findViewById(R.id.tvDateEntrevista);
 
         //FUERZAS INTERVINIENTES
@@ -357,7 +343,7 @@ public class ReporteActivity extends MasterClass {
         //todo no pasa check
         //!vHechoPolicial() && !vOmisionActuar()  && !faltantes()
 
-        if (!faltantes()) {
+        if (!vfuerzasIntervinientes()) {
             Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
         } else {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_REPORTE));
@@ -467,15 +453,15 @@ public class ReporteActivity extends MasterClass {
         motivoProcedimiento = checkeoRadioGroupSinEditText(rgProcesamiento);
         maltratos = checkeoRadioGroupConEditText(rgMalosTratosAgresiones, edtOtraAgresion);
         lesiones = checkeoRadioGroupConEditText(rgLesionesSiNo, edtAclararLesiones);
-        Log.d("Ver","lesiones: " + lesiones);
+        Log.d("Ver", "lesiones: " + lesiones);
 
         //ENTREVISTADO
         parentesco = edtParentesco.getText().toString().trim();
 
         //ENTREVISTADOR
-        nombreEntrevistador = eNombreEntrevistador.getText().toString().trim();
-        apellidoEntrevistador = eApellidoEntrevistador.getText().toString().trim();
-        asamblea = eAsamblea.getText().toString().trim();
+        nombreEntrevistador = edtNombreEntrevistador.getText().toString().trim();
+        apellidoEntrevistador = edtApellidoEntrevistador.getText().toString().trim();
+        asamblea = edtAsamblea.getText().toString().trim();
         fecha = tvDateEntrevista.getText().toString().trim();
 
         //FUERZAS INTERVINIENTES
@@ -550,9 +536,9 @@ public class ReporteActivity extends MasterClass {
     private boolean vEntrevistador() {
         //la fecha de entrevistador ya viene por default completa si no la rellenan
         return vGeneric(parentesco, edtParentesco, "ingrese parentesco") ||
-                vGeneric(nombreEntrevistador, eNombreEntrevistador, "ingrese entrevistador") ||
-                vGeneric(apellidoEntrevistador, eApellidoEntrevistador, "ingrese apellido entrevistador") ||
-                vGeneric(asamblea, eAsamblea, "ingrese asamblea");
+                vGeneric(nombreEntrevistador, edtNombreEntrevistador, "ingrese entrevistador") ||
+                vGeneric(apellidoEntrevistador, edtApellidoEntrevistador, "ingrese apellido entrevistador") ||
+                vGeneric(asamblea, edtAsamblea, "ingrese asamblea");
     }
 
     private boolean vfuerzasIntervinientes() {
@@ -566,7 +552,7 @@ public class ReporteActivity extends MasterClass {
                 vGeneric(conductaAgentes, edtConductaAgentes, "Ingrese conducta agentes");
     }
 
-    private boolean faltantes(){
+    private boolean faltantes() {
         //vGeneric(diaHecho, "Ingrese dia") ||
         //vGeneric(horaHecho, "Ingrese hora") ||
         //vGeneric(ubicacionHecho, "Ingrese ubicacion") ||

@@ -604,7 +604,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -645,12 +644,6 @@
                 android:layout_marginBottom="10dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Funcionarios Intervinientes"
-                    android:textSize="23sp"
-                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -658,12 +651,13 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textStyle="italic"
                         android:text="Agentes:"
                         android:textSize="18sp" />
 
@@ -742,13 +736,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textStyle="italic"
                         android:text="Vehiculos:"
                         android:textSize="18sp" />
 
@@ -826,6 +821,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -1075,7 +1071,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:layout_marginBottom="5dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -1133,149 +1128,160 @@
                             android:textSize="16sp" />
                     </LinearLayout>
                 </LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/text1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="¿Lo Trasladaron a algun lugar diferente de donde lo abordaron?"
-                        android:textStyle="italic"
-                        android:textSize="18sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgTrasladoSiNo"
-                        android:layout_below="@+id/text1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="50dp"
-                        android:orientation="vertical"
-                        android:layout_marginStart="50dp">
-
-                        <RadioButton
-                            android:id="@+id/rbtNoTrasladaron"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="No"
-                            android:textSize="16sp"/>
-
-                        <RadioButton
-                            android:id="@+id/rbtSiTrasladaron"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Si"
-                            android:textSize="16sp" />
-                    </RadioGroup>
-                    <EditText
-                        android:id="@+id/edtDondeTrasladaron"
-                        android:layout_marginLeft="4dp"
-                        android:layout_alignBottom="@+id/rgTrasladoSiNo"
-                        android:layout_toRightOf="@+id/rgTrasladoSiNo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="¿Donde?"
-                        android:inputType="text"
-                        android:textSize="14sp"
-                        android:layout_toEndOf="@+id/rgTrasladoSiNo" />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/text2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="¿Fue conducido a una comisaria, garita/dependencia?"
-                        android:textStyle="italic"
-                        android:textSize="18sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgComisariaSiNo"
-                        android:layout_below="@+id/text2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="50dp"
-                        android:orientation="vertical"
-                        android:layout_marginStart="50dp">
-
-                        <RadioButton
-                            android:id="@+id/rbtNoComisaria"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="No"
-                            android:textSize="16sp"/>
-
-                        <RadioButton
-                            android:id="@+id/rbtSiComisaria"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Si"
-                            android:textSize="16sp" />
-                    </RadioGroup>
-                    <EditText
-                        android:id="@+id/edtCualComisaria"
-                        android:layout_marginLeft="4dp"
-                        android:layout_alignBottom="@+id/rgComisariaSiNo"
-                        android:layout_toRightOf="@+id/rgComisariaSiNo"
-                        android:layout_toEndOf="@+id/rgComisariaSiNo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="¿Cual?"
-                        android:inputType="text"
-                        android:textSize="14sp"/>
-                </RelativeLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="¿Fuaron esposados?"
-                        android:textStyle="italic"
-                        android:textSize="18sp" />
+                        android:text="Traslado"
+                        android:textSize="23sp"
+                        android:textStyle="bold" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="vertical">
 
-                    <RadioGroup
-                        android:id="@+id/rgEsposadosSiNo"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/text1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="¿Lo Trasladaron a algun lugar diferente de donde lo abordaron?"
+                            android:textStyle="italic"
+                            android:textSize="18sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgTrasladoSiNo"
+                            android:layout_below="@+id/text1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="50dp"
+                            android:orientation="vertical"
+                            android:layout_marginStart="50dp">
+
+                            <RadioButton
+                                android:id="@+id/rbtNoTrasladaron"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="No"
+                                android:textSize="16sp"/>
+
+                            <RadioButton
+                                android:id="@+id/rbtSiTrasladaron"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Si"
+                                android:textSize="16sp" />
+                        </RadioGroup>
+                        <EditText
+                            android:id="@+id/edtDondeTrasladaron"
+                            android:layout_marginLeft="4dp"
+                            android:layout_alignBottom="@+id/rgTrasladoSiNo"
+                            android:layout_toRightOf="@+id/rgTrasladoSiNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="¿Donde?"
+                            android:inputType="text"
+                            android:textSize="14sp"
+                            android:layout_toEndOf="@+id/rgTrasladoSiNo" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/text2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="¿Fue conducido a una comisaria, garita/dependencia?"
+                            android:textStyle="italic"
+                            android:textSize="18sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgComisariaSiNo"
+                            android:layout_below="@+id/text2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="50dp"
+                            android:orientation="vertical"
+                            android:layout_marginStart="50dp">
+
+                            <RadioButton
+                                android:id="@+id/rbtNoComisaria"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="No"
+                                android:textSize="16sp"/>
+
+                            <RadioButton
+                                android:id="@+id/rbtSiComisaria"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Si"
+                                android:textSize="16sp" />
+                        </RadioGroup>
+                        <EditText
+                            android:id="@+id/edtCualComisaria"
+                            android:layout_marginLeft="4dp"
+                            android:layout_alignBottom="@+id/rgComisariaSiNo"
+                            android:layout_toRightOf="@+id/rgComisariaSiNo"
+                            android:layout_toEndOf="@+id/rgComisariaSiNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="¿Cual?"
+                            android:inputType="text"
+                            android:textSize="14sp"/>
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="50dp"
-                        android:orientation="vertical"
-                        android:layout_marginStart="50dp">
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
 
-                        <RadioButton
-                            android:id="@+id/rbtNoEsposados"
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="¿Fuaron esposados?"
+                            android:textStyle="italic"
+                            android:textSize="18sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgEsposadosSiNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="No"
-                            android:textSize="16sp"/>
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="50dp"
+                            android:orientation="vertical"
+                            android:layout_marginStart="50dp">
 
-                        <RadioButton
-                            android:id="@+id/rbtSiEsposados"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Si"
-                            android:textSize="16sp"/>
-                    </RadioGroup>
+                            <RadioButton
+                                android:id="@+id/rbtNoEsposados"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="No"
+                                android:textSize="16sp"/>
+
+                            <RadioButton
+                                android:id="@+id/rbtSiEsposados"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Si"
+                                android:textSize="16sp"/>
+                        </RadioGroup>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -1287,7 +1293,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Solo Allanamientos"
+                    android:text="Allanamiento"
                     android:textSize="23sp"
                     android:textStyle="bold" />
 

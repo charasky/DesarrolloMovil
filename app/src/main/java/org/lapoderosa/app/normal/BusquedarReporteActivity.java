@@ -109,7 +109,8 @@ public class BusquedarReporteActivity extends MasterClass {
                                 jsonObject1.getString("r_ciudad"),
                                 jsonObject1.getString("fecha"),
                                 jsonObject1.getString("vic_nombre"),
-                                jsonObject1.getString("vic_apellido")
+                                jsonObject1.getString("vic_apellido"),
+                                jsonObject1.getString("r_hora")
                         )
                 );
             }

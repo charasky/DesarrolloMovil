@@ -52,9 +52,6 @@ public class ReporteActivity extends MasterClass {
     @SuppressLint("SimpleDateFormat")
     private DateFormat dateHourFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
     private TextView tvDateEntrevista, tvDateHecho, tvHoraHecho;
-    private DatePickerDialog.OnDateSetListener m1DateSetListener;
-    private DatePickerDialog.OnDateSetListener m2DateSetListener;
-    private TimePickerDialog.OnTimeSetListener timeSetListener;
     private Button guardar, cancelar;
     //ALLANAMIENTO
     private String ordenAllanamiento, agresionAllanamiento, pertenenciasAllanamiento, omisionPertenencias, detenidosAllanamiento, duracionAllanamiento, posicionDetenidos, esposados;
@@ -67,7 +64,8 @@ public class ReporteActivity extends MasterClass {
     //FUERZAS INTERVINIENTES
     private String fuerzasIntervinientes, cantidadAgentes, nombresAgentes, apodos, cantidadVehiculos, numMovil, dominio, conductaAgentes;
     //HECHO POLICIAL todo revisar direccion barrio ciudad
-    private String direccionHecho, barrioHecho, ciudadHecho, diaHecho, horaHecho, ubicacionHecho, cuantosAcompañan, cualLugar, provinciaHecho, paisHecho;
+    //ubicacionHecho
+    private String direccionHecho, barrioHecho, diaHecho, horaHecho, cuantosAcompañan, cualLugar, provinciaHecho, paisHecho;
     //MODALIDAD DE DETENCION
     private String posicionDetenido, cuantoTiempoDetenido;
     //OMISION AL ACTUAR
@@ -89,7 +87,7 @@ public class ReporteActivity extends MasterClass {
     //FUERZAS INTERVINIENTES
     private EditText edtFuerzasIntervinientes, edtCantidadAgentes, edtNombresAgentes, edtApodos, edtCantidadVehiculos, edtNumMovil, edtDominio, edtConductaAgentes;
     //HECHO POLICIAL
-    private EditText edtDireccionHecho, edtBarrioHecho, edtCiudadHecho, edtProvinciaHecho, edtPaisHecho, edtCuantosAcompañan, edtCualLugar;
+    private EditText edtDireccionHecho, edtBarrioHecho, edtProvinciaHecho, edtPaisHecho, edtCuantosAcompañan, edtCualLugar;
     //MODALIDAD DE DETENCION
     private EditText edtPosicionDetenido, edtCuantoTiempoDetenido, edtDondeTrasladaron, edtCualComisaria;
     //OMISION AL ACTUAR
@@ -101,7 +99,6 @@ public class ReporteActivity extends MasterClass {
     //DENUNCIA
     private EditText edtDondeDenuncia, edtPorQueNoDenuncia;
     //RESULTADO DE LA INVESTIGACION
-    //private RadioButton rbtSiHizoDenuncia, rbtNoHizoDenuncia, rbtNoSabeHacerDenuncia;
     private RadioGroup rgDenuncia;
     //VICTIMA
     private EditText edtNombreVictima, edtApellidoVictima, edtGeneroVictima, edtEdadVictima, edtNacionalidadVictima, edtDocumentoVictima, edtDireccionVictima, edtBarrioVictima, edtTelefonoVictima;
@@ -177,7 +174,6 @@ public class ReporteActivity extends MasterClass {
         tvHoraHecho = findViewById(R.id.tvHoraHecho);
         edtDireccionHecho = findViewById(R.id.edtDireccionHecho);
         edtBarrioHecho = findViewById(R.id.edtBarrioHecho);
-        edtCiudadHecho = findViewById(R.id.edtCiudadHecho);
         edtProvinciaHecho = findViewById(R.id.edtProvinciaHecho);
         edtCuantosAcompañan = findViewById(R.id.edtCuantosAcompañan);
         edtCualLugar = findViewById(R.id.edtCualLugar);
@@ -188,7 +184,6 @@ public class ReporteActivity extends MasterClass {
         edtCuantoTiempoDetenido = findViewById(R.id.edtCuantoTiempoDetenido);
 
         //OMISION AL ACTUAR
-
         edtMedioAsistencia = findViewById(R.id.edtMedioAsistencia);
         edtAQuien = findViewById(R.id.edtAQuien);
 
@@ -196,12 +191,9 @@ public class ReporteActivity extends MasterClass {
         edtMotivosDenunciaRechazada = findViewById(R.id.edtMotivosDenunciaRechazada);
         rgViolentadoSiNo = findViewById(R.id.rgViolentadoSiNo);
         //denuncia
-        //rbtSiHizoDenuncia = findViewById(R.id.rbtSiHizoDenuncia);
         rgDenuncia = findViewById(R.id.rgDenuncia);
         edtDondeDenuncia = findViewById(R.id.edtDondeDenuncia);
-        //rbtNoHizoDenuncia = findViewById(R.id.rbtNoHizoDenuncia);
         edtPorQueNoDenuncia = findViewById(R.id.edtPorQueNoDenuncia);
-        //rbtNoSabeHacerDenuncia = findViewById(R.id.rbtNoSabeHacerDenuncia);
 
         //RESULTADO DE LA INVERTIGACION
         rgEtapaDeInvestigacion = findViewById(R.id.rgEtapaDeInvestigacion);
@@ -245,8 +237,6 @@ public class ReporteActivity extends MasterClass {
                 dialog.show();
             }
         });
-
-        //denunciaFinalSeleccion(rbtSiHizoDenuncia, edtDondeDenuncia, rbtNoHizoDenuncia, edtPorQueNoDenuncia, rbtNoSabeHacerDenuncia);
 
         tvDateHecho.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -338,16 +328,11 @@ public class ReporteActivity extends MasterClass {
     //todo enviar reporte
     private void enviarReporte() {
         inicializarStringVariables();
-        //todo no pasa check
-        //!vHechoPolicial() && !vOmisionActuar()  && !faltantes()
 
-        if (!vAllanamiento() && !vEntrevistador() && !vfuerzasIntervinientes() && !vHechoPolicial()
-                && !vModalidadDetencion() && !vOmisionActuar() && !vResultadoInvestigacion()
-                && !vTraslado() && !vVictima()) {
+        if (verificaciones()) {
             Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
         } else {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_REPORTE));
-            //chooseInicio();
         }
     }
 
@@ -396,11 +381,12 @@ public class ReporteActivity extends MasterClass {
             //Hecho policial
             jsonObject.put("usu_dia_hecho", diaHecho);
             jsonObject.put("usu_hora_hecho", horaHecho);
-            jsonObject.put("usu_ubicacion_hecho", ubicacionHecho);
             jsonObject.put("usu_cuantos_acompañan", cuantosAcompañan);
             jsonObject.put("usu_cual_lugar", cualLugar);
             jsonObject.put("usu_provincia_hecho", provinciaHecho);
             jsonObject.put("usu_pais_hecho", paisHecho);
+            jsonObject.put("usu_direccion_hecho", direccionHecho);
+            jsonObject.put("usu_barrio_hecho", barrioHecho);
             //MODALIDAD DE DETENCION
             jsonObject.put("usu_posicion_detenido", posicionDetenido);
             jsonObject.put("usu_tiempo_detenido", cuantoTiempoDetenido);
@@ -478,7 +464,8 @@ public class ReporteActivity extends MasterClass {
         //HECHO POLICIAL
         diaHecho = tvDateHecho.getText().toString().trim();
         horaHecho = tvHoraHecho.getText().toString().trim();
-        ubicacionHecho = edtDireccionHecho.getText().toString() + " " + edtBarrioHecho.getText().toString() + " " + edtCiudadHecho.getText().toString();
+        direccionHecho = edtDireccionHecho.getText().toString().trim();
+        barrioHecho = edtBarrioHecho.getText().toString().trim();
         cuantosAcompañan = edtCuantosAcompañan.getText().toString().trim();
         cualLugar = edtCualLugar.getText().toString().trim();
         provinciaHecho = edtProvinciaHecho.getText().toString();
@@ -514,6 +501,12 @@ public class ReporteActivity extends MasterClass {
         direccionVictima = edtDireccionVictima.getText().toString().trim();
         barrioVictima = edtBarrioVictima.getText().toString().trim();
         telefonoVictima = edtTelefonoVictima.getText().toString().trim();
+    }
+
+    private boolean verificaciones(){
+        return !vEntrevistador() && !vVictima() && !vHechoPolicial() && !vfuerzasIntervinientes()
+                && !vModalidadDetencion() && !vOmisionActuar() && !vTraslado()
+                && !vAllanamiento() && !vResultadoInvestigacion();
     }
 
     private boolean vAllanamiento() {
@@ -553,14 +546,14 @@ public class ReporteActivity extends MasterClass {
     }
 
     private boolean vHechoPolicial() {
-        return vGeneric(diaHecho, "Ingrese dia en Descripcion del Hecho") ||
-                vGeneric(horaHecho, "Ingrese hora en Descripcion del Hecho") ||
-                //check
-                vGeneric(ubicacionHecho, "Ingrese ubicacion") ||
-                vGeneric(cuantosAcompañan, edtCuantosAcompañan, "Ingrese cuantos acompañan") ||
+        return vGeneric(cuantosAcompañan, edtCuantosAcompañan, "Ingrese cuantos acompañan") ||
                 vGeneric(cualLugar, edtCualLugar, "Ingrese cual lugar") ||
                 vGeneric(provinciaHecho, edtProvinciaHecho, "Ingrese provincia") ||
-                vGeneric(paisHecho, edtPaisHecho, "Ingrese pais");
+                vGeneric(paisHecho, edtPaisHecho, "Ingrese pais") ||
+                vGeneric(direccionHecho, edtDireccionHecho, "Ingrese direccion") ||
+                vGeneric(barrioHecho, edtBarrioHecho, "Ingrese barrio") ||
+                vGeneric(diaHecho, "Ingrese Fecha en Descripcion del Hecho") ||
+                vGeneric(horaHecho, "Ingrese Hora en Descripcion del Hecho") ;
     }
 
     private boolean vModalidadDetencion() {
@@ -600,7 +593,7 @@ public class ReporteActivity extends MasterClass {
     }
 
     private boolean vGeneric(String string, EditText txt, String mensaje) {
-        if (string.isEmpty() || string.length() <= 1) {
+        if (string.isEmpty()) {
             txt.setError(mensaje);
             return false;
         }
@@ -608,7 +601,7 @@ public class ReporteActivity extends MasterClass {
     }
 
     private boolean vGeneric(String string, String mensaje) {
-        if (string.equals("dd/mm/yyyy") || string.equals("HH:mm") || string.length() <= 2) {
+        if (string.equals("dd/mm/yyyy") || string.equals("HH:mm") || string.isEmpty()) {
             makeTxt(mensaje);
             return false;
         }
@@ -617,11 +610,17 @@ public class ReporteActivity extends MasterClass {
 
     @Override
     protected void responseConexion(String response) {
+        boolean validate = false;
         try {
             JSONObject jsonObject = new JSONObject(response);
             Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+            validate = jsonObject.getBoolean("validate");
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+
+        if(validate){
+            chooseInicio();
         }
     }
 

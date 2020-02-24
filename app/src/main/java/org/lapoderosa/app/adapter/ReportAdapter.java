@@ -41,6 +41,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
         reportViewHolder.tvCiudad.setText(reportList.get(i).getCiudad());
         reportViewHolder.tvName.setText(reportList.get(i).getFullName());
         reportViewHolder.tvDate.setText(reportList.get(i).getFecha());
+        reportViewHolder.tvHour.setText(reportList.get(i).getHora());
     }
 
     @Override
@@ -49,7 +50,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     }
 
     public class ReportViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView tvLugar, tvCiudad, tvName, tvDate;
+        TextView tvLugar, tvCiudad, tvName, tvDate, tvHour;
 
         public ReportViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,6 +59,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
             tvCiudad = itemView.findViewById(R.id.tvCiudad);
             tvName = itemView.findViewById(R.id.tvName);
             tvDate = itemView.findViewById(R.id.tvDate);
+            tvHour = itemView.findViewById(R.id.tvHour);
             itemView.setOnClickListener(this);
         }
 

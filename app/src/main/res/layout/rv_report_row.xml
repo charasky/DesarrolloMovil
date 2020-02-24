@@ -62,6 +62,17 @@
                 android:paddingRight="4dp"
                 android:hint="@string/fecha"
                 tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+            <TextView
+                android:paddingLeft="3sp"
+                android:layout_below="@+id/tvName"
+                android:id="@+id/tvHour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:paddingRight="4dp"
+                android:hint="@string/hora"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

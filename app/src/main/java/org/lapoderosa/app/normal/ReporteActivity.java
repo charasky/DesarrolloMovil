@@ -220,6 +220,8 @@ public class ReporteActivity extends MasterClass {
         edtBarrioVictima = findViewById(R.id.edtBarrioVictim);
         edtTelefonoVictima = findViewById(R.id.edtTelefono);
 
+        edtNombreEntrevistador.setText(SharedPrefManager.getInstance(this).getKeyName());
+        edtApellidoEntrevistador.setText(SharedPrefManager.getInstance(this).getKeySurname());
         edtAsamblea.setText(SharedPrefManager.getInstance(this).getKeyAsamblea());
         tvDateEntrevista.setText(dateFormat.format(date));
         tvDateEntrevista.setOnClickListener(new View.OnClickListener() {

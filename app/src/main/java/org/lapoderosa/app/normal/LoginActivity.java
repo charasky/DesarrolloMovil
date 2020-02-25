@@ -104,6 +104,8 @@ public class LoginActivity extends MasterClass {
                         .userLogin(
                                 obj.getString("usu_asamblea"),
                                 obj.getString("usu_usuario"),
+                                obj.getString("usu_nombres"),
+                                obj.getString("usu_apellidos"),
                                 obj.getString("usu_validacion"),
                                 obj.getString("usu_administrador")
                         );

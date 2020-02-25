@@ -11,7 +11,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -40,9 +39,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 //todo verificar que los campos de strings no esten vacios
 public class ReporteActivity extends MasterClass {
@@ -218,6 +220,7 @@ public class ReporteActivity extends MasterClass {
         edtBarrioVictima = findViewById(R.id.edtBarrioVictim);
         edtTelefonoVictima = findViewById(R.id.edtTelefono);
 
+        edtAsamblea.setText(SharedPrefManager.getInstance(this).getKeyAsamblea());
         tvDateEntrevista.setText(dateFormat.format(date));
         tvDateEntrevista.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -277,6 +280,7 @@ public class ReporteActivity extends MasterClass {
         });
 
         guardar.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
                 enviarReporte();
@@ -326,13 +330,14 @@ public class ReporteActivity extends MasterClass {
     }
 
     //todo enviar reporte
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void enviarReporte() {
         inicializarStringVariables();
 
-        if (verificaciones()) {
-            Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
-        } else {
+        if (verificacion().isEmpty()) {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_REPORTE));
+        } else {
+            Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -341,7 +346,6 @@ public class ReporteActivity extends MasterClass {
         parametros.put("fechaReporte", fechaCreacionReporte);
         parametros.put("horaReporte", horaCreacionReporte);
         parametros.put("reporte", this.jsonObject().toString());
-        //parametros.put("reporte", new JSONObject(this.mapaDeVariables()).toString());
     }
 
     private JSONObject jsonObject() {
@@ -503,93 +507,78 @@ public class ReporteActivity extends MasterClass {
         telefonoVictima = edtTelefonoVictima.getText().toString().trim();
     }
 
-    private boolean verificaciones(){
-        return !vEntrevistador() && !vVictima() && !vHechoPolicial() && !vfuerzasIntervinientes()
-                && !vModalidadDetencion() && !vOmisionActuar() && !vTraslado()
-                && !vAllanamiento() && !vResultadoInvestigacion();
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private List<Boolean> verificacion(){
+        return this.variablesParaCheckiar().stream()
+                .filter(v -> v.equals(false))
+                .collect(Collectors.toList());
     }
 
-    private boolean vAllanamiento() {
-        return vGeneric(ordenAllanamiento, "Seleccione opcion en Orden de Allanamiento") ||
-                vGeneric(agresionAllanamiento, "Seleccione agresion en Allanamiento a Domicilio") ||
-                vGeneric(pertenenciasAllanamiento, "Seleccione opcion en pertenencias Allanamiento") ||
-                vGeneric(omisionPertenencias, "Seleccione opcion en omision de pertenencias") ||
-                vGeneric(detenidosAllanamiento, "Seleccione opcion en personas detenidas") ||
-                vGeneric(duracionAllanamiento, edtTiempoAllanamiento, "Ingrese tiempo detenido") ||
-                vGeneric(posicionDetenidos, "Seleccione opcion en posicion fisica") ||
-                vGeneric(esposados, "Selecione opcion en esposados");
-    }
-
-    private boolean vCaracteristicasProcedimiento() {
-        return vGeneric(motivoProcedimiento, "Seleccione procedimiento") ||
-                vGeneric(maltratos, "Seleccione opcion en maltratos") ||
-                vGeneric(lesiones, "Seleccione opcion en Lesiones y/ complete");
-    }
-
-    private boolean vEntrevistador() {
-        //la fecha de entrevistador ya viene por default completa si no la rellenan
-        return vGeneric(parentesco, edtParentesco, "ingrese parentesco") ||
-                vGeneric(nombreEntrevistador, edtNombreEntrevistador, "ingrese entrevistador") ||
-                vGeneric(apellidoEntrevistador, edtApellidoEntrevistador, "ingrese apellido entrevistador") ||
-                vGeneric(asamblea, edtAsamblea, "ingrese asamblea");
-    }
-
-    private boolean vfuerzasIntervinientes() {
-        return vGeneric(fuerzasIntervinientes, edtFuerzasIntervinientes, "Ingrese fuerzas intervinientes") ||
-                vGeneric(cantidadAgentes, edtCantidadAgentes, "Ingrese cantidad de agentes") ||
-                vGeneric(nombresAgentes, edtNombresAgentes, "Ingrese nombre agente") ||
-                vGeneric(apodos, edtApodos, "Ingrese apodos") ||
-                vGeneric(cantidadVehiculos, edtCantidadVehiculos, "Ingrese cantidad de vehiculos") ||
-                vGeneric(numMovil, edtNumMovil, "Ingrese numero movil") ||
-                vGeneric(dominio, edtDominio, "Ingrese dominio") ||
-                vGeneric(conductaAgentes, edtConductaAgentes, "Ingrese conducta agentes");
-    }
-
-    private boolean vHechoPolicial() {
-        return vGeneric(cuantosAcompañan, edtCuantosAcompañan, "Ingrese cuantos acompañan") ||
-                vGeneric(cualLugar, edtCualLugar, "Ingrese cual lugar") ||
-                vGeneric(provinciaHecho, edtProvinciaHecho, "Ingrese provincia") ||
-                vGeneric(paisHecho, edtPaisHecho, "Ingrese pais") ||
-                vGeneric(direccionHecho, edtDireccionHecho, "Ingrese direccion") ||
-                vGeneric(barrioHecho, edtBarrioHecho, "Ingrese barrio") ||
-                vGeneric(diaHecho, "Ingrese Fecha en Descripcion del Hecho") ||
-                vGeneric(horaHecho, "Ingrese Hora en Descripcion del Hecho") ;
-    }
-
-    private boolean vModalidadDetencion() {
-        return vGeneric(posicionDetenido, edtPosicionDetenido, "Ingrese posicion detenido") ||
-                vGeneric(cuantoTiempoDetenido, edtCuantoTiempoDetenido, "Ingrese cuanto tiempo detenido");
-    }
-
-    private boolean vOmisionActuar() {
-        return vGeneric(mediosDeAsistencia, edtMedioAsistencia, "Ingrese medios de asistencia") ||
-                vGeneric(aQuienAsistencia, edtAQuien, "Ingrese quien lo asistio") ||
-                vGeneric(denunciaRechazada, "Selecione en denuncia") ||
-                vGeneric(violentado, "Seleccione si fue agredido, en omision") ||
-                vGeneric(denunciaFinal, "Seleccione en si hizo una denuncia");
-    }
-
-    private boolean vResultadoInvestigacion() {
-        return vGeneric(resultadoInvestigacion, "Selecione resultado de investigacion") ||
-                vGeneric(trabajanLosOficiales, "Seleccione si trabajan los oficiales");
-    }
-
-    private boolean vTraslado() {
-        return vGeneric(traslado, "Selecione en traslado") ||
-                vGeneric(comisaria, "Selecione en comisaria") ||
-                vGeneric(esposado, "Seleccione en esposado");
-    }
-
-    private boolean vVictima() {
-        return vGeneric(nombreVictima, edtNombreVictima, "ingrese nombre de victima") ||
-                vGeneric(apellidoVictima, edtApellidoVictima, "ingrese apellido victima") ||
-                vGeneric(generoVictima, edtGeneroVictima, "ingrese genero victima") ||
-                vGeneric(edadVictima, edtEdadVictima, "ingrese edad victima") ||
-                vGeneric(nacionalidadVictima, edtNacionalidadVictima, "ingrese nacionalidad") ||
-                vGeneric(documentoVictima, edtDocumentoVictima, "ingrese documento victima") ||
-                vGeneric(direccionVictima, edtDireccionVictima, "ingrese direccion victima") ||
-                vGeneric(barrioVictima, edtBarrioVictima, "ingrese barrio victima") ||
-                vGeneric(telefonoVictima, edtTelefonoVictima, "ingrese telefono victima");
+    private List<Boolean> variablesParaCheckiar(){
+        List<Boolean> lista = new LinkedList<>();
+        //ALLANAMIENTO
+        lista.add(vGeneric(ordenAllanamiento,"Seleccione opcion en Orden de Allanamiento"));
+        lista.add(vGeneric(agresionAllanamiento,"Seleccione agresion en Allanamiento a Domicilio"));
+        lista.add(vGeneric(pertenenciasAllanamiento,"Seleccione opcion en pertenencias Allanamiento"));
+        lista.add(vGeneric(omisionPertenencias,"Seleccione opcion en omision de pertenencias"));
+        lista.add(vGeneric(detenidosAllanamiento,"Seleccione opcion en personas detenidas"));
+        lista.add(vGeneric(duracionAllanamiento, edtTiempoAllanamiento,"Ingrese tiempo detenido"));
+        lista.add(vGeneric(posicionDetenidos,"Seleccione opcion en posicion fisica"));
+        lista.add(vGeneric(esposados,"Selecione opcion en esposados"));
+        //CARACTERISTICAS DE PROCEDIMIENTO
+        lista.add(vGeneric(motivoProcedimiento, "Seleccione procedimiento"));
+        lista.add(vGeneric(maltratos, "Seleccione opcion en maltratos"));
+        lista.add(vGeneric(lesiones, "Seleccione opcion en Lesiones y/ complete"));
+        //ENTREVISTADOR
+        lista.add(vGeneric(parentesco, edtParentesco, "ingrese parentesco"));
+        lista.add(vGeneric(nombreEntrevistador, edtNombreEntrevistador, "ingrese entrevistador"));
+        lista.add(vGeneric(apellidoEntrevistador, edtApellidoEntrevistador, "ingrese apellido entrevistador"));
+        lista.add(vGeneric(asamblea, edtAsamblea, "ingrese asamblea"));
+        //FUERZAS INTERVINIENTES
+        lista.add(vGeneric(fuerzasIntervinientes, edtFuerzasIntervinientes, "Ingrese fuerzas intervinientes"));
+        lista.add(vGeneric(cantidadAgentes, edtCantidadAgentes, "Ingrese cantidad de agentes"));
+        lista.add(vGeneric(nombresAgentes, edtNombresAgentes, "Ingrese nombre agente"));
+        lista.add(vGeneric(apodos, edtApodos, "Ingrese apodos"));
+        lista.add(vGeneric(cantidadVehiculos, edtCantidadVehiculos, "Ingrese cantidad de vehiculos"));
+        lista.add(vGeneric(numMovil, edtNumMovil, "Ingrese numero movil"));
+        lista.add(vGeneric(dominio, edtDominio, "Ingrese dominio"));
+        lista.add(vGeneric(conductaAgentes, edtConductaAgentes, "Ingrese conducta agentes"));
+        //HECHO POLICIAL
+        lista.add(vGeneric(cuantosAcompañan, edtCuantosAcompañan, "Ingrese cuantos acompañan"));
+        lista.add(vGeneric(cualLugar, edtCualLugar, "Ingrese cual lugar"));
+        lista.add(vGeneric(provinciaHecho, edtProvinciaHecho, "Ingrese provincia"));
+        lista.add(vGeneric(paisHecho, edtPaisHecho, "Ingrese pais"));
+        lista.add(vGeneric(direccionHecho, edtDireccionHecho, "Ingrese direccion"));
+        lista.add(vGeneric(barrioHecho, edtBarrioHecho, "Ingrese barrio"));
+        lista.add(vGeneric(diaHecho, "Ingrese Fecha en Descripcion del Hecho"));
+        lista.add(vGeneric(horaHecho, "Ingrese Hora en Descripcion del Hecho"));
+        //MODALIDAD DE DETENCION
+        lista.add(vGeneric(posicionDetenido, edtPosicionDetenido, "Ingrese posicion detenido"));
+        lista.add(vGeneric(cuantoTiempoDetenido, edtCuantoTiempoDetenido, "Ingrese cuanto tiempo detenido"));
+        //OMISION AL ACTUAL
+        lista.add(vGeneric(mediosDeAsistencia, edtMedioAsistencia, "Ingrese medios de asistencia"));
+        lista.add(vGeneric(aQuienAsistencia, edtAQuien, "Ingrese quien lo asistio"));
+        lista.add(vGeneric(denunciaRechazada, "Selecione en denuncia"));
+        lista.add(vGeneric(violentado, "Seleccione si fue agredido, en omision"));
+        lista.add(vGeneric(denunciaFinal, "Seleccione en si hizo una denuncia"));
+        //RESULTADO DE INVESTIGACION
+        lista.add(vGeneric(resultadoInvestigacion, "Selecione resultado de investigacion"));
+        lista.add(vGeneric(trabajanLosOficiales, "Seleccione si trabajan los oficiales"));
+        //TRASLADO
+        lista.add(vGeneric(traslado, "Selecione en traslado"));
+        lista.add(vGeneric(comisaria, "Selecione en comisaria"));
+        lista.add(vGeneric(esposado, "Seleccione en esposado"));
+        //VICTIMA
+        lista.add(vGeneric(nombreVictima, edtNombreVictima, "ingrese nombre de victima"));
+        lista.add(vGeneric(apellidoVictima, edtApellidoVictima, "ingrese apellido victima"));
+        lista.add(vGeneric(generoVictima, edtGeneroVictima, "ingrese genero victima"));
+        lista.add(vGeneric(edadVictima, edtEdadVictima, "ingrese edad victima"));
+        lista.add(vGeneric(nacionalidadVictima, edtNacionalidadVictima, "ingrese nacionalidad"));
+        lista.add(vGeneric(documentoVictima, edtDocumentoVictima, "ingrese documento victima"));
+        lista.add(vGeneric(direccionVictima, edtDireccionVictima, "ingrese direccion victima"));
+        lista.add(vGeneric(barrioVictima, edtBarrioVictima, "ingrese barrio victima"));
+        lista.add(vGeneric(telefonoVictima, edtTelefonoVictima, "ingrese telefono victima"));
+        return lista;
     }
 
     private boolean vGeneric(String string, EditText txt, String mensaje) {

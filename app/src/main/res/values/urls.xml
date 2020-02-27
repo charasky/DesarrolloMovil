@@ -3,12 +3,12 @@
     <!-- //todo URL local-host
     <string name="URL_REPORTE">/android/insertar_datos_reporte.php</string>
     <string name="HOST">http://192.168.0.8</string>
-
-    -->
     <string name="HOST">http://192.168.0.9 </string>
-    <!-- //todo URLS AWS
-    <string name="HOST">http://3.136.55.99</string>
     -->
+    <!-- //todo URLS AWS     -->
+    <string name="HOST">http://3.136.55.99</string>
+
+
     <string name="URL_LOGIN">/android/v1/userLogin.php</string>
     <string name="URL_SIGN_UP">/android/v1/registerUser.php</string>
     <string name="URL_ACCOUNT_RECOVERY">/android/v1/accountRecovery.php</string>

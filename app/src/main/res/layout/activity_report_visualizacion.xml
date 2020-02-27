@@ -8,9 +8,9 @@
     tools:context="org.lapoderosa.app.normal.ReportVisualizacion">
 
     <ScrollView
-        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:scrollbars="none"
         tools:ignore="MissingConstraints">
 
 
@@ -27,15 +27,57 @@
                 android:textStyle="bold" />
 
             <RelativeLayout
-                android:paddingLeft="20dp"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:id="@+id/vFechaText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Fecha: "
+                    android:textStyle="bold"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/vFecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/vName"
+                    android:layout_alignBaseline="@+id/vFechaText"
+                    android:layout_toRightOf="@+id/vFechaText"
+                    android:paddingLeft="5dp"
+                    android:text="xx/xx/xxxx"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/vHoraText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/vFecha"
+                    android:layout_toRightOf="@+id/vFecha"
+                    android:paddingLeft="20dp"
+                    android:text="Hora: "
+                    android:textStyle="bold"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/vHora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/vHoraText"
+                    android:layout_toRightOf="@+id/vHoraText"
+                    android:paddingLeft="5dp"
+                    android:text="xx:xx"
+                    tools:ignore="MissingConstraints" />
 
                 <TextView
                     android:id="@+id/vNameText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/vFechaText"
                     android:text="Nombre: "
                     android:textStyle="bold"
                     tools:ignore="MissingConstraints" />
@@ -44,61 +86,1352 @@
                     android:id="@+id/vName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="nombrefull"
-                    android:paddingLeft="10dp"
-                    android:layout_toRightOf="@+id/vNameText"
                     android:layout_alignBaseline="@+id/vNameText"
+                    android:layout_toRightOf="@+id/vNameText"
+                    android:paddingLeft="5dp"
+                    android:text="xxxxx xxxxxxx"
                     tools:ignore="MissingConstraints" />
 
                 <TextView
-                    android:layout_below="@+id/vNameText"
-                    android:id="@+id/vFechaText"
+                    android:id="@+id/vPaisText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fecha: "
+                    android:layout_below="@+id/vName"
+                    android:text="Pais: "
                     android:textStyle="bold"
                     tools:ignore="MissingConstraints" />
 
                 <TextView
-                    android:id="@+id/vFecha"
-                    android:layout_below="@id/vName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:layout_toRightOf="@+id/vFechaText"
-                    android:layout_alignBaseline="@+id/vFechaText"
-                    android:text="fecha"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/vHora"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:layout_toRightOf="@+id/vFecha"
-                    android:text="hora"
-                    android:layout_alignBaseline="@+id/vFecha"
-                    tools:ignore="MissingConstraints" />
-
-
-
-                <TextView
                     android:id="@+id/vPais"
-                    android:layout_below="@id/vHora"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="pais"
+                    android:layout_alignBaseline="@+id/vPaisText"
+                    android:layout_toRightOf="@+id/vPaisText"
+                    android:paddingLeft="5dp"
+                    android:text="xxxxxxx"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/vProvinciaText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/vPais"
+                    android:text="Provincia: "
+                    android:textStyle="bold"
                     tools:ignore="MissingConstraints" />
 
                 <TextView
                     android:id="@+id/vProvincia"
-                    android:layout_below="@+id/vPais"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="provincia"
+                    android:layout_alignBaseline="@+id/vProvinciaText"
+                    android:layout_toRightOf="@+id/vProvinciaText"
+                    android:paddingLeft="5dp"
+                    android:text="xxxxxxx"
                     tools:ignore="MissingConstraints" />
             </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Victima Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Nombre:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvNombreVictima"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Apellido:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvApellidoVictima"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Genero:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvGeneroVictima"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Edad:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvEdadVictima"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="number"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Documento:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvDocumentoVictima"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="number"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Nacionalidad:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvNacionalidadVictima"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Direccion:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvDireccionVictima"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Barrio:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvBarrioVictima"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Telefono:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvTelefonoVictima"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="number"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Traslado Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Traslado:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvTraslado"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Comisaria:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvComisariaTraslado"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Esposado:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvEsposadoTraslado"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Resultado Investigacion Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Resultado Investigacion:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvResultadoInvestigacion"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Trabajan Oficiales:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvTrabajanOficiales"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Omision Al Actuar Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Medios de Asistencia:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvMediosDeAsistencia"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Quien lo Asistio:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvQuienAsistencia"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Denuncia Rechazada:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvDenunciaRechazada"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:layout_gravity="center"
+                        android:text="Violentado:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvViolentado"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Denuncia final:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvDenunciaFinal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Modalidad de Detencion Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Posicion Detenido:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvPosicionDetenido"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Tiempo Detenido:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvTiempoDetenido"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hecho Policial Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Dia:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvDiaHecho"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Fecha:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvFechaHecho"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Pais:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvPaisHecho"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Provincia:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvProvinciaHecho"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Barrio:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvBarrioHecho"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Direccion:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvDireccionHecho"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Cuantos Acompañan:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvCuantosAcompañanHecho"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:inputType="number"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Cual Lugar:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvCualLugarHecho"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fuerzas Intervinientes Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Tipo de Agente:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvFuerzasIntervinientes"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:layout_gravity="center"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Cantidad Agentes:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvCentidadAgentes"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="number"
+                        android:layout_gravity="center"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Nombre Agente:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvNombreAgente"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:layout_gravity="center"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:layout_gravity="center"
+                        android:text="Apodos:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvApodos"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center"
+                        android:text="xxxxxx" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Cantidad Vehiculos:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvCantidadVehiculos"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="number"
+                        android:layout_gravity="center"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Numero Movil:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvNumeroMovil"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:layout_gravity="center"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Dominio:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvDominioFuerzas"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:layout_gravity="center"
+                        android:text="Conducta:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvConductaFuerzas"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:layout_gravity="center"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Caracteristicas Procedimiento Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Motivo:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvMotivoProcedimiento"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Maltratos:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvMaltratosProcedimientos"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Lesiones:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvLesionesProcedimiento"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Allanamiento Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Orden de Allanamiento:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvOrdenAllanamiento"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Hubo Agresion:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvAgresionAllanamiento"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:paddingTop="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Pertenencias dañadas:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvPertenenciasAllanamiento"
+                        android:layout_width="0dp"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Sustrajeron Pertenencias:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvOmisionPertenencias"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:inputType="number"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Hubo Detenidos:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvDetenidosAllanamiento"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:inputType="number"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Duracion Allanamiento:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvDuracionAllanamiento"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:layout_gravity="center"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Alguien Esposado:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvEsposadosAllanamiento"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:layout_gravity="center"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Posicion Fisica:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvPosicionAllanamiento"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:layout_gravity="center"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Entrevistado Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Parentesco:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvParentesco"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Entrevistador Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Nombre:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvNombreEntrevistador"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Apellido:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvApellidoEntrevistador"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxx" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Asamblea:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvAsambleaEntrevistador"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Fecha:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ruvFechaEntrevistador"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:text="xxxxxx" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/btLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_bottom"
+                android:text="PDF"
+                android:textColor="#FFF"
+                android:textSize="18sp" />
         </LinearLayout>
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

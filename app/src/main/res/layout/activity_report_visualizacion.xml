@@ -13,7 +13,7 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/m1"
+            android:id="@+id/vName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="nombrefull"
@@ -22,7 +22,7 @@
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/m2"
+            android:id="@+id/vFecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="fecha"
@@ -31,7 +31,16 @@
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/m3"
+            android:id="@+id/vHora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hora"
+            tools:layout_editor_absoluteX="164dp"
+            tools:layout_editor_absoluteY="80dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/vPais"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="pais"
@@ -40,7 +49,7 @@
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/m4"
+            android:id="@+id/vProvincia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="provincia"

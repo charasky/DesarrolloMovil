@@ -84,7 +84,7 @@ public class BusquedarReporteActivity extends MasterClass {
             if (usuario.getFullName().toLowerCase().contains(texto.toLowerCase())) {
                 filtrarLista.add(usuario);
             }
-            if (usuario.getCiudad().toLowerCase().contains(texto.toLowerCase())) {
+            if (usuario.getProvincia().toLowerCase().contains(texto.toLowerCase())) {
                 filtrarLista.add(usuario);
             }
             if (usuario.getFecha().contains(texto)) {

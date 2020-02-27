@@ -38,7 +38,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     @Override
     public void onBindViewHolder(@NonNull ReportViewHolder reportViewHolder, int i) {
         reportViewHolder.tvLugar.setText(reportList.get(i).getPais());
-        reportViewHolder.tvCiudad.setText(reportList.get(i).getCiudad());
+        reportViewHolder.tvProvincia.setText(reportList.get(i).getProvincia());
         reportViewHolder.tvName.setText(reportList.get(i).getFullName());
         reportViewHolder.tvDate.setText(reportList.get(i).getFecha());
         reportViewHolder.tvHour.setText(reportList.get(i).getHora());
@@ -50,13 +50,13 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     }
 
     public class ReportViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView tvLugar, tvCiudad, tvName, tvDate, tvHour;
+        TextView tvLugar, tvProvincia, tvName, tvDate, tvHour;
 
         public ReportViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvLugar = itemView.findViewById(R.id.tvLugar);
-            tvCiudad = itemView.findViewById(R.id.tvCiudad);
+            tvProvincia = itemView.findViewById(R.id.tvCiudad);
             tvName = itemView.findViewById(R.id.tvName);
             tvDate = itemView.findViewById(R.id.tvDate);
             tvHour = itemView.findViewById(R.id.tvHour);
@@ -69,6 +69,12 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
             Report report = reportList.get(position);
 
             Intent intent = new Intent(context, ReportVisualizacion.class);
+            intent.putExtra("name", report.getFullName());
+            intent.putExtra("fecha", report.getFecha());
+            intent.putExtra("hora", report.getHora());
+            intent.putExtra("provincia", report.getProvincia());
+            intent.putExtra("pais", report.getPais());
+
             context.startActivity(intent);
             //Log.d("Clicked", "onClick: " + report.getIdReporte());
         }

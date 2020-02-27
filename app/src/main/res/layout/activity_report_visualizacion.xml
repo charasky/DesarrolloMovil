@@ -4,59 +4,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context="org.lapoderosa.app.normal.ReportVisualizacion">
 
-    <LinearLayout
+    <ScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
 
-        <TextView
-            android:id="@+id/vName"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="nombrefull"
-            tools:layout_editor_absoluteX="164dp"
-            tools:layout_editor_absoluteY="80dp"
-            tools:ignore="MissingConstraints" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/vFecha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="fecha"
-            tools:layout_editor_absoluteX="164dp"
-            tools:layout_editor_absoluteY="80dp"
-            tools:ignore="MissingConstraints" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reporte:"
+                android:textSize="23sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/vHora"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="hora"
-            tools:layout_editor_absoluteX="164dp"
-            tools:layout_editor_absoluteY="80dp"
-            tools:ignore="MissingConstraints" />
+            <RelativeLayout
+                android:paddingLeft="20dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/vPais"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="pais"
-            tools:layout_editor_absoluteX="164dp"
-            tools:layout_editor_absoluteY="80dp"
-            tools:ignore="MissingConstraints" />
+                <TextView
+                    android:id="@+id/vNameText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre: "
+                    android:textStyle="bold"
+                    tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:id="@+id/vProvincia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="provincia"
-            tools:layout_editor_absoluteX="164dp"
-            tools:layout_editor_absoluteY="80dp"
-            tools:ignore="MissingConstraints" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/vName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="nombrefull"
+                    android:paddingLeft="10dp"
+                    android:layout_toRightOf="@+id/vNameText"
+                    android:layout_alignBaseline="@+id/vNameText"
+                    tools:ignore="MissingConstraints" />
 
+                <TextView
+                    android:layout_below="@+id/vNameText"
+                    android:id="@+id/vFechaText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha: "
+                    android:textStyle="bold"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/vFecha"
+                    android:layout_below="@id/vName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:layout_toRightOf="@+id/vFechaText"
+                    android:layout_alignBaseline="@+id/vFechaText"
+                    android:text="fecha"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/vHora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:layout_toRightOf="@+id/vFecha"
+                    android:text="hora"
+                    android:layout_alignBaseline="@+id/vFecha"
+                    tools:ignore="MissingConstraints" />
+
+
+
+                <TextView
+                    android:id="@+id/vPais"
+                    android:layout_below="@id/vHora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="pais"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/vProvincia"
+                    android:layout_below="@+id/vPais"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="provincia"
+                    tools:ignore="MissingConstraints" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

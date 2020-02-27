@@ -2,21 +2,22 @@
 <resources>
     <!-- //todo URL local-host
     <string name="URL_REPORTE">/android/insertar_datos_reporte.php</string>
-    <string name="HOST">http://192.168.0.8</string>
-    <string name="HOST">http://192.168.0.9 </string>
+    <string name="HOST">http://192.168.0.8/android</string>
+    <string name="HOST">http://192.168.0.9/android</string>
     -->
-    <!-- //todo URLS AWS     -->
-    <string name="HOST">http://3.136.55.99</string>
 
 
-    <string name="URL_LOGIN">/android/v1/userLogin.php</string>
-    <string name="URL_SIGN_UP">/android/v1/registerUser.php</string>
-    <string name="URL_ACCOUNT_RECOVERY">/android/v1/accountRecovery.php</string>
-    <string name="URL_USUARIOS">/android/v1/searchReport.php</string>
-    <string name="URL_USUARIOS_TO_ENABLED">/android/v1/disabledUsers.php</string>
-    <string name="URL_RESTORE_PASSWORD">/android/v1/restorePassword.php</string>
-    <string name="URL_ENVIAR_RESPUESTA">/android/v1/sendReply.php</string>
-    <string name="URL_MOVIMIENTO">/android/v1/movimiento.php</string>
-    <string name="URL_REPORTE">/android/v1/registerReporte.php</string>
+    <!-- //todo URLS AWS  -->
+    <string name="HOST">http://3.136.55.99/proyecto</string>
+
+    <string name="URL_LOGIN">/v1/userLogin.php</string>
+    <string name="URL_SIGN_UP">/v1/registerUser.php</string>
+    <string name="URL_ACCOUNT_RECOVERY">/v1/accountRecovery.php</string>
+    <string name="URL_USUARIOS">/v1/searchReport.php</string>
+    <string name="URL_USUARIOS_TO_ENABLED">/v1/disabledUsers.php</string>
+    <string name="URL_RESTORE_PASSWORD">/v1/restorePassword.php</string>
+    <string name="URL_ENVIAR_RESPUESTA">/v1/sendReply.php</string>
+    <string name="URL_MOVIMIENTO">/v1/movimiento.php</string>
+    <string name="URL_REPORTE">/v1/registerReporte.php</string>
 
 </resources>

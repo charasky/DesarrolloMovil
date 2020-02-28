@@ -22,8 +22,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Reporte:"
-                android:textSize="23sp"
+                android:text="Reporte Informacion:"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <RelativeLayout
@@ -37,7 +37,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Fecha: "
+                    android:text="Fecha de Creacion: "
                     android:textStyle="bold"
                     tools:ignore="MissingConstraints" />
 
@@ -78,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/vFechaText"
-                    android:text="Nombre: "
+                    android:text="Nombre del afectado: "
                     android:textStyle="bold"
                     tools:ignore="MissingConstraints" />
 
@@ -97,7 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/vName"
-                    android:text="Pais: "
+                    android:text="Pais donde ocurrio: "
                     android:textStyle="bold"
                     tools:ignore="MissingConstraints" />
 
@@ -116,7 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/vPais"
-                    android:text="Provincia: "
+                    android:text="Provincia donde ocurrio: "
                     android:textStyle="bold"
                     tools:ignore="MissingConstraints" />
 
@@ -683,7 +683,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="Dia:"
+                        android:text="Fecha:"
                         android:textStyle="bold" />
 
                     <TextView
@@ -700,7 +700,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="Fecha:"
+                        android:text="Hora:"
                         android:textStyle="bold" />
 
                     <TextView

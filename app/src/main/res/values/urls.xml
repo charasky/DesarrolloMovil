@@ -3,12 +3,14 @@
     <!-- //todo URL local-host
     <string name="URL_REPORTE">/android/insertar_datos_reporte.php</string>
     <string name="HOST">http://192.168.0.8/android</string>
-    <string name="HOST">http://192.168.0.9/android</string>
+
     -->
 
+    <string name="HOST">http://192.168.0.9/android</string>
 
-    <!-- //todo URLS AWS  -->
+    <!-- //todo URLS AWS
     <string name="HOST">http://3.136.55.99/proyecto</string>
+    -->
 
     <string name="URL_LOGIN">/v1/userLogin.php</string>
     <string name="URL_SIGN_UP">/v1/registerUser.php</string>
@@ -19,5 +21,5 @@
     <string name="URL_ENVIAR_RESPUESTA">/v1/sendReply.php</string>
     <string name="URL_MOVIMIENTO">/v1/movimiento.php</string>
     <string name="URL_REPORTE">/v1/registerReporte.php</string>
-
+    <string name="URL_CONSEGUIR_REPORTE">/v1/conseguirReporte.php</string>
 </resources>

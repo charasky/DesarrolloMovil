@@ -74,6 +74,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
             intent.putExtra("hora", report.getHora());
             intent.putExtra("provincia", report.getProvincia());
             intent.putExtra("pais", report.getPais());
+            intent.putExtra("id", report.getIdReporte());
 
             context.startActivity(intent);
             //Log.d("Clicked", "onClick: " + report.getIdReporte());

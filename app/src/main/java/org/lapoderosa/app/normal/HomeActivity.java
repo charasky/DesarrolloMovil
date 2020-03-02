@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -25,6 +28,11 @@ public class HomeActivity extends AppCompatActivity {
         ingresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
+                animation.setDuration(500);
+                ingresar.setAlpha(1f);
+                ingresar.startAnimation(animation);
+
                 startActivity(new Intent(HomeActivity.this, LoginActivity.class));
                 //finish();
             }
@@ -33,14 +41,15 @@ public class HomeActivity extends AppCompatActivity {
         reporteAnonimo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(HomeActivity.this, ));
+                startActivity(new Intent(HomeActivity.this, ReporteAnonimo.class));
+                //finish();
             }
         });
 
         contacto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent());
+                startActivity(new Intent(HomeActivity.this, ContactoActivity.class));
             }
         });
 
@@ -53,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         moveTaskToBack(true);
     }
 }

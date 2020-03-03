@@ -7,7 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
+import android.widget.RadioButton;
 
 import com.lapoderosa.app.R;
 
@@ -27,6 +29,7 @@ public class InicioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(InicioActivity.this, BusquedarReporteActivity.class));
+                animation(btBusqueda);
             }
         });
 
@@ -34,6 +37,7 @@ public class InicioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(InicioActivity.this, ReporteActivity.class));
+                animation(btReporte);
             }
         });
 
@@ -41,8 +45,16 @@ public class InicioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cerrarSesion();
+                animation(btCerrar);
             }
         });
+    }
+
+    private void animation(Button button){
+        AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
+        animation.setDuration(500);
+        button.setAlpha(1f);
+        button.startAnimation(animation);
     }
 
     private void cerrarSesion() {

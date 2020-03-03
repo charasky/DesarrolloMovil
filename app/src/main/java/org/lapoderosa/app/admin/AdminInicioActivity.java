@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
@@ -34,6 +35,7 @@ public class AdminInicioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AdminInicioActivity.this, BusquedarReporteActivity.class));
+                animation(btBusqueda);
             }
         });
 
@@ -41,6 +43,7 @@ public class AdminInicioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AdminInicioActivity.this, ReporteActivity.class));
+                animation(btReporte);
             }
         });
 
@@ -48,6 +51,7 @@ public class AdminInicioActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(AdminInicioActivity.this, AdminHabilitarCuenta.class));
+                animation(btHabilitarCuenta);
             }
         });
 
@@ -55,6 +59,7 @@ public class AdminInicioActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(AdminInicioActivity.this,AdminRestablecerContraseñaActivity.class));
+                animation(btRestablecerContraseña);
             }
         });
 
@@ -62,6 +67,7 @@ public class AdminInicioActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(AdminInicioActivity.this,AdminMovimientosActivity.class));
+                animation(btMovimientos);
             }
         });
 
@@ -69,8 +75,16 @@ public class AdminInicioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cerrarSesion();
+                animation(btCerrar);
             }
         });
+    }
+
+    private void animation(Button button){
+        AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
+        animation.setDuration(500);
+        button.setAlpha(1f);
+        button.startAnimation(animation);
     }
 
     private void cerrarSesion() {

@@ -20,7 +20,8 @@
         tools:ignore="ContentDescription" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
         android:layout_height="match_parent">
 
         <Button
@@ -38,34 +39,37 @@
             tools:ignore="LabelFor" />
 
         <TextView
+            android:background="?android:attr/selectableItemBackground"
             android:id="@+id/homeRegistrarse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/homeIngresar"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
+            android:padding="8dp"
             android:gravity="center"
             android:text="@string/REGISTRARSE3"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
-
+            android:background="?android:attr/selectableItemBackground"
             android:id="@+id/homeReporteAnonimo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/homeRegistrarse"
-            android:layout_marginTop="10dp"
+            android:padding="8dp"
             android:gravity="center"
             android:text="@string/reporte_anonimo"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
+            android:background="?android:attr/selectableItemBackground"
             android:id="@+id/homeContacto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/homeReporteAnonimo"
-            android:layout_marginTop="10dp"
+            android:padding="8dp"
             android:gravity="center"
             android:text="@string/contacto"
             android:textSize="16sp"

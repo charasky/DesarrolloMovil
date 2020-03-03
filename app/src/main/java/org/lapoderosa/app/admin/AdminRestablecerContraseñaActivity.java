@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,6 +55,7 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
             @Override
             public void onClick(View v) {
                 restorePassword();
+                animation(rBtSiguiente);
             }
         });
 
@@ -64,6 +66,13 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
                 inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
+    }
+
+    private void animation(Button button){
+        AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
+        animation.setDuration(500);
+        button.setAlpha(1f);
+        button.startAnimation(animation);
     }
 
     protected void restorePassword() {

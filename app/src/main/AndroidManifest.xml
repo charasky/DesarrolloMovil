@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="org.lapoderosa.app.normal.ContactoActivity"></activity>
+
+
+        <activity android:name="org.lapoderosa.app.normal.ContactoActivity" />
         <activity android:name="org.lapoderosa.app.normal.ReporteAnonimo" />
         <activity android:name="org.lapoderosa.app.normal.HomeActivity" />
         <activity android:name="org.lapoderosa.app.normal.SplashActivity">

@@ -9,7 +9,7 @@
     tools:context="org.lapoderosa.app.normal.ContactoActivity">
 
     <ImageView
-        android:id="@+id/iv1"
+        android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -17,22 +17,22 @@
 
 
     <TextView
-        android:id="@+id/tv1"
+        android:id="@+id/contactoWeb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/iv1"
+        android:layout_below="@+id/logo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:hint="lapoderosa.org.ar"
-        android:textColor="#ffffff"
         android:textSize="33sp"
         android:textStyle="bold" />
 
     <LinearLayout
-        android:id="@+id/lymedio"
+        android:background="?android:attr/selectableItemBackground"
+        android:id="@+id/contactoFacebook"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv1"
+        android:layout_below="@+id/contactoWeb"
         android:layout_marginTop="50dp"
         android:orientation="horizontal">
 
@@ -47,7 +47,6 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:hint=" @gargantapodero"
@@ -56,10 +55,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/rl2"
+        android:background="?android:attr/selectableItemBackground"
+        android:id="@+id/contactoTwitter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lymedio"
+        android:layout_below="@+id/contactoFacebook"
         android:layout_marginTop="30dp"
         android:orientation="horizontal">
 
@@ -97,11 +97,14 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/contactoVolver"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="45dp"
-            android:hint="volver"
+            android:layout_marginTop="25dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:hint="@string/volver"
+            android:padding="8dp"
             android:textSize="18sp" />
     </LinearLayout>
 </RelativeLayout>

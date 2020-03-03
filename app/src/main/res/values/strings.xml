@@ -20,7 +20,7 @@
     <string name="ingrese_email_y_la_nueva_contrasenia">Ingrese email y la nueva contraseña.</string>
     <string name="nueva_contrasenia">Nueva contraseña</string>
     <string name="confirmar_contrase_a">Confirmar contraseña</string>
-    <string name="volver">volver</string>
+    <string name="volver">Volver</string>
     <string name="buscar_por_fecha_nombre_ciudad">buscar por fecha, nombre, ciudad</string>
     <string name="recuperar_cuenta">Recuperar Cuenta</string>
     <string name="ingrese_el_correo_electronico_del_usuario_que_quiere_recuperar_la_cuenta">Ingrese el correo electronico del usuario que quiere recuperar la cuenta.</string>

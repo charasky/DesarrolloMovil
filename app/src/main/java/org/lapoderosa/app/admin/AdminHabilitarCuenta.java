@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -70,6 +71,7 @@ public class AdminHabilitarCuenta extends MasterClass {
             @Override
             public void onClick(View v) {
                 habilitarCuentas();
+                animation(button1);
             }
         });
 
@@ -77,9 +79,18 @@ public class AdminHabilitarCuenta extends MasterClass {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+                animation(button2);
             }
         });
     }
+
+    private void animation(Button button){
+        AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
+        animation.setDuration(500);
+        button.setAlpha(1f);
+        button.startAnimation(animation);
+    }
+
 
     private void habilitarCuentas() {
         inicializarStringVariables();

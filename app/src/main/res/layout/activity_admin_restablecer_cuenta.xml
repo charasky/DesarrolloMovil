@@ -82,25 +82,35 @@
             android:importantForAutofill="no" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <Button
-        android:id="@+id/rBtSiguiente"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
         android:layout_below="@+id/layout2Pass"
-        android:background="@drawable/custom_bottom"
-        android:text="@string/guardar"
-        android:textColor="#FFF"
-        android:textSize="18sp"/>
+        android:layout_width="300dp"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/rVolver"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rBtSiguiente"
-        android:gravity="center"
-        android:padding="20dp"
-        android:text="@string/volver"
-        android:textSize="15sp"/>
+        <Button
+            android:id="@+id/rBtSiguiente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/custom_bottom"
+            android:text="@string/guardar"
+            android:textColor="#FFF"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/rVolver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:padding="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/volver"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+
 </RelativeLayout>

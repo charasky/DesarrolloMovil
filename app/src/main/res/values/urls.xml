@@ -5,11 +5,10 @@
     <string name="HOST">http://192.168.0.8/android</string>
     <string name="HOST">http://192.168.0.9/android</string>
     -->
-    <string name="HOST">http://192.168.0.9/android</string>
 
-    <!-- //todo URLS AWS
+    <!-- //todo URLS AWS    -->
     <string name="HOST">http://3.136.55.99/proyecto</string>
-    -->
+    
 
     <string name="URL_LOGIN">/v1/userLogin.php</string>
     <string name="URL_SIGN_UP">/v1/registerUser.php</string>

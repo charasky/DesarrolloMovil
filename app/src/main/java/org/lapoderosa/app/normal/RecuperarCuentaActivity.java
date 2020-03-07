@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.util.JavaMailAPI;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class RecuperarCuentaActivity extends MasterClass {
@@ -75,8 +76,10 @@ public class RecuperarCuentaActivity extends MasterClass {
     }
 
     @Override
-    protected void putParams(Map<String, String> parametros) throws AuthFailureError {
+    protected Map<String, String> putParams(){
+        Map<String, String> parametros = new HashMap<String, String>();
         parametros.put("usu_usuario", email);
+        return parametros;
     }
 
     @Override

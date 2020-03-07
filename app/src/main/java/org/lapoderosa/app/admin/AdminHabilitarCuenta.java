@@ -127,9 +127,11 @@ public class AdminHabilitarCuenta extends MasterClass {
     }
 
     @Override
-    protected void putParams(Map<String, String> parametros) throws AuthFailureError {
+    protected Map<String, String> putParams() {
+        Map<String, String> parametros = new HashMap<String, String>();
         parametros.put("usu_asamblea", SharedPrefManager.getInstance(this).getKeyAsamblea());
         parametros.put("usu_administrador", SharedPrefManager.getInstance(this).getKeyTypeUser());
+        return parametros;
     }
 
     @Override

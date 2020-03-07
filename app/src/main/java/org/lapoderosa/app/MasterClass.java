@@ -41,15 +41,14 @@ public abstract class MasterClass extends AppCompatActivity {
         }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parametros = new HashMap<String, String>();
-                putParams(parametros);
-                return parametros;
+                return putParams();
             }
         };
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-    protected abstract void putParams(Map<String, String> parametros) throws AuthFailureError;
+    //protected abstract void putParams(Map<String, String> parametros) throws AuthFailureError;
+    protected abstract Map<String, String> putParams();
 
     protected abstract void inicializarStringVariables();
 

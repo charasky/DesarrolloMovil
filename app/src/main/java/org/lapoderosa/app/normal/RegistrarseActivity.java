@@ -22,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class RegistrarseActivity extends MasterClass {
@@ -111,12 +112,15 @@ public class RegistrarseActivity extends MasterClass {
         }
     }
 
-    protected void putParams(Map<String, String> parametros) throws AuthFailureError {
+    @Override
+    protected Map<String, String> putParams() {
+        Map<String, String> parametros = new HashMap<String, String>();
         parametros.put("usu_usuario", email);
         parametros.put("usu_password", password1);
         parametros.put("usu_nombres", name);
         parametros.put("usu_apellidos", surname);
         parametros.put("usu_asamblea", asamblea);
+        return parametros;
     }
 
     private boolean validate() {

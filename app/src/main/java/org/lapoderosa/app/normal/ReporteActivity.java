@@ -39,6 +39,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -344,10 +345,12 @@ public class ReporteActivity extends MasterClass {
     }
 
     @Override
-    protected void putParams(Map<String, String> parametros) throws AuthFailureError {
+    protected Map<String, String> putParams() {
+        Map<String, String> parametros = new HashMap<String, String>();
         parametros.put("fechaReporte", fechaCreacionReporte);
         parametros.put("horaReporte", horaCreacionReporte);
         parametros.put("reporte", this.jsonObject().toString());
+        return parametros;
     }
 
     private JSONObject jsonObject() {

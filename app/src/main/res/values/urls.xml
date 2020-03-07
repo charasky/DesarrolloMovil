@@ -20,4 +20,5 @@
     <string name="URL_MOVIMIENTO">/v1/movimiento.php</string>
     <string name="URL_REPORTE">/v1/registerReporte.php</string>
     <string name="URL_CONSEGUIR_REPORTE">/v1/conseguirReporte.php</string>
+    <string name="URL_REPORTE_ANONIMO">/v1/reporteAnonimo.php</string>
 </resources>

@@ -22,6 +22,7 @@ import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.admin.AdminInicioActivity;
 import org.lapoderosa.app.util.SharedPrefManager;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends MasterClass {
@@ -88,10 +89,12 @@ public class LoginActivity extends MasterClass {
     }
 
     @Override
-    protected void putParams(Map<String, String> parametros) throws AuthFailureError {
+    protected Map<String, String> putParams() {
+        Map<String, String> parametros = new HashMap<String, String>();
         parametros.put("contador", cont.toString());
         parametros.put("usu_usuario", usuario);
         parametros.put("usu_password", password);
+        return parametros;
     }
 
     @Override

@@ -17,6 +17,7 @@ import org.lapoderosa.app.admin.AdminHabilitarCuenta;
 import org.lapoderosa.app.model.User;
 import org.lapoderosa.app.util.SharedPrefManager;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class ReportVisualizacion extends MasterClass {
@@ -158,9 +159,11 @@ public class ReportVisualizacion extends MasterClass {
     }
 
     @Override
-    protected void putParams(Map<String, String> parametros) throws AuthFailureError {
+    protected Map<String, String> putParams() {
+        Map<String, String> parametros = new HashMap<String, String>();
         parametros.put("usu_usuario", SharedPrefManager.getInstance(this).getKeyUsuario());
         parametros.put("id", id);
+        return parametros;
     }
 
     @Override

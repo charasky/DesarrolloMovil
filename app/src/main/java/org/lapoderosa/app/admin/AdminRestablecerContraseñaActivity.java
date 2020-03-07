@@ -22,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class AdminRestablecerContraseñaActivity extends MasterClass {
@@ -144,9 +145,11 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
     }
 
     @Override
-    protected void putParams(Map<String, String> parametros) throws AuthFailureError {
+    protected Map<String, String> putParams() {
+        Map<String, String> parametros = new HashMap<String, String>();
         parametros.put("usu_usuario", email);
         parametros.put("usu_password", password1);
+        return parametros;
     }
 
     @Override

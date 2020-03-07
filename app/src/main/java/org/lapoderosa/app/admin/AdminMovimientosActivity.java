@@ -23,6 +23,7 @@ import org.lapoderosa.app.model.Report;
 import org.lapoderosa.app.util.SharedPrefManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -82,8 +83,10 @@ public class AdminMovimientosActivity extends MasterClass {
     }
 
     @Override
-    protected void putParams(Map<String, String> parametros) throws AuthFailureError {
+    protected Map<String, String> putParams() {
+        Map<String, String> parametros = new HashMap<String, String>();
         parametros.put("usu_usuario", SharedPrefManager.getInstance(this).getKeyUsuario());
+        return parametros;
     }
 
     @Override

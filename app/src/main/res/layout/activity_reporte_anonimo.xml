@@ -263,7 +263,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btnCancelar"
+                android:id="@+id/btnEnviarDA"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
     android:padding="30dp"
     tools:context="org.lapoderosa.app.normal.ContactoActivity">
 
@@ -84,7 +83,9 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="50dp"
@@ -93,16 +94,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:text="@string/año"
             android:textColor="#BCBBBB"
             android:textSize="20sp" />
 
         <TextView
+            android:gravity="center"
             android:id="@+id/contactoVolver"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_marginTop="25dp"
             android:background="?android:attr/selectableItemBackground"
             android:hint="@string/volver"

@@ -92,7 +92,7 @@
             android:layout_marginTop="15dp"
             android:padding="8dp"
             android:text="@string/olvidastes_la_contrasenia"
-            android:textSize="15sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
 

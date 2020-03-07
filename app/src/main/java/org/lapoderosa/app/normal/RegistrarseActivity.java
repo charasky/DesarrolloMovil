@@ -14,13 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-
-import com.android.volley.AuthFailureError;
 import com.lapoderosa.app.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
+import org.lapoderosa.app.util.DateDefinido;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +28,7 @@ public class RegistrarseActivity extends MasterClass {
     private EditText dmNombres, dmApellidos, dmEmail, dmPassword, dmPassword2, dmAsamblea;
     private Button dmRegistrarBtn;
     private TextView dmLogin;
+    private String registracionFecha, registracionHora;
     private String name, surname, email, password1, password2, asamblea;
     private RelativeLayout layout;
 
@@ -81,6 +81,9 @@ public class RegistrarseActivity extends MasterClass {
     }
 
     protected void inicializarStringVariables() {
+        registracionFecha = DateDefinido.getFechaDispositivo();
+        registracionHora = DateDefinido.getHoraDispositivo();
+
         email = dmEmail.getText().toString().trim();
         password2 = dmPassword2.getText().toString().trim();
         password1 = dmPassword.getText().toString().trim();
@@ -114,13 +117,26 @@ public class RegistrarseActivity extends MasterClass {
 
     @Override
     protected Map<String, String> putParams() {
+        //todo change
         Map<String, String> parametros = new HashMap<String, String>();
-        parametros.put("usu_usuario", email);
-        parametros.put("usu_password", password1);
-        parametros.put("usu_nombres", name);
-        parametros.put("usu_apellidos", surname);
-        parametros.put("usu_asamblea", asamblea);
+        parametros.put("registracion_usuario", registracionObject().toString());
         return parametros;
+    }
+
+    private JSONObject registracionObject() {
+        JSONObject object = new JSONObject();
+        try {
+            object.put("usu_usuario", email);
+            object.put("usu_password", password1);
+            object.put("usu_nombres", name);
+            object.put("usu_apellidos", surname);
+            object.put("usu_asamblea", asamblea);
+            object.put("registracion_fecha", registracionFecha);
+            object.put("registracion_hora", registracionHora);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return object;
     }
 
     private boolean validate() {
@@ -133,7 +149,7 @@ public class RegistrarseActivity extends MasterClass {
             dmApellidos.setError("Ingrese apellido");
             valid = false;
         }
-        if (asamblea.isEmpty() || surname.length() > 10) {
+        if (asamblea.isEmpty() || asamblea.length() > 6) {
             dmAsamblea.setError("Ingrese asamblea");
             valid = false;
         }

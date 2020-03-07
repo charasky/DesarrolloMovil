@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.google.android.material.textfield.TextInputLayout;
 import com.lapoderosa.app.R;
 
 import org.json.JSONException;
@@ -25,11 +27,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegistrarseActivity extends MasterClass {
-    private EditText dmNombres, dmApellidos, dmEmail, dmPassword, dmPassword2, dmAsamblea;
+    private EditText dmNombres, dmApellidos, dmEmail, dmAsamblea;
+    private TextInputLayout dmPassword, dmPassword2;
     private Button dmRegistrarBtn;
     private TextView dmLogin;
     private String registracionFecha, registracionHora;
-    private String name, surname, email, password1, password2, asamblea;
+    private String name, surname, email, asamblea, password1, password2;
     private RelativeLayout layout;
 
     @Override
@@ -85,8 +88,8 @@ public class RegistrarseActivity extends MasterClass {
         registracionHora = DateDefinido.getHoraDispositivo();
 
         email = dmEmail.getText().toString().trim();
-        password2 = dmPassword2.getText().toString().trim();
-        password1 = dmPassword.getText().toString().trim();
+        password2 = dmPassword2.getEditText().getText().toString().trim();
+        password1 = dmPassword.getEditText().getText().toString().trim();
         name = dmNombres.getText().toString().trim();
         surname = dmApellidos.getText().toString().trim();
         asamblea = dmAsamblea.getText().toString().trim();

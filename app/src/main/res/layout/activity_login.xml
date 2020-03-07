@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutLogin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="22dp"
     android:gravity="center"
-    android:orientation="vertical"
-    app:layout_editor_absoluteX="10dp"
-    app:layout_editor_absoluteY="10dp">
+    android:padding="20dp"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/splashView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/centerTextView"
         android:foregroundGravity="center"
         android:padding="5dp"
         app:srcCompat="@drawable/splash"
@@ -27,74 +23,62 @@
         android:id="@+id/centerTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_margin="20dp"
         android:gravity="center"
         android:text="@string/iniciar_sesion"
         android:textSize="30sp" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/centerTextView"
-        android:drawableLeft="@drawable/ic_email_black_36dp"
-        android:inputType="textEmailAddress"
-        android:hint="@string/email"
-        android:drawableStart="@drawable/ic_email_black_36dp"
-        android:importantForAutofill="no" />
+        app:errorEnabled="true">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutPass"
-        android:layout_below="@+id/etUserName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleDrawable="@drawable/icon_selector"
-        app:passwordToggleTint="@color/colorPrimary">
-
-        <EditText
-            android:id="@+id/dmPassword1"
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_lock_black_24dp"
-            android:hint="@string/contrasenia"
-            android:inputType="textPassword"
-            android:drawableStart="@drawable/ic_lock_black_24dp"
-            android:importantForAutofill="no" />
+            android:drawableStart="@drawable/ic_email_black_36dp"
+            android:drawableLeft="@drawable/ic_email_black_36dp"
+            android:hint="@string/email"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/layoutPass"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dmPassword1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true"
+        app:passwordToggleDrawable="@drawable/icon_selector"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/colorPrimary">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_lock_black_24dp"
+            android:drawableLeft="@drawable/ic_lock_black_24dp"
+            android:hint="@string/contrasenia"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btLogin"
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="45dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/custom_bottom"
             android:text="@string/login"
             android:textColor="#FFF"
             android:textSize="18sp" />
 
         <TextView
-            android:background="?android:attr/selectableItemBackground"
-            android:layout_below="@id/btLogin"
-            android:id="@+id/etOlvidastesContraseña"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:padding="8dp"
+            android:id="@+id/etOlvidastesContraseña"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
             android:text="@string/olvidastes_la_contrasenia"
             android:textSize="16sp" />
-    </LinearLayout>
-
-
-
-</RelativeLayout>
+</LinearLayout>

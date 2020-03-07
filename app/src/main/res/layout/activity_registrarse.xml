@@ -63,7 +63,7 @@
         android:importantForAutofill="no" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutPass"
+        android:id="@+id/dmPassword1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dmEmail"
@@ -72,7 +72,6 @@
         app:passwordToggleTint="@color/colorPrimary">
 
         <EditText
-            android:id="@+id/dmPassword1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/contrasenia"
@@ -82,19 +81,18 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout2Pass"
+        android:id="@+id/dmPassword2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layoutPass"
+        android:layout_below="@+id/dmPassword1"
         app:passwordToggleEnabled="true"
         app:passwordToggleDrawable="@drawable/icon_selector"
         app:passwordToggleTint="@color/colorPrimary">
 
         <EditText
-            android:id="@+id/dmPassword2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/layoutPass"
+            android:layout_below="@+id/dmPassword1"
             android:hint="@string/confirmar_contrasenia"
             android:inputType="textPassword"
             android:textSize="18sp"
@@ -106,7 +104,7 @@
         android:layout_width="300dp"
         android:layout_height="45dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/layout2Pass"
+        android:layout_below="@+id/dmPassword2"
         android:layout_marginTop="20dp"
         android:background="@drawable/custom_bottom"
         android:gravity="center"

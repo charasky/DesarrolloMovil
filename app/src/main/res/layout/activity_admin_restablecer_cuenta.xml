@@ -32,7 +32,7 @@
         android:id="@+id/rEmail"
         android:inputType="textEmailAddress"
         android:layout_marginTop="30dp"
-        android:layout_above="@+id/layoutPass"
+        android:layout_above="@+id/dmPassword1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_email_black_36dp"
@@ -41,7 +41,7 @@
         android:importantForAutofill="no" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutPass"
+        android:id="@+id/dmPassword1"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_width="match_parent"
@@ -65,7 +65,7 @@
         android:id="@+id/layout2Pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layoutPass"
+        android:layout_below="@+id/dmPassword1"
         app:passwordToggleEnabled="true"
         app:passwordToggleDrawable="@drawable/icon_selector"
         app:passwordToggleTint="@color/colorPrimary">
@@ -74,7 +74,7 @@
             android:id="@+id/rPassword2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/layoutPass"
+            android:layout_below="@+id/dmPassword1"
             android:drawableLeft="@drawable/ic_lock_black_24dp"
             android:drawableStart="@drawable/ic_lock_black_24dp"
             android:hint="@string/confirmar_contrase_a"

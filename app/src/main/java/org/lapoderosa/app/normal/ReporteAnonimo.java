@@ -40,7 +40,7 @@ public class ReporteAnonimo extends MasterClass {
     private Button btnEnviarDA;
     private String emailAnonimo, celularAnonimo, barrioAnonimo, provinciaAnonimo, paisAnonimo, anonimoDetalle, fechaHechoAnonimo, horaHechoAnonimo;
     private EditText edtEmailAnonimo, edtCelularAnonimo, edtBarrioAnonimo, edtProvinciaAnonimo, edtPaisAnonimo;
-    private TextInputLayout textAnonimoDetalle;
+    private TextInputLayout textAnonimoDetalle, tilTextDetalle;
     private TextView tvFechaAnonimo, tvHoraAnonimo;
     private Check check = new Check();
 

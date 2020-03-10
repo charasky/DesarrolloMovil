@@ -8,6 +8,7 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -40,7 +41,7 @@ public class ReporteAnonimo extends MasterClass {
     private Button btnEnviarDA;
     private String emailAnonimo, celularAnonimo, barrioAnonimo, provinciaAnonimo, paisAnonimo, anonimoDetalle, fechaHechoAnonimo, horaHechoAnonimo;
     private EditText edtEmailAnonimo, edtCelularAnonimo, edtBarrioAnonimo, edtProvinciaAnonimo, edtPaisAnonimo;
-    private TextInputLayout textAnonimoDetalle, tilTextDetalle;
+    private TextInputLayout textAnonimoDetalle;
     private TextView tvFechaAnonimo, tvHoraAnonimo;
     private Check check = new Check();
 
@@ -116,7 +117,7 @@ public class ReporteAnonimo extends MasterClass {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void enviarDenunciaAnonima() {
         this.inicializarStringVariables();
-        if (this.checkVariables().isEmpty()) {
+        if (!validate() && !this.checkVariables().isEmpty()) {
             Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
         } else {
             this.ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_REPORTE_ANONIMO));
@@ -125,8 +126,8 @@ public class ReporteAnonimo extends MasterClass {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private List<Boolean> checkVariables() {
-        check.addListToCheck(check.isStringEmpty(emailAnonimo, edtEmailAnonimo, "Ingrese email"));
-        check.addListToCheck(check.isStringEmpty(celularAnonimo, edtCelularAnonimo, "Ingrese celular"));
+        //check.addListToCheck(check.isStringEmpty(emailAnonimo, edtEmailAnonimo, "Ingrese email"));
+        //check.addListToCheck(check.isStringEmpty(celularAnonimo, edtCelularAnonimo, "Ingrese celular"));
         check.addListToCheck(check.isStringEmpty(barrioAnonimo, edtBarrioAnonimo, "Ingrese barrio"));
         check.addListToCheck(check.isStringEmpty(provinciaAnonimo, edtProvinciaAnonimo, "Ingrese provincia"));
         check.addListToCheck(check.isStringEmpty(paisAnonimo, edtPaisAnonimo, "Ingrese pais"));
@@ -134,6 +135,15 @@ public class ReporteAnonimo extends MasterClass {
         check.addListToCheck(check.isStringEmpty(fechaHechoAnonimo, tvFechaAnonimo, "Ingrese fecha del hecho", this));
         check.addListToCheck(check.isStringEmpty(horaHechoAnonimo, tvHoraAnonimo, "Ingrese hora del hecho", this));
         return check.finalValidation();
+    }
+
+    private boolean validate() {
+        boolean valid = true;
+        if (emailAnonimo.isEmpty() || celularAnonimo.isEmpty()) {
+            Toast.makeText(ReporteAnonimo.this,"Se necesita almenos email o celular" , Toast.LENGTH_SHORT).show();
+            valid = false;
+        }
+        return valid;
     }
 
     public void onBackPressed() {
@@ -179,9 +189,9 @@ public class ReporteAnonimo extends MasterClass {
     @Override
     protected Map<String, String> putParams() {
         Map<String, String> parametros = new HashMap<String, String>();
-        parametros.put("fechaReporte", fechaCreacionReporteAnonimo);
-        parametros.put("horaReporte", horaCreacionReporteAnonimo);
-        parametros.put("reporte", this.objectReporteAnonimo().toString());
+        parametros.put("fecha_reporte_anonimo_creacion", fechaCreacionReporteAnonimo);
+        parametros.put("hora_reporte_anonimo_creacion", horaCreacionReporteAnonimo);
+        parametros.put("reporte_anonimo", this.objectReporteAnonimo().toString());
         return parametros;
     }
 
@@ -202,6 +212,18 @@ public class ReporteAnonimo extends MasterClass {
 
     @Override
     protected void responseConexion(String response) {
+        boolean validate = false;
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+            validate = jsonObject.getBoolean("validate");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        if(validate){
+            startActivity(new Intent(ReporteAnonimo.this,HomeActivity.class));
+            finish();
+        }
     }
 }

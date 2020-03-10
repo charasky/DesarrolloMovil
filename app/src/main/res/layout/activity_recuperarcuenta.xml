@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutRecuperarCuenta"
     android:layout_width="match_parent"
@@ -27,25 +28,30 @@
         android:text="@string/ingrese_el_correo_electronico_del_usuario_que_quiere_recuperar_la_cuenta"
         android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/rEmail"
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_marginTop="40dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_email_black_36dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:inputType="textEmailAddress"
-        android:hint="@string/correo_electronico"
-        android:drawableStart="@drawable/ic_email_black_36dp"
-        android:importantForAutofill="no" />
+        android:id="@+id/rEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_email_black_36dp"
+            android:drawableLeft="@drawable/ic_email_black_36dp"
+            android:hint="Correo Electronico"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/rBtSiguiente"
         android:layout_width="300dp"
         android:layout_height="45dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
         android:layout_below="@+id/rEmail"
         android:background="@drawable/custom_bottom"
         android:text="@string/siguiente"
@@ -54,12 +60,15 @@
         />
 
     <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
         android:id="@+id/rLogin"
-        android:layout_width="match_parent"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rBtSiguiente"
         android:gravity="center"
-        android:padding="20dp"
+        android:padding="10dp"
         android:text="@string/volver_a_iniciar_sesion"
-        android:textSize="15sp" />
+        android:textSize="16sp" />
 </RelativeLayout>

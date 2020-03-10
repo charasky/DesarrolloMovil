@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.android.volley.AuthFailureError;
+import com.google.android.material.textfield.TextInputLayout;
 import com.lapoderosa.app.R;
 
 import org.json.JSONException;
@@ -28,7 +30,7 @@ import java.util.Map;
 public class RecuperarCuentaActivity extends MasterClass {
     private Button rBtSiguiente;
     private TextView rLogin;
-    private EditText rEmail;
+    private TextInputLayout rEmail;
     private String email;
     private RelativeLayout layout;
 
@@ -53,6 +55,10 @@ public class RecuperarCuentaActivity extends MasterClass {
         rBtSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
+                animation.setDuration(500);
+                rBtSiguiente.setAlpha(1f);
+                rBtSiguiente.startAnimation(animation);
                 recuperar();
             }
         });
@@ -84,7 +90,7 @@ public class RecuperarCuentaActivity extends MasterClass {
 
     @Override
     protected void inicializarStringVariables() {
-        email = rEmail.getText().toString();
+        email = rEmail.getEditText().getText().toString().trim();
     }
 
     @Override

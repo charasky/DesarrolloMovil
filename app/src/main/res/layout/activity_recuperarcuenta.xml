@@ -48,6 +48,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:layout_marginTop="10dp"
         android:id="@+id/rBtSiguiente"
         android:layout_width="300dp"
         android:layout_height="45dp"
@@ -56,8 +57,7 @@
         android:background="@drawable/custom_bottom"
         android:text="@string/siguiente"
         android:textColor="#FFF"
-        android:textSize="18sp"
-        />
+        android:textSize="18sp"/>
 
     <TextView
         android:layout_centerHorizontal="true"

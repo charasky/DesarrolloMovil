@@ -74,15 +74,23 @@ public class RecuperarCuentaActivity extends MasterClass {
 
     private void recuperar() {
         inicializarStringVariables();
-        if (!email.isEmpty()) {
+        if (check(email, rEmail, "Ingrese email")) {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_ACCOUNT_RECOVERY));
         } else {
             Toast.makeText(RecuperarCuentaActivity.this, "Ingrese email", Toast.LENGTH_SHORT).show();
         }
     }
 
+    public Boolean check(String string, TextInputLayout txt, String mensaje) {
+        if (string.isEmpty()) {
+            txt.setError(mensaje);
+            return false;
+        }
+        return true;
+    }
+
     @Override
-    protected Map<String, String> putParams(){
+    protected Map<String, String> putParams() {
         Map<String, String> parametros = new HashMap<String, String>();
         parametros.put("usu_usuario", email);
         return parametros;

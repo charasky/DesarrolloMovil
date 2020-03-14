@@ -10,7 +10,6 @@
     <string name="HOST">http://18.222.196.15/proyecto</string>
 
 
-
     <!-- //todo URLS AWS
     -->
 
@@ -23,6 +22,6 @@
     <string name="URL_ENVIAR_RESPUESTA">/v1/sendReply.php</string>
     <string name="URL_MOVIMIENTO">/v1/movimiento.php</string>
     <string name="URL_REPORTE">/v1/registerReporte.php</string>
-    <string name="URL_CONSEGUIR_REPORTE">/v1/conseguirReporte.php</string>
+    <string name="URL_CONSEGUIR_REPORTE">/v1/traerReporte.php</string>
     <string name="URL_REPORTE_ANONIMO">/v1/registrarReporteAnonimo.php</string>
 </resources>

@@ -47,7 +47,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-//todo verificar que los campos de strings no esten vacios
 public class ReporteActivity extends MasterClass {
     private Date date = new Date();
     private String fechaCreacionReporte, horaCreacionReporte;
@@ -332,7 +331,6 @@ public class ReporteActivity extends MasterClass {
         alertDialog.show();
     }
 
-    //todo enviar reporte
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void enviarReporte() {
         inicializarStringVariables();

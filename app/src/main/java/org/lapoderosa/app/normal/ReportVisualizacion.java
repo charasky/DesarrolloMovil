@@ -169,7 +169,6 @@ public class ReportVisualizacion extends MasterClass {
         ruvAsambleaEntrevistador = findViewById(R.id.ruvAsambleaEntrevistador);
         ruvFechaEntrevistador = findViewById(R.id.ruvFechaEntrevistador);
 
-        createPDF();
 
         Bundle bundle = getIntent().getExtras();
 
@@ -182,7 +181,9 @@ public class ReportVisualizacion extends MasterClass {
             fecha.setText(bundle.getString("fecha"));
         }
 
-        //ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_CONSEGUIR_REPORTE));
+        ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_CONSEGUIR_REPORTE));
+
+        createPDF();
     }
 
     @Override

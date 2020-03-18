@@ -4,17 +4,17 @@
 
     <string name="URL_REPORTE">/android/insertar_datos_reporte.php</string>
     <string name="HOST">http://192.168.0.8/android</string>
-     <string name="HOST">http://192.168.0.9/android</string>
+    <string name="HOST">http://192.168.0.4/android</string>
 
     -->
+
     <string name="HOST">http://18.222.196.15/proyecto</string>
-
-
     <!-- //todo URLS AWS
+
     -->
 
     <string name="URL_LOGIN">/v1/userLogin.php</string>
-    <string name="URL_SIGN_UP">/v1/registerUser.php</string>
+    <string name="URL_SIGN_UP">/v1/registerUsuario.php</string>
     <string name="URL_ACCOUNT_RECOVERY">/v1/accountRecovery.php</string>
     <string name="URL_USUARIOS">/v1/searchReport.php</string>
     <string name="URL_USUARIOS_TO_ENABLED">/v1/disabledUsers.php</string>

@@ -3,6 +3,7 @@ package org.lapoderosa.app.normal;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.lapoderosa.app.R;
@@ -21,8 +23,10 @@ import com.lapoderosa.app.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
+import org.lapoderosa.app.util.Check;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RegistrarseActivity extends MasterClass {
@@ -32,6 +36,7 @@ public class RegistrarseActivity extends MasterClass {
     private TextView dmLogin;
     //private String registracionFecha, registracionHora;
     private String name, surname, email, asamblea, password1, password2;
+    private Check check = new Check();
     private RelativeLayout layout;
 
     @Override
@@ -58,6 +63,7 @@ public class RegistrarseActivity extends MasterClass {
         });
 
         dmRegistrarBtn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
                 registrar();
@@ -73,9 +79,10 @@ public class RegistrarseActivity extends MasterClass {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     protected void registrar() {
         inicializarStringVariables();
-        if (!validate()) {
+        if (!validate() && !this.checkVariables().isEmpty()) {
             Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
         } else {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_SIGN_UP));
@@ -140,20 +147,19 @@ public class RegistrarseActivity extends MasterClass {
         return object;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private List<Boolean> checkVariables() {
+        check.addListToCheck(check.isStringEmpty(name, dmNombres, "Ingrese nombre"));
+        check.addListToCheck(check.isStringEmpty(surname, dmApellidos, "Ingrese apellido"));
+        check.addListToCheck(check.isStringEmpty(asamblea, dmAsamblea, "Ingrese asamblea"));
+        check.addListToCheck(check.isStringEmpty(password1, dmPassword, "Ingrese contraseña"));
+        check.addListToCheck(check.isStringEmpty(password2, dmPassword2, "Reingrese contraseña"));
+        return check.finalValidation();
+    }
+
     private boolean validate() {
         boolean valid = true;
-        if (name.isEmpty() || name.length() > 12) {
-            dmNombres.setError("Ingrese nombre");
-            valid = false;
-        }
-        if (surname.isEmpty() || surname.length() > 12) {
-            dmApellidos.setError("Ingrese apellido");
-            valid = false;
-        }
-        if (asamblea.isEmpty() || asamblea.length() > 6) {
-            dmAsamblea.setError("Ingrese asamblea");
-            valid = false;
-        }
+
         if (!isValidEmail(email)) {
             dmEmail.setError("Ingrese email valido");
             valid = false;
@@ -192,16 +198,6 @@ public class RegistrarseActivity extends MasterClass {
         if (password1.matches(".*\\s.*") || password2.matches(".*\\s.*")) {
             dmPassword.setError("Contraseña no debe contener espacios");
             dmPassword2.setError("Contraseña no debe contener espacios");
-            valid = false;
-        }
-
-        if (password1.isEmpty()) {
-            dmPassword.setError("Ingrese contraseña");
-            valid = false;
-        }
-
-        if (password2.isEmpty()) {
-            dmPassword2.setError("Reingrese contraseña");
             valid = false;
         }
 

@@ -1,9 +1,21 @@
 package org.lapoderosa.app.normal;
 
+import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.pm.PackageManager;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.pdf.PdfDocument;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 
 import com.android.volley.AuthFailureError;
 import com.lapoderosa.app.R;
@@ -15,8 +27,12 @@ import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.adapter.UserAdapter;
 import org.lapoderosa.app.admin.AdminHabilitarCuenta;
 import org.lapoderosa.app.model.User;
+import org.lapoderosa.app.util.DateDefinido;
 import org.lapoderosa.app.util.SharedPrefManager;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,12 +72,21 @@ public class ReportVisualizacion extends MasterClass {
 
     //ENTREVISTADOR
     private TextView ruvNombreEntrevistador, ruvApellidoEntrevistador, ruvAsambleaEntrevistador, ruvFechaEntrevistador;
+    private Button btPdf;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_visualizacion);
+
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        }, PackageManager.PERMISSION_GRANTED);
+
         progressDialog = new ProgressDialog(this);
+
+        btPdf = findViewById(R.id.btPdf);
 
         fullNameVictima = findViewById(R.id.vName);
         provincia = findViewById(R.id.vProvincia);
@@ -144,6 +169,8 @@ public class ReportVisualizacion extends MasterClass {
         ruvAsambleaEntrevistador = findViewById(R.id.ruvAsambleaEntrevistador);
         ruvFechaEntrevistador = findViewById(R.id.ruvFechaEntrevistador);
 
+        createPDF();
+
         Bundle bundle = getIntent().getExtras();
 
         if (bundle != null) {
@@ -155,7 +182,7 @@ public class ReportVisualizacion extends MasterClass {
             fecha.setText(bundle.getString("fecha"));
         }
 
-        ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_CONSEGUIR_REPORTE));
+        //ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_CONSEGUIR_REPORTE));
     }
 
     @Override
@@ -263,5 +290,41 @@ public class ReportVisualizacion extends MasterClass {
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void createPDF() {
+
+        btPdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String namePDF = fullNameVictima.getText().toString() + "_" + DateDefinido.getFechaDispositivo() + "_-_" + DateDefinido.getHoraDispositivo();
+                PdfDocument myPdfDocument = new PdfDocument();
+                Paint myPaint = new Paint();
+
+                PdfDocument.PageInfo myPageInfo = new PdfDocument.PageInfo.Builder(250, 400, 1).create();
+                PdfDocument.Page myPage1 = myPdfDocument.startPage(myPageInfo);
+
+                Canvas canvas = myPage1.getCanvas();
+
+                canvas.drawText(fullNameVictima.getText().toString(), 40, 50, myPaint);
+                myPdfDocument.finishPage(myPage1);
+
+                File file = new File(Environment.getExternalStorageDirectory(), "/" + namePDF + ".pdf");
+
+                try {
+                    myPdfDocument.writeTo(new FileOutputStream(file));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                myPdfDocument.close();
+
+                Toast.makeText(ReportVisualizacion.this, "creado", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
     }
 }

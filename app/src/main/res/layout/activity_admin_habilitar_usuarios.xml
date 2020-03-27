@@ -44,8 +44,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/custom_bottom"
                 android:text="@string/guardar"
-                android:textColor="#fff"
-                tools:ignore="ButtonStyle" />
+                style="@style/buttonFormat" />
 
             <Button
                 android:id="@+id/huAbutton2"
@@ -54,8 +53,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/custom_bottom"
                 android:text="@string/cancelar"
-                android:textColor="#fff"
-                tools:ignore="ButtonStyle" />
+                style="@style/buttonFormat" />
         </LinearLayout>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

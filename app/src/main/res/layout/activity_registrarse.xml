@@ -109,8 +109,7 @@
         android:background="@drawable/custom_bottom"
         android:gravity="center"
         android:text="@string/registrarse"
-        android:textColor="#FFF"
-        android:textSize="18sp" />
+        style="@style/buttonFormat" />
 
     <TextView
         android:background="?android:attr/selectableItemBackground"

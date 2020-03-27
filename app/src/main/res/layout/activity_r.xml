@@ -1982,8 +1982,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/custom_bottom"
                     android:text="GUARDAR"
-                    android:textColor="#FFF"
-                    android:textSize="20dp" />
+                    style="@style/buttonFormat"/>
 
                 <Button
                     android:id="@+id/btnCancelar"
@@ -1992,8 +1991,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/custom_bottom"
                     android:text="CANCELAR"
-                    android:textColor="#FFF"
-                    android:textSize="20dp" />
+                    style="@style/buttonFormat"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

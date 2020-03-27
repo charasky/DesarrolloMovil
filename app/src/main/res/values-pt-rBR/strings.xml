@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Garganta Poderosa</string>
+    <string name="iniciar_sesion">Iniciar Sessão</string>
+    <string name="cerrar_sesion">Fechar Sessão</string>
+    <string name="contrasenia">Senha</string>
+    <string name="email">Correio eletrônico</string>
+    <string name="registrarse">Registrar</string>
+    <string name="login">LOGIN</string>
+    <string name="guardar">Salvar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="busqueda">Pesquisar</string>
+    <string name="reporte">Reporte</string>
+    <string name="volver">Volte</string>
+    <string name="olvidastes_la_contrasenia">¿Esqueceu sua senha?</string>
+    <string name="restablecer_contrasenia">Redefinir Senha</string>
+    <string name="ingrese_email">Insira Email</string>
+    <string name="aceptar_eliminar">ACEITAR - REMOVER</string>
+    <string name="habilitar_cuenta">Ativar Conta</string>
+    <string name="movimientos">Novimentos</string>
+    <string name="buscar_por_fecha_email">Pesquisar por data, email</string>
+    <string name="ingrese_email_y_la_nueva_contrasenia">Digite o email e a nova senha.</string>
+    <string name="nueva_contrasenia">Nova senha</string>
+    <string name="confirmar_contrase_a">Confirmar senha</string>
+    <string name="buscar_por_fecha_nombre_ciudad">Pesquisa por data, nome, cidade</string>
+    <string name="recuperar_cuenta">Recuperar conta</string>
+    <string name="ingrese_el_correo_electronico_del_usuario_que_quiere_recuperar_la_cuenta">Digite o email do usuário que deseja recuperar a conta.</string>
+    <string name="correo_electronico">Correio eletrônico</string>
+    <string name="siguiente">PRÓXIMO</string>
+    <string name="volver_a_iniciar_sesion">Entrar novamente</string>
+    <string name="asamblea">Assembleia</string>
+    <string name="apellido">Sobrenome</string>
+    <string name="confirmar_contrasenia">confirmar senha</string>
+    <string name="ya_tienes_cuenta_inicia_sesion">Já possui uma conta?, Iniciar Sessão</string>
+    <string name="usuario">Usuário</string>
+    <string name="que_hizo">Que fez</string>
+    <string name="hora">Tempo</string>
+    <string name="usuario_interactuado">Usuário Interagido</string>
+    <string name="lugar">Lugar</string>
+    <string name="ciudad">cidade</string>
+    <string name="nombre">Nome</string>
+    <string name="fecha">Data</string>
+    <string name="nombre_completo">Nome completo</string>
+    <string name="aceptar">aceitar</string>
+    <string name="eliminar">eliminar</string>
+
+    <string name="hh_mm">HH:mm</string>
+    <string name="dd_mm_yyyy">dd/mm/yyyy</string>
+
+    <!--home-->
+    <string name="ingresar">ENTRAR</string>
+    <string name="REGISTRARSE3">REGISTRAR</string>
+    <string name="reporte_anonimo">RELATÓRIO ANÔNIMO</string>
+    <string name="contacto">CONTATO</string>
+    <string name="año">©2020</string>
+
+    <!-- reporte anonimo-->
+    <string name="enviar">Enviar</string>
+    <string name="pais">País:</string>
+    <string name="provincia">Província:</string>
+    <string name="barrio">Vizinhança:</string>
+    <string name="celular">Celular:</string>
+    <string name="emailRA">Correio eletrônico:</string>
+    <string name="denuncia_anonima">Reclamação Anônima</string>
+    <string name="descripcion_general_del_hecho">Descrição Geral do Fato</string>
+    <string name="informacion_del_hecho">Informações sobre fatos</string>
+    <string name="detalle_lo_sucedido">Detalhe o que aconteceu</string>
+    <string name="aceptaTerminos">As informações inseridas serão supervisionadas por um membro da garganta, é importante inserir dados válidos para que possamos entrar em contato.</string>
+    <string name="ingrese_donde_ocurrio_el_hecho">Digite onde o evento ocorreu:</string>
+    <string name="ingrese_fecha_y_la_hora_aproximadas_de_cuando_ocurrio_el_hecho">Digite a data e hora aproximadas em que o evento ocorreu:</string>
+    <string name="complete_para_que_nos_podamos_contactar">Completo para que possamos entrar em contato:</string>
+</resources>

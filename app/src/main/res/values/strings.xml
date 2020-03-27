@@ -5,22 +5,22 @@
     <string name="contrasenia">Contraseña</string>
     <string name="email">Email</string>
     <string name="registrarse">Registrarse</string>
-    <string name="olvidastes_la_contrasenia">¿Olvidastes la contraseña?</string>
     <string name="login">LOGIN</string>
-    <string name="aceptar_eliminar">ACEPTAR - ELIMINAR</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
     <string name="busqueda">Busqueda</string>
     <string name="reporte">Reporte</string>
-    <string name="habilitar_cuenta">Habilitar Cuenta</string>
+    <string name="volver">Volver</string>
+    <string name="olvidastes_la_contrasenia">¿Olvidastes la contraseña?</string>
     <string name="restablecer_contrasenia">Restablecer Contraseña</string>
+    <string name="ingrese_email">Ingrese email</string>
+    <string name="aceptar_eliminar">ACEPTAR - ELIMINAR</string>
+    <string name="habilitar_cuenta">Habilitar Cuenta</string>
     <string name="movimientos">Movimientos</string>
     <string name="buscar_por_fecha_email">Buscar por fecha, email</string>
-    <string name="ingrese_email">Ingrese email</string>
     <string name="ingrese_email_y_la_nueva_contrasenia">Ingrese email y la nueva contraseña.</string>
     <string name="nueva_contrasenia">Nueva contraseña</string>
     <string name="confirmar_contrase_a">Confirmar contraseña</string>
-    <string name="volver">Volver</string>
     <string name="buscar_por_fecha_nombre_ciudad">buscar por fecha, nombre, ciudad</string>
     <string name="recuperar_cuenta">Recuperar Cuenta</string>
     <string name="ingrese_el_correo_electronico_del_usuario_que_quiere_recuperar_la_cuenta">Ingrese el correo electronico del usuario que quiere recuperar la cuenta.</string>
@@ -39,13 +39,36 @@
     <string name="ciudad">ciudad</string>
     <string name="nombre">Nombre</string>
     <string name="fecha">Fecha</string>
-    <string name="nombre_completo">Nombre Completo</string>
+    <string name="nombre_completo">Nombre Completo</string>V4l4
     <string name="aceptar">aceptar</string>
     <string name="eliminar">eliminar</string>
+    <string name="hh_mm">HH:mm</string>
+    <string name="dd_mm_yyyy">dd/mm/yyyy</string>v
+
+
+    <!--home-->
     <string name="ingresar">INGRESAR</string>
+    <string name="REGISTRARSE3">REGISTRARSE</string>
     <string name="reporte_anonimo">REPORTE ANONIMO</string>
     <string name="contacto">CONTACTO</string>
     <string name="año">©2020</string>
-    <string name="REGISTRARSE3">REGISTRARSE</string>
+
+
+    <!-- reporte anonimo-->
+    <string name="enviar">Enviar</string>
+    <string name="pais">País:</string>
+    <string name="provincia">Província:</string>
+    <string name="barrio">Barrio:</string>
+    <string name="celular">Celular:</string>
+    <string name="emailRA">Email:</string>
+    <string name="denuncia_anonima">Denuncia Anonima</string>
+    <string name="descripcion_general_del_hecho">Descripción General Del Hecho</string>
+    <string name="informacion_del_hecho">Información del hecho</string>
+    <string name="detalle_lo_sucedido">Detalle lo sucedido</string>
+    <string name="aceptaTerminos">La información ingresada será supervisada por un miembro de la garganta, es importante ingresar datos válidos para que podamos contactarnos.</string>
+    <string name="ingrese_donde_ocurrio_el_hecho">Ingrese donde ocurrió el hecho:</string>
+    <string name="ingrese_fecha_y_la_hora_aproximadas_de_cuando_ocurrio_el_hecho">Ingrese fecha y la hora aproximadas de cuando ocurrio el hecho:</string>
+    <string name="complete_para_que_nos_podamos_contactar">Complete para que podamos ponernos en contacto:</string>
+
 
 </resources>

@@ -23,21 +23,22 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Denuncia Anonima"
-                android:textSize="23sp"
-                android:textStyle="bold" />
+                android:text="@string/denuncia_anonima"
+                style="@style/reporteAnonimoFormatTitle"/>
 
             <LinearLayout
+                android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="8dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginStart="15dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Complete para que nos podamos contactar:"
+                    android:text="@string/complete_para_que_nos_podamos_contactar"
                     android:textSize="17sp"
                     android:textStyle="italic" />
 
@@ -50,9 +51,8 @@
                         android:id="@+id/anonimoEmailText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Email: "
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:text="@string/emailRA"
+                        style="@style/reporteAnonimoFormat"/>
 
                     <EditText
                         android:id="@+id/edtEmailAnonimo"
@@ -61,23 +61,22 @@
                         android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:inputType="textEmailAddress"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:layout_marginEnd="20dp"
+                        tools:ignore="Autofill,LabelFor" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/anonimoCelularText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/anonimoEmailText"
-                        android:text="Celular: "
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:text="@string/celular"
+                        style="@style/reporteAnonimoFormat"/>
 
                     <EditText
                         android:id="@+id/edtCelularAnonimo"
@@ -86,35 +85,38 @@
                         android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:inputType="number"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:layout_marginEnd="20dp"
+                        tools:ignore="Autofill,LabelFor" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:paddingRight="10sp"
-                tools:ignore="RtlSymmetry">
+                tools:ignore="RtlSymmetry"
+                android:paddingEnd="10sp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Descripcion General Del Hecho"
-                    android:textSize="21sp"
-                    android:textStyle="bold" />
+                    android:text="@string/descripcion_general_del_hecho"
+                    style="@style/reporteAnonimoFormatTitle"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="8dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginStart="15dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Ingrese fecha y la hora aproximadas de cuando ocurrio el hecho:"
+                        android:text="@string/ingrese_fecha_y_la_hora_aproximadas_de_cuando_ocurrio_el_hecho"
                         android:textSize="17sp"
                         android:textStyle="italic" />
 
@@ -132,8 +134,10 @@
                             android:layout_weight="1"
                             android:drawableLeft="@drawable/ic_date_range_black_24dp"
                             android:paddingLeft="30dp"
-                            android:text="dd/mm/yyyy"
-                            android:textSize="18sp" />
+                            android:text="@string/dd_mm_yyyy"
+                            android:textSize="18sp"
+                            android:paddingStart="30dp"
+                            android:drawableStart="@drawable/ic_date_range_black_24dp" />
 
                         <TextView
                             android:id="@+id/tvHoraAnonimo"
@@ -142,8 +146,10 @@
                             android:layout_weight="1"
                             android:drawableLeft="@drawable/ic_access_time_black_24dp"
                             android:paddingLeft="30dp"
-                            android:text="HH:mm"
-                            android:textSize="18sp" />
+                            android:text="@string/hh_mm"
+                            android:textSize="18sp"
+                            android:drawableStart="@drawable/ic_access_time_black_24dp"
+                            android:paddingStart="30dp" />
                     </LinearLayout>
 
 
@@ -151,7 +157,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="18dp"
-                        android:text="Ingrese donde ocurrio el hecho:"
+                        android:text="@string/ingrese_donde_ocurrio_el_hecho"
                         android:textSize="17sp"
                         android:textStyle="italic" />
 
@@ -164,9 +170,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Barrio: "
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:text="@string/barrio"
+                            style="@style/reporteAnonimoFormat"/>
 
                         <EditText
                             android:id="@+id/edtBarrioAnonimo"
@@ -174,7 +179,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="20dp"
                             android:inputType="text"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:layout_marginEnd="20dp"
+                            tools:ignore="Autofill,LabelFor" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -185,9 +192,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Provincia:"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:text="@string/provincia"
+                            style="@style/reporteAnonimoFormat"/>
 
                         <EditText
                             android:id="@+id/edtProvinciaAnonimo"
@@ -195,7 +201,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="20dp"
                             android:inputType="text"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:layout_marginEnd="20dp"
+                            tools:ignore="Autofill,LabelFor" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -206,9 +214,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Pais:"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:text="@string/pais"
+                            style="@style/reporteAnonimoFormat"/>
 
                         <EditText
                             android:id="@+id/edtPaisAnonimo"
@@ -216,23 +223,22 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="20dp"
                             android:inputType="text"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:layout_marginEnd="20dp"
+                            tools:ignore="Autofill,LabelFor" />
                     </LinearLayout>
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="15dp"
                     android:orientation="vertical">
 
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Informacion del hecho:"
-                        android:textSize="21sp"
-                        android:textStyle="bold" />
+                        android:text="@string/informacion_del_hecho"
+                        style="@style/reporteAnonimoFormatTitle"/>
 
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -247,7 +253,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Detalle lo sucedido"
+                            android:hint="@string/detalle_lo_sucedido"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
@@ -256,7 +262,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="La informacion ingresada sera supervisada por un mienbro de la garganta es importante ingresar datos validos para que nos podamos contactar."
+                    android:text="@string/aceptaTerminos"
                     android:textColor="#BCBBBB"
                     android:textSize="13sp"
                     android:textStyle="italic" />
@@ -268,11 +274,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/custom_bottom"
-                android:text="Enviar"
-                android:textColor="#FFF"
-                android:textSize="17dp" />
-
+                android:text="@string/enviar"
+                style="@style/buttonFormat" />
         </LinearLayout>
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

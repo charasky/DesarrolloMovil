@@ -96,8 +96,7 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/custom_bottom"
             android:text="@string/guardar"
-            android:textColor="#FFF"
-            android:textSize="18sp"/>
+            style="@style/buttonFormat"/>
 
         <TextView
             android:id="@+id/rVolver"

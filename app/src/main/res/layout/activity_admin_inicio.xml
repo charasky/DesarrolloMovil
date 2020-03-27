@@ -15,8 +15,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/custom_bottom"
         android:text="@string/busqueda"
-        android:textColor="#FFF"
-        android:textSize="18sp" />
+        style="@style/buttonFormat" />
 
     <Button
         android:id="@+id/btAdminReporte"
@@ -24,10 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/btAdminHabilitar"
         android:layout_margin="10dp"
+        style="@style/buttonFormat"
         android:background="@drawable/custom_bottom"
-        android:text="@string/reporte"
-        android:textColor="#FFF"
-        android:textSize="18sp" />
+        android:text="@string/reporte" />
 
     <Button
         android:id="@+id/btAdminHabilitar"
@@ -37,8 +35,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/custom_bottom"
         android:text="@string/habilitar_cuenta"
-        android:textColor="#FFF"
-        android:textSize="18sp" />
+        style="@style/buttonFormat"/>
 
     <Button
         android:id="@+id/btAdminRestablecer"
@@ -48,8 +45,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/custom_bottom"
         android:text="@string/restablecer_contrasenia"
-        android:textColor="#FFF"
-        android:textSize="18sp" />
+        style="@style/buttonFormat" />
 
     <Button
         android:id="@+id/btAdminMovimientos"
@@ -58,9 +54,8 @@
         android:layout_below="@id/btAdminRestablecer"
         android:layout_margin="10dp"
         android:background="@drawable/custom_bottom"
-        android:text="@string/movimientos"
-        android:textColor="#FFF"
-        android:textSize="18sp" />
+        style="@style/buttonFormat"
+        android:text="@string/movimientos"/>
 
     <Button
         android:id="@+id/btAdminCerrarSesion"
@@ -68,8 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
-        android:background="#000"
+        android:background="@drawable/custom_bclose"
         android:text="@string/cerrar_sesion"
-        android:textColor="#fff"
-        android:textSize="18sp" />
+        style="@style/buttonFormat" />
 </RelativeLayout>

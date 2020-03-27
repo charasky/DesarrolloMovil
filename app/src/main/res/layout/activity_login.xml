@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:padding="20dp"
+    android:padding="30dp"
     android:orientation="vertical">
 
     <ImageView
@@ -18,7 +18,7 @@
         android:padding="5dp"
         app:srcCompat="@drawable/splash"
         tools:ignore="ContentDescription" />
-
+<!--
     <TextView
         android:id="@+id/centerTextView"
         android:layout_width="match_parent"
@@ -27,8 +27,9 @@
         android:gravity="center"
         android:text="@string/iniciar_sesion"
         android:textSize="30sp" />
-
+-->
     <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="15dp"
         android:id="@+id/etUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,10 +67,9 @@
             android:layout_width="300dp"
             android:layout_height="45dp"
             android:layout_marginTop="15dp"
+            style="@style/buttonFormat"
             android:background="@drawable/custom_bottom"
-            android:text="@string/login"
-            android:textColor="#FFF"
-            android:textSize="18sp" />
+            android:text="@string/iniciar_sesion"/>
 
         <TextView
             android:layout_marginTop="20dp"

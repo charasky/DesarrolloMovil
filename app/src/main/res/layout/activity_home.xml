@@ -30,13 +30,10 @@
             android:layout_height="45dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            style="@style/buttonFormat"
             android:background="@drawable/custom_bottom"
             android:gravity="center"
-            android:importantForAutofill="no"
-            android:text="@string/ingresar"
-            android:textColor="#FFF"
-            android:textSize="20sp"
-            tools:ignore="LabelFor" />
+            android:text="@string/ingresar"/>
 
         <TextView
             android:background="?android:attr/selectableItemBackground"
@@ -48,8 +45,7 @@
             android:padding="8dp"
             android:gravity="center"
             android:text="@string/REGISTRARSE3"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            style="@style/home" />
 
         <TextView
             android:background="?android:attr/selectableItemBackground"
@@ -60,8 +56,7 @@
             android:padding="8dp"
             android:gravity="center"
             android:text="@string/reporte_anonimo"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            style="@style/home" />
 
         <TextView
             android:background="?android:attr/selectableItemBackground"
@@ -72,8 +67,7 @@
             android:padding="8dp"
             android:gravity="center"
             android:text="@string/contacto"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            style="@style/home" />
 
         <TextView
             android:id="@+id/textVersion"

@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/btReporte"
         android:layout_margin="10dp"
+        style="@style/buttonFormat"
         android:background="@drawable/custom_bottom"
         android:text="@string/busqueda"
-        android:textColor="#FFF"
         android:textSize="18sp" />
 
     <Button
@@ -23,9 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="10dp"
+        style="@style/buttonFormat"
         android:background="@drawable/custom_bottom"
         android:text="@string/reporte"
-        android:textColor="#FFF"
         android:textSize="18sp" />
 
     <Button

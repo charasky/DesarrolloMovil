@@ -1,11 +1,14 @@
 package org.lapoderosa.app.normal;
 
 import android.Manifest;
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,19 +17,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 
-import com.android.volley.AuthFailureError;
 import com.lapoderosa.app.R;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
-import org.lapoderosa.app.adapter.UserAdapter;
-import org.lapoderosa.app.admin.AdminHabilitarCuenta;
-import org.lapoderosa.app.model.User;
 import org.lapoderosa.app.util.DateDefinido;
 import org.lapoderosa.app.util.SharedPrefManager;
 
@@ -36,7 +35,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReportVisualizacion extends MasterClass {
+public class ReportVisualizacion<PERMISSION_STORE_CODE> extends MasterClass {
     private TextView fullNameVictima, provincia, pais, hora, fecha;
     private String id;
 
@@ -73,6 +72,7 @@ public class ReportVisualizacion extends MasterClass {
     //ENTREVISTADOR
     private TextView ruvNombreEntrevistador, ruvApellidoEntrevistador, ruvAsambleaEntrevistador, ruvFechaEntrevistador;
     private Button btPdf;
+    private static final int PERMISSION_STORE_CODE = 1000;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -80,9 +80,12 @@ public class ReportVisualizacion extends MasterClass {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_visualizacion);
 
+
         ActivityCompat.requestPermissions(this, new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
         }, PackageManager.PERMISSION_GRANTED);
+
+
 
         progressDialog = new ProgressDialog(this);
 
@@ -169,7 +172,6 @@ public class ReportVisualizacion extends MasterClass {
         ruvAsambleaEntrevistador = findViewById(R.id.ruvAsambleaEntrevistador);
         ruvFechaEntrevistador = findViewById(R.id.ruvFechaEntrevistador);
 
-
         Bundle bundle = getIntent().getExtras();
 
         if (bundle != null) {
@@ -183,7 +185,12 @@ public class ReportVisualizacion extends MasterClass {
 
         ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_CONSEGUIR_REPORTE));
 
-        createPDF();
+        btPdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createPDF();
+            }
+        });
     }
 
     @Override
@@ -214,17 +221,14 @@ public class ReportVisualizacion extends MasterClass {
             ruvBarrioVictima.setText(jsonObject.getString("usu_barrio_victima"));
             ruvTelefonoVictima.setText(jsonObject.getString("usu_telefono_victima"));
 
-
             //TRASLAD
             ruvTraslado.setText(jsonObject.getString("usu_traslado"));
             ruvComisariaTraslado.setText(jsonObject.getString("usu_comisaria"));
             ruvEsposadoTraslado.setText(jsonObject.getString("usu_esposado"));
 
-
             //RESULTADO INVESTIGACION
             ruvResultadoInvestigacion.setText(jsonObject.getString("usu_resultado_investigacion"));
             ruvTrabajanOficiales.setText(jsonObject.getString("usu_trabajan_los_oficiales"));
-
 
             //OMISION ACTUAR
             ruvMediosDeAsistencia.setText(jsonObject.getString("usu_medios_de_asistencia"));
@@ -233,11 +237,9 @@ public class ReportVisualizacion extends MasterClass {
             ruvViolentado.setText(jsonObject.getString("usu_violentado"));
             ruvDenunciaFinal.setText(jsonObject.getString("usu_denuncia_final"));
 
-
             //MODALIDAD DETENCION
             ruvPosicionDetenido.setText(jsonObject.getString("usu_posicion_detenido"));
             ruvTiempoDetenido.setText(jsonObject.getString("usu_tiempo_detenido"));
-
 
             //HECHO POLICIAL
             ruvDiaHecho.setText(jsonObject.getString("usu_dia_hecho"));
@@ -249,7 +251,6 @@ public class ReportVisualizacion extends MasterClass {
             ruvDireccionHecho.setText(jsonObject.getString("usu_direccion_hecho"));
             ruvBarrioHecho.setText(jsonObject.getString("usu_barrio_hecho"));
 
-
             //FUERZAS INTERVENIENTES
             ruvFuerzasIntervinientes.setText(jsonObject.getString("usu_fuerzas_intervinientes"));
             ruvCentidadAgentes.setText(jsonObject.getString("usu_cantidad_agentes"));
@@ -260,12 +261,10 @@ public class ReportVisualizacion extends MasterClass {
             ruvDominioFuerzas.setText(jsonObject.getString("usu_dominio"));
             ruvConductaFuerzas.setText(jsonObject.getString("usu_conducta_agentes"));
 
-
             //CARACTERISTICAS PROCEDIMIENTO
             ruvMotivoProcedimiento.setText(jsonObject.getString("usu_motivo_procedimiento"));
             ruvMaltratosProcedimientos.setText(jsonObject.getString("usu_maltratos"));
             ruvLesionesProcedimiento.setText(jsonObject.getString("usu_lesiones"));
-
 
             //ALLANAMIENTO
             ruvOrdenAllanamiento.setText(jsonObject.getString("usu_orden_allanamiento"));
@@ -277,17 +276,14 @@ public class ReportVisualizacion extends MasterClass {
             ruvEsposadosAllanamiento.setText(jsonObject.getString("usu_esposados"));
             ruvPosicionAllanamiento.setText(jsonObject.getString("usu_posicion_allanamiento"));
 
-
             //ENTREVISTADO
             ruvParentesco.setText(jsonObject.getString("usu_parentesco_entrevistado"));
-
 
             //ENTREVISTADOR
             ruvNombreEntrevistador.setText(jsonObject.getString("usu_nombre"));
             ruvApellidoEntrevistador.setText(jsonObject.getString("usu_apellido"));
             ruvAsambleaEntrevistador.setText(jsonObject.getString("usu_asamblea"));
             ruvFechaEntrevistador.setText(jsonObject.getString("usu_fecha"));
-
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
@@ -296,36 +292,27 @@ public class ReportVisualizacion extends MasterClass {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void createPDF() {
+        String namePDF = fullNameVictima.getText().toString() + "_" + DateDefinido.getFechaDispositivo() + "_-_" + DateDefinido.getHoraDispositivo();
+        PdfDocument myPdfDocument = new PdfDocument();
+        Paint myPaint = new Paint();
 
-        btPdf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String namePDF = fullNameVictima.getText().toString() + "_" + DateDefinido.getFechaDispositivo() + "_-_" + DateDefinido.getHoraDispositivo();
-                PdfDocument myPdfDocument = new PdfDocument();
-                Paint myPaint = new Paint();
+        PdfDocument.PageInfo myPageInfo = new PdfDocument.PageInfo.Builder(250, 400, 1).create();
+        PdfDocument.Page myPage1 = myPdfDocument.startPage(myPageInfo);
 
-                PdfDocument.PageInfo myPageInfo = new PdfDocument.PageInfo.Builder(250, 400, 1).create();
-                PdfDocument.Page myPage1 = myPdfDocument.startPage(myPageInfo);
+        Canvas canvas = myPage1.getCanvas();
 
-                Canvas canvas = myPage1.getCanvas();
+        canvas.drawText(fullNameVictima.getText().toString(), 40, 50, myPaint);
+        myPdfDocument.finishPage(myPage1);
 
-                canvas.drawText(fullNameVictima.getText().toString(), 40, 50, myPaint);
-                myPdfDocument.finishPage(myPage1);
+        File file = new File(Environment.getExternalStorageDirectory(), "/" + namePDF + ".pdf");
 
-                File file = new File(Environment.getExternalStorageDirectory(), "/" + namePDF + ".pdf");
+        try {
+            myPdfDocument.writeTo(new FileOutputStream(file));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-                try {
-                    myPdfDocument.writeTo(new FileOutputStream(file));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                myPdfDocument.close();
-
-                Toast.makeText(ReportVisualizacion.this, "creado", Toast.LENGTH_LONG).show();
-            }
-        });
-
-
+        myPdfDocument.close();
+        Toast.makeText(ReportVisualizacion.this, "creado", Toast.LENGTH_LONG).show();
     }
 }

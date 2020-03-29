@@ -23,13 +23,13 @@
             </intent-filter>
         </activity>
         <activity android:name="org.lapoderosa.app.normal.HomeActivity" android:theme="@style/noBar"/>
-        <activity android:name="org.lapoderosa.app.normal.ContactoActivity" android:label="@string/contacto" android:parentActivityName="org.lapoderosa.app.normal.HomeActivity"
+        <activity android:name="org.lapoderosa.app.normal.ContactoActivity" android:label="@string/contactoWeb" android:parentActivityName="org.lapoderosa.app.normal.HomeActivity"
             tools:targetApi="jelly_bean" />
-        <activity android:name="org.lapoderosa.app.normal.ReporteAnonimo" android:label="@string/reporte_anonimo" android:parentActivityName="org.lapoderosa.app.normal.HomeActivity"
+        <activity android:name="org.lapoderosa.app.normal.ReporteAnonimo" android:label="@string/denuncia_anonima" android:parentActivityName="org.lapoderosa.app.normal.HomeActivity"
             tools:targetApi="jelly_bean" />
         <activity android:name="org.lapoderosa.app.normal.RegistrarseActivity" android:label="@string/registrarse" android:parentActivityName="org.lapoderosa.app.normal.HomeActivity"
             tools:targetApi="jelly_bean" />
-        <activity android:name="org.lapoderosa.app.normal.RecuperarCuentaActivity" android:label="@string/contacto" android:parentActivityName="org.lapoderosa.app.normal.LoginActivity"
+        <activity android:name="org.lapoderosa.app.normal.RecuperarCuentaActivity" android:label="@string/recuperar_cuenta" android:parentActivityName="org.lapoderosa.app.normal.LoginActivity"
             tools:targetApi="jelly_bean" />
         <activity android:name="org.lapoderosa.app.normal.LoginActivity" android:label="@string/iniciar_sesion" android:parentActivityName="org.lapoderosa.app.normal.HomeActivity"
             tools:targetApi="jelly_bean" />

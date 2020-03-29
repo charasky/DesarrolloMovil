@@ -20,6 +20,7 @@ public class ContactoActivity extends AppCompatActivity {
     private LinearLayout lFacebook;
     private LinearLayout lTwitter;
     private TextView tvWeb, tvVolver;
+    //todo sacado el volver y comentado en xml
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class ContactoActivity extends AppCompatActivity {
         lFacebook = findViewById(R.id.contactoFacebook);
         lTwitter = findViewById(R.id.contactoTwitter);
         tvWeb = findViewById(R.id.contactoWeb);
-        tvVolver = findViewById(R.id.contactoVolver);
+        //tvVolver = findViewById(R.id.contactoVolver);
 
         lFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,12 +62,14 @@ public class ContactoActivity extends AppCompatActivity {
             }
         });
 
+        /*
         tvVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
+        */
     }
 
     public void goTo(String string1, String string2) {

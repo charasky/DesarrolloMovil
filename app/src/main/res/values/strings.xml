@@ -7,6 +7,10 @@
     <string name="inicio">Inicio</string>
     <string name="Entrar">Entrar</string>
     <string name="busquedaReporte">Busqueda Reporte</string>
+    <string name="reporteAnonimo">Reporte Anonimo</string>
+    <string name="denuncia_anonima">Denuncia Anonima</string>
+    <string name="contactoWeb">Contacto</string>
+
 
     <string name="login">LOGIN</string>
     <string name="guardar">Guardar</string>
@@ -59,7 +63,7 @@
     <string name="barrio">Barrio:</string>
     <string name="celular">Celular:</string>
     <string name="emailRA">Email:</string>
-    <string name="denuncia_anonima">Denuncia Anonima</string>
+    <string name="informacion_necesaria">Informacion necesaria</string>
     <string name="descripcion_general_del_hecho">Descripción General Del Hecho</string>
     <string name="informacion_del_hecho">Información del hecho</string>
     <string name="detalle_lo_sucedido">Detalle lo sucedido</string>

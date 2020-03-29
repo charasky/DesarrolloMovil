@@ -304,12 +304,6 @@ public class ReporteActivity extends MasterClass {
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return super.onSupportNavigateUp();
-    }
-
-    @Override
     public void onBackPressed() {
         //vuelve al activity anterior
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

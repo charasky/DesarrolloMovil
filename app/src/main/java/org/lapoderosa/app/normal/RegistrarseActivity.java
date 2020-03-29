@@ -39,6 +39,7 @@ public class RegistrarseActivity extends MasterClass {
     private Check check = new Check();
     private RelativeLayout layout;
 
+    //todo sacado el dmlogin y comentado en xml
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,7 @@ public class RegistrarseActivity extends MasterClass {
         dmPassword = findViewById(R.id.dmPassword1);
         dmPassword2 = findViewById(R.id.dmPassword2);
         dmRegistrarBtn = findViewById(R.id.dmRegistrarseBtn);
+        /*
         dmLogin = findViewById(R.id.dmLogin);
 
         dmLogin.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +63,7 @@ public class RegistrarseActivity extends MasterClass {
                 onBackPressed();
             }
         });
+        */
 
         dmRegistrarBtn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)

@@ -81,7 +81,7 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-
+<!--
     <LinearLayout
         android:layout_centerHorizontal="true"
         android:gravity="center"
@@ -90,14 +90,17 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="50dp"
         android:orientation="vertical">
-
+    </LinearLayout>
+    -->
         <TextView
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/año"
             android:textColor="#BCBBBB"
             android:textSize="20sp" />
-
+<!--
         <TextView
             android:gravity="center"
             android:id="@+id/contactoVolver"
@@ -108,5 +111,7 @@
             android:hint="@string/volver"
             android:padding="8dp"
             android:textSize="18sp" />
-    </LinearLayout>
+            -->
+
+
 </RelativeLayout>

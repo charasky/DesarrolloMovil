@@ -50,6 +50,7 @@ public class ReporteAnonimo extends MasterClass {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_reporte_anonimo);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         progressDialog = new ProgressDialog(this);
         btnEnviarDA = findViewById(R.id.btnEnviarDA);
 

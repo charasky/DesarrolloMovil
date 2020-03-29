@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Garganta Poderosa</string>
+    <string name="denuncia_anonima">Reclamação Anônima</string>
     <string name="inicio">Inicio</string>
     <string name="Entrar">Entrar</string>
     <string name="busquedaReporte">Pesquisar Reporte</string>
+    <string name="reporteAnonimo">Reporte Anonimo</string>
+    <string name="contactoWeb">Contacto</string>
+
 
     <string name="cerrar_sesion">Fechar Sessão</string>
     <string name="login">LOGIN</string>
@@ -56,7 +60,7 @@
     <string name="barrio">Vizinhança:</string>
     <string name="celular">Celular:</string>
     <string name="emailRA">Correio eletrônico:</string>
-    <string name="denuncia_anonima">Reclamação Anônima</string>
+    <string name="informacion_necesaria">Informação necessária</string>
     <string name="descripcion_general_del_hecho">Descrição Geral do Fato</string>
     <string name="informacion_del_hecho">Informações sobre fatos</string>
     <string name="detalle_lo_sucedido">Detalhe o que aconteceu</string>

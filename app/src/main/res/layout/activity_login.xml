@@ -18,16 +18,7 @@
         android:padding="5dp"
         app:srcCompat="@drawable/splash"
         tools:ignore="ContentDescription" />
-<!--
-    <TextView
-        android:id="@+id/centerTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:gravity="center"
-        android:text="@string/iniciar_sesion"
-        android:textSize="30sp" />
--->
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_marginTop="15dp"
         android:id="@+id/etUserName"

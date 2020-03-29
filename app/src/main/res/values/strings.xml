@@ -1,17 +1,15 @@
 <resources>
     <string name="app_name">Garganta Poderosa</string>
-    <string name="iniciar_sesion">Iniciar sesión</string>
+
+
+
     <string name="cerrar_sesion">Cerrar Sesión</string>
-    <string name="contrasenia">Contraseña</string>
-    <string name="email">Email</string>
-    <string name="registrarse">Registrarse</string>
+
     <string name="login">LOGIN</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
     <string name="busqueda">Busqueda</string>
     <string name="reporte">Reporte</string>
-    <string name="volver">Volver</string>
-    <string name="olvidastes_la_contrasenia">¿Olvidastes la contraseña?</string>
     <string name="restablecer_contrasenia">Restablecer Contraseña</string>
     <string name="ingrese_email">Ingrese email</string>
     <string name="aceptar_eliminar">ACEPTAR - ELIMINAR</string>
@@ -27,9 +25,8 @@
     <string name="correo_electronico">Correo electronico</string>
     <string name="siguiente">SIGUIENTE</string>
     <string name="volver_a_iniciar_sesion">Volver a iniciar Sesión</string>
-    <string name="asamblea">Asamblea</string>
-    <string name="apellido">Apellido</string>
-    <string name="confirmar_contrasenia">Confirmar contraseña</string>
+
+
     <string name="ya_tienes_cuenta_inicia_sesion">¿Ya tienes cuenta?, Inicia Sesion</string>
     <string name="usuario">Usuario</string>
     <string name="que_hizo">Que Hizo</string>
@@ -37,7 +34,6 @@
     <string name="usuario_interactuado">Usuario Interactuado</string>
     <string name="lugar">Lugar</string>
     <string name="ciudad">ciudad</string>
-    <string name="nombre">Nombre</string>
     <string name="fecha">Fecha</string>
     <string name="nombre_completo">Nombre Completo</string>V4l4
     <string name="aceptar">aceptar</string>
@@ -52,7 +48,6 @@
     <string name="reporte_anonimo">REPORTE ANONIMO</string>
     <string name="contacto">CONTACTO</string>
     <string name="año">©2020</string>
-
 
     <!-- reporte anonimo-->
     <string name="enviar">Enviar</string>
@@ -69,6 +64,20 @@
     <string name="ingrese_donde_ocurrio_el_hecho">Ingrese donde ocurrió el hecho:</string>
     <string name="ingrese_fecha_y_la_hora_aproximadas_de_cuando_ocurrio_el_hecho">Ingrese fecha y la hora aproximadas de cuando ocurrio el hecho:</string>
     <string name="complete_para_que_nos_podamos_contactar">Complete para que podamos ponernos en contacto:</string>
+
+    <!--login-->
+    <string name="email">Email</string>
+    <string name="contrasenia">Contraseña</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="olvidastes_la_contrasenia">¿Olvidastes la contraseña?</string>
+
+    <!--registrarse-->
+    <string name="registrarse">Registrarse</string>
+    <string name="asamblea">Asamblea</string>
+    <string name="apellido">Apellido</string>
+    <string name="nombre">Nombre</string>
+    <string name="confirmar_contrasenia">Confirmar contraseña</string>
+    <string name="volver">Volver</string>
 
 
 </resources>

@@ -26,13 +26,13 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.android.volley.AuthFailureError;
 import com.lapoderosa.app.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.admin.AdminInicioActivity;
+import org.lapoderosa.app.util.DateDefinido;
 import org.lapoderosa.app.util.SharedPrefManager;
 
 import java.text.DateFormat;
@@ -48,11 +48,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ReporteActivity extends MasterClass {
-    private Date date = new Date();
     private String fechaCreacionReporte, horaCreacionReporte;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-    @SuppressLint("SimpleDateFormat")
-    private DateFormat dateHourFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
     private TextView tvDateEntrevista, tvDateHecho, tvHoraHecho;
     private Button guardar, cancelar;
     //ALLANAMIENTO
@@ -114,9 +110,9 @@ public class ReporteActivity extends MasterClass {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_r);
+        setContentView(R.layout.activity_reporte);
         progressDialog = new ProgressDialog(this);
-
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         constraintLayout = findViewById(R.id.layoutReporte);
         guardar = findViewById(R.id.btnGuardar);
         cancelar = findViewById(R.id.btnCancelar);
@@ -223,7 +219,7 @@ public class ReporteActivity extends MasterClass {
         edtNombreEntrevistador.setText(SharedPrefManager.getInstance(this).getKeyName());
         edtApellidoEntrevistador.setText(SharedPrefManager.getInstance(this).getKeySurname());
         edtAsamblea.setText(SharedPrefManager.getInstance(this).getKeyAsamblea());
-        tvDateEntrevista.setText(dateFormat.format(date));
+        tvDateEntrevista.setText(DateDefinido.getFechaDispositivo());
         tvDateEntrevista.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
@@ -305,6 +301,12 @@ public class ReporteActivity extends MasterClass {
                 Objects.requireNonNull(inputMethodManager).hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 
     @Override
@@ -429,8 +431,8 @@ public class ReporteActivity extends MasterClass {
 
     @Override
     protected void inicializarStringVariables() {
-        fechaCreacionReporte = dateFormat.format(date);
-        horaCreacionReporte = dateHourFormat.format(date);
+        fechaCreacionReporte = DateDefinido.getFechaDispositivo();
+        horaCreacionReporte = DateDefinido.getHoraDispositivo();
 
         //ALLANAMIENTO
         ordenAllanamiento = checkRadioGroup(rgOrdenAllanamientoSiNo);
@@ -625,6 +627,7 @@ public class ReporteActivity extends MasterClass {
         }
         if (!admin && habilitado) {
             startActivity(new Intent(ReporteActivity.this, InicioActivity.class));
+            finish();
         }
     }
 

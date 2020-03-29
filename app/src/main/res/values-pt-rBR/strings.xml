@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Garganta Poderosa</string>
-
+    <string name="inicio">Inicio</string>
+    <string name="Entrar">Entrar</string>
+    <string name="busquedaReporte">Pesquisar Reporte</string>
 
     <string name="cerrar_sesion">Fechar Sessão</string>
     <string name="login">LOGIN</string>

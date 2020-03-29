@@ -2,6 +2,7 @@ package org.lapoderosa.app.normal;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
+import org.lapoderosa.app.admin.AdminInicioActivity;
 import org.lapoderosa.app.util.SharedPrefManager;
 import org.lapoderosa.app.adapter.ReportAdapter;
 import org.lapoderosa.app.model.Report;
@@ -28,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class BusquedarReporteActivity extends MasterClass {
     private EditText etBuscador;
@@ -40,6 +43,7 @@ public class BusquedarReporteActivity extends MasterClass {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda_reporte);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         progressDialog = new ProgressDialog(this);
         listaUsuarios = new ArrayList<>();
 
@@ -76,6 +80,12 @@ public class BusquedarReporteActivity extends MasterClass {
                 inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 
     public void filtrar(String texto) {

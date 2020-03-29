@@ -25,6 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
+import org.lapoderosa.app.util.DateDefinido;
 import org.lapoderosa.app.util.VolleySingleton;
 import org.lapoderosa.app.util.SharedPrefManager;
 import org.lapoderosa.app.adapter.UserAdapter;
@@ -38,22 +39,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 public class AdminHabilitarCuenta extends MasterClass {
-    private Date date = new Date();
     private RecyclerView rvHabilitar;
     private UserAdapter adaptador;
     private List<User> listaUsuarios;
     private Button button1, button2;
     private String user, hora, fecha;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-    @SuppressLint("SimpleDateFormat")
-    private DateFormat dateHourFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_habilitar_usuarios);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         progressDialog = new ProgressDialog(this);
         listaUsuarios = new ArrayList<>();
 
@@ -136,8 +135,8 @@ public class AdminHabilitarCuenta extends MasterClass {
 
     @Override
     protected void inicializarStringVariables() {
-        fecha = dateFormat.format(date);
-        hora = dateHourFormat.format(date);
+        fecha = DateDefinido.getFechaDispositivo();
+        hora = DateDefinido.getHoraDispositivo();
         user = SharedPrefManager.getInstance(this).getKeyUsuario();
     }
 

@@ -4,6 +4,9 @@
 
 
     <string name="cerrar_sesion">Cerrar Sesión</string>
+    <string name="inicio">Inicio</string>
+    <string name="Entrar">Entrar</string>
+    <string name="busquedaReporte">Busqueda Reporte</string>
 
     <string name="login">LOGIN</string>
     <string name="guardar">Guardar</string>

@@ -60,7 +60,7 @@
             android:layout_marginTop="15dp"
             style="@style/buttonFormat"
             android:background="@drawable/custom_bottom"
-            android:text="@string/iniciar_sesion"/>
+            android:text="@string/Entrar"/>
 
         <TextView
             android:layout_marginTop="20dp"

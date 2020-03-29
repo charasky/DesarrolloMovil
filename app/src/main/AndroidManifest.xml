@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.lapoderosa.app">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -13,10 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        
-        <activity android:name="org.lapoderosa.app.normal.ContactoActivity" />
-        <activity android:name="org.lapoderosa.app.normal.ReporteAnonimo" />
-        <activity android:name="org.lapoderosa.app.normal.HomeActivity" android:theme="@style/noBar"/>
+
         <activity android:name="org.lapoderosa.app.normal.SplashActivity" android:theme="@style/noBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,17 +22,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="org.lapoderosa.app.normal.HomeActivity" android:theme="@style/noBar"/>
+        <activity android:name="org.lapoderosa.app.normal.ContactoActivity" android:label="@string/contacto" android:parentActivityName="org.lapoderosa.app.normal.HomeActivity"
+            tools:targetApi="jelly_bean" />
+        <activity android:name="org.lapoderosa.app.normal.ReporteAnonimo" android:label="@string/reporte_anonimo" android:parentActivityName="org.lapoderosa.app.normal.HomeActivity"
+            tools:targetApi="jelly_bean" />
+        <activity android:name="org.lapoderosa.app.normal.RegistrarseActivity" android:label="@string/registrarse" android:parentActivityName="org.lapoderosa.app.normal.HomeActivity"
+            tools:targetApi="jelly_bean" />
+        <activity android:name="org.lapoderosa.app.normal.RecuperarCuentaActivity" android:label="@string/contacto" android:parentActivityName="org.lapoderosa.app.normal.LoginActivity"
+            tools:targetApi="jelly_bean" />
+        <activity android:name="org.lapoderosa.app.normal.LoginActivity" android:label="@string/iniciar_sesion" android:parentActivityName="org.lapoderosa.app.normal.HomeActivity"
+            tools:targetApi="jelly_bean" />
+        <activity android:name="org.lapoderosa.app.normal.InicioActivity" android:label="@string/inicio"/>
         <activity android:name="org.lapoderosa.app.normal.ReportVisualizacion" />
-        <activity android:name="org.lapoderosa.app.normal.ReporteActivity" />
-        <activity android:name="org.lapoderosa.app.normal.BusquedarReporteActivity" />
-        <activity android:name="org.lapoderosa.app.normal.InicioActivity" />
-        <activity android:name="org.lapoderosa.app.normal.LoginActivity" android:theme="@style/noBar"/>
-        <activity android:name="org.lapoderosa.app.normal.RegistrarseActivity" />
-        <activity android:name="org.lapoderosa.app.normal.RecuperarCuentaActivity" />
-        <activity android:name="org.lapoderosa.app.admin.AdminRestablecerContraseñaActivity" />
-        <activity android:name="org.lapoderosa.app.admin.AdminMovimientosActivity" />
-        <activity android:name="org.lapoderosa.app.admin.AdminHabilitarCuenta" />
-        <activity android:name="org.lapoderosa.app.admin.AdminInicioActivity" />
+
+
+        <activity android:name="org.lapoderosa.app.normal.BusquedarReporteActivity" android:label="@string/busquedaReporte"/>
+        <activity android:name="org.lapoderosa.app.normal.ReporteActivity" android:label="@string/reporte"/>
+
+
+        <activity android:name="org.lapoderosa.app.admin.AdminInicioActivity" android:label="@string/inicio"/>
+        <activity android:name="org.lapoderosa.app.admin.AdminRestablecerContraseñaActivity" android:label="@string/restablecer_contrasenia" android:parentActivityName="org.lapoderosa.app.admin.AdminInicioActivity"
+            tools:targetApi="jelly_bean"/>
+        <activity android:name="org.lapoderosa.app.admin.AdminMovimientosActivity" android:label="@string/movimientos" android:parentActivityName="org.lapoderosa.app.admin.AdminInicioActivity"
+            tools:targetApi="jelly_bean"/>
+        <activity android:name="org.lapoderosa.app.admin.AdminHabilitarCuenta" android:label="@string/habilitar_cuenta" android:parentActivityName="org.lapoderosa.app.admin.AdminInicioActivity"
+            tools:targetApi="jelly_bean"/>
     </application>
 
 </manifest>

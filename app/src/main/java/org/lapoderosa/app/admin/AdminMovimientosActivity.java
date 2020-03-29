@@ -37,6 +37,7 @@ public class AdminMovimientosActivity extends MasterClass {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_movimientos);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         progressDialog = new ProgressDialog(this);
         listaMovimientos = new ArrayList<>();
 

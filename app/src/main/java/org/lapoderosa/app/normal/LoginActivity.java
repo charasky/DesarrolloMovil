@@ -45,7 +45,6 @@ public class LoginActivity extends MasterClass {
         setContentView(R.layout.activity_login);
         progressDialog = new ProgressDialog(this);
 
-
         layout = findViewById(R.id.layoutLogin);
         txlUsuario = findViewById(R.id.etUserName);
         txlPassword = findViewById(R.id.dmPassword1);

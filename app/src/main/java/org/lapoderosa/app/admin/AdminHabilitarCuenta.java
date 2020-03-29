@@ -1,10 +1,8 @@
 package org.lapoderosa.app.admin;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
@@ -31,15 +29,10 @@ import org.lapoderosa.app.util.SharedPrefManager;
 import org.lapoderosa.app.adapter.UserAdapter;
 import org.lapoderosa.app.model.User;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 
 public class AdminHabilitarCuenta extends MasterClass {
     private RecyclerView rvHabilitar;
@@ -52,7 +45,6 @@ public class AdminHabilitarCuenta extends MasterClass {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_habilitar_usuarios);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         progressDialog = new ProgressDialog(this);
         listaUsuarios = new ArrayList<>();
 

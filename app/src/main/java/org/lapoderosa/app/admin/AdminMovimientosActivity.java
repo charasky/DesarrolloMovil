@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
 import com.lapoderosa.app.R;
 
 import org.json.JSONArray;
@@ -19,7 +18,6 @@ import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.adapter.MovimientoAdapter;
 import org.lapoderosa.app.model.Movimiento;
-import org.lapoderosa.app.model.Report;
 import org.lapoderosa.app.util.SharedPrefManager;
 
 import java.util.ArrayList;
@@ -37,7 +35,6 @@ public class AdminMovimientosActivity extends MasterClass {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_movimientos);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         progressDialog = new ProgressDialog(this);
         listaMovimientos = new ArrayList<>();
 

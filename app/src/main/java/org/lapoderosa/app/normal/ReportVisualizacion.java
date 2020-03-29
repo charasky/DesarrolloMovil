@@ -72,7 +72,6 @@ public class ReportVisualizacion<PERMISSION_STORE_CODE> extends MasterClass {
     //ENTREVISTADOR
     private TextView ruvNombreEntrevistador, ruvApellidoEntrevistador, ruvAsambleaEntrevistador, ruvFechaEntrevistador;
     private Button btPdf;
-    private static final int PERMISSION_STORE_CODE = 1000;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override

@@ -3,34 +3,24 @@ package org.lapoderosa.app.normal;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lapoderosa.app.R;
 
 public class ContactoActivity extends AppCompatActivity {
-    private LinearLayout lFacebook;
-    private LinearLayout lTwitter;
-    private TextView tvWeb, tvVolver;
-    //todo sacado el volver y comentado en xml
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacto);
 
-        lFacebook = findViewById(R.id.contactoFacebook);
-        lTwitter = findViewById(R.id.contactoTwitter);
-        tvWeb = findViewById(R.id.contactoWeb);
-        //tvVolver = findViewById(R.id.contactoVolver);
+        LinearLayout lFacebook = findViewById(R.id.contactoFacebook);
+        LinearLayout lTwitter = findViewById(R.id.contactoTwitter);
+        TextView tvWeb = findViewById(R.id.contactoWeb);
 
         lFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,15 +51,6 @@ public class ContactoActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        /*
-        tvVolver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-        */
     }
 
     public void goTo(String string1, String string2) {

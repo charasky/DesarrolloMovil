@@ -37,7 +37,7 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_restablecer_cuenta);
         progressDialog = new ProgressDialog(this);
-
+        
         layout = findViewById(R.id.adRestablecerContraseña);
         rEmail = findViewById(R.id.rEmail);
         rPassword1 = findViewById(R.id.rPassword1);

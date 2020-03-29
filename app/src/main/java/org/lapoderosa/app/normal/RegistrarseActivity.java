@@ -11,7 +11,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -33,13 +32,10 @@ public class RegistrarseActivity extends MasterClass {
     private EditText dmNombres, dmApellidos, dmEmail, dmAsamblea;
     private TextInputLayout dmPassword, dmPassword2;
     private Button dmRegistrarBtn;
-    private TextView dmLogin;
-    //private String registracionFecha, registracionHora;
     private String name, surname, email, asamblea, password1, password2;
     private Check check = new Check();
     private RelativeLayout layout;
 
-    //todo sacado el dmlogin y comentado en xml
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,16 +50,6 @@ public class RegistrarseActivity extends MasterClass {
         dmPassword = findViewById(R.id.dmPassword1);
         dmPassword2 = findViewById(R.id.dmPassword2);
         dmRegistrarBtn = findViewById(R.id.dmRegistrarseBtn);
-        /*
-        dmLogin = findViewById(R.id.dmLogin);
-
-        dmLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-        */
 
         dmRegistrarBtn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -93,9 +79,6 @@ public class RegistrarseActivity extends MasterClass {
     }
 
     protected void inicializarStringVariables() {
-        //registracionFecha = DateDefinido.getFechaDispositivo();
-        //registracionHora = DateDefinido.getHoraDispositivo();
-
         email = dmEmail.getText().toString().trim();
         password2 = dmPassword2.getEditText().getText().toString().trim();
         password1 = dmPassword.getEditText().getText().toString().trim();
@@ -142,8 +125,6 @@ public class RegistrarseActivity extends MasterClass {
             object.put("usu_nombres", name);
             object.put("usu_apellidos", surname);
             object.put("usu_asamblea", asamblea);
-            //object.put("registracion_fecha", registracionFecha);
-            //object.put("registracion_hora", registracionHora);
         } catch (JSONException e) {
             e.printStackTrace();
         }

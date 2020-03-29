@@ -2,7 +2,6 @@ package org.lapoderosa.app.normal;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,14 +13,12 @@ import android.widget.LinearLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
 import com.lapoderosa.app.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
-import org.lapoderosa.app.admin.AdminInicioActivity;
 import org.lapoderosa.app.util.SharedPrefManager;
 import org.lapoderosa.app.adapter.ReportAdapter;
 import org.lapoderosa.app.model.Report;

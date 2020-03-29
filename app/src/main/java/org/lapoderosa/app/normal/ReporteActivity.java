@@ -285,12 +285,7 @@ public class ReporteActivity extends MasterClass {
             }
         });
 
-        cancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        cancelar.setOnClickListener(v -> onBackPressed());
 
         constraintLayout.setOnClickListener(new View.OnClickListener() {
             //hace que el teclado se oculte cuando presionas en otra parte visual del mismo layout

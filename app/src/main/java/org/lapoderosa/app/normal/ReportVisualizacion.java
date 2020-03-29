@@ -1,14 +1,11 @@
 package org.lapoderosa.app.normal;
 
 import android.Manifest;
-import android.app.DownloadManager;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -17,7 +14,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 
@@ -34,8 +30,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
-public class ReportVisualizacion<PERMISSION_STORE_CODE> extends MasterClass {
+public class ReportVisualizacion extends MasterClass {
     private TextView fullNameVictima, provincia, pais, hora, fecha;
     private String id;
 
@@ -78,13 +75,11 @@ public class ReportVisualizacion<PERMISSION_STORE_CODE> extends MasterClass {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_visualizacion);
-
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         ActivityCompat.requestPermissions(this, new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
         }, PackageManager.PERMISSION_GRANTED);
-
-
 
         progressDialog = new ProgressDialog(this);
 
@@ -184,12 +179,13 @@ public class ReportVisualizacion<PERMISSION_STORE_CODE> extends MasterClass {
 
         ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_CONSEGUIR_REPORTE));
 
-        btPdf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createPDF();
-            }
-        });
+        btPdf.setOnClickListener(view -> createPDF());
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 
     @Override

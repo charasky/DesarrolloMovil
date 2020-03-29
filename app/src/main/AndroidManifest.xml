@@ -34,7 +34,7 @@
         <activity android:name="org.lapoderosa.app.normal.LoginActivity" android:label="@string/iniciar_sesion" android:parentActivityName="org.lapoderosa.app.normal.HomeActivity"
             tools:targetApi="jelly_bean" />
         <activity android:name="org.lapoderosa.app.normal.InicioActivity" android:label="@string/inicio"/>
-        <activity android:name="org.lapoderosa.app.normal.ReportVisualizacion" />
+        <activity android:name="org.lapoderosa.app.normal.ReportVisualizacion" android:label="@string/reporte_individual"/>
 
 
         <activity android:name="org.lapoderosa.app.normal.BusquedarReporteActivity" android:label="@string/busquedaReporte"/>

@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- //todo URL local-host
-
     <string name="URL_REPORTE">/android/insertar_datos_reporte.php</string>
     <string name="HOST">http://192.168.0.8/android</string>
     <string name="HOST">http://192.168.0.4/android</string>
-    -->
-
-    <string name="HOST">http://18.222.196.15/proyecto</string>
-    <!-- //todo URLS AWS
 
     -->
 
-    <string name="URL_LOGIN">/v1/userLogin.php</string>
-    <string name="URL_SIGN_UP">/v1/registrarUsuario.php</string>
-    <string name="URL_ACCOUNT_RECOVERY">/v1/accountRecovery.php</string>
-    <string name="URL_USUARIOS">/v1/searchReport.php</string>
-    <string name="URL_USUARIOS_TO_ENABLED">/v1/disabledUsers.php</string>
-    <string name="URL_RESTORE_PASSWORD">/v1/restorePassword.php</string>
-    <string name="URL_ENVIAR_RESPUESTA">/v1/sendReply.php</string>
-    <string name="URL_MOVIMIENTO">/v1/movimiento.php</string>
-    <string name="URL_REPORTE">/v1/registerReporte.php</string>
-    <string name="URL_CONSEGUIR_REPORTE">/v1/traerReporte.php</string>
-    <string name="URL_REPORTE_ANONIMO">/v1/registrarReporteAnonimo.php</string>
+    <!-- //todo URLS AWS   -->
+    <string name="HOST" translatable="false">http://18.222.196.15/proyecto</string>
+
+
+    <string name="URL_LOGIN" translatable="false">/v1/userLogin.php</string>
+    <string name="URL_SIGN_UP" translatable="false">/v1/registrarUsuario.php</string>
+    <string name="URL_ACCOUNT_RECOVERY" translatable="false">/v1/accountRecovery.php</string>
+    <string name="URL_USUARIOS" translatable="false">/v1/searchReport.php</string>
+    <string name="URL_USUARIOS_TO_ENABLED" translatable="false">/v1/disabledUsers.php</string>
+    <string name="URL_RESTORE_PASSWORD" translatable="false">/v1/restorePassword.php</string>
+    <string name="URL_ENVIAR_RESPUESTA" translatable="false">/v1/sendReply.php</string>
+    <string name="URL_MOVIMIENTO" translatable="false">/v1/movimiento.php</string>
+    <string name="URL_REPORTE" translatable="false">/v1/registerReporte.php</string>
+    <string name="URL_CONSEGUIR_REPORTE" translatable="false">/v1/traerReporte.php</string>
+    <string name="URL_REPORTE_ANONIMO" translatable="false">/v1/registrarReporteAnonimo.php</string>
 </resources>

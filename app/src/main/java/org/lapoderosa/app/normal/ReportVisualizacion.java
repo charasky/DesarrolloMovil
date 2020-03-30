@@ -9,11 +9,14 @@ import android.graphics.pdf.PdfDocument;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.lapoderosa.app.R;
 
@@ -67,6 +70,7 @@ public class ReportVisualizacion extends MasterClass {
     //ENTREVISTADOR
     private TextView ruvNombreEntrevistador, ruvApellidoEntrevistador, ruvAsambleaEntrevistador, ruvFechaEntrevistador;
     private Button btPdf;
+    private static final int STORAGE_PERMISSION_CODE = 101;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -74,10 +78,7 @@ public class ReportVisualizacion extends MasterClass {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_visualizacion);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
-        ActivityCompat.requestPermissions(this, new String[]{
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-        }, PackageManager.PERMISSION_GRANTED);
+        checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
 
         progressDialog = new ProgressDialog(this);
 
@@ -177,7 +178,29 @@ public class ReportVisualizacion extends MasterClass {
 
         ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_CONSEGUIR_REPORTE));
 
-        btPdf.setOnClickListener(view -> createPDF());
+        btPdf.setOnClickListener(view -> {
+            AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
+            animation.setDuration(500);
+            btPdf.setAlpha(1f);
+            btPdf.startAnimation(animation);
+            createPDF();
+        });
+    }
+
+    public void checkPermission(String permission, int requestCode) {
+        if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[]{permission}, requestCode);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
+            }
+        }
     }
 
     @Override
@@ -306,6 +329,6 @@ public class ReportVisualizacion extends MasterClass {
         }
 
         myPdfDocument.close();
-        makeTxt("creado",ReportVisualizacion.this);
+        makeTxt("creado", ReportVisualizacion.this);
     }
 }

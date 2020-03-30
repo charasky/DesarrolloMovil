@@ -43,6 +43,14 @@ public class Check {
         return true;
     }
 
+    public Boolean isStringEmpty(String string, String mensaje, Context context) {
+        if (string.isEmpty()) {
+            Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     public List<Boolean> finalValidation() {
         return this.variablesParaCheckiar().stream()

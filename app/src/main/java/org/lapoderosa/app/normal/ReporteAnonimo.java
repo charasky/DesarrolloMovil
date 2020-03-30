@@ -50,6 +50,7 @@ public class ReporteAnonimo extends MasterClass {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_reporte_anonimo);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         progressDialog = new ProgressDialog(this);
         btnEnviarDA = findViewById(R.id.btnEnviarDA);
 
@@ -99,6 +100,12 @@ public class ReporteAnonimo extends MasterClass {
         }
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     private List<Boolean> checkVariables() {
         //check.addListToCheck(check.isStringEmpty(emailAnonimo, edtEmailAnonimo, "Ingrese email"));
@@ -127,7 +134,6 @@ public class ReporteAnonimo extends MasterClass {
                 .setCancelable(true)
                 .setPositiveButton("Si", (dialog, which) -> {
                     ReporteAnonimo.this.finish();
-                    progressDialog.dismiss();
                     return;
                 })
 

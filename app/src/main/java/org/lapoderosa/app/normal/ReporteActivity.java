@@ -31,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.admin.AdminInicioActivity;
+import org.lapoderosa.app.util.Check;
 import org.lapoderosa.app.util.DateDefinido;
 import org.lapoderosa.app.util.SharedPrefManager;
 
@@ -105,6 +106,8 @@ public class ReporteActivity extends MasterClass {
     private RadioGroup rgProcesamiento, rgMalosTratosAgresiones, rgTrasladoSiNo, rgComisariaSiNo, rgEsposadosSiNo, rgOrdenAllanamientoSiNo,
             rgAgresionDomicilioSiNo, rgPertenenciasRobadasSiNo, rgOmitieronPertenenciasSiNo, rgPersonasDetenidasSiNo, rgPosicionFisicaEleccion, rgEsposadosAllanamientoSiNo,
             rgDenunciaTomadaSiNo, rgViolentadoSiNo, rgEtapaDeInvestigacion, rgOficialesTrabajanSiNo, rgLesionesSiNo;
+
+    private Check check = new Check();
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -219,6 +222,7 @@ public class ReporteActivity extends MasterClass {
         edtNombreEntrevistador.setText(SharedPrefManager.getInstance(this).getKeyName());
         edtApellidoEntrevistador.setText(SharedPrefManager.getInstance(this).getKeySurname());
         edtAsamblea.setText(SharedPrefManager.getInstance(this).getKeyAsamblea());
+
         tvDateEntrevista.setText(DateDefinido.getFechaDispositivo());
         tvDateEntrevista.setOnClickListener(view -> {
             Calendar cal = Calendar.getInstance();
@@ -254,13 +258,7 @@ public class ReporteActivity extends MasterClass {
         tvHoraHecho.setOnClickListener(view -> {
             TimePickerDialog dialog = new TimePickerDialog(
                     ReporteActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                    new TimePickerDialog.OnTimeSetListener() {
-                        @SuppressLint("SetTextI18n")
-                        @Override
-                        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                            tvHoraHecho.setText(hourOfDay + ":" + minute);
-                        }
-                    }, 0, 0, true);
+                    (view1, hourOfDay, minute) -> tvHoraHecho.setText(hourOfDay + ":" + minute), 0, 0, true);
             Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.show();
         });
@@ -302,10 +300,10 @@ public class ReporteActivity extends MasterClass {
     private void enviarReporte() {
         inicializarStringVariables();
 
-        if (verificacion().isEmpty()) {
+        if (checkVariables().isEmpty()) {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_REPORTE));
         } else {
-            makeTxt("Revise los campos",ReporteActivity.this);
+            makeTxt("Revise los campos", ReporteActivity.this);
         }
     }
 
@@ -478,93 +476,70 @@ public class ReporteActivity extends MasterClass {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private List<Boolean> verificacion(){
-        return this.variablesParaCheckiar().stream()
-                .filter(v -> v.equals(false))
-                .collect(Collectors.toList());
-    }
-
-    private List<Boolean> variablesParaCheckiar(){
-        List<Boolean> lista = new LinkedList<>();
+    private List<Boolean> checkVariables() {
         //ALLANAMIENTO
-        lista.add(vGeneric(ordenAllanamiento,"Seleccione opcion en Orden de Allanamiento"));
-        lista.add(vGeneric(agresionAllanamiento,"Seleccione agresion en Allanamiento a Domicilio"));
-        lista.add(vGeneric(pertenenciasAllanamiento,"Seleccione opcion en pertenencias Allanamiento"));
-        lista.add(vGeneric(omisionPertenencias,"Seleccione opcion en omision de pertenencias"));
-        lista.add(vGeneric(detenidosAllanamiento,"Seleccione opcion en personas detenidas"));
-        lista.add(vGeneric(duracionAllanamiento, edtTiempoAllanamiento,"Ingrese tiempo detenido"));
-        lista.add(vGeneric(posicionDetenidos,"Seleccione opcion en posicion fisica"));
-        lista.add(vGeneric(esposados,"Selecione opcion en esposados"));
+        check.addListToCheck(check.isStringEmpty(ordenAllanamiento, "Seleccione opcion en Orden de Allanamiento", this));
+        check.addListToCheck(check.isStringEmpty(agresionAllanamiento, "Seleccione agresion en Allanamiento a Domicilio", this));
+        check.addListToCheck(check.isStringEmpty(pertenenciasAllanamiento, "Seleccione opcion en pertenencias Allanamiento", this));
+        check.addListToCheck(check.isStringEmpty(omisionPertenencias, "Seleccione opcion en omision de pertenencias", this));
+        check.addListToCheck(check.isStringEmpty(detenidosAllanamiento, "Seleccione opcion en personas detenidas", this));
+        check.addListToCheck(check.isStringEmpty(duracionAllanamiento, edtTiempoAllanamiento, "Ingrese tiempo detenido"));
+        check.addListToCheck(check.isStringEmpty(posicionDetenidos, "Seleccione opcion en posicion fisica", this));
+        check.addListToCheck(check.isStringEmpty(esposados, "Selecione opcion en esposados", this));
         //CARACTERISTICAS DE PROCEDIMIENTO
-        lista.add(vGeneric(motivoProcedimiento, "Seleccione procedimiento"));
-        lista.add(vGeneric(maltratos, "Seleccione opcion en maltratos"));
-        lista.add(vGeneric(lesiones, "Seleccione opcion en Lesiones y/ complete"));
+        check.addListToCheck(check.isStringEmpty(motivoProcedimiento, "Seleccione procedimiento", this));
+        check.addListToCheck(check.isStringEmpty(maltratos, "Seleccione opcion en maltratos", this));
+        check.addListToCheck(check.isStringEmpty(lesiones, "Seleccione opcion en Lesiones y/ complete", this));
         //ENTREVISTADOR
-        lista.add(vGeneric(parentesco, edtParentesco, "ingrese parentesco"));
-        lista.add(vGeneric(nombreEntrevistador, edtNombreEntrevistador, "ingrese entrevistador"));
-        lista.add(vGeneric(apellidoEntrevistador, edtApellidoEntrevistador, "ingrese apellido entrevistador"));
-        lista.add(vGeneric(asamblea, edtAsamblea, "ingrese asamblea"));
+        check.addListToCheck(check.isStringEmpty(parentesco, edtParentesco, "ingrese parentesco"));
+        check.addListToCheck(check.isStringEmpty(nombreEntrevistador, edtNombreEntrevistador, "ingrese entrevistador"));
+        check.addListToCheck(check.isStringEmpty(apellidoEntrevistador, edtApellidoEntrevistador, "ingrese apellido entrevistador"));
+        check.addListToCheck(check.isStringEmpty(asamblea, edtAsamblea, "ingrese asamblea"));
         //FUERZAS INTERVINIENTES
-        lista.add(vGeneric(fuerzasIntervinientes, edtFuerzasIntervinientes, "Ingrese fuerzas intervinientes"));
-        lista.add(vGeneric(cantidadAgentes, edtCantidadAgentes, "Ingrese cantidad de agentes"));
-        lista.add(vGeneric(nombresAgentes, edtNombresAgentes, "Ingrese nombre agente"));
-        lista.add(vGeneric(apodos, edtApodos, "Ingrese apodos"));
-        lista.add(vGeneric(cantidadVehiculos, edtCantidadVehiculos, "Ingrese cantidad de vehiculos"));
-        lista.add(vGeneric(numMovil, edtNumMovil, "Ingrese numero movil"));
-        lista.add(vGeneric(dominio, edtDominio, "Ingrese dominio"));
-        lista.add(vGeneric(conductaAgentes, edtConductaAgentes, "Ingrese conducta agentes"));
+        check.addListToCheck(check.isStringEmpty(fuerzasIntervinientes, edtFuerzasIntervinientes, "Ingrese fuerzas intervinientes"));
+        check.addListToCheck(check.isStringEmpty(cantidadAgentes, edtCantidadAgentes, "Ingrese cantidad de agentes"));
+        check.addListToCheck(check.isStringEmpty(nombresAgentes, edtNombresAgentes, "Ingrese nombre agente"));
+        check.addListToCheck(check.isStringEmpty(apodos, edtApodos, "Ingrese apodos"));
+        check.addListToCheck(check.isStringEmpty(cantidadVehiculos, edtCantidadVehiculos, "Ingrese cantidad de vehiculos"));
+        check.addListToCheck(check.isStringEmpty(numMovil, edtNumMovil, "Ingrese numero movil"));
+        check.addListToCheck(check.isStringEmpty(dominio, edtDominio, "Ingrese dominio"));
+        check.addListToCheck(check.isStringEmpty(conductaAgentes, edtConductaAgentes, "Ingrese conducta agentes"));
         //HECHO POLICIAL
-        lista.add(vGeneric(cuantosAcompañan, edtCuantosAcompañan, "Ingrese cuantos acompañan"));
-        lista.add(vGeneric(cualLugar, edtCualLugar, "Ingrese cual lugar"));
-        lista.add(vGeneric(provinciaHecho, edtProvinciaHecho, "Ingrese provincia"));
-        lista.add(vGeneric(paisHecho, edtPaisHecho, "Ingrese pais"));
-        lista.add(vGeneric(direccionHecho, edtDireccionHecho, "Ingrese direccion"));
-        lista.add(vGeneric(barrioHecho, edtBarrioHecho, "Ingrese barrio"));
-        lista.add(vGeneric(diaHecho, "Ingrese Fecha en Descripcion del Hecho"));
-        lista.add(vGeneric(horaHecho, "Ingrese Hora en Descripcion del Hecho"));
+        check.addListToCheck(check.isStringEmpty(cuantosAcompañan, edtCuantosAcompañan, "Ingrese cuantos acompañan"));
+        check.addListToCheck(check.isStringEmpty(cualLugar, edtCualLugar, "Ingrese cual lugar"));
+        check.addListToCheck(check.isStringEmpty(provinciaHecho, edtProvinciaHecho, "Ingrese provincia"));
+        check.addListToCheck(check.isStringEmpty(paisHecho, edtPaisHecho, "Ingrese pais"));
+        check.addListToCheck(check.isStringEmpty(direccionHecho, edtDireccionHecho, "Ingrese direccion"));
+        check.addListToCheck(check.isStringEmpty(barrioHecho, edtBarrioHecho, "Ingrese barrio"));
+        check.addListToCheck(check.isStringEmpty(diaHecho, tvDateHecho, "Ingrese Fecha en Descripcion del Hecho", this));
+        check.addListToCheck(check.isStringEmpty(horaHecho, tvHoraHecho, "Ingrese Hora en Descripcion del Hecho", this));
         //MODALIDAD DE DETENCION
-        lista.add(vGeneric(posicionDetenido, edtPosicionDetenido, "Ingrese posicion detenido"));
-        lista.add(vGeneric(cuantoTiempoDetenido, edtCuantoTiempoDetenido, "Ingrese cuanto tiempo detenido"));
+        check.addListToCheck(check.isStringEmpty(posicionDetenido, edtPosicionDetenido, "Ingrese posicion detenido"));
+        check.addListToCheck(check.isStringEmpty(cuantoTiempoDetenido, edtCuantoTiempoDetenido, "Ingrese cuanto tiempo detenido"));
         //OMISION AL ACTUAL
-        lista.add(vGeneric(mediosDeAsistencia, edtMedioAsistencia, "Ingrese medios de asistencia"));
-        lista.add(vGeneric(aQuienAsistencia, edtAQuien, "Ingrese quien lo asistio"));
-        lista.add(vGeneric(denunciaRechazada, "Selecione en denuncia"));
-        lista.add(vGeneric(violentado, "Seleccione si fue agredido, en omision"));
-        lista.add(vGeneric(denunciaFinal, "Seleccione en si hizo una denuncia"));
+        check.addListToCheck(check.isStringEmpty(mediosDeAsistencia, edtMedioAsistencia, "Ingrese medios de asistencia"));
+        check.addListToCheck(check.isStringEmpty(aQuienAsistencia, edtAQuien, "Ingrese quien lo asistio"));
+        check.addListToCheck(check.isStringEmpty(denunciaRechazada, "Selecione en denuncia", this));
+        check.addListToCheck(check.isStringEmpty(violentado, "Seleccione si fue agredido, en omision", this));
+        check.addListToCheck(check.isStringEmpty(denunciaFinal, "Seleccione en si hizo una denuncia", this));
         //RESULTADO DE INVESTIGACION
-        lista.add(vGeneric(resultadoInvestigacion, "Selecione resultado de investigacion"));
-        lista.add(vGeneric(trabajanLosOficiales, "Seleccione si trabajan los oficiales"));
+        check.addListToCheck(check.isStringEmpty(resultadoInvestigacion, "Selecione resultado de investigacion", this));
+        check.addListToCheck(check.isStringEmpty(trabajanLosOficiales, "Seleccione si trabajan los oficiales", this));
         //TRASLADO
-        lista.add(vGeneric(traslado, "Selecione en traslado"));
-        lista.add(vGeneric(comisaria, "Selecione en comisaria"));
-        lista.add(vGeneric(esposado, "Seleccione en esposado"));
+        check.addListToCheck(check.isStringEmpty(traslado, "Selecione en traslado", this));
+        check.addListToCheck(check.isStringEmpty(comisaria, "Selecione en comisaria", this));
+        check.addListToCheck(check.isStringEmpty(esposado, "Seleccione en esposado", this));
         //VICTIMA
-        lista.add(vGeneric(nombreVictima, edtNombreVictima, "ingrese nombre de victima"));
-        lista.add(vGeneric(apellidoVictima, edtApellidoVictima, "ingrese apellido victima"));
-        lista.add(vGeneric(generoVictima, edtGeneroVictima, "ingrese genero victima"));
-        lista.add(vGeneric(edadVictima, edtEdadVictima, "ingrese edad victima"));
-        lista.add(vGeneric(nacionalidadVictima, edtNacionalidadVictima, "ingrese nacionalidad"));
-        lista.add(vGeneric(documentoVictima, edtDocumentoVictima, "ingrese documento victima"));
-        lista.add(vGeneric(direccionVictima, edtDireccionVictima, "ingrese direccion victima"));
-        lista.add(vGeneric(barrioVictima, edtBarrioVictima, "ingrese barrio victima"));
-        lista.add(vGeneric(telefonoVictima, edtTelefonoVictima, "ingrese telefono victima"));
-        return lista;
-    }
-
-    private boolean vGeneric(String string, EditText txt, String mensaje) {
-        if (string.isEmpty()) {
-            txt.setError(mensaje);
-            return false;
-        }
-        return true;
-    }
-
-    private boolean vGeneric(String string, String mensaje) {
-        if (string.equals("dd/mm/yyyy") || string.equals("HH:mm") || string.isEmpty()) {
-            makeTxt(mensaje, ReporteActivity.this);
-            return false;
-        }
-        return true;
+        check.addListToCheck(check.isStringEmpty(nombreVictima, edtNombreVictima, "ingrese nombre de victima"));
+        check.addListToCheck(check.isStringEmpty(apellidoVictima, edtApellidoVictima, "ingrese apellido victima"));
+        check.addListToCheck(check.isStringEmpty(generoVictima, edtGeneroVictima, "ingrese genero victima"));
+        check.addListToCheck(check.isStringEmpty(edadVictima, edtEdadVictima, "ingrese edad victima"));
+        check.addListToCheck(check.isStringEmpty(nacionalidadVictima, edtNacionalidadVictima, "ingrese nacionalidad"));
+        check.addListToCheck(check.isStringEmpty(documentoVictima, edtDocumentoVictima, "ingrese documento victima"));
+        check.addListToCheck(check.isStringEmpty(direccionVictima, edtDireccionVictima, "ingrese direccion victima"));
+        check.addListToCheck(check.isStringEmpty(barrioVictima, edtBarrioVictima, "ingrese barrio victima"));
+        check.addListToCheck(check.isStringEmpty(telefonoVictima, edtTelefonoVictima, "ingrese telefono victima"));
+        return check.finalValidation();
     }
 
     @Override
@@ -572,13 +547,13 @@ public class ReporteActivity extends MasterClass {
         boolean validate = false;
         try {
             JSONObject jsonObject = new JSONObject(response);
-            makeTxt(jsonObject.getString("message"),ReporteActivity.this);
+            makeTxt(jsonObject.getString("message"), ReporteActivity.this);
             validate = jsonObject.getBoolean("validate");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        if(validate){
+        if (validate) {
             chooseInicio();
         }
     }

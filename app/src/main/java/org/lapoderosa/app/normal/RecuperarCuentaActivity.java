@@ -26,7 +26,6 @@ import java.util.Map;
 
 public class RecuperarCuentaActivity extends MasterClass {
     private Button rBtSiguiente;
-    private TextView rLogin;
     private TextInputLayout rEmail;
     private String email;
     private RelativeLayout layout;
@@ -39,10 +38,7 @@ public class RecuperarCuentaActivity extends MasterClass {
 
         layout = findViewById(R.id.layoutRecuperarCuenta);
         rBtSiguiente = findViewById(R.id.rBtSiguiente);
-        rLogin = findViewById(R.id.rLogin);
         rEmail = findViewById(R.id.rEmail);
-
-        rLogin.setOnClickListener(view -> onBackPressed());
 
         rBtSiguiente.setOnClickListener(view -> {
             AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);

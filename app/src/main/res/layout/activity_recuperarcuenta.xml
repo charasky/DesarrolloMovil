@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_email_black_36dp"
             android:drawableLeft="@drawable/ic_email_black_36dp"
-            android:hint="Correo Electronico"/>
+            android:hint="@string/correo_electronico"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -58,16 +58,4 @@
         android:text="@string/siguiente"
         style="@style/buttonFormat"/>
 
-    <TextView
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:id="@+id/rLogin"
-        android:background="?android:attr/selectableItemBackground"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rBtSiguiente"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="@string/volver_a_iniciar_sesion"
-        android:textSize="16sp" />
 </RelativeLayout>

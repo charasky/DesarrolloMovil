@@ -2,7 +2,7 @@
     <string name="app_name">Garganta Poderosa</string>
 
 
-
+    <string name="errorRed">Problemas con la red, por favor intente luego.</string>
     <string name="cerrar_sesion">Cerrar Sesión</string>
     <string name="inicio">Inicio</string>
     <string name="Entrar">Entrar</string>
@@ -64,7 +64,7 @@
     <string name="barrio">Barrio:</string>
     <string name="celular">Celular:</string>
     <string name="emailRA">Email:</string>
-    <string name="informacion_necesaria">Informacion necesaria</string>
+    <string name="informacion_necesaria">Informacion Necesaria</string>
     <string name="descripcion_general_del_hecho">Descripción General Del Hecho</string>
     <string name="informacion_del_hecho">Información del hecho</string>
     <string name="detalle_lo_sucedido">Detalle lo sucedido</string>

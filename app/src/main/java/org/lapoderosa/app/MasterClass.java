@@ -11,6 +11,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.lapoderosa.app.R;
 
 import org.lapoderosa.app.util.VolleySingleton;
 
@@ -25,7 +26,7 @@ public abstract class MasterClass extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, response -> {
             progressDialog.dismiss();
             responseConexion(response);
-        }, error -> Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show()) {
+        }, error -> Toast.makeText(getApplicationContext(), getResources().getString(R.string.errorRed), Toast.LENGTH_SHORT).show()) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 return putParams();

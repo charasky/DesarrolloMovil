@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
 
         <activity android:name="org.lapoderosa.app.normal.SplashActivity" android:theme="@style/noBar">
             <intent-filter>
@@ -25,8 +26,6 @@
         <activity android:name="org.lapoderosa.app.normal.HomeActivity" android:theme="@style/noBar"/>
         <activity android:name="org.lapoderosa.app.normal.ContactoActivity" android:label="@string/contactoWeb" android:parentActivityName="org.lapoderosa.app.normal.HomeActivity"
             tools:targetApi="jelly_bean" />
-        <activity android:name="org.lapoderosa.app.normal.ReporteAnonimo" android:label="@string/denuncia_anonima" android:parentActivityName="org.lapoderosa.app.normal.HomeActivity"
-            tools:targetApi="jelly_bean" />
         <activity android:name="org.lapoderosa.app.normal.RegistrarseActivity" android:label="@string/registrarse" android:parentActivityName="org.lapoderosa.app.normal.HomeActivity"
             tools:targetApi="jelly_bean" />
         <activity android:name="org.lapoderosa.app.normal.RecuperarCuentaActivity" android:label="@string/recuperar_cuenta" android:parentActivityName="org.lapoderosa.app.normal.LoginActivity"
@@ -37,6 +36,7 @@
         <activity android:name="org.lapoderosa.app.normal.ReportVisualizacion" android:label="@string/reporte_individual"/>
 
 
+        <activity android:name="org.lapoderosa.app.normal.ReporteAnonimo" android:label="@string/denuncia_anonima" />
         <activity android:name="org.lapoderosa.app.normal.BusquedarReporteActivity" android:label="@string/busquedaReporte"/>
         <activity android:name="org.lapoderosa.app.normal.ReporteActivity" android:label="@string/reporte"/>
 

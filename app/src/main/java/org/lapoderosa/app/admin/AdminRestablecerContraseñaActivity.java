@@ -11,11 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.android.volley.AuthFailureError;
 import com.lapoderosa.app.R;
 
 import org.json.JSONException;
@@ -45,27 +43,16 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
         rVolver = findViewById(R.id.rVolver);
         rBtSiguiente = findViewById(R.id.rBtSiguiente);
 
-        rVolver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
+        rVolver.setOnClickListener(view -> onBackPressed());
+
+        rBtSiguiente.setOnClickListener(view -> {
+            restorePassword();
+            animation(rBtSiguiente);
         });
 
-        rBtSiguiente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                restorePassword();
-                animation(rBtSiguiente);
-            }
-        });
-
-        layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InputMethodManager inputMethodManager = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
-            }
+        layout.setOnClickListener(view -> {
+            InputMethodManager inputMethodManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         });
     }
 
@@ -79,7 +66,7 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
     protected void restorePassword() {
         inicializarStringVariables();
         if (!validate()) {
-            Toast.makeText(this, "Complete los campos", Toast.LENGTH_SHORT).show();
+            makeTxt("Complete los campos",AdminRestablecerContraseñaActivity.this);
         } else {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_RESTORE_PASSWORD));
         }
@@ -165,7 +152,7 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
         String mensaje = "";
         try {
             JSONObject jsonObject = new JSONObject(response);
-            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+            makeTxt(jsonObject.getString("message"),AdminRestablecerContraseñaActivity.this);
             mensaje = jsonObject.getString("revisar");
         } catch (JSONException e) {
             e.printStackTrace();

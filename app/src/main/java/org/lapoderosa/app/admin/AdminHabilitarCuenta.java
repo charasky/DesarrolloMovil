@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -138,7 +137,7 @@ public class AdminHabilitarCuenta extends MasterClass {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                    makeTxt(jsonObject.getString("message"),AdminHabilitarCuenta.this);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -146,7 +145,7 @@ public class AdminHabilitarCuenta extends MasterClass {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                makeTxt(error.toString(),AdminHabilitarCuenta.this);
             }
         }) {
             @Override

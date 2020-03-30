@@ -11,7 +11,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -36,6 +35,7 @@ public class RegistrarseActivity extends MasterClass {
     private Check check = new Check();
     private RelativeLayout layout;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,20 +51,11 @@ public class RegistrarseActivity extends MasterClass {
         dmPassword2 = findViewById(R.id.dmPassword2);
         dmRegistrarBtn = findViewById(R.id.dmRegistrarseBtn);
 
-        dmRegistrarBtn.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View v) {
-                registrar();
-            }
-        });
+        dmRegistrarBtn.setOnClickListener(view -> registrar());
 
-        layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InputMethodManager inputMethodManager = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
-            }
+        layout.setOnClickListener(view -> {
+            InputMethodManager inputMethodManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         });
     }
 
@@ -72,7 +63,7 @@ public class RegistrarseActivity extends MasterClass {
     protected void registrar() {
         inicializarStringVariables();
         if (!validate() && !this.checkVariables().isEmpty()) {
-            Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
+            makeTxt("Revise los campos",RegistrarseActivity.this);
         } else {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_SIGN_UP));
         }
@@ -92,7 +83,7 @@ public class RegistrarseActivity extends MasterClass {
         String mensaje = "";
         try {
             JSONObject jsonObject = new JSONObject(response);
-            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+            makeTxt(jsonObject.getString("message"),RegistrarseActivity.this);
             mensaje = jsonObject.getString("existe");
         } catch (JSONException e) {
             e.printStackTrace();

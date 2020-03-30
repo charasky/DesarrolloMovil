@@ -8,14 +8,11 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.android.volley.AuthFailureError;
 import com.google.android.material.textfield.TextInputLayout;
 import com.lapoderosa.app.R;
 
@@ -45,30 +42,19 @@ public class RecuperarCuentaActivity extends MasterClass {
         rLogin = findViewById(R.id.rLogin);
         rEmail = findViewById(R.id.rEmail);
 
-        rLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
+        rLogin.setOnClickListener(view -> onBackPressed());
+
+        rBtSiguiente.setOnClickListener(view -> {
+            AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
+            animation.setDuration(500);
+            rBtSiguiente.setAlpha(1f);
+            rBtSiguiente.startAnimation(animation);
+            recuperar();
         });
 
-        rBtSiguiente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
-                animation.setDuration(500);
-                rBtSiguiente.setAlpha(1f);
-                rBtSiguiente.startAnimation(animation);
-                recuperar();
-            }
-        });
-
-        layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InputMethodManager inputMethodManager = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
-            }
+        layout.setOnClickListener(view -> {
+            InputMethodManager inputMethodManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         });
     }
 
@@ -77,7 +63,7 @@ public class RecuperarCuentaActivity extends MasterClass {
         if (check(email, rEmail, "Ingrese email")) {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_ACCOUNT_RECOVERY));
         } else {
-            Toast.makeText(RecuperarCuentaActivity.this, "Ingrese email", Toast.LENGTH_SHORT).show();
+            makeTxt("Ingrese email", RecuperarCuentaActivity.this);
         }
     }
 
@@ -106,7 +92,7 @@ public class RecuperarCuentaActivity extends MasterClass {
         String mensaje = "";
         try {
             JSONObject jsonObject = new JSONObject(response);
-            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+            makeTxt(jsonObject.getString("message"), RecuperarCuentaActivity.this);
             mensaje = jsonObject.getString("existe");
 
 

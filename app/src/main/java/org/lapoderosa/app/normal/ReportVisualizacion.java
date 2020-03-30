@@ -9,10 +9,8 @@ import android.graphics.pdf.PdfDocument;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
@@ -239,7 +237,7 @@ public class ReportVisualizacion extends MasterClass {
             //HECHO POLICIAL
             ruvDiaHecho.setText(jsonObject.getString("usu_dia_hecho"));
             ruvFechaHecho.setText(jsonObject.getString("usu_fecha_hecho"));
-            ruvCuantosAcompañanHecho.setText(jsonObject.getString("usu_cuantos_acompañan"));
+            ruvCuantosAcompañanHecho.setText(jsonObject.getString("usu_cuantos_acompanian"));
             ruvCualLugarHecho.setText(jsonObject.getString("usu_cual_lugar"));
             ruvProvinciaHecho.setText(jsonObject.getString("usu_provincia_hecho"));
             ruvPaisHecho.setText(jsonObject.getString("usu_pais_hecho"));
@@ -308,6 +306,6 @@ public class ReportVisualizacion extends MasterClass {
         }
 
         myPdfDocument.close();
-        Toast.makeText(ReportVisualizacion.this, "creado", Toast.LENGTH_LONG).show();
+        makeTxt("creado",ReportVisualizacion.this);
     }
 }

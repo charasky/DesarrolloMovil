@@ -20,7 +20,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
@@ -107,6 +106,7 @@ public class ReporteActivity extends MasterClass {
             rgAgresionDomicilioSiNo, rgPertenenciasRobadasSiNo, rgOmitieronPertenenciasSiNo, rgPersonasDetenidasSiNo, rgPosicionFisicaEleccion, rgEsposadosAllanamientoSiNo,
             rgDenunciaTomadaSiNo, rgViolentadoSiNo, rgEtapaDeInvestigacion, rgOficialesTrabajanSiNo, rgLesionesSiNo;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -220,81 +220,59 @@ public class ReporteActivity extends MasterClass {
         edtApellidoEntrevistador.setText(SharedPrefManager.getInstance(this).getKeySurname());
         edtAsamblea.setText(SharedPrefManager.getInstance(this).getKeyAsamblea());
         tvDateEntrevista.setText(DateDefinido.getFechaDispositivo());
-        tvDateEntrevista.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
+        tvDateEntrevista.setOnClickListener(view -> {
+            Calendar cal = Calendar.getInstance();
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(
-                        ReporteActivity.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        listenerFecha(tvDateEntrevista),
-                        year, month, day);
-                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
+            DatePickerDialog dialog = new DatePickerDialog(
+                    ReporteActivity.this,
+                    android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                    listenerFecha(tvDateEntrevista),
+                    year, month, day);
+            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
         });
 
-        tvDateHecho.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
+        tvDateHecho.setOnClickListener(view -> {
+            Calendar cal = Calendar.getInstance();
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(
-                        ReporteActivity.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        listenerFecha(tvDateHecho),
-                        year, month, day);
-                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
+            DatePickerDialog dialog = new DatePickerDialog(
+                    ReporteActivity.this,
+                    android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                    listenerFecha(tvDateHecho),
+                    year, month, day);
+            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
         });
 
 
-        tvHoraHecho.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onClick(View v) {
-                TimePickerDialog dialog = new TimePickerDialog(
-                        ReporteActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @SuppressLint("SetTextI18n")
-                            @Override
-                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                tvHoraHecho.setText(hourOfDay + ":" + minute);
-                            }
-                        }, 0, 0, true);
-                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
+        tvHoraHecho.setOnClickListener(view -> {
+            TimePickerDialog dialog = new TimePickerDialog(
+                    ReporteActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                    new TimePickerDialog.OnTimeSetListener() {
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                            tvHoraHecho.setText(hourOfDay + ":" + minute);
+                        }
+                    }, 0, 0, true);
+            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
         });
 
-        guardar.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View v) {
-                enviarReporte();
-            }
-        });
+        guardar.setOnClickListener(view -> enviarReporte());
 
-        cancelar.setOnClickListener(v -> onBackPressed());
+        cancelar.setOnClickListener(view -> onBackPressed());
 
-        constraintLayout.setOnClickListener(new View.OnClickListener() {
-            //hace que el teclado se oculte cuando presionas en otra parte visual del mismo layout
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onClick(View v) {
-                InputMethodManager inputMethodManager = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                Objects.requireNonNull(inputMethodManager).hideSoftInputFromWindow(v.getWindowToken(), 0);
-            }
+        //hace que el teclado se oculte cuando presionas en otra parte visual del mismo layout
+        constraintLayout.setOnClickListener(view -> {
+            InputMethodManager inputMethodManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            Objects.requireNonNull(inputMethodManager).hideSoftInputFromWindow(view.getWindowToken(), 0);
         });
     }
 
@@ -310,20 +288,12 @@ public class ReporteActivity extends MasterClass {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("¿Desea salir de reporte?")
                 .setCancelable(true)
-                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ReporteActivity.this.finish();
-                        return;
-                    }
+                .setPositiveButton("Si", (dialog, which) -> {
+                    ReporteActivity.this.finish();
+                    return;
                 })
 
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-                        dialog.cancel();
-                    }
-                });
+                .setNegativeButton("No", (dialog, i) -> dialog.cancel());
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
@@ -335,7 +305,7 @@ public class ReporteActivity extends MasterClass {
         if (verificacion().isEmpty()) {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_REPORTE));
         } else {
-            Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
+            makeTxt("Revise los campos",ReporteActivity.this);
         }
     }
 
@@ -385,7 +355,7 @@ public class ReporteActivity extends MasterClass {
             //Hecho policial
             jsonObject.put("usu_dia_hecho", diaHecho);
             jsonObject.put("usu_hora_hecho", horaHecho);
-            jsonObject.put("usu_cuantos_acompañan", cuantosAcompañan);
+            jsonObject.put("usu_cuantos_acompanian", cuantosAcompañan);
             jsonObject.put("usu_cual_lugar", cualLugar);
             jsonObject.put("usu_provincia_hecho", provinciaHecho);
             jsonObject.put("usu_pais_hecho", paisHecho);
@@ -591,7 +561,7 @@ public class ReporteActivity extends MasterClass {
 
     private boolean vGeneric(String string, String mensaje) {
         if (string.equals("dd/mm/yyyy") || string.equals("HH:mm") || string.isEmpty()) {
-            makeTxt(mensaje);
+            makeTxt(mensaje, ReporteActivity.this);
             return false;
         }
         return true;
@@ -602,7 +572,7 @@ public class ReporteActivity extends MasterClass {
         boolean validate = false;
         try {
             JSONObject jsonObject = new JSONObject(response);
-            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+            makeTxt(jsonObject.getString("message"),ReporteActivity.this);
             validate = jsonObject.getBoolean("validate");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -627,13 +597,7 @@ public class ReporteActivity extends MasterClass {
     }
 
     public DatePickerDialog.OnDateSetListener listenerFecha(final TextView tvDate) {
-        return new DatePickerDialog.OnDateSetListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                tvDate.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
-            }
-        };
+        return (view, year, month, dayOfMonth) -> tvDate.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
     }
 
     private String checkRadioGroup(RadioGroup grupoGroup, EditText text) {
@@ -687,13 +651,9 @@ public class ReporteActivity extends MasterClass {
         return grupo.getCheckedRadioButtonId() != -1;
     }
 
-    private void makeTxt(String mensaje) {
-        Toast.makeText(ReporteActivity.this, mensaje, Toast.LENGTH_SHORT).show();
-    }
-
     private String chooseSeleccion(EditText text, RadioButton algo) {
         if (text.getText().toString().isEmpty()) {
-            makeTxt("Seleccionó la opcion " + algo.getText().toString() + ", especifique");
+            makeTxt("Seleccionó la opcion " + algo.getText().toString() + ", especifique", ReporteActivity.this);
             text.setError("completar");
             return "";
         } else {

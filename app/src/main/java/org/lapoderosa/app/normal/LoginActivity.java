@@ -5,13 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -39,6 +37,7 @@ public class LoginActivity extends MasterClass {
     private String usuario, password;
     private LinearLayout layout;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,31 +50,19 @@ public class LoginActivity extends MasterClass {
         btnLogin = findViewById(R.id.btLogin);
         etOlvidastesContraseña = findViewById(R.id.etOlvidastesContraseña);
 
-        etOlvidastesContraseña.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RecuperarCuentaActivity.class));
-            }
+        etOlvidastesContraseña.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, RecuperarCuentaActivity.class)));
+
+        btnLogin.setOnClickListener(view -> {
+            AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
+            animation.setDuration(500);
+            btnLogin.setAlpha(1f);
+            btnLogin.startAnimation(animation);
+            usuarioLogin();
         });
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View v) {
-                AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
-                animation.setDuration(500);
-                btnLogin.setAlpha(1f);
-                btnLogin.startAnimation(animation);
-                usuarioLogin();
-            }
-        });
-
-        layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InputMethodManager inputMethodManager = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
-            }
+        layout.setOnClickListener(view -> {
+            InputMethodManager inputMethodManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         });
     }
 
@@ -91,7 +78,7 @@ public class LoginActivity extends MasterClass {
         if (checkVariables().isEmpty()) {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_LOGIN));
         } else {
-            Toast.makeText(LoginActivity.this, "Ingrese usuario y contraseña", Toast.LENGTH_SHORT).show();
+            makeTxt("Ingrese usuario y contraseña" , LoginActivity.this);
         }
     }
 
@@ -134,7 +121,7 @@ public class LoginActivity extends MasterClass {
                         );
                 this.chooseInicio(Boolean.parseBoolean(SharedPrefManager.getInstance(this).getKeyTypeUser()), Boolean.parseBoolean(SharedPrefManager.getInstance(this).getKeyEnabledUser()));
             } else {
-                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                makeTxt(obj.getString("message"),LoginActivity.this);
                 this.metodoUsuarioContador();
             }
         } catch (JSONException e) {
@@ -144,11 +131,11 @@ public class LoginActivity extends MasterClass {
 
     private void chooseInicio(Boolean admin, Boolean habilitado) {
         if (!habilitado && !admin) {
-            Toast.makeText(getApplicationContext(), "El usuario aun no tiene acceso por Administradores", Toast.LENGTH_LONG).show();
+            makeTxt("El usuario aun no tiene acceso por Administradores",LoginActivity.this);
         }
 
         if (!habilitado && admin) {
-            Toast.makeText(getApplicationContext(), "El usuario aun no tiene acceso", Toast.LENGTH_LONG).show();
+            makeTxt("El usuario aun no tiene acceso",LoginActivity.this);
         }
 
         if (admin && habilitado) {

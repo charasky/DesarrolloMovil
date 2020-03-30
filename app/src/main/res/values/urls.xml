@@ -2,13 +2,16 @@
 <resources>
     <!-- //todo URL local-host
     <string name="URL_REPORTE">/android/insertar_datos_reporte.php</string>
-    <string name="HOST">http://192.168.0.8/android</string>
-    <string name="HOST">http://192.168.0.4/android</string>
+    <string name="HOST" translatable="false">http://192.168.0.8/android</string>
 
     -->
 
-    <!-- //todo URLS AWS   -->
+
+    <string name="HOST" translatable="false">http://192.168.0.4/android</string>
+
+    <!-- //todo URLS AWS
     <string name="HOST" translatable="false">http://18.222.196.15/proyecto</string>
+     -->
 
 
     <string name="URL_LOGIN" translatable="false">/v1/userLogin.php</string>

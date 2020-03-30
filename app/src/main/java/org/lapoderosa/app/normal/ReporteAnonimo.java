@@ -19,7 +19,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.lapoderosa.app.R;
@@ -45,6 +44,7 @@ public class ReporteAnonimo extends MasterClass {
     private TextView tvFechaAnonimo, tvHoraAnonimo;
     private Check check = new Check();
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,52 +65,27 @@ public class ReporteAnonimo extends MasterClass {
         textAnonimoDetalle = findViewById(R.id.textAnonimoDetalle);
 
 
-        tvFechaAnonimo.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
+        tvFechaAnonimo.setOnClickListener(view -> {
+            Calendar cal = Calendar.getInstance();
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(ReporteAnonimo.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @SuppressLint("SetTextI18n")
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                tvFechaAnonimo.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
-                            }
-                        }, year, month, day);
-                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
+            DatePickerDialog dialog = new DatePickerDialog(ReporteAnonimo.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                    (v1, year1, month1, dayOfMonth) -> tvFechaAnonimo.setText(dayOfMonth + "-" + (month1 + 1) + "-" + year1), year, month, day);
+            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
         });
 
 
-        tvHoraAnonimo.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onClick(View v) {
-                TimePickerDialog dialog = new TimePickerDialog(ReporteAnonimo.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                tvHoraAnonimo.setText(hourOfDay + ":" + minute);
-                            }
-                        }, 0, 0, true);
-                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
+        tvHoraAnonimo.setOnClickListener(view -> {
+            TimePickerDialog dialog = new TimePickerDialog(ReporteAnonimo.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                    (v2, hourOfDay, minute) -> tvHoraAnonimo.setText(hourOfDay + ":" + minute), 0, 0, true);
+            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
         });
 
-        btnEnviarDA.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View view) {
-                enviarDenunciaAnonima();
-            }
-        });
+        btnEnviarDA.setOnClickListener(view -> enviarDenunciaAnonima());
     }
 
 
@@ -118,7 +93,7 @@ public class ReporteAnonimo extends MasterClass {
     private void enviarDenunciaAnonima() {
         this.inicializarStringVariables();
         if (!validate() && !this.checkVariables().isEmpty()) {
-            Toast.makeText(this, "Revise los campos", Toast.LENGTH_SHORT).show();
+            makeTxt("Revise los campos",ReporteAnonimo.this);
         } else {
             this.ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_REPORTE_ANONIMO));
         }
@@ -140,7 +115,7 @@ public class ReporteAnonimo extends MasterClass {
     private boolean validate() {
         boolean valid = true;
         if (emailAnonimo.isEmpty() || celularAnonimo.isEmpty()) {
-            Toast.makeText(ReporteAnonimo.this,"Se necesita almenos email o celular" , Toast.LENGTH_SHORT).show();
+            makeTxt("Se necesita almenos email o celular",ReporteAnonimo.this);
             valid = false;
         }
         return valid;
@@ -150,21 +125,13 @@ public class ReporteAnonimo extends MasterClass {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("¿Seguro que desea salir?")
                 .setCancelable(true)
-                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ReporteAnonimo.this.finish();
-                        progressDialog.dismiss();
-                        return;
-                    }
+                .setPositiveButton("Si", (dialog, which) -> {
+                    ReporteAnonimo.this.finish();
+                    progressDialog.dismiss();
+                    return;
                 })
 
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-                        dialog.cancel();
-                    }
-                });
+                .setNegativeButton("No", (dialog, i) -> dialog.cancel());
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
@@ -215,7 +182,7 @@ public class ReporteAnonimo extends MasterClass {
         boolean validate = false;
         try {
             JSONObject jsonObject = new JSONObject(response);
-            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+            makeTxt(jsonObject.getString("message"),ReporteAnonimo.this);
             validate = jsonObject.getBoolean("validate");
         } catch (JSONException e) {
             e.printStackTrace();

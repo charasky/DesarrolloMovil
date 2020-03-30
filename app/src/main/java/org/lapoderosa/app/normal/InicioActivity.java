@@ -6,10 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
-import android.widget.RadioButton;
 
 import com.lapoderosa.app.R;
 
@@ -25,28 +23,19 @@ public class InicioActivity extends AppCompatActivity {
         Button btReporte = findViewById(R.id.btReporte);
         Button btCerrar = findViewById(R.id.btCerrarSesion);
 
-        btBusqueda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(InicioActivity.this, BusquedarReporteActivity.class));
-                animation(btBusqueda);
-            }
+        btBusqueda.setOnClickListener(view -> {
+            startActivity(new Intent(InicioActivity.this, BusquedarReporteActivity.class));
+            animation(btBusqueda);
         });
 
-        btReporte.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(InicioActivity.this, ReporteActivity.class));
-                animation(btReporte);
-            }
+        btReporte.setOnClickListener(view -> {
+            startActivity(new Intent(InicioActivity.this, ReporteActivity.class));
+            animation(btReporte);
         });
 
-        btCerrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cerrarSesion();
-                animation(btCerrar);
-            }
+        btCerrar.setOnClickListener(view -> {
+            cerrarSesion();
+            animation(btCerrar);
         });
     }
 
@@ -65,21 +54,10 @@ public class InicioActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //si da click si sale de la app
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("¿Esta seguro que quiere salir?")
                 .setCancelable(false)
-                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        InicioActivity.super.onBackPressed();
-                    }
-                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-                        dialog.cancel();
-                    }
-                });
+                .setPositiveButton("Si", (dialog, which) -> InicioActivity.super.onBackPressed()).setNegativeButton("No", (dialog, i) -> dialog.cancel());
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }

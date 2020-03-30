@@ -25,40 +25,20 @@ public class HomeActivity extends AppCompatActivity {
         TextView contacto = findViewById(R.id.homeContacto);
         TextView registrarse = findViewById(R.id.homeRegistrarse);
 
-        ingresar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
-                animation.setDuration(500);
-                ingresar.setAlpha(1f);
-                ingresar.startAnimation(animation);
+        ingresar.setOnClickListener(view -> {
+            AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
+            animation.setDuration(500);
+            ingresar.setAlpha(1f);
+            ingresar.startAnimation(animation);
 
-                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-                //finish();
-            }
+            startActivity(new Intent(HomeActivity.this, LoginActivity.class));
         });
 
-        reporteAnonimo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, ReporteAnonimo.class));
-                //finish();
-            }
-        });
+        reporteAnonimo.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, ReporteAnonimo.class)));
 
-        contacto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, ContactoActivity.class));
-            }
-        });
+        contacto.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, ContactoActivity.class)));
 
-        registrarse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, RegistrarseActivity.class));
-            }
-        });
+        registrarse.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, RegistrarseActivity.class)));
     }
 
     @Override

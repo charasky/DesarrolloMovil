@@ -6,7 +6,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,34 +21,25 @@ public class ContactoActivity extends AppCompatActivity {
         LinearLayout lTwitter = findViewById(R.id.contactoTwitter);
         TextView tvWeb = findViewById(R.id.contactoWeb);
 
-        lFacebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String url1 = "fb://page/213440425391495";
-                final String url2 = "https:www.facebook.com/213440425391495";
+        lFacebook.setOnClickListener(view -> {
+            final String url1 = "fb://page/213440425391495";
+            final String url2 = "https:www.facebook.com/213440425391495";
 
-                goTo(url1, url2);
-                finish();
-            }
+            goTo(url1, url2);
+            finish();
         });
 
-        lTwitter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String url1 = "twitter://user?user_id=402559824";
-                final String url2 = "https://twitter.com/gargantapodero";
+        lTwitter.setOnClickListener(view -> {
+            final String url1 = "twitter://user?user_id=402559824";
+            final String url2 = "https://twitter.com/gargantapodero";
 
-                goTo(url1, url2);
-                finish();
-            }
+            goTo(url1, url2);
+            finish();
         });
 
-        tvWeb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.lapoderosa.org.ar")));
-                finish();
-            }
+        tvWeb.setOnClickListener(view -> {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.lapoderosa.org.ar")));
+            finish();
         });
     }
 

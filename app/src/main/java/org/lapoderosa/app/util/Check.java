@@ -27,7 +27,7 @@ public class Check {
     }
 
     public Boolean isStringEmpty(String string, TextView txt, String mensaje, Context context) {
-        if (string.equals("dd/mm/yyyy") || string.equals("HH:mm") || string.isEmpty()) {
+        if (string.equals("dd/mm/yyyy") || string.equals("HH:mm") ) {
             txt.setTextColor(Color.parseColor("#FF0000"));
             Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show();
             return false;

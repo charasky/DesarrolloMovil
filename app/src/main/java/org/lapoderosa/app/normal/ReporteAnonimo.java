@@ -108,8 +108,6 @@ public class ReporteAnonimo extends MasterClass {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private List<Boolean> checkVariables() {
-        //check.addListToCheck(check.isStringEmpty(emailAnonimo, edtEmailAnonimo, "Ingrese email"));
-        //check.addListToCheck(check.isStringEmpty(celularAnonimo, edtCelularAnonimo, "Ingrese celular"));
         check.addListToCheck(check.isStringEmpty(barrioAnonimo, edtBarrioAnonimo, "Ingrese barrio"));
         check.addListToCheck(check.isStringEmpty(provinciaAnonimo, edtProvinciaAnonimo, "Ingrese provincia"));
         check.addListToCheck(check.isStringEmpty(paisAnonimo, edtPaisAnonimo, "Ingrese pais"));

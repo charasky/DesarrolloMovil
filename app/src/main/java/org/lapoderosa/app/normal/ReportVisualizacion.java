@@ -1,11 +1,14 @@
 package org.lapoderosa.app.normal;
 
 import android.Manifest;
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -183,14 +186,30 @@ public class ReportVisualizacion extends MasterClass {
             animation.setDuration(500);
             btPdf.setAlpha(1f);
             btPdf.startAnimation(animation);
-            createPDF();
+            //createPDF();
+            startDownload();
         });
     }
+
 
     public void checkPermission(String permission, int requestCode) {
         if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, new String[]{permission}, requestCode);
         }
+    }
+
+    private void startDownload() {
+        String url = "http://192.168.0.4/android/v1/reportePDF.php";
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
+        request.setTitle("mypdf.pdf");
+        request.setDescription("mypdf.pdf");
+        request.allowScanningByMediaScanner();
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "mypdf.pdf");
+
+        DownloadManager manager = (DownloadManager)getSystemService(Context.DOWNLOAD_SERVICE);
+        manager.enqueue(request);
     }
 
     @Override

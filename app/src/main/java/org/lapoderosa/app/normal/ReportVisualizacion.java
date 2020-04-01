@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -12,8 +13,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.JsonReader;
+import android.util.Log;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,18 +26,31 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.lapoderosa.app.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
+import org.lapoderosa.app.model.User;
 import org.lapoderosa.app.util.DateDefinido;
 import org.lapoderosa.app.util.SharedPrefManager;
+import org.lapoderosa.app.util.VolleySingleton;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -73,6 +91,8 @@ public class ReportVisualizacion extends MasterClass {
     //ENTREVISTADOR
     private TextView ruvNombreEntrevistador, ruvApellidoEntrevistador, ruvAsambleaEntrevistador, ruvFechaEntrevistador;
     private Button btPdf;
+    private ImageView pdfIcon;
+    private JSONObject jsonObjectInfo;
     private static final int STORAGE_PERMISSION_CODE = 101;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -86,6 +106,7 @@ public class ReportVisualizacion extends MasterClass {
         progressDialog = new ProgressDialog(this);
 
         btPdf = findViewById(R.id.btPdf);
+        pdfIcon = findViewById(R.id.pdf_icon);
 
         fullNameVictima = findViewById(R.id.vName);
         provincia = findViewById(R.id.vProvincia);
@@ -187,7 +208,11 @@ public class ReportVisualizacion extends MasterClass {
             btPdf.setAlpha(1f);
             btPdf.startAnimation(animation);
             //createPDF();
-            startDownload();
+            //startDownload();
+        });
+
+        pdfIcon.setOnClickListener(v -> {
+            //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://192.168.0.4/android/pdf/reportePDF.php")));
         });
     }
 
@@ -243,86 +268,85 @@ public class ReportVisualizacion extends MasterClass {
     @Override
     protected void responseConexion(String response) {
         try {
-            JSONObject jsonObject = new JSONObject(response);
+            jsonObjectInfo = new JSONObject(response);
 
             //VICTIMA
-            ruvNombreVictima.setText(jsonObject.getString("usu_nombre_victima"));
-            ruvApellidoVictima.setText(jsonObject.getString("usu_apellido_victima"));
-            ruvGeneroVictima.setText(jsonObject.getString("usu_genero_victima"));
-            ruvEdadVictima.setText(jsonObject.getString("usu_edad_victima"));
-            ruvDocumentoVictima.setText(jsonObject.getString("usu_documento_victima"));
-            ruvNacionalidadVictima.setText(jsonObject.getString("usu_nacionalidad_victima"));
-            ruvDireccionVictima.setText(jsonObject.getString("usu_direccion_victima"));
-            ruvBarrioVictima.setText(jsonObject.getString("usu_barrio_victima"));
-            ruvTelefonoVictima.setText(jsonObject.getString("usu_telefono_victima"));
+            ruvNombreVictima.setText(jsonObjectInfo.getString("usu_nombre_victima"));
+            ruvApellidoVictima.setText(jsonObjectInfo.getString("usu_apellido_victima"));
+            ruvGeneroVictima.setText(jsonObjectInfo.getString("usu_genero_victima"));
+            ruvEdadVictima.setText(jsonObjectInfo.getString("usu_edad_victima"));
+            ruvDocumentoVictima.setText(jsonObjectInfo.getString("usu_documento_victima"));
+            ruvNacionalidadVictima.setText(jsonObjectInfo.getString("usu_nacionalidad_victima"));
+            ruvDireccionVictima.setText(jsonObjectInfo.getString("usu_direccion_victima"));
+            ruvBarrioVictima.setText(jsonObjectInfo.getString("usu_barrio_victima"));
+            ruvTelefonoVictima.setText(jsonObjectInfo.getString("usu_telefono_victima"));
 
             //TRASLAD
-            ruvTraslado.setText(jsonObject.getString("usu_traslado"));
-            ruvComisariaTraslado.setText(jsonObject.getString("usu_comisaria"));
-            ruvEsposadoTraslado.setText(jsonObject.getString("usu_esposado"));
+            ruvTraslado.setText(jsonObjectInfo.getString("usu_traslado"));
+            ruvComisariaTraslado.setText(jsonObjectInfo.getString("usu_comisaria"));
+            ruvEsposadoTraslado.setText(jsonObjectInfo.getString("usu_esposado"));
 
             //RESULTADO INVESTIGACION
-            ruvResultadoInvestigacion.setText(jsonObject.getString("usu_resultado_investigacion"));
-            ruvTrabajanOficiales.setText(jsonObject.getString("usu_trabajan_los_oficiales"));
+            ruvResultadoInvestigacion.setText(jsonObjectInfo.getString("usu_resultado_investigacion"));
+            ruvTrabajanOficiales.setText(jsonObjectInfo.getString("usu_trabajan_los_oficiales"));
 
             //OMISION ACTUAR
-            ruvMediosDeAsistencia.setText(jsonObject.getString("usu_medios_de_asistencia"));
-            ruvQuienAsistencia.setText(jsonObject.getString("usu_a_quien_asistencia"));
-            ruvDenunciaRechazada.setText(jsonObject.getString("usu_denuncia_rechazada"));
-            ruvViolentado.setText(jsonObject.getString("usu_violentado"));
-            ruvDenunciaFinal.setText(jsonObject.getString("usu_denuncia_final"));
+            ruvMediosDeAsistencia.setText(jsonObjectInfo.getString("usu_medios_de_asistencia"));
+            ruvQuienAsistencia.setText(jsonObjectInfo.getString("usu_a_quien_asistencia"));
+            ruvDenunciaRechazada.setText(jsonObjectInfo.getString("usu_denuncia_rechazada"));
+            ruvViolentado.setText(jsonObjectInfo.getString("usu_violentado"));
+            ruvDenunciaFinal.setText(jsonObjectInfo.getString("usu_denuncia_final"));
 
             //MODALIDAD DETENCION
-            ruvPosicionDetenido.setText(jsonObject.getString("usu_posicion_detenido"));
-            ruvTiempoDetenido.setText(jsonObject.getString("usu_tiempo_detenido"));
+            ruvPosicionDetenido.setText(jsonObjectInfo.getString("usu_posicion_detenido"));
+            ruvTiempoDetenido.setText(jsonObjectInfo.getString("usu_tiempo_detenido"));
 
             //HECHO POLICIAL
-            ruvDiaHecho.setText(jsonObject.getString("usu_dia_hecho"));
-            ruvFechaHecho.setText(jsonObject.getString("usu_fecha_hecho"));
-            ruvCuantosAcompañanHecho.setText(jsonObject.getString("usu_cuantos_acompanian"));
-            ruvCualLugarHecho.setText(jsonObject.getString("usu_cual_lugar"));
-            ruvProvinciaHecho.setText(jsonObject.getString("usu_provincia_hecho"));
-            ruvPaisHecho.setText(jsonObject.getString("usu_pais_hecho"));
-            ruvDireccionHecho.setText(jsonObject.getString("usu_direccion_hecho"));
-            ruvBarrioHecho.setText(jsonObject.getString("usu_barrio_hecho"));
+            ruvDiaHecho.setText(jsonObjectInfo.getString("usu_dia_hecho"));
+            ruvFechaHecho.setText(jsonObjectInfo.getString("usu_fecha_hecho"));
+            ruvCuantosAcompañanHecho.setText(jsonObjectInfo.getString("usu_cuantos_acompanian"));
+            ruvCualLugarHecho.setText(jsonObjectInfo.getString("usu_cual_lugar"));
+            ruvProvinciaHecho.setText(jsonObjectInfo.getString("usu_provincia_hecho"));
+            ruvPaisHecho.setText(jsonObjectInfo.getString("usu_pais_hecho"));
+            ruvDireccionHecho.setText(jsonObjectInfo.getString("usu_direccion_hecho"));
+            ruvBarrioHecho.setText(jsonObjectInfo.getString("usu_barrio_hecho"));
 
             //FUERZAS INTERVENIENTES
-            ruvFuerzasIntervinientes.setText(jsonObject.getString("usu_fuerzas_intervinientes"));
-            ruvCentidadAgentes.setText(jsonObject.getString("usu_cantidad_agentes"));
-            ruvNombreAgente.setText(jsonObject.getString("usu_nombres_agentes"));
-            ruvApodos.setText(jsonObject.getString("usu_apodos"));
-            ruvCantidadVehiculos.setText(jsonObject.getString("usu_cantidad_vehiculos"));
-            ruvNumeroMovil.setText(jsonObject.getString("usu_num_movil"));
-            ruvDominioFuerzas.setText(jsonObject.getString("usu_dominio"));
-            ruvConductaFuerzas.setText(jsonObject.getString("usu_conducta_agentes"));
+            ruvFuerzasIntervinientes.setText(jsonObjectInfo.getString("usu_fuerzas_intervinientes"));
+            ruvCentidadAgentes.setText(jsonObjectInfo.getString("usu_cantidad_agentes"));
+            ruvNombreAgente.setText(jsonObjectInfo.getString("usu_nombres_agentes"));
+            ruvApodos.setText(jsonObjectInfo.getString("usu_apodos"));
+            ruvCantidadVehiculos.setText(jsonObjectInfo.getString("usu_cantidad_vehiculos"));
+            ruvNumeroMovil.setText(jsonObjectInfo.getString("usu_num_movil"));
+            ruvDominioFuerzas.setText(jsonObjectInfo.getString("usu_dominio"));
+            ruvConductaFuerzas.setText(jsonObjectInfo.getString("usu_conducta_agentes"));
 
             //CARACTERISTICAS PROCEDIMIENTO
-            ruvMotivoProcedimiento.setText(jsonObject.getString("usu_motivo_procedimiento"));
-            ruvMaltratosProcedimientos.setText(jsonObject.getString("usu_maltratos"));
-            ruvLesionesProcedimiento.setText(jsonObject.getString("usu_lesiones"));
+            ruvMotivoProcedimiento.setText(jsonObjectInfo.getString("usu_motivo_procedimiento"));
+            ruvMaltratosProcedimientos.setText(jsonObjectInfo.getString("usu_maltratos"));
+            ruvLesionesProcedimiento.setText(jsonObjectInfo.getString("usu_lesiones"));
 
             //ALLANAMIENTO
-            ruvOrdenAllanamiento.setText(jsonObject.getString("usu_orden_allanamiento"));
-            ruvAgresionAllanamiento.setText(jsonObject.getString("usu_agresion_allanamiento"));
-            ruvPertenenciasAllanamiento.setText(jsonObject.getString("usu_pertenencias_allanamiento"));
-            ruvOmisionPertenencias.setText(jsonObject.getString("usu_omision_pertenencias"));
-            ruvDetenidosAllanamiento.setText(jsonObject.getString("usu_detenidos_allanamiento"));
-            ruvDuracionAllanamiento.setText(jsonObject.getString("usu_duracion_allanamiento"));
-            ruvEsposadosAllanamiento.setText(jsonObject.getString("usu_esposados"));
-            ruvPosicionAllanamiento.setText(jsonObject.getString("usu_posicion_allanamiento"));
+            ruvOrdenAllanamiento.setText(jsonObjectInfo.getString("usu_orden_allanamiento"));
+            ruvAgresionAllanamiento.setText(jsonObjectInfo.getString("usu_agresion_allanamiento"));
+            ruvPertenenciasAllanamiento.setText(jsonObjectInfo.getString("usu_pertenencias_allanamiento"));
+            ruvOmisionPertenencias.setText(jsonObjectInfo.getString("usu_omision_pertenencias"));
+            ruvDetenidosAllanamiento.setText(jsonObjectInfo.getString("usu_detenidos_allanamiento"));
+            ruvDuracionAllanamiento.setText(jsonObjectInfo.getString("usu_duracion_allanamiento"));
+            ruvEsposadosAllanamiento.setText(jsonObjectInfo.getString("usu_esposados"));
+            ruvPosicionAllanamiento.setText(jsonObjectInfo.getString("usu_posicion_allanamiento"));
 
             //ENTREVISTADO
-            ruvParentesco.setText(jsonObject.getString("usu_parentesco_entrevistado"));
+            ruvParentesco.setText(jsonObjectInfo.getString("usu_parentesco_entrevistado"));
 
             //ENTREVISTADOR
-            ruvNombreEntrevistador.setText(jsonObject.getString("usu_nombre"));
-            ruvApellidoEntrevistador.setText(jsonObject.getString("usu_apellido"));
-            ruvAsambleaEntrevistador.setText(jsonObject.getString("usu_asamblea"));
-            ruvFechaEntrevistador.setText(jsonObject.getString("usu_fecha"));
+            ruvNombreEntrevistador.setText(jsonObjectInfo.getString("usu_nombre"));
+            ruvApellidoEntrevistador.setText(jsonObjectInfo.getString("usu_apellido"));
+            ruvAsambleaEntrevistador.setText(jsonObjectInfo.getString("usu_asamblea"));
+            ruvFechaEntrevistador.setText(jsonObjectInfo.getString("usu_fecha"));
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

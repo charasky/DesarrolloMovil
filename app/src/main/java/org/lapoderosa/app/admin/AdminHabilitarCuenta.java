@@ -132,22 +132,14 @@ public class AdminHabilitarCuenta extends MasterClass {
     }
 
     private void respuestaQueUsuariosAprobarOrEliminar(String URL, final List<User> listaUsuarios) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    makeTxt(jsonObject.getString("message"),AdminHabilitarCuenta.this);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, response -> {
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                makeTxt(jsonObject.getString("message"),AdminHabilitarCuenta.this);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                makeTxt(error.toString(),AdminHabilitarCuenta.this);
-            }
-        }) {
+        }, error -> makeTxt(error.toString(),AdminHabilitarCuenta.this)) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 JSONObject jsonObjecUsers = new JSONObject();

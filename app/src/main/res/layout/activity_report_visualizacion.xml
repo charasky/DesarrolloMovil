@@ -19,29 +19,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables">
 
-                <TextView
-                    android:id="@+id/tituloprincipal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Reporte Informacion:"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/pdf_icon"
-                    android:layout_alignParentEnd="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_picture_as_pdf_black_24dp"
-                    android:layout_alignParentRight="true"
-                    tools:ignore="ContentDescription" />
-            </RelativeLayout>
+            <TextView
+                android:id="@+id/tituloprincipal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reporte Informacion:"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

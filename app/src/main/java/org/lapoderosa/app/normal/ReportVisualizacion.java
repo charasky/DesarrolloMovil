@@ -13,36 +13,32 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.JsonReader;
 import android.util.Log;
-import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.Volley;
 import com.lapoderosa.app.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
-import org.lapoderosa.app.model.User;
 import org.lapoderosa.app.util.DateDefinido;
 import org.lapoderosa.app.util.SharedPrefManager;
-import org.lapoderosa.app.util.VolleySingleton;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -50,7 +46,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -106,7 +101,6 @@ public class ReportVisualizacion extends MasterClass {
         progressDialog = new ProgressDialog(this);
 
         btPdf = findViewById(R.id.btPdf);
-        pdfIcon = findViewById(R.id.pdf_icon);
 
         fullNameVictima = findViewById(R.id.vName);
         provincia = findViewById(R.id.vProvincia);
@@ -210,31 +204,12 @@ public class ReportVisualizacion extends MasterClass {
             //createPDF();
             //startDownload();
         });
-
-        pdfIcon.setOnClickListener(v -> {
-            //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://192.168.0.4/android/pdf/reportePDF.php")));
-        });
     }
-
 
     public void checkPermission(String permission, int requestCode) {
         if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, new String[]{permission}, requestCode);
         }
-    }
-
-    private void startDownload() {
-        String url = "http://192.168.0.4/android/v1/reportePDF.php";
-        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
-        request.setTitle("mypdf.pdf");
-        request.setDescription("mypdf.pdf");
-        request.allowScanningByMediaScanner();
-        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "mypdf.pdf");
-
-        DownloadManager manager = (DownloadManager)getSystemService(Context.DOWNLOAD_SERVICE);
-        manager.enqueue(request);
     }
 
     @Override
@@ -269,7 +244,6 @@ public class ReportVisualizacion extends MasterClass {
     protected void responseConexion(String response) {
         try {
             jsonObjectInfo = new JSONObject(response);
-
             //VICTIMA
             ruvNombreVictima.setText(jsonObjectInfo.getString("usu_nombre_victima"));
             ruvApellidoVictima.setText(jsonObjectInfo.getString("usu_apellido_victima"));

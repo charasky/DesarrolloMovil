@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.lapoderosa.app.R;
 
@@ -83,7 +81,7 @@ public class AdminHabilitarCuenta extends MasterClass {
 
 
     private void habilitarCuentas() {
-        inicializarStringVariables();
+        inicializarVariables();
         respuestaQueUsuariosAprobarOrEliminar(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_ENVIAR_RESPUESTA), listaUsuarios);
         startActivity(new Intent(AdminHabilitarCuenta.this, AdminInicioActivity.class));
         finish();
@@ -125,7 +123,7 @@ public class AdminHabilitarCuenta extends MasterClass {
     }
 
     @Override
-    protected void inicializarStringVariables() {
+    protected void inicializarVariables() {
         fecha = DateDefinido.getFechaDispositivo();
         hora = DateDefinido.getHoraDispositivo();
         user = SharedPrefManager.getInstance(this).getKeyUsuario();

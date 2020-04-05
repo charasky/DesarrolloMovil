@@ -3,22 +3,17 @@ package org.lapoderosa.app.normal;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.lapoderosa.app.R;
@@ -44,7 +39,6 @@ public class ReporteAnonimo extends MasterClass {
     private TextView tvFechaAnonimo, tvHoraAnonimo;
     private Check check = new Check();
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,10 +83,8 @@ public class ReporteAnonimo extends MasterClass {
         btnEnviarDA.setOnClickListener(view -> enviarDenunciaAnonima());
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void enviarDenunciaAnonima() {
-        this.inicializarStringVariables();
+        this.inicializarVariables();
         if (!validate() && !this.checkVariables().isEmpty()) {
             makeTxt("Revise los campos",ReporteAnonimo.this);
         } else {
@@ -106,7 +98,6 @@ public class ReporteAnonimo extends MasterClass {
         return super.onSupportNavigateUp();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private List<Boolean> checkVariables() {
         check.addListToCheck(check.isStringEmpty(barrioAnonimo, edtBarrioAnonimo, "Ingrese barrio"));
         check.addListToCheck(check.isStringEmpty(provinciaAnonimo, edtProvinciaAnonimo, "Ingrese provincia"));
@@ -167,7 +158,7 @@ public class ReporteAnonimo extends MasterClass {
     }
 
     @Override
-    protected void inicializarStringVariables() {
+    protected void inicializarVariables() {
         fechaCreacionReporteAnonimo = DateDefinido.getFechaDispositivo();
         horaCreacionReporteAnonimo = DateDefinido.getHoraDispositivo();
 

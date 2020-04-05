@@ -3,15 +3,12 @@ package org.lapoderosa.app.normal;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.annotation.RequiresApi;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.lapoderosa.app.R;
@@ -37,7 +34,6 @@ public class LoginActivity extends MasterClass {
     private String usuario, password;
     private LinearLayout layout;
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,9 +68,8 @@ public class LoginActivity extends MasterClass {
         super.onBackPressed();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void usuarioLogin() {
-        inicializarStringVariables();
+        inicializarVariables();
         if (checkVariables().isEmpty()) {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_LOGIN));
         } else {
@@ -91,7 +86,6 @@ public class LoginActivity extends MasterClass {
         return parametros;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private List<Boolean> checkVariables() {
         check.addListToCheck(check.isStringEmpty(usuario, txlUsuario, "Ingrese email"));
         check.addListToCheck(check.isStringEmpty(password, txlPassword, "Ingrese contraseña"));
@@ -100,7 +94,7 @@ public class LoginActivity extends MasterClass {
 
 
     @Override
-    protected void inicializarStringVariables() {
+    protected void inicializarVariables() {
         usuario = txlUsuario.getEditText().getText().toString().trim();
         password = txlPassword.getEditText().getText().toString().trim();
     }

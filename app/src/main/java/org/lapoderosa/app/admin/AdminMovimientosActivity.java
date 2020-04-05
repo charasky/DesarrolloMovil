@@ -88,7 +88,7 @@ public class AdminMovimientosActivity extends MasterClass {
     }
 
     @Override
-    protected void inicializarStringVariables() {
+    protected void inicializarVariables() {
     }
 
     @Override

@@ -4,12 +4,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -55,7 +53,7 @@ public class RecuperarCuentaActivity extends MasterClass {
     }
 
     private void recuperar() {
-        inicializarStringVariables();
+        inicializarVariables();
         if (check(email, rEmail, "Ingrese email")) {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_ACCOUNT_RECOVERY));
         } else {
@@ -79,7 +77,7 @@ public class RecuperarCuentaActivity extends MasterClass {
     }
 
     @Override
-    protected void inicializarStringVariables() {
+    protected void inicializarVariables() {
         email = rEmail.getEditText().getText().toString().trim();
     }
 

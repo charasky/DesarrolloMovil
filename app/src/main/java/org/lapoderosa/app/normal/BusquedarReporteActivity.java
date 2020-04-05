@@ -137,6 +137,6 @@ public class BusquedarReporteActivity extends MasterClass {
     }
 
     @Override
-    protected void inicializarStringVariables() {
+    protected void inicializarVariables() {
     }
 }

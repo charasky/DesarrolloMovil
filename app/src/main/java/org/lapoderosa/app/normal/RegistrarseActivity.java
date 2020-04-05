@@ -3,17 +3,14 @@ package org.lapoderosa.app.normal;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.lapoderosa.app.R;
@@ -35,7 +32,6 @@ public class RegistrarseActivity extends MasterClass {
     private Check check = new Check();
     private RelativeLayout layout;
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,9 +55,8 @@ public class RegistrarseActivity extends MasterClass {
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     protected void registrar() {
-        inicializarStringVariables();
+        inicializarVariables();
         if (!validate() && !this.checkVariables().isEmpty()) {
             makeTxt("Revise los campos",RegistrarseActivity.this);
         } else {
@@ -69,7 +64,7 @@ public class RegistrarseActivity extends MasterClass {
         }
     }
 
-    protected void inicializarStringVariables() {
+    protected void inicializarVariables() {
         email = dmEmail.getText().toString().trim();
         password2 = dmPassword2.getEditText().getText().toString().trim();
         password1 = dmPassword.getEditText().getText().toString().trim();
@@ -122,7 +117,6 @@ public class RegistrarseActivity extends MasterClass {
         return object;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private List<Boolean> checkVariables() {
         check.addListToCheck(check.isStringEmpty(name, dmNombres, "Ingrese nombre"));
         check.addListToCheck(check.isStringEmpty(surname, dmApellidos, "Ingrese apellido"));

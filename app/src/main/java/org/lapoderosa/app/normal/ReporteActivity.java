@@ -1,25 +1,20 @@
 package org.lapoderosa.app.normal;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
@@ -35,17 +30,11 @@ import org.lapoderosa.app.util.Check;
 import org.lapoderosa.app.util.DateDefinido;
 import org.lapoderosa.app.util.SharedPrefManager;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class ReporteActivity extends MasterClass {
     private String fechaCreacionReporte, horaCreacionReporte;
@@ -109,7 +98,6 @@ public class ReporteActivity extends MasterClass {
 
     private Check check = new Check();
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -296,9 +284,8 @@ public class ReporteActivity extends MasterClass {
         alertDialog.show();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void enviarReporte() {
-        inicializarStringVariables();
+        inicializarVariables();
 
         if (checkVariables().isEmpty()) {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_REPORTE));
@@ -393,7 +380,7 @@ public class ReporteActivity extends MasterClass {
     }
 
     @Override
-    protected void inicializarStringVariables() {
+    protected void inicializarVariables() {
         fechaCreacionReporte = DateDefinido.getFechaDispositivo();
         horaCreacionReporte = DateDefinido.getHoraDispositivo();
 
@@ -475,7 +462,6 @@ public class ReporteActivity extends MasterClass {
         telefonoVictima = edtTelefonoVictima.getText().toString().trim();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private List<Boolean> checkVariables() {
         //ALLANAMIENTO
         check.addListToCheck(check.isStringEmpty(ordenAllanamiento, "Seleccione opcion en Orden de Allanamiento", this));

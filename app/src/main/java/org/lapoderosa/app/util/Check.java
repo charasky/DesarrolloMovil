@@ -2,18 +2,15 @@ package org.lapoderosa.app.util;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
-
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Check {
     private List<Boolean> listaParaCheckear = new LinkedList<>();
@@ -50,12 +47,15 @@ public class Check {
         }
         return true;
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    
     public List<Boolean> finalValidation() {
-        return this.variablesParaCheckiar().stream()
-                .filter(v -> v.equals(false))
-                .collect(Collectors.toList());
+        List<Boolean> checksFalse = new ArrayList<>();
+        for (Boolean checkAnswer: this.variablesParaCheckiar()){
+            if (!checkAnswer){
+                checksFalse.add(checkAnswer);
+            }
+        }
+        return checksFalse;
     }
 
     private List<Boolean> variablesParaCheckiar() {

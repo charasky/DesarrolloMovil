@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +17,7 @@ import com.lapoderosa.app.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
+import org.lapoderosa.app.util.MyAnimation;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,21 +45,14 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
         rVolver.setOnClickListener(view -> onBackPressed());
 
         rBtSiguiente.setOnClickListener(view -> {
+            MyAnimation.blink(view,this);
             restorePassword();
-            animation(rBtSiguiente);
         });
 
         layout.setOnClickListener(view -> {
             InputMethodManager inputMethodManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         });
-    }
-
-    private void animation(Button button){
-        AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
-        animation.setDuration(500);
-        button.setAlpha(1f);
-        button.startAnimation(animation);
     }
 
     protected void restorePassword() {
@@ -72,6 +65,7 @@ public class AdminRestablecerContraseñaActivity extends MasterClass {
     }
 
     private boolean validate() {
+        //todo this cheeeck validar en una clase :v unica
         boolean valid = true;
         if (email.isEmpty()) {
             rEmail.setError("Ingrese email");

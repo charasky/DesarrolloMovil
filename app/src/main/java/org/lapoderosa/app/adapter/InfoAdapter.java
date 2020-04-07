@@ -10,15 +10,24 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
 import com.lapoderosa.app.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.lapoderosa.app.model.Informacion;
+import org.lapoderosa.app.util.VolleySingleton;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder> {
     private Context context;
@@ -41,6 +50,8 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder
     public void onBindViewHolder(@NonNull InfoViewHolder infoViewHolder, int i) {
         infoViewHolder.tvTitleDato.setText(informacionList.get(i).getDato());
         infoViewHolder.etDato.setText(informacionList.get(i).getInformacion());
+        infoViewHolder.dbFila = informacionList.get(i).getDbValue();
+        infoViewHolder.dbtabla = informacionList.get(i).getDbValue();
     }
 
     @Override
@@ -49,6 +60,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder
     }
 
     public class InfoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        String dbtabla, dbFila;
         TextView tvTitleDato;
         EditText etDato;
         ImageView ivSaveEdit, ivPenEdit;
@@ -68,7 +80,9 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.ivSaveEdit:
-
+                    etDato.setEnabled(false);
+                    modificar("fjeifjie");
+                    editOff();
                     break;
 
                 case R.id.ivPenEdit:
@@ -76,6 +90,11 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder
                     editOn();
                     break;
             }
+        }
+
+        private void editOff() {
+            ivSaveEdit.setVisibility(View.GONE);
+            ivPenEdit.setVisibility(View.VISIBLE);
         }
 
         public void editOn() {
@@ -111,5 +130,32 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder
             });
         }
 
+
+        private void modificar(String URL) {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, response -> {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    Toast.makeText(context, "Modificado" + tvTitleDato.getText().toString(), Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }, error -> Toast.makeText(context, dbFila + " " + dbtabla, Toast.LENGTH_SHORT).show()) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    JSONObject jsonObjec = new JSONObject();
+                    try {
+                        jsonObjec.put("cambiar", etDato.getText().toString());
+                        jsonObjec.put("fila", dbFila);
+                        jsonObjec.put("tabla", dbtabla);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Map<String, String> parametros = new HashMap<String, String>();
+                    parametros.put("1nf0", jsonObjec.toString());
+                    return parametros;
+                }
+            };
+            VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
+        }
     }
 }

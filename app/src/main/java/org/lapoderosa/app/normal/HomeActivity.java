@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.lapoderosa.app.R;
 
+import org.lapoderosa.app.util.MyAnimation;
+
 public class HomeActivity extends AppCompatActivity {
 
     @Override
@@ -26,11 +28,7 @@ public class HomeActivity extends AppCompatActivity {
         TextView registrarse = findViewById(R.id.homeRegistrarse);
 
         ingresar.setOnClickListener(view -> {
-            AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
-            animation.setDuration(500);
-            ingresar.setAlpha(1f);
-            ingresar.startAnimation(animation);
-
+            MyAnimation.blink(view,this);
             startActivity(new Intent(HomeActivity.this, LoginActivity.class));
         });
 

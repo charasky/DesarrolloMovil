@@ -3,14 +3,13 @@ package org.lapoderosa.app.normal;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 
 import com.lapoderosa.app.R;
 
+import org.lapoderosa.app.util.MyAnimation;
 import org.lapoderosa.app.util.SharedPrefManager;
 
 public class InicioActivity extends AppCompatActivity {
@@ -24,26 +23,19 @@ public class InicioActivity extends AppCompatActivity {
         Button btCerrar = findViewById(R.id.btCerrarSesion);
 
         btBusqueda.setOnClickListener(view -> {
+            MyAnimation.blink(view,this);
             startActivity(new Intent(InicioActivity.this, BusquedarReporteActivity.class));
-            animation(btBusqueda);
         });
 
         btReporte.setOnClickListener(view -> {
+            MyAnimation.blink(view,this);
             startActivity(new Intent(InicioActivity.this, ReporteActivity.class));
-            animation(btReporte);
         });
 
         btCerrar.setOnClickListener(view -> {
+            MyAnimation.blink(view,this);
             cerrarSesion();
-            animation(btCerrar);
         });
-    }
-
-    private void animation(Button button){
-        AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
-        animation.setDuration(500);
-        button.setAlpha(1f);
-        button.startAnimation(animation);
     }
 
     private void cerrarSesion() {

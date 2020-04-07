@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.util.Check;
+import org.lapoderosa.app.util.MyAnimation;
 
 import java.util.HashMap;
 import java.util.List;
@@ -47,7 +48,10 @@ public class RegistrarseActivity extends MasterClass {
         dmPassword2 = findViewById(R.id.dmPassword2);
         dmRegistrarBtn = findViewById(R.id.dmRegistrarseBtn);
 
-        dmRegistrarBtn.setOnClickListener(view -> registrar());
+        dmRegistrarBtn.setOnClickListener(view -> {
+            MyAnimation.blink(view, this);
+            registrar();
+        });
 
         layout.setOnClickListener(view -> {
             InputMethodManager inputMethodManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -58,7 +62,7 @@ public class RegistrarseActivity extends MasterClass {
     protected void registrar() {
         inicializarVariables();
         if (!validate() && !this.checkVariables().isEmpty()) {
-            makeTxt("Revise los campos",RegistrarseActivity.this);
+            makeTxt("Revise los campos", RegistrarseActivity.this);
         } else {
             ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_SIGN_UP));
         }
@@ -78,7 +82,7 @@ public class RegistrarseActivity extends MasterClass {
         String mensaje = "";
         try {
             JSONObject jsonObject = new JSONObject(response);
-            makeTxt(jsonObject.getString("message"),RegistrarseActivity.this);
+            makeTxt(jsonObject.getString("message"), RegistrarseActivity.this);
             mensaje = jsonObject.getString("existe");
         } catch (JSONException e) {
             e.printStackTrace();

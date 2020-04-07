@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="3dp"
     android:layout_marginBottom="10dp"
+    android:padding="3dp"
     tools:context="org.lapoderosa.app.normal.ReportVisualizacion">
 
     <ScrollView
@@ -22,120 +21,112 @@
             android:orientation="vertical">
 
             <TextView
-                android:paddingTop="10dp"
-                android:paddingLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
                 android:text="Reporte Informacion:"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="RtlSymmetry" />
 
-            <RelativeLayout
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginLeft="11dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="20dp">
+                android:layout_marginStart="11dp">
 
-                <TextView
-                    android:id="@+id/tv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Fecha de Creacion: "
-                    android:textStyle="bold"
-                    tools:ignore="MissingConstraints" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/vFecha"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/vName"
-                    android:layout_alignBaseline="@+id/tv1"
-                    android:layout_toRightOf="@+id/tv1"
-                    android:paddingLeft="5dp"
-                    android:text="xx/xx/xxxx"
-                    tools:ignore="MissingConstraints,RtlSymmetry"
-                    android:paddingStart="5dp"
-                    android:layout_toEndOf="@+id/tv1" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha de Creacion: "
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/vHoraText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/vFecha"
-                    android:layout_toRightOf="@+id/vFecha"
-                    android:paddingLeft="20dp"
-                    android:text="Hora: "
-                    android:textStyle="bold"
-                    tools:ignore="MissingConstraints" />
+                    <TextView
+                        android:id="@+id/vFecha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="xx/xx/xxxx"
+                        tools:ignore="MissingConstraints,RtlSymmetry" />
 
-                <TextView
-                    android:id="@+id/vHora"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/vHoraText"
-                    android:layout_toRightOf="@+id/vHoraText"
-                    android:paddingLeft="5dp"
-                    android:text="xx:xx"
-                    tools:ignore="MissingConstraints" />
+                    <TextView
+                        android:id="@+id/vHoraText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
+                        android:text="Hora: "
+                        android:textStyle="bold"
+                        android:paddingStart="20dp"
+                        tools:ignore="RtlHardcoded,RtlSymmetry" />
 
-                <TextView
-                    android:id="@+id/tv2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tv1"
-                    android:text="Nombre del afectado: "
-                    android:textStyle="bold"
-                    tools:ignore="MissingConstraints" />
+                    <TextView
+                        android:id="@+id/vHora"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="xx:xx"
+                        tools:ignore="MissingConstraints" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/vName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/tv2"
-                    android:layout_toRightOf="@+id/tv2"
-                    android:paddingLeft="5dp"
-                    android:text="xxxxx xxxxxxx"
-                    tools:ignore="MissingConstraints" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/tv3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/vName"
-                    android:text="Pais donde ocurrio: "
-                    android:textStyle="bold"
-                    tools:ignore="MissingConstraints" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre del afectado: "
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/vPais"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/tv3"
-                    android:layout_toRightOf="@+id/tv3"
-                    android:paddingLeft="5dp"
-                    android:text="xxxxxxx"
-                    tools:ignore="MissingConstraints" />
+                    <TextView
+                        android:id="@+id/vName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="xxxxx xxxxxxx" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/vPais"
-                    android:text="Provincia donde ocurrio: "
-                    android:textStyle="bold"
-                    tools:ignore="MissingConstraints" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/vProvincia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/tv4"
-                    android:layout_toRightOf="@+id/tv4"
-                    android:paddingLeft="5dp"
-                    android:text="xxxxxxx"
-                    tools:ignore="MissingConstraints" />
-            </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pais donde ocurrio: "
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/vPais"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="xxxxxxx"
+                        tools:ignore="MissingConstraints" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Provincia donde ocurrio: "
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/vProvincia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="xxxxxxx"
+                        tools:ignore="MissingConstraints" />
+                </LinearLayout>
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -143,9 +134,9 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:paddingLeft="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
                     android:text="Victima Informacion:"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -155,6 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -162,9 +154,9 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:paddingLeft="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
                     android:text="Traslado Informacion:"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -174,6 +166,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -181,9 +174,9 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:paddingLeft="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
                     android:text="Resultado Investigacion Informacion:"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -193,6 +186,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -201,19 +195,20 @@
 
                 <TextView
                     android:id="@+id/tvTomisionA"
-                    android:paddingLeft="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
                     android:text="Omision Al Actuar Informacion:"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_below="@+id/tvTomisionA"
                     android:id="@+id/rvOmisionActuarInfo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvTomisionA" />
             </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -221,9 +216,9 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:paddingLeft="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
                     android:text="Modalidad de Detencion Informacion:"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -233,6 +228,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -240,9 +236,9 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:paddingLeft="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
                     android:text="Hecho Policial Informacion:"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -253,6 +249,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -260,9 +257,9 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:paddingLeft="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
                     android:text="Fuerzas Intervinientes Informacion:"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -272,6 +269,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -279,9 +277,9 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:paddingLeft="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
                     android:text="Caracteristicas Procedimiento Informacion:"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -291,6 +289,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -298,9 +297,9 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:paddingLeft="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
                     android:text="Allanamiento Informacion:"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -310,6 +309,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -317,9 +317,9 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:paddingLeft="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
                     android:text="Entrevistado Informacion:"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -348,14 +348,15 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" />
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -363,9 +364,9 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:paddingLeft="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
                     android:text="Entrevistador Informacion:"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -377,31 +378,31 @@
             </LinearLayout>
 
             <Button
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
                 android:id="@+id/btPdf"
-                android:enabled="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/custom_bottom"
+                android:enabled="false"
                 android:text="PDF"
-                android:visibility="gone"
                 android:textColor="#FFF"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
 
             <Button
-                android:visibility="gone"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
                 android:id="@+id/btnGuardar"
-                android:enabled="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/custom_bottom"
+                android:enabled="false"
                 android:text="@string/guardar"
                 android:textColor="#FFF"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,6 +14,7 @@ import com.lapoderosa.app.R;
 
 import org.lapoderosa.app.normal.ReportVisualizacion;
 import org.lapoderosa.app.model.Report;
+import org.lapoderosa.app.util.MyAnimation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +66,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
 
         @Override
         public void onClick(View v) {
+            MyAnimation.blink(v,context);
             int position = getAdapterPosition();
             Report report = reportList.get(position);
 

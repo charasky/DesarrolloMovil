@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
@@ -21,6 +20,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.util.DateDefinido;
+import org.lapoderosa.app.util.MyAnimation;
 import org.lapoderosa.app.util.VolleySingleton;
 import org.lapoderosa.app.util.SharedPrefManager;
 import org.lapoderosa.app.adapter.UserAdapter;
@@ -57,28 +57,20 @@ public class AdminHabilitarCuenta extends MasterClass {
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                MyAnimation.blink(view,AdminHabilitarCuenta.this);
                 habilitarCuentas();
-                animation(button1);
             }
         });
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                MyAnimation.blink(view,AdminHabilitarCuenta.this);
                 onBackPressed();
-                animation(button2);
             }
         });
     }
-
-    private void animation(Button button){
-        AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
-        animation.setDuration(500);
-        button.setAlpha(1f);
-        button.startAnimation(animation);
-    }
-
 
     private void habilitarCuentas() {
         inicializarVariables();

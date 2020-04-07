@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -18,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.util.JavaMailAPI;
+import org.lapoderosa.app.util.MyAnimation;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,10 +39,7 @@ public class RecuperarCuentaActivity extends MasterClass {
         rEmail = findViewById(R.id.rEmail);
 
         rBtSiguiente.setOnClickListener(view -> {
-            AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
-            animation.setDuration(500);
-            rBtSiguiente.setAlpha(1f);
-            rBtSiguiente.startAnimation(animation);
+            MyAnimation.blink(view,this);
             recuperar();
         });
 

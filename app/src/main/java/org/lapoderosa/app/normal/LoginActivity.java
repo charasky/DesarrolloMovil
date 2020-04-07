@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -18,6 +17,7 @@ import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.admin.AdminInicioActivity;
 import org.lapoderosa.app.util.Check;
+import org.lapoderosa.app.util.MyAnimation;
 import org.lapoderosa.app.util.SharedPrefManager;
 
 import java.util.HashMap;
@@ -49,10 +49,7 @@ public class LoginActivity extends MasterClass {
         etOlvidastesContraseña.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, RecuperarCuentaActivity.class)));
 
         btnLogin.setOnClickListener(view -> {
-            AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
-            animation.setDuration(500);
-            btnLogin.setAlpha(1f);
-            btnLogin.startAnimation(animation);
+            MyAnimation.blink(view,this);
             usuarioLogin();
         });
 

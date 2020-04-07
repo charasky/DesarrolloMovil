@@ -1,6 +1,5 @@
 package org.lapoderosa.app.normal;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 
 import android.app.DatePickerDialog;
@@ -9,7 +8,6 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +21,7 @@ import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.util.DateDefinido;
 import org.lapoderosa.app.util.Check;
+import org.lapoderosa.app.util.MyAnimation;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -80,7 +79,10 @@ public class ReporteAnonimo extends MasterClass {
             dialog.show();
         });
 
-        btnEnviarDA.setOnClickListener(view -> enviarDenunciaAnonima());
+        btnEnviarDA.setOnClickListener(view -> {
+            MyAnimation.blink(view,this);
+            enviarDenunciaAnonima();
+        });
     }
 
     private void enviarDenunciaAnonima() {

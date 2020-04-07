@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -16,7 +15,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -28,6 +26,7 @@ import org.lapoderosa.app.MasterClass;
 import org.lapoderosa.app.admin.AdminInicioActivity;
 import org.lapoderosa.app.util.Check;
 import org.lapoderosa.app.util.DateDefinido;
+import org.lapoderosa.app.util.MyAnimation;
 import org.lapoderosa.app.util.SharedPrefManager;
 
 import java.util.Calendar;
@@ -251,7 +250,10 @@ public class ReporteActivity extends MasterClass {
             dialog.show();
         });
 
-        guardar.setOnClickListener(view -> enviarReporte());
+        guardar.setOnClickListener(view -> {
+            MyAnimation.blink(view,this);
+            enviarReporte();
+        });
 
         cancelar.setOnClickListener(view -> onBackPressed());
 

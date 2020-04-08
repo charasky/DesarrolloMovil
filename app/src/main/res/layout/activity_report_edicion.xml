@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="10dp"
+    android:padding="3dp"
+    tools:context="org.lapoderosa.app.normal.ReportEdicion">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        tools:ignore="MissingConstraints">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Reporte Informacion:"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="RtlSymmetry" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha de Creacion: "
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/vFecha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="xx/xx/xxxx"
+                        tools:ignore="MissingConstraints,RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/vHoraText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
+                        android:text="Hora: "
+                        android:textStyle="bold"
+                        android:paddingStart="20dp"
+                        tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/vHora"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="xx:xx"
+                        tools:ignore="MissingConstraints" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre del afectado: "
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/vName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="xxxxx xxxxxxx" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pais donde ocurrio: "
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/vPais"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="xxxxxxx"
+                        tools:ignore="MissingConstraints" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Provincia donde ocurrio: "
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/vProvincia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="xxxxxxx"
+                        tools:ignore="MissingConstraints" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Victima Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvVicInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Traslado Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTrasladoInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Resultado Investigacion Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvResulInvesInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvTomisionA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Omision Al Actuar Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvOmisionActuarInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvTomisionA" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Modalidad de Detencion Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvModalidadDetencionInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Hecho Policial Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvHechoPolicialInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Fuerzas Intervinientes Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvFuerzasIntervinientesInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Caracteristicas Procedimiento Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCaracteProcedimientoInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Allanamiento Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvAllanamientoInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Entrevistado Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Parentesco:"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/ruvParentesco"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:text="xxxxxx" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Entrevistador Informacion:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvEntrevistadorInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

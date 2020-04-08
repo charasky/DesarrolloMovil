@@ -12,8 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lapoderosa.app.R;
 
-import org.lapoderosa.app.normal.ReportVisualizacion;
+import org.lapoderosa.app.normal.ReportEdicion;
 import org.lapoderosa.app.model.Report;
+import org.lapoderosa.app.normal.ReportVisualizacion;
 import org.lapoderosa.app.util.MyAnimation;
 
 import java.util.ArrayList;

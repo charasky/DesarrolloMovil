@@ -7,7 +7,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:padding="30dp"
+    android:paddingLeft="30dp"
+    android:paddingEnd="30dp"
+    android:paddingStart="30dp"
+    android:paddingRight="30dp"
     android:orientation="vertical">
 
     <ImageView

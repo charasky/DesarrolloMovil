@@ -2,6 +2,7 @@ package org.lapoderosa.app.normal;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -13,7 +14,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,49 +21,155 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.lapoderosa.app.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
-import org.lapoderosa.app.adapter.InfoAdapter;
-import org.lapoderosa.app.model.Informacion;
 import org.lapoderosa.app.util.DateDefinido;
+import org.lapoderosa.app.util.MyAnimation;
 import org.lapoderosa.app.util.SharedPrefManager;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class ReportVisualizacion extends MasterClass implements View.OnClickListener {
-    private static final int STORAGE_PERMISSION_CODE = 101;
+public class ReportVisualizacion extends MasterClass{
     private TextView fullNameVictima, provincia, pais, hora, fecha;
-    private EditText ruvParentesco;
     private String id;
-    private Button btnPdf, btnGuardar;
-    private ImageView pdfIcon;
-    private RecyclerView rvVicInfo, rvTrasladoInfo, rvResulInvesInfo, rvOmisionActuarInfo, rvModalidadDetencionInfo, rvHechoPolicialInfo, rvFuerzasIntervinientesInfo, rvEntrevistadorInfo, rvCaracteProcedimientoInfo, rvAllanamientoInfo;
-    private InfoAdapter adapter;
-    private List<Informacion> datosVicList, datosTrasladoList, datosResultadoList, datosOmisionActuarList, datosModalidadDetencionList, datosHechoPolicialList, datosFuerzasIntervinientesList, datosEntrevistadorList, datosCaracteProcedimiento, datosAllanamientoList;
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    //VICTIMA
+    private TextView ruvNombreVictima, ruvApellidoVictima, ruvGeneroVictima, ruvEdadVictima, ruvDocumentoVictima, ruvNacionalidadVictima, ruvDireccionVictima, ruvBarrioVictima, ruvTelefonoVictima;
+
+    //TRASLADO
+    private TextView ruvTraslado, ruvEsposadoTraslado, ruvComisariaTraslado;
+
+    //RESULTADO INVESTIGACION
+    private TextView ruvResultadoInvestigacion, ruvTrabajanOficiales;
+
+    //OMISION ACTUAR
+    private TextView ruvMediosDeAsistencia, ruvQuienAsistencia, ruvDenunciaRechazada, ruvViolentado, ruvDenunciaFinal;
+
+    //MODALIDAD DETENCION
+    private TextView ruvPosicionDetenido, ruvTiempoDetenido;
+
+    //HECHO POLICIAL
+    private TextView ruvDiaHecho, ruvFechaHecho, ruvCuantosAcompañanHecho, ruvCualLugarHecho, ruvProvinciaHecho, ruvPaisHecho, ruvDireccionHecho, ruvBarrioHecho;
+
+    //FUERZAS INTERVENIENTES
+    private TextView ruvFuerzasIntervinientes, ruvCentidadAgentes, ruvNombreAgente, ruvApodos, ruvCantidadVehiculos, ruvNumeroMovil, ruvDominioFuerzas, ruvConductaFuerzas;
+
+    //CARACTERISTICAS PROCEDIMIENTO
+    private TextView ruvMotivoProcedimiento, ruvMaltratosProcedimientos, ruvLesionesProcedimiento;
+
+    //ALLANAMIENTO
+    private TextView ruvOrdenAllanamiento, ruvAgresionAllanamiento, ruvPertenenciasAllanamiento, ruvOmisionPertenencias, ruvDetenidosAllanamiento, ruvDuracionAllanamiento, ruvEsposadosAllanamiento, ruvPosicionAllanamiento;
+
+    //ENTREVISTADO
+    private TextView ruvParentesco;
+
+    //ENTREVISTADOR
+    private TextView ruvNombreEntrevistador, ruvApellidoEntrevistador, ruvAsambleaEntrevistador, ruvFechaEntrevistador;
+    private ImageView pdfIcon, editIcon;
+    private JSONObject jsonObjectInfo;
+    private static final int STORAGE_PERMISSION_CODE = 101;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_visualizacion);
-        progressDialog = new ProgressDialog(this);
+        //Objects.requireNonNull(getSupportActionBar()).setCustomView(R.id.edit_icon);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
 
-        inicializarVariables();
+        progressDialog = new ProgressDialog(this);
+        pdfIcon = findViewById(R.id.pdf_icon);
+        editIcon = findViewById(R.id.edit_icon);
+
+        fullNameVictima = findViewById(R.id.vName);
+        provincia = findViewById(R.id.vProvincia);
+        pais = findViewById(R.id.vPais);
+        hora = findViewById(R.id.vHora);
+        fecha = findViewById(R.id.vFecha);
+
+        //VICTIMA
+        ruvNombreVictima = findViewById(R.id.ruvNombreVictima);
+        ruvApellidoVictima = findViewById(R.id.ruvApellidoVictima);
+        ruvGeneroVictima = findViewById(R.id.ruvGeneroVictima);
+        ruvEdadVictima = findViewById(R.id.ruvEdadVictima);
+        ruvDocumentoVictima = findViewById(R.id.ruvDocumentoVictima);
+        ruvNacionalidadVictima = findViewById(R.id.ruvNacionalidadVictima);
+        ruvDireccionVictima = findViewById(R.id.ruvDireccionVictima);
+        ruvBarrioVictima = findViewById(R.id.ruvBarrioVictima);
+        ruvTelefonoVictima = findViewById(R.id.ruvTelefonoVictima);
+
+        //TRASLADO
+        ruvTraslado = findViewById(R.id.ruvTraslado);
+        ruvEsposadoTraslado = findViewById(R.id.ruvEsposadoTraslado);
+        ruvComisariaTraslado = findViewById(R.id.ruvComisariaTraslado);
+
+        //RESULTADO INVESTIGACION
+        ruvResultadoInvestigacion = findViewById(R.id.ruvResultadoInvestigacion);
+        ruvTrabajanOficiales = findViewById(R.id.ruvTrabajanOficiales);
+
+        //OMISION ACTUAR
+        ruvMediosDeAsistencia = findViewById(R.id.ruvMediosDeAsistencia);
+        ruvQuienAsistencia = findViewById(R.id.ruvQuienAsistencia);
+        ruvDenunciaRechazada = findViewById(R.id.ruvDenunciaRechazada);
+        ruvViolentado = findViewById(R.id.ruvViolentado);
+        ruvDenunciaFinal = findViewById(R.id.ruvDenunciaFinal);
+
+        //MODALIDAD DETENCION
+        ruvPosicionDetenido = findViewById(R.id.ruvPosicionDetenido);
+        ruvTiempoDetenido = findViewById(R.id.ruvTiempoDetenido);
+
+        //HECHO POLICIAL
+        ruvDiaHecho = findViewById(R.id.ruvDiaHecho);
+        ruvFechaHecho = findViewById(R.id.ruvFechaHecho);
+        ruvCuantosAcompañanHecho = findViewById(R.id.ruvCuantosAcompañanHecho);
+        ruvCualLugarHecho = findViewById(R.id.ruvCualLugarHecho);
+        ruvProvinciaHecho = findViewById(R.id.ruvProvinciaHecho);
+        ruvPaisHecho = findViewById(R.id.ruvPaisHecho);
+        ruvDireccionHecho = findViewById(R.id.ruvDireccionHecho);
+        ruvBarrioHecho = findViewById(R.id.ruvBarrioHecho);
+
+        //FUERZAS INTERVENIENTES
+        ruvFuerzasIntervinientes = findViewById(R.id.ruvFuerzasIntervinientes);
+        ruvCentidadAgentes = findViewById(R.id.ruvCentidadAgentes);
+        ruvNombreAgente = findViewById(R.id.ruvNombreAgente);
+        ruvApodos = findViewById(R.id.ruvApodos);
+        ruvCantidadVehiculos = findViewById(R.id.ruvCantidadVehiculos);
+        ruvNumeroMovil = findViewById(R.id.ruvNumeroMovil);
+        ruvDominioFuerzas = findViewById(R.id.ruvDominioFuerzas);
+        ruvConductaFuerzas = findViewById(R.id.ruvConductaFuerzas);
+
+        //CARACTERISTICAS PROCEDIMIENTO
+        ruvMotivoProcedimiento = findViewById(R.id.ruvMotivoProcedimiento);
+        ruvMaltratosProcedimientos = findViewById(R.id.ruvMaltratosProcedimientos);
+        ruvLesionesProcedimiento = findViewById(R.id.ruvLesionesProcedimiento);
+
+        //ALLANAMIENTO
+        ruvOrdenAllanamiento = findViewById(R.id.ruvOrdenAllanamiento);
+        ruvAgresionAllanamiento = findViewById(R.id.ruvAgresionAllanamiento);
+        ruvPertenenciasAllanamiento = findViewById(R.id.ruvPertenenciasAllanamiento);
+        ruvOmisionPertenencias = findViewById(R.id.ruvOmisionPertenencias);
+        ruvDetenidosAllanamiento = findViewById(R.id.ruvDetenidosAllanamiento);
+        ruvDuracionAllanamiento = findViewById(R.id.ruvDuracionAllanamiento);
+        ruvEsposadosAllanamiento = findViewById(R.id.ruvEsposadosAllanamiento);
+        ruvPosicionAllanamiento = findViewById(R.id.ruvPosicionAllanamiento);
+
+        //ENTREVISTADO
+        ruvParentesco = findViewById(R.id.ruvParentesco);
+
+        //ENTREVISTADOR
+        ruvNombreEntrevistador = findViewById(R.id.ruvNombreEntrevistador);
+        ruvApellidoEntrevistador = findViewById(R.id.ruvApellidoEntrevistador);
+        ruvAsambleaEntrevistador = findViewById(R.id.ruvAsambleaEntrevistador);
+        ruvFechaEntrevistador = findViewById(R.id.ruvFechaEntrevistador);
 
         Bundle bundle = getIntent().getExtras();
 
@@ -76,11 +182,16 @@ public class ReportVisualizacion extends MasterClass implements View.OnClickList
             fecha.setText(bundle.getString("fecha"));
         }
 
-        rvLyManager();
-
         ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_CONSEGUIR_REPORTE));
 
-        myAdapters();
+        pdfIcon.setOnClickListener(view -> {
+            MyAnimation.blink(view,ReportVisualizacion.this);
+        });
+
+        editIcon.setOnClickListener(view -> {
+            MyAnimation.blink(view,ReportVisualizacion.this);
+            startActivity(new Intent(ReportVisualizacion.this, ReportEdicion.class));
+        });
     }
 
     public void checkPermission(String permission, int requestCode) {
@@ -115,113 +226,91 @@ public class ReportVisualizacion extends MasterClass implements View.OnClickList
 
     @Override
     protected void inicializarVariables() {
-        datosVicList = new ArrayList<>();
-        datosTrasladoList = new ArrayList<>();
-        datosResultadoList = new ArrayList<>();
-        datosOmisionActuarList = new ArrayList<>();
-        datosModalidadDetencionList = new ArrayList<>();
-        datosHechoPolicialList = new ArrayList<>();
-        datosFuerzasIntervinientesList = new ArrayList<>();
-        datosEntrevistadorList = new ArrayList<>();
-        datosCaracteProcedimiento = new ArrayList<>();
-        datosAllanamientoList = new ArrayList<>();
-
-        findViews();
-        myOnClicks();
     }
 
     @Override
     protected void responseConexion(String response) {
         try {
-            JSONObject jsonObjectInfo = new JSONObject(response);
+            jsonObjectInfo = new JSONObject(response);
+            //VICTIMA
+            ruvNombreVictima.setText(jsonObjectInfo.getString("usu_nombre_victima"));
+            ruvApellidoVictima.setText(jsonObjectInfo.getString("usu_apellido_victima"));
+            ruvGeneroVictima.setText(jsonObjectInfo.getString("usu_genero_victima"));
+            ruvEdadVictima.setText(jsonObjectInfo.getString("usu_edad_victima"));
+            ruvDocumentoVictima.setText(jsonObjectInfo.getString("usu_documento_victima"));
+            ruvNacionalidadVictima.setText(jsonObjectInfo.getString("usu_nacionalidad_victima"));
+            ruvDireccionVictima.setText(jsonObjectInfo.getString("usu_direccion_victima"));
+            ruvBarrioVictima.setText(jsonObjectInfo.getString("usu_barrio_victima"));
+            ruvTelefonoVictima.setText(jsonObjectInfo.getString("usu_telefono_victima"));
 
-            Log.e("info", "json:" + jsonObjectInfo);
-            datosVicList.add(new Informacion("Nombre:", jsonObjectInfo.getString("usu_nombre_victima"), "usu_nombre_victima", true));
-            datosVicList.add(new Informacion("Apellido:", jsonObjectInfo.getString("usu_apellido_victima"), "usu_apellido_victima",true));
-            datosVicList.add(new Informacion("Genero:", jsonObjectInfo.getString("usu_genero_victima"), "usu_genero_victima",true));
-            datosVicList.add(new Informacion("Edad:", jsonObjectInfo.getString("usu_edad_victima"), "usu_edad_victima",true));
-            datosVicList.add(new Informacion("Nacionalidad:", jsonObjectInfo.getString("usu_nacionalidad_victima"), "usu_nacionalidad_victima",true));
-            datosVicList.add(new Informacion("Documento:", jsonObjectInfo.getString("usu_documento_victima"), "usu_documento_victima",true));
-            datosVicList.add(new Informacion("Direccion:", jsonObjectInfo.getString("usu_direccion_victima"), "usu_direccion_victima",true));
-            datosVicList.add(new Informacion("Barrio:", jsonObjectInfo.getString("usu_barrio_victima"), "usu_barrio_victima",true));
-            datosVicList.add(new Informacion("Nombre:", jsonObjectInfo.getString("usu_telefono_victima"), "usu_telefono_victima",true));
+            //TRASLAD
+            ruvTraslado.setText(jsonObjectInfo.getString("usu_traslado"));
+            ruvComisariaTraslado.setText(jsonObjectInfo.getString("usu_comisaria"));
+            ruvEsposadoTraslado.setText(jsonObjectInfo.getString("usu_esposado"));
 
-            datosTrasladoList.add(new Informacion("Fue Traslado:", jsonObjectInfo.getString("usu_traslado"), "usu_traslado",true));
-            datosTrasladoList.add(new Informacion("Cual Comisaria:", jsonObjectInfo.getString("usu_comisaria"), "usu_comisaria",true));
-            datosTrasladoList.add(new Informacion("Fue Esposado:", jsonObjectInfo.getString("usu_esposado"), "usu_esposado",true));
+            //RESULTADO INVESTIGACION
+            ruvResultadoInvestigacion.setText(jsonObjectInfo.getString("usu_resultado_investigacion"));
+            ruvTrabajanOficiales.setText(jsonObjectInfo.getString("usu_trabajan_los_oficiales"));
 
-            datosResultadoList.add(new Informacion("Resultado:", jsonObjectInfo.getString("usu_resultado_investigacion"), "usu_resultado_investigacion",true));
-            datosResultadoList.add(new Informacion("Trabajan los Oficiales:", jsonObjectInfo.getString("usu_trabajan_los_oficiales"), "usu_trabajan_los_oficiales",true));
+            //OMISION ACTUAR
+            ruvMediosDeAsistencia.setText(jsonObjectInfo.getString("usu_medios_de_asistencia"));
+            ruvQuienAsistencia.setText(jsonObjectInfo.getString("usu_a_quien_asistencia"));
+            ruvDenunciaRechazada.setText(jsonObjectInfo.getString("usu_denuncia_rechazada"));
+            ruvViolentado.setText(jsonObjectInfo.getString("usu_violentado"));
+            ruvDenunciaFinal.setText(jsonObjectInfo.getString("usu_denuncia_final"));
 
-            datosOmisionActuarList.add(new Informacion("Medio de Asistencia:", jsonObjectInfo.getString("usu_medios_de_asistencia"), "usu_medios_de_asistencia",true));
-            datosOmisionActuarList.add(new Informacion("Quien lo asistio:", jsonObjectInfo.getString("usu_a_quien_asistencia"), "usu_a_quien_asistencia",true));
-            datosOmisionActuarList.add(new Informacion("Denuncia fue rechazada:", jsonObjectInfo.getString("usu_denuncia_rechazada"), "usu_denuncia_rechazada",true));
-            datosOmisionActuarList.add(new Informacion("Fue Violentado:", jsonObjectInfo.getString("usu_violentado"), "usu_violentado",true));
-            datosOmisionActuarList.add(new Informacion("Denuncia final:", jsonObjectInfo.getString("usu_denuncia_final"), "usu_denuncia_final",true));
+            //MODALIDAD DETENCION
+            ruvPosicionDetenido.setText(jsonObjectInfo.getString("usu_posicion_detenido"));
+            ruvTiempoDetenido.setText(jsonObjectInfo.getString("usu_tiempo_detenido"));
 
-            datosModalidadDetencionList.add(new Informacion("Posicion al ser Detenido:", jsonObjectInfo.getString("usu_posicion_detenido"), "usu_posicion_detenido",true));
-            datosModalidadDetencionList.add(new Informacion("Tiempo Detenido:", jsonObjectInfo.getString("usu_tiempo_detenido"), "usu_tiempo_detenido",true));
+            //HECHO POLICIAL
+            ruvDiaHecho.setText(jsonObjectInfo.getString("usu_dia_hecho"));
+            ruvFechaHecho.setText(jsonObjectInfo.getString("usu_hora_hecho"));
+            ruvCuantosAcompañanHecho.setText(jsonObjectInfo.getString("usu_cuantos_acompanian"));
+            ruvCualLugarHecho.setText(jsonObjectInfo.getString("usu_cual_lugar"));
+            ruvProvinciaHecho.setText(jsonObjectInfo.getString("usu_provincia_hecho"));
+            ruvPaisHecho.setText(jsonObjectInfo.getString("usu_pais_hecho"));
+            ruvDireccionHecho.setText(jsonObjectInfo.getString("usu_direccion_hecho"));
+            ruvBarrioHecho.setText(jsonObjectInfo.getString("usu_barrio_hecho"));
 
-            datosHechoPolicialList.add(new Informacion("Dia:", jsonObjectInfo.getString("usu_dia_hecho"), "usu_dia_hecho",true));
-            datosHechoPolicialList.add(new Informacion("Hora:", jsonObjectInfo.getString("usu_hora_hecho"), "usu_hora_hecho",true));
-            datosHechoPolicialList.add(new Informacion("Cuantos Acompañaron:", jsonObjectInfo.getString("usu_cuantos_acompanian"), "usu_cuantos_acompanian",true));
-            datosHechoPolicialList.add(new Informacion("Lugar:", jsonObjectInfo.getString("usu_cual_lugar"), "usu_cual_lugar",true));
-            datosHechoPolicialList.add(new Informacion("Provincia:", jsonObjectInfo.getString("usu_provincia_hecho"), "usu_provincia_hecho",true));
-            datosHechoPolicialList.add(new Informacion("Pais:", jsonObjectInfo.getString("usu_pais_hecho"), "usu_pais_hecho",true));
-            datosHechoPolicialList.add(new Informacion("Direccion:", jsonObjectInfo.getString("usu_direccion_hecho"), "usu_direccion_hecho",true));
-            datosHechoPolicialList.add(new Informacion("Barrio:", jsonObjectInfo.getString("usu_barrio_hecho"), "usu_barrio_hecho",true));
+            //FUERZAS INTERVENIENTES
+            ruvFuerzasIntervinientes.setText(jsonObjectInfo.getString("usu_fuerzas_intervinientes"));
+            ruvCentidadAgentes.setText(jsonObjectInfo.getString("usu_cantidad_agentes"));
+            ruvNombreAgente.setText(jsonObjectInfo.getString("usu_nombres_agentes"));
+            ruvApodos.setText(jsonObjectInfo.getString("usu_apodos"));
+            ruvCantidadVehiculos.setText(jsonObjectInfo.getString("usu_cantidad_vehiculos"));
+            ruvNumeroMovil.setText(jsonObjectInfo.getString("usu_num_movil"));
+            ruvDominioFuerzas.setText(jsonObjectInfo.getString("usu_dominio"));
+            ruvConductaFuerzas.setText(jsonObjectInfo.getString("usu_conducta_agentes"));
 
-            datosFuerzasIntervinientesList.add(new Informacion("Tipo de Policia:", jsonObjectInfo.getString("usu_fuerzas_intervinientes"), "usu_fuerzas_intervinientes",true));
-            datosFuerzasIntervinientesList.add(new Informacion("Cantidad Agentes:", jsonObjectInfo.getString("usu_cantidad_agentes"), "usu_cantidad_agentes",true));
-            datosFuerzasIntervinientesList.add(new Informacion("Nombre Agentes:", jsonObjectInfo.getString("usu_nombres_agentes"), "usu_nombres_agentes",true));
-            datosFuerzasIntervinientesList.add(new Informacion("Apodos:", jsonObjectInfo.getString("usu_apodos"), "usu_apodos",true));
-            datosFuerzasIntervinientesList.add(new Informacion("Cantidad Vehiculos:", jsonObjectInfo.getString("usu_cantidad_vehiculos"), "usu_cantidad_vehiculos",true));
-            datosFuerzasIntervinientesList.add(new Informacion("Patente Vehiculos:", jsonObjectInfo.getString("usu_num_movil"), "usu_num_movil",true));
-            datosFuerzasIntervinientesList.add(new Informacion("Dominio:", jsonObjectInfo.getString("usu_dominio"), "usu_dominio",true));
-            datosFuerzasIntervinientesList.add(new Informacion("Conducta Agentes:", jsonObjectInfo.getString("usu_conducta_agentes"), "usu_conducta_agentes",true));
+            //CARACTERISTICAS PROCEDIMIENTO
+            ruvMotivoProcedimiento.setText(jsonObjectInfo.getString("usu_motivo_procedimiento"));
+            ruvMaltratosProcedimientos.setText(jsonObjectInfo.getString("usu_maltratos"));
+            ruvLesionesProcedimiento.setText(jsonObjectInfo.getString("usu_lesiones"));
 
-            datosCaracteProcedimiento.add(new Informacion("Motivo de Procedimiento", jsonObjectInfo.getString("usu_motivo_procedimiento"), "usu_motivo_procedimiento",true));
-            datosCaracteProcedimiento.add(new Informacion("Hubo Maltratos:", jsonObjectInfo.getString("usu_maltratos"), "usu_maltratos",true));
-            datosCaracteProcedimiento.add(new Informacion("Hubo Lesiones:", jsonObjectInfo.getString("usu_lesiones"), "usu_lesiones",true));
+            //ALLANAMIENTO
+            ruvOrdenAllanamiento.setText(jsonObjectInfo.getString("usu_orden_allanamiento"));
+            ruvAgresionAllanamiento.setText(jsonObjectInfo.getString("usu_agresion_allanamiento"));
+            ruvPertenenciasAllanamiento.setText(jsonObjectInfo.getString("usu_pertenencias_allanamiento"));
+            ruvOmisionPertenencias.setText(jsonObjectInfo.getString("usu_omision_pertenencias"));
+            ruvDetenidosAllanamiento.setText(jsonObjectInfo.getString("usu_detenidos_allanamiento"));
+            ruvDuracionAllanamiento.setText(jsonObjectInfo.getString("usu_duracion_allanamiento"));
+            ruvEsposadosAllanamiento.setText(jsonObjectInfo.getString("usu_esposados"));
+            ruvPosicionAllanamiento.setText(jsonObjectInfo.getString("usu_posicion_allanamiento"));
 
-            datosAllanamientoList.add(new Informacion("Hubo Orden de Allanamiento;", jsonObjectInfo.getString("usu_orden_allanamiento"), "usu_orden_allanamiento",true));
-            datosAllanamientoList.add(new Informacion("Hubo Agresion:", jsonObjectInfo.getString("usu_agresion_allanamiento"), "usu_agresion_allanamiento",true));
-            datosAllanamientoList.add(new Informacion("Pertenencias Allanadas:", jsonObjectInfo.getString("usu_pertenencias_allanamiento"), "usu_pertenencias_allanamiento",true));
-            datosAllanamientoList.add(new Informacion("Hubo Omision Pertenencias:", jsonObjectInfo.getString("usu_omision_pertenencias"), "usu_omision_pertenencias",true));
-            datosAllanamientoList.add(new Informacion("Hubo Detenidos:", jsonObjectInfo.getString("usu_detenidos_allanamiento"), "usu_detenidos_allanamiento",true));
-            datosAllanamientoList.add(new Informacion("Duracion:", jsonObjectInfo.getString("usu_duracion_allanamiento"), "usu_duracion_allanamiento",true));
-            datosAllanamientoList.add(new Informacion("Fue Esposado:", jsonObjectInfo.getString("usu_esposados"), "usu_esposados",true));
-            datosAllanamientoList.add(new Informacion("Posicion:", jsonObjectInfo.getString("usu_posicion_allanamiento"), "usu_posicion_allanamiento",true));
-
-            //todo sacar esta variable unica
+            //ENTREVISTADO
             ruvParentesco.setText(jsonObjectInfo.getString("usu_parentesco_entrevistado"));
 
-            datosEntrevistadorList.add(new Informacion("Nombre:", jsonObjectInfo.getString("usu_nombre"), "usu_nombre",false));
-            datosEntrevistadorList.add(new Informacion("Apellido:", jsonObjectInfo.getString("usu_apellido"), "usu_apellido",false));
-            datosEntrevistadorList.add(new Informacion("Asamblea:", jsonObjectInfo.getString("usu_asamblea"), "usu_asamblea",false));
-            datosEntrevistadorList.add(new Informacion("Fecha De Modificacion:", jsonObjectInfo.getString("usu_fecha"), "usu_fecha",false));
-
-            myAdapters();
+            //ENTREVISTADOR
+            ruvNombreEntrevistador.setText(jsonObjectInfo.getString("usu_nombre"));
+            ruvApellidoEntrevistador.setText(jsonObjectInfo.getString("usu_apellido"));
+            ruvAsambleaEntrevistador.setText(jsonObjectInfo.getString("usu_asamblea"));
+            ruvFechaEntrevistador.setText(jsonObjectInfo.getString("usu_fecha"));
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
     }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnGuardar:
-
-                break;
-            case R.id.btPdf:
-                AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
-                animation.setDuration(500);
-                btnPdf.setAlpha(1f);
-                btnPdf.startAnimation(animation);
-                break;
-        }
-    }
-
+/*
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void createPDF() {
         String namePDF = fullNameVictima.getText().toString() + "_" + DateDefinido.getFechaDispositivo() + "_-_" + DateDefinido.getHoraDispositivo();
@@ -247,81 +336,5 @@ public class ReportVisualizacion extends MasterClass implements View.OnClickList
         myPdfDocument.close();
         makeTxt("creado", ReportVisualizacion.this);
     }
-
-    private void findViews() {
-        //recicledView
-        rvVicInfo = findViewById(R.id.rvVicInfo);
-        rvTrasladoInfo = findViewById(R.id.rvTrasladoInfo);
-        rvResulInvesInfo = findViewById(R.id.rvResulInvesInfo);
-        rvOmisionActuarInfo = findViewById(R.id.rvOmisionActuarInfo);
-        rvModalidadDetencionInfo = findViewById(R.id.rvModalidadDetencionInfo);
-        rvHechoPolicialInfo = findViewById(R.id.rvHechoPolicialInfo);
-        rvFuerzasIntervinientesInfo = findViewById(R.id.rvFuerzasIntervinientesInfo);
-        rvEntrevistadorInfo = findViewById(R.id.rvEntrevistadorInfo);
-        rvCaracteProcedimientoInfo = findViewById(R.id.rvCaracteProcedimientoInfo);
-        rvAllanamientoInfo = findViewById(R.id.rvAllanamientoInfo);
-
-        ruvParentesco = findViewById(R.id.ruvParentesco);
-
-        //Datos del reporte
-        fullNameVictima = findViewById(R.id.vName);
-        provincia = findViewById(R.id.vProvincia);
-        pais = findViewById(R.id.vPais);
-        hora = findViewById(R.id.vHora);
-        fecha = findViewById(R.id.vFecha);
-
-        //buttoms
-        btnPdf = findViewById(R.id.btPdf);
-        btnGuardar = findViewById(R.id.btnGuardar);
-    }
-
-    private void myOnClicks() {
-        btnPdf.setOnClickListener(this);
-        btnGuardar.setOnClickListener(this);
-    }
-
-    private void rvLyManager() {
-        rvVicInfo.setLayoutManager(new GridLayoutManager(this, 2));
-        rvTrasladoInfo.setLayoutManager(new GridLayoutManager(this, 2));
-        rvResulInvesInfo.setLayoutManager(new GridLayoutManager(this, 2));
-        rvOmisionActuarInfo.setLayoutManager(new GridLayoutManager(this, 2));
-        rvModalidadDetencionInfo.setLayoutManager(new GridLayoutManager(this, 2));
-        rvHechoPolicialInfo.setLayoutManager(new GridLayoutManager(this, 2));
-        rvFuerzasIntervinientesInfo.setLayoutManager(new GridLayoutManager(this, 2));
-        rvEntrevistadorInfo.setLayoutManager(new GridLayoutManager(this, 2));
-        rvCaracteProcedimientoInfo.setLayoutManager(new GridLayoutManager(this, 2));
-        rvAllanamientoInfo.setLayoutManager(new GridLayoutManager(this, 2));
-    }
-
-    private void myAdapters() {
-        adapter = new InfoAdapter(ReportVisualizacion.this, datosVicList);
-        rvVicInfo.setAdapter(adapter);
-
-        adapter = new InfoAdapter(ReportVisualizacion.this, datosTrasladoList);
-        rvTrasladoInfo.setAdapter(adapter);
-
-        adapter = new InfoAdapter(ReportVisualizacion.this, datosResultadoList);
-        rvResulInvesInfo.setAdapter(adapter);
-
-        adapter = new InfoAdapter(ReportVisualizacion.this, datosOmisionActuarList);
-        rvOmisionActuarInfo.setAdapter(adapter);
-
-        adapter = new InfoAdapter(ReportVisualizacion.this, datosModalidadDetencionList);
-        rvModalidadDetencionInfo.setAdapter(adapter);
-
-        adapter = new InfoAdapter(ReportVisualizacion.this, datosHechoPolicialList);
-        rvHechoPolicialInfo.setAdapter(adapter);
-
-        adapter = new InfoAdapter(ReportVisualizacion.this, datosFuerzasIntervinientesList);
-        rvFuerzasIntervinientesInfo.setAdapter(adapter);
-
-        adapter = new InfoAdapter(ReportVisualizacion.this, datosEntrevistadorList);
-        rvEntrevistadorInfo.setAdapter(adapter);
-
-        adapter = new InfoAdapter(ReportVisualizacion.this, datosCaracteProcedimiento);
-        rvCaracteProcedimientoInfo.setAdapter(adapter);
-
-        adapter = new InfoAdapter(ReportVisualizacion.this, datosAllanamientoList);
-        rvAllanamientoInfo.setAdapter(adapter);
-    }
+    */
 }

@@ -7,10 +7,10 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btBusqueda"
+        android:id="@+id/btnBusqueda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/btReporte"
+        android:layout_above="@id/btnReporte"
         android:layout_margin="10dp"
         style="@style/buttonFormat"
         android:background="@drawable/custom_bottom"
@@ -18,7 +18,7 @@
         android:textSize="18sp" />
 
     <Button
-        android:id="@+id/btReporte"
+        android:id="@+id/btnReporte"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -29,7 +29,7 @@
         android:textSize="18sp" />
 
     <Button
-        android:id="@+id/btCerrarSesion"
+        android:id="@+id/btnCerrarSesion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

@@ -13,7 +13,6 @@
     android:paddingRight="40dp">
 
     <ImageView
-        android:id="@+id/splashView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40sp"
@@ -28,7 +27,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/homeIngresar"
+            android:id="@+id/btIngresar"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_centerHorizontal="true"
@@ -40,10 +39,10 @@
 
         <TextView
             android:background="?android:attr/selectableItemBackground"
-            android:id="@+id/homeRegistrarse"
+            android:id="@+id/tvRegistrarse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/homeIngresar"
+            android:layout_below="@id/btIngresar"
             android:layout_marginTop="15dp"
             android:padding="8dp"
             android:gravity="center"
@@ -52,10 +51,10 @@
 
         <TextView
             android:background="?android:attr/selectableItemBackground"
-            android:id="@+id/homeReporteAnonimo"
+            android:id="@+id/tvReporteAnonimo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/homeRegistrarse"
+            android:layout_below="@id/tvRegistrarse"
             android:padding="8dp"
             android:gravity="center"
             android:text="@string/reporte_anonimo"
@@ -63,10 +62,10 @@
 
         <TextView
             android:background="?android:attr/selectableItemBackground"
-            android:id="@+id/homeContacto"
+            android:id="@+id/tvContacto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/homeReporteAnonimo"
+            android:layout_below="@id/tvReporteAnonimo"
             android:padding="8dp"
             android:gravity="center"
             android:text="@string/contacto"
@@ -75,7 +74,6 @@
         <TextView
             android:layout_marginBottom="10dp"
             android:textColor="#BCBBBB"
-            android:id="@+id/textVersion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

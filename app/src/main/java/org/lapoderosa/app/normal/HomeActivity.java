@@ -1,17 +1,12 @@
 package org.lapoderosa.app.normal;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Button;
-import android.widget.TextView;
 
-import com.lapoderosa.app.R;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.lapoderosa.app.databinding.ActivityHomeBinding;
 
 import org.lapoderosa.app.util.MyAnimation;
 
@@ -20,23 +15,20 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        ActivityHomeBinding binding = ActivityHomeBinding.inflate(getLayoutInflater());
+        View v = binding.getRoot();
+        setContentView(v);
 
-        Button ingresar = findViewById(R.id.homeIngresar);
-        TextView reporteAnonimo = findViewById(R.id.homeReporteAnonimo);
-        TextView contacto = findViewById(R.id.homeContacto);
-        TextView registrarse = findViewById(R.id.homeRegistrarse);
-
-        ingresar.setOnClickListener(view -> {
+        binding.btIngresar.setOnClickListener(view -> {
             MyAnimation.blink(view,this);
             startActivity(new Intent(HomeActivity.this, LoginActivity.class));
         });
 
-        reporteAnonimo.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, ReporteAnonimo.class)));
+        binding.tvReporteAnonimo.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, ReporteAnonimo.class)));
 
-        contacto.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, ContactoActivity.class)));
+        binding.tvContacto.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, ContactoActivity.class)));
 
-        registrarse.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, RegistrarseActivity.class)));
+        binding.tvRegistrarse.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, RegistrarseActivity.class)));
     }
 
     @Override

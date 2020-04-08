@@ -8,27 +8,27 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btAdminBusqueda"
+        android:id="@+id/btnBusqueda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/btAdminReporte"
+        android:layout_above="@id/btnReporte"
         android:layout_margin="10dp"
         android:background="@drawable/custom_bottom"
         android:text="@string/busqueda"
         style="@style/buttonFormat" />
 
     <Button
-        android:id="@+id/btAdminReporte"
+        android:id="@+id/btnReporte"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/btAdminHabilitar"
+        android:layout_above="@id/btnHabilitar"
         android:layout_margin="10dp"
         style="@style/buttonFormat"
         android:background="@drawable/custom_bottom"
         android:text="@string/reporte" />
 
     <Button
-        android:id="@+id/btAdminHabilitar"
+        android:id="@+id/btnHabilitar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -38,27 +38,27 @@
         style="@style/buttonFormat"/>
 
     <Button
-        android:id="@+id/btAdminRestablecer"
+        android:id="@+id/btnRestablecer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btAdminHabilitar"
+        android:layout_below="@id/btnHabilitar"
         android:layout_margin="10dp"
         android:background="@drawable/custom_bottom"
         android:text="@string/restablecer_contrasenia"
         style="@style/buttonFormat" />
 
     <Button
-        android:id="@+id/btAdminMovimientos"
+        android:id="@+id/btnMovimientos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btAdminRestablecer"
+        android:layout_below="@id/btnRestablecer"
         android:layout_margin="10dp"
         android:background="@drawable/custom_bottom"
         style="@style/buttonFormat"
         android:text="@string/movimientos"/>
 
     <Button
-        android:id="@+id/btAdminCerrarSesion"
+        android:id="@+id/btnCerrarSesion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

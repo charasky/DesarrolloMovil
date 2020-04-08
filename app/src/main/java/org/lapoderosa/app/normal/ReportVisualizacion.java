@@ -4,21 +4,11 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.pdf.PdfDocument;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
-import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -27,13 +17,9 @@ import com.lapoderosa.app.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
-import org.lapoderosa.app.util.DateDefinido;
 import org.lapoderosa.app.util.MyAnimation;
 import org.lapoderosa.app.util.SharedPrefManager;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -82,7 +68,7 @@ public class ReportVisualizacion extends MasterClass{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_visualizacion);
-        //Objects.requireNonNull(getSupportActionBar()).setCustomView(R.id.edit_icon);
+
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
 
@@ -310,31 +296,4 @@ public class ReportVisualizacion extends MasterClass{
             ex.printStackTrace();
         }
     }
-/*
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void createPDF() {
-        String namePDF = fullNameVictima.getText().toString() + "_" + DateDefinido.getFechaDispositivo() + "_-_" + DateDefinido.getHoraDispositivo();
-        PdfDocument myPdfDocument = new PdfDocument();
-        Paint myPaint = new Paint();
-
-        PdfDocument.PageInfo myPageInfo = new PdfDocument.PageInfo.Builder(250, 400, 1).create();
-        PdfDocument.Page myPage1 = myPdfDocument.startPage(myPageInfo);
-
-        Canvas canvas = myPage1.getCanvas();
-
-        canvas.drawText(fullNameVictima.getText().toString(), 40, 50, myPaint);
-        myPdfDocument.finishPage(myPage1);
-
-        File file = new File(Environment.getExternalStorageDirectory(), "/" + namePDF + ".pdf");
-
-        try {
-            myPdfDocument.writeTo(new FileOutputStream(file));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        myPdfDocument.close();
-        makeTxt("creado", ReportVisualizacion.this);
-    }
-    */
 }

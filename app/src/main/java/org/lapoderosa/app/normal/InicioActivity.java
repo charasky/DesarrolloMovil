@@ -1,13 +1,13 @@
 package org.lapoderosa.app.normal;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Button;
-
-import com.lapoderosa.app.R;
+import com.lapoderosa.app.databinding.ActivityInicioBinding;
 
 import org.lapoderosa.app.util.MyAnimation;
 import org.lapoderosa.app.util.SharedPrefManager;
@@ -16,23 +16,21 @@ public class InicioActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicio);
+        ActivityInicioBinding binding = ActivityInicioBinding.inflate(getLayoutInflater());
+        View v = binding.getRoot();
+        setContentView(v);
 
-        Button btBusqueda = findViewById(R.id.btBusqueda);
-        Button btReporte = findViewById(R.id.btReporte);
-        Button btCerrar = findViewById(R.id.btCerrarSesion);
-
-        btBusqueda.setOnClickListener(view -> {
+        binding.btnBusqueda.setOnClickListener(view -> {
             MyAnimation.blink(view,this);
             startActivity(new Intent(InicioActivity.this, BusquedarReporteActivity.class));
         });
 
-        btReporte.setOnClickListener(view -> {
+        binding.btnReporte.setOnClickListener(view -> {
             MyAnimation.blink(view,this);
             startActivity(new Intent(InicioActivity.this, ReporteActivity.class));
         });
 
-        btCerrar.setOnClickListener(view -> {
+        binding.btnCerrarSesion.setOnClickListener(view -> {
             MyAnimation.blink(view,this);
             cerrarSesion();
         });

@@ -7,21 +7,19 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.lapoderosa.app.R;
+import com.lapoderosa.app.databinding.ActivityBusquedaReporteBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
-import org.lapoderosa.app.util.SharedPrefManager;
 import org.lapoderosa.app.adapter.ReportAdapter;
 import org.lapoderosa.app.model.Report;
+import org.lapoderosa.app.util.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,25 +28,22 @@ import java.util.Map;
 import java.util.Objects;
 
 public class BusquedarReporteActivity extends MasterClass {
-    private EditText etBuscador;
-    private RecyclerView rvLista;
+    private ActivityBusquedaReporteBinding binding;
     private ReportAdapter adaptador;
     private List<Report> listaUsuarios;
-    private LinearLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_busqueda_reporte);
+        binding = ActivityBusquedaReporteBinding.inflate(getLayoutInflater());
+        View v = binding.getRoot();
+        setContentView(v);
+
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         progressDialog = new ProgressDialog(this);
         listaUsuarios = new ArrayList<>();
 
-        layout = findViewById(R.id.layoutBusqueda);
-        etBuscador = findViewById(R.id.etBuscar);
-        rvLista = findViewById(R.id.rvLista);
-
-        etBuscador.addTextChangedListener(new TextWatcher() {
+        binding.etBuscar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -63,14 +58,14 @@ public class BusquedarReporteActivity extends MasterClass {
             }
         });
 
-        rvLista.setLayoutManager(new GridLayoutManager(this, 1));
+        binding.rvLista.setLayoutManager(new GridLayoutManager(this, 1));
 
         ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_USUARIOS));
 
         adaptador = new ReportAdapter(BusquedarReporteActivity.this, listaUsuarios);
-        rvLista.setAdapter(adaptador);
+        binding.rvLista.setAdapter(adaptador);
 
-        layout.setOnClickListener(view -> {
+        binding.layoutBusqueda.setOnClickListener(view -> {
             InputMethodManager inputMethodManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         });
@@ -121,7 +116,7 @@ public class BusquedarReporteActivity extends MasterClass {
             }
 
             adaptador = new ReportAdapter(BusquedarReporteActivity.this, listaUsuarios);
-            rvLista.setAdapter(adaptador);
+            binding.rvLista.setAdapter(adaptador);
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -48,10 +48,11 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull InfoViewHolder infoViewHolder, int i) {
-        infoViewHolder.tvTitleDato.setText(informacionList.get(i).getDato());
-        infoViewHolder.etDato.setText(informacionList.get(i).getInformacion());
-        infoViewHolder.dbFila = informacionList.get(i).getDbValue();
-        infoViewHolder.dbtabla = informacionList.get(i).getDbValue();
+        infoViewHolder.tvTitleDato.setText(informacionList.get(i).getvName());
+        infoViewHolder.etDato.setText(informacionList.get(i).getContenido());
+        infoViewHolder.dbFila = informacionList.get(i).getDbName();
+        infoViewHolder.dbtabla = informacionList.get(i).getDbTable();
+        infoViewHolder.id = informacionList.get(i).getId();
     }
 
     @Override
@@ -60,7 +61,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder
     }
 
     public class InfoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        String dbtabla, dbFila;
+        String dbtabla, dbFila,id;
         TextView tvTitleDato;
         EditText etDato;
         ImageView ivSaveEdit, ivPenEdit;
@@ -81,7 +82,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder
             switch (v.getId()) {
                 case R.id.ivSaveEdit:
                     etDato.setEnabled(false);
-                    modificar("fjeifjie");
+                    modificar();
                     editOff();
                     break;
 
@@ -124,34 +125,35 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder
                         ivSaveEdit.setVisibility(View.VISIBLE);
                     } else {
                         ivSaveEdit.setVisibility(View.GONE);
-                        Log.e("reponse", "guardar" + "se fue :v");
                     }
                 }
             });
         }
 
 
-        private void modificar(String URL) {
+        private void modificar() {
+            String URL = context.getResources().getString(R.string.HOST) + context.getResources().getString(R.string.URL_EDIT_REPORT);
             StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, response -> {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    Toast.makeText(context, "Modificado" + tvTitleDato.getText().toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, jsonObject.getString("message") , Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }, error -> Toast.makeText(context, dbFila + " " + dbtabla, Toast.LENGTH_SHORT).show()) {
+            }, error -> Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()) {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     JSONObject jsonObjec = new JSONObject();
                     try {
-                        jsonObjec.put("cambiar", etDato.getText().toString());
-                        jsonObjec.put("fila", dbFila);
+                        jsonObjec.put("id", id);
                         jsonObjec.put("tabla", dbtabla);
+                        jsonObjec.put("fila", dbFila);
+                        jsonObjec.put("valor", etDato.getText().toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     Map<String, String> parametros = new HashMap<String, String>();
-                    parametros.put("1nf0", jsonObjec.toString());
+                    parametros.put("info", jsonObjec.toString());
                     return parametros;
                 }
             };

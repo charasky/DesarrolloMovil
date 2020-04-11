@@ -5,15 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.lapoderosa.app.R;
+import com.lapoderosa.app.databinding.ActivityRegistrarseBinding;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,36 +22,27 @@ import org.lapoderosa.app.util.MyAnimation;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class RegistrarseActivity extends MasterClass {
-    private EditText dmNombres, dmApellidos, dmEmail, dmAsamblea;
-    private TextInputLayout dmPassword, dmPassword2;
-    private Button dmRegistrarBtn;
     private String name, surname, email, asamblea, password1, password2;
-    private Check check = new Check();
-    private RelativeLayout layout;
+    private ActivityRegistrarseBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrarse);
+        binding = ActivityRegistrarseBinding.inflate(getLayoutInflater());
+        View v = binding.getRoot();
+        setContentView(v);
+
         progressDialog = new ProgressDialog(this);
 
-        layout = findViewById(R.id.layoutRegistrarse);
-        dmAsamblea = findViewById(R.id.dmAsamblea);
-        dmNombres = findViewById(R.id.dmName);
-        dmApellidos = findViewById(R.id.dmApellido);
-        dmEmail = findViewById(R.id.dmEmail);
-        dmPassword = findViewById(R.id.dmPassword1);
-        dmPassword2 = findViewById(R.id.dmPassword2);
-        dmRegistrarBtn = findViewById(R.id.dmRegistrarseBtn);
-
-        dmRegistrarBtn.setOnClickListener(view -> {
+        binding.dmRegistrarseBtn.setOnClickListener(view -> {
             MyAnimation.blink(view, this);
             registrar();
         });
 
-        layout.setOnClickListener(view -> {
+        binding.layoutRegistrarse.setOnClickListener(view -> {
             InputMethodManager inputMethodManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         });
@@ -69,12 +58,12 @@ public class RegistrarseActivity extends MasterClass {
     }
 
     protected void inicializarVariables() {
-        email = dmEmail.getText().toString().trim();
-        password2 = dmPassword2.getEditText().getText().toString().trim();
-        password1 = dmPassword.getEditText().getText().toString().trim();
-        name = dmNombres.getText().toString().trim();
-        surname = dmApellidos.getText().toString().trim();
-        asamblea = dmAsamblea.getText().toString().trim();
+        email = binding.dmEmail.getText().toString().trim();
+        password2 = Objects.requireNonNull(binding.dmPassword2.getEditText()).getText().toString().trim();
+        password1 = Objects.requireNonNull(binding.dmPassword1.getEditText()).getText().toString().trim();
+        name = binding.dmName.getText().toString().trim();
+        surname = binding.dmApellido.getText().toString().trim();
+        asamblea = binding.dmAsamblea.getText().toString().trim();
     }
 
     @Override
@@ -89,10 +78,10 @@ public class RegistrarseActivity extends MasterClass {
         }
 
         if (mensaje.equals("asamblea")) {
-            dmAsamblea.setError("Ingrese asamblea existente");
+            binding.dmAsamblea.setError("Ingrese asamblea existente");
         }
         if (mensaje.equals("email")) {
-            dmEmail.setError("Este email ya existe");
+            binding.dmEmail.setError("Este email ya existe");
         }
         if (mensaje.isEmpty()) {
             startActivity(new Intent(RegistrarseActivity.this, HomeActivity.class));
@@ -122,11 +111,12 @@ public class RegistrarseActivity extends MasterClass {
     }
 
     private List<Boolean> checkVariables() {
-        check.addListToCheck(check.isStringEmpty(name, dmNombres, "Ingrese nombre"));
-        check.addListToCheck(check.isStringEmpty(surname, dmApellidos, "Ingrese apellido"));
-        check.addListToCheck(check.isStringEmpty(asamblea, dmAsamblea, "Ingrese asamblea"));
-        check.addListToCheck(check.isStringEmpty(password1, dmPassword, "Ingrese contraseña"));
-        check.addListToCheck(check.isStringEmpty(password2, dmPassword2, "Reingrese contraseña"));
+        Check check = new Check();
+        check.addListToCheck(check.isStringEmpty(name, binding.dmName, "Ingrese nombre"));
+        check.addListToCheck(check.isStringEmpty(surname, binding.dmApellido, "Ingrese apellido"));
+        check.addListToCheck(check.isStringEmpty(asamblea, binding.dmAsamblea, "Ingrese asamblea"));
+        check.addListToCheck(check.isStringEmpty(password1, binding.dmPassword1, "Ingrese contraseña"));
+        check.addListToCheck(check.isStringEmpty(password2, binding.dmPassword2, "Reingrese contraseña"));
         return check.finalValidation();
     }
 
@@ -134,55 +124,55 @@ public class RegistrarseActivity extends MasterClass {
         boolean valid = true;
 
         if (!isValidEmail(email)) {
-            dmEmail.setError("Ingrese email valido");
+            binding.dmEmail.setError("Ingrese email valido");
             valid = false;
         }
 
         if (!(password1.matches(".{8,20}") || password2.matches(".{8,20}"))) {
-            dmPassword.setError("la contraseña debe ser mayor a 8 digitos");
-            dmPassword2.setError("la contraseña debe ser mayor a 8 digitos");
+            binding.dmPassword1.setError("la contraseña debe ser mayor a 8 digitos");
+            binding.dmPassword2.setError("la contraseña debe ser mayor a 8 digitos");
             valid = false;
         }
 
         if (!(password1.matches(".*[!@#$%^&*+=?-].*") || password2.matches(".*[!@#$%^&*+=?-].*"))) {
-            dmPassword.setError("la contraseña debe contener un caracter especial: !@#$%^&*+=?-");
-            dmPassword2.setError("la contraseña debe contener un caracter especial: !@#$%^&*+=?-");
+            binding.dmPassword1.setError("la contraseña debe contener un caracter especial: !@#$%^&*+=?-");
+            binding.dmPassword2.setError("la contraseña debe contener un caracter especial: !@#$%^&*+=?-");
             valid = false;
         }
 
         if (!(password1.matches(".*\\d.*") || password2.matches(".*\\d.*"))) {
-            dmPassword.setError("la contraseña debe contener almenos un numero");
-            dmPassword2.setError("la contraseña debe contener almenos un numero");
+            binding.dmPassword1.setError("la contraseña debe contener almenos un numero");
+            binding.dmPassword2.setError("la contraseña debe contener almenos un numero");
             valid = false;
         }
 
         if (!(password1.matches(".*[a-z].*") || password2.matches(".*[a-z].*"))) {
-            dmPassword.setError("Contraseña debe contener almenos una letra minuscula");
-            dmPassword2.setError("Contraseña debe contener almenos una letra minuscula");
+            binding.dmPassword1.setError("Contraseña debe contener almenos una letra minuscula");
+            binding.dmPassword2.setError("Contraseña debe contener almenos una letra minuscula");
             valid = false;
         }
 
         if (!(password1.matches(".*[A-Z].*") || password2.matches(".*[A-Z].*"))) {
-            dmPassword.setError("Contraseña debe contener almenos una letra mayuscula");
-            dmPassword2.setError("Contraseña debe contener almenos una letra mayuscula");
+            binding.dmPassword1.setError("Contraseña debe contener almenos una letra mayuscula");
+            binding.dmPassword2.setError("Contraseña debe contener almenos una letra mayuscula");
             valid = false;
         }
 
         if (password1.matches(".*\\s.*") || password2.matches(".*\\s.*")) {
-            dmPassword.setError("Contraseña no debe contener espacios");
-            dmPassword2.setError("Contraseña no debe contener espacios");
+            binding.dmPassword1.setError("Contraseña no debe contener espacios");
+            binding.dmPassword2.setError("Contraseña no debe contener espacios");
             valid = false;
         }
 
         if (!password1.equals(password2)) {
-            dmPassword.setError("Contraseñas no coinciden");
+            binding.dmPassword1.setError("Contraseñas no coinciden");
             //dmPassword2.setError("Contraseñas no coinciden");
             valid = false;
         }
         return valid;
     }
 
-    private final static boolean isValidEmail(CharSequence target) {
+    private static boolean isValidEmail(CharSequence target) {
         return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 }

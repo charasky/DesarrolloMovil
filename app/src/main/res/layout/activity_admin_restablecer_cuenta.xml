@@ -3,19 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/adRestablecerContraseña"
+    android:id="@+id/layoutRestablecer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="40dp"
+    android:padding="30dp"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_above="@+id/textTitulo"
-        android:text="Restablecer Cuenta"
-        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/textTitulo"
@@ -23,7 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/rEmail"
-        android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="@string/ingrese_email_y_la_nueva_contrasenia"
         android:textSize="18sp" />
@@ -31,7 +23,7 @@
     <EditText
         android:id="@+id/rEmail"
         android:inputType="textEmailAddress"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="48dp"
         android:layout_above="@+id/dmPassword1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -97,17 +89,6 @@
             android:background="@drawable/custom_bottom"
             android:text="@string/guardar"
             style="@style/buttonFormat"/>
-
-        <TextView
-            android:id="@+id/rVolver"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="15dp"
-            android:padding="8dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:text="@string/volver"
-            android:textSize="16sp"/>
 
     </LinearLayout>
 

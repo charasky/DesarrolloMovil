@@ -21,4 +21,5 @@
     <string name="URL_REPORTE" translatable="false">/v1/registerReporte.php</string>
     <string name="URL_CONSEGUIR_REPORTE" translatable="false">/v1/traerReporte.php</string>
     <string name="URL_REPORTE_ANONIMO" translatable="false">/v1/registrarReporteAnonimo.php</string>
+    <string name="URL_EDIT_REPORT" translatable="false">/v1/editReport.php</string>
 </resources>

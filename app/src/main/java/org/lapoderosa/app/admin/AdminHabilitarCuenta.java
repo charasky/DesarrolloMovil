@@ -4,27 +4,26 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.lapoderosa.app.R;
+import com.lapoderosa.app.databinding.ActivityAdminHabilitarUsuariosBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
-import org.lapoderosa.app.util.DateDefinido;
-import org.lapoderosa.app.util.MyAnimation;
-import org.lapoderosa.app.util.VolleySingleton;
-import org.lapoderosa.app.util.SharedPrefManager;
 import org.lapoderosa.app.adapter.UserAdapter;
 import org.lapoderosa.app.model.User;
+import org.lapoderosa.app.util.DateDefinido;
+import org.lapoderosa.app.util.MyAnimation;
+import org.lapoderosa.app.util.SharedPrefManager;
+import org.lapoderosa.app.util.VolleySingleton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,30 +31,29 @@ import java.util.List;
 import java.util.Map;
 
 public class AdminHabilitarCuenta extends MasterClass {
-    private RecyclerView rvHabilitar;
+    private ActivityAdminHabilitarUsuariosBinding binding;
     private UserAdapter adaptador;
     private List<User> listaUsuarios;
-    private Button button1, button2;
     private String user, hora, fecha;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_habilitar_usuarios);
+        binding = ActivityAdminHabilitarUsuariosBinding.inflate(getLayoutInflater());
+        View v = binding.getRoot();
+        setContentView(v);
+
         progressDialog = new ProgressDialog(this);
         listaUsuarios = new ArrayList<>();
 
-        button1 = findViewById(R.id.huAbutton1);
-        button2 = findViewById(R.id.huAbutton2);
-        rvHabilitar = findViewById(R.id.rvHabilitar);
-        rvHabilitar.setLayoutManager(new GridLayoutManager(this, 1));
+        binding.rvLista.setLayoutManager(new GridLayoutManager(this, 1));
 
         ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_USUARIOS_TO_ENABLED));
 
         adaptador = new UserAdapter(AdminHabilitarCuenta.this, listaUsuarios);
-        rvHabilitar.setAdapter(adaptador);
+        binding.rvLista.setAdapter(adaptador);
 
-        button1.setOnClickListener(new View.OnClickListener() {
+        binding.btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MyAnimation.blink(view,AdminHabilitarCuenta.this);
@@ -63,7 +61,7 @@ public class AdminHabilitarCuenta extends MasterClass {
             }
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        binding.btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MyAnimation.blink(view,AdminHabilitarCuenta.this);
@@ -99,7 +97,7 @@ public class AdminHabilitarCuenta extends MasterClass {
             }
 
             adaptador = new UserAdapter(AdminHabilitarCuenta.this, listaUsuarios);
-            rvHabilitar.setAdapter(adaptador);
+            binding.rvLista.setAdapter(adaptador);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -140,7 +138,6 @@ public class AdminHabilitarCuenta extends MasterClass {
                         e.printStackTrace();
                     }
                 }
-                //Log.d("Clicked", "usuario: " + user);
                 Map<String, String> parametros = new HashMap<String, String>();
                 parametros.put("usu_usuario", user);
                 parametros.put("usu_fecha", fecha);

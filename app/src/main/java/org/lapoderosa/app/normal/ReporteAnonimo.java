@@ -1,7 +1,5 @@
 package org.lapoderosa.app.normal;
 
-import androidx.appcompat.app.AlertDialog;
-
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
@@ -9,18 +7,18 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.view.View;
 
-import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.app.AlertDialog;
+
 import com.lapoderosa.app.R;
+import com.lapoderosa.app.databinding.ActivityReporteAnonimoBinding;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lapoderosa.app.MasterClass;
-import org.lapoderosa.app.util.DateDefinido;
 import org.lapoderosa.app.util.Check;
+import org.lapoderosa.app.util.DateDefinido;
 import org.lapoderosa.app.util.MyAnimation;
 
 import java.util.Calendar;
@@ -31,55 +29,39 @@ import java.util.Objects;
 
 public class ReporteAnonimo extends MasterClass {
     private String fechaCreacionReporteAnonimo, horaCreacionReporteAnonimo;
-    private Button btnEnviarDA;
     private String emailAnonimo, celularAnonimo, barrioAnonimo, provinciaAnonimo, paisAnonimo, anonimoDetalle, fechaHechoAnonimo, horaHechoAnonimo;
-    private EditText edtEmailAnonimo, edtCelularAnonimo, edtBarrioAnonimo, edtProvinciaAnonimo, edtPaisAnonimo;
-    private TextInputLayout textAnonimoDetalle;
-    private TextView tvFechaAnonimo, tvHoraAnonimo;
-    private Check check = new Check();
+    private ActivityReporteAnonimoBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityReporteAnonimoBinding.inflate(getLayoutInflater());
+        View v = binding.getRoot();
+        setContentView(v);
 
-        setContentView(R.layout.activity_reporte_anonimo);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         progressDialog = new ProgressDialog(this);
-        btnEnviarDA = findViewById(R.id.btnEnviarDA);
 
-        edtEmailAnonimo = findViewById(R.id.edtEmailAnonimo);
-        edtCelularAnonimo = findViewById(R.id.edtCelularAnonimo);
-
-        tvFechaAnonimo = findViewById(R.id.tvFechaAnonimo);
-        tvHoraAnonimo = findViewById(R.id.tvHoraAnonimo);
-
-        edtBarrioAnonimo = findViewById(R.id.edtBarrioAnonimo);
-        edtProvinciaAnonimo = findViewById(R.id.edtProvinciaAnonimo);
-        edtPaisAnonimo = findViewById(R.id.edtPaisAnonimo);
-        textAnonimoDetalle = findViewById(R.id.textAnonimoDetalle);
-
-
-        tvFechaAnonimo.setOnClickListener(view -> {
+        binding.tvFechaAnonimo.setOnClickListener(view -> {
             Calendar cal = Calendar.getInstance();
             int year = cal.get(Calendar.YEAR);
             int month = cal.get(Calendar.MONTH);
             int day = cal.get(Calendar.DAY_OF_MONTH);
 
             DatePickerDialog dialog = new DatePickerDialog(ReporteAnonimo.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                    (v1, year1, month1, dayOfMonth) -> tvFechaAnonimo.setText(dayOfMonth + "-" + (month1 + 1) + "-" + year1), year, month, day);
+                    (v1, year1, month1, dayOfMonth) -> binding.tvFechaAnonimo.setText(dayOfMonth + "-" + (month1 + 1) + "-" + year1), year, month, day);
             Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.show();
         });
 
-
-        tvHoraAnonimo.setOnClickListener(view -> {
+        binding.tvHoraAnonimo.setOnClickListener(view -> {
             TimePickerDialog dialog = new TimePickerDialog(ReporteAnonimo.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                    (v2, hourOfDay, minute) -> tvHoraAnonimo.setText(hourOfDay + ":" + minute), 0, 0, true);
+                    (v2, hourOfDay, minute) -> binding.tvHoraAnonimo.setText(hourOfDay + ":" + minute), 0, 0, true);
             Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.show();
         });
 
-        btnEnviarDA.setOnClickListener(view -> {
+        binding.btnEnviarDA.setOnClickListener(view -> {
             MyAnimation.blink(view,this);
             enviarDenunciaAnonima();
         });
@@ -101,12 +83,13 @@ public class ReporteAnonimo extends MasterClass {
     }
 
     private List<Boolean> checkVariables() {
-        check.addListToCheck(check.isStringEmpty(barrioAnonimo, edtBarrioAnonimo, "Ingrese barrio"));
-        check.addListToCheck(check.isStringEmpty(provinciaAnonimo, edtProvinciaAnonimo, "Ingrese provincia"));
-        check.addListToCheck(check.isStringEmpty(paisAnonimo, edtPaisAnonimo, "Ingrese pais"));
-        check.addListToCheck(check.isStringEmpty(anonimoDetalle, textAnonimoDetalle, "Ingrese detalle"));
-        check.addListToCheck(check.isStringEmpty(fechaHechoAnonimo, tvFechaAnonimo, "Ingrese fecha del hecho", this));
-        check.addListToCheck(check.isStringEmpty(horaHechoAnonimo, tvHoraAnonimo, "Ingrese hora del hecho", this));
+        Check check = new Check();
+        check.addListToCheck(check.isStringEmpty(barrioAnonimo, binding.edtBarrioAnonimo, "Ingrese barrio"));
+        check.addListToCheck(check.isStringEmpty(provinciaAnonimo, binding.edtProvinciaAnonimo, "Ingrese provincia"));
+        check.addListToCheck(check.isStringEmpty(paisAnonimo, binding.edtPaisAnonimo, "Ingrese pais"));
+        check.addListToCheck(check.isStringEmpty(anonimoDetalle, binding.textAnonimoDetalle, "Ingrese detalle"));
+        check.addListToCheck(check.isStringEmpty(fechaHechoAnonimo, binding.tvFechaAnonimo, "Ingrese fecha del hecho", this));
+        check.addListToCheck(check.isStringEmpty(horaHechoAnonimo, binding.tvHoraAnonimo, "Ingrese hora del hecho", this));
         return check.finalValidation();
     }
 
@@ -164,14 +147,14 @@ public class ReporteAnonimo extends MasterClass {
         fechaCreacionReporteAnonimo = DateDefinido.getFechaDispositivo();
         horaCreacionReporteAnonimo = DateDefinido.getHoraDispositivo();
 
-        emailAnonimo = edtEmailAnonimo.getText().toString().trim();
-        celularAnonimo = edtCelularAnonimo.getText().toString().trim();
-        barrioAnonimo = edtBarrioAnonimo.getText().toString().trim();
-        provinciaAnonimo = edtProvinciaAnonimo.getText().toString().trim();
-        paisAnonimo = edtPaisAnonimo.getText().toString().trim();
-        anonimoDetalle = textAnonimoDetalle.getEditText().getText().toString().trim();
-        fechaHechoAnonimo = tvFechaAnonimo.getText().toString().trim();
-        horaHechoAnonimo = tvHoraAnonimo.getText().toString().trim();
+        emailAnonimo = binding.edtEmailAnonimo.getText().toString().trim();
+        celularAnonimo = binding.edtCelularAnonimo.getText().toString().trim();
+        barrioAnonimo = binding.edtBarrioAnonimo.getText().toString().trim();
+        provinciaAnonimo = binding.edtProvinciaAnonimo.getText().toString().trim();
+        paisAnonimo = binding.edtPaisAnonimo.getText().toString().trim();
+        anonimoDetalle = binding.textAnonimoDetalle.getEditText().getText().toString().trim();
+        fechaHechoAnonimo = binding.tvFechaAnonimo.getText().toString().trim();
+        horaHechoAnonimo = binding.tvHoraAnonimo.getText().toString().trim();
     }
 
     @Override

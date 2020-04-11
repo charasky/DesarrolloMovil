@@ -1,31 +1,37 @@
 package org.lapoderosa.app.model;
 
 public class Informacion {
-    private String dato;
-    private String informacion;
-    private String dbValue;
-    private Boolean isEdtEnabled;
+    private String id;
+    private String vName;
+    private String contenido;
+    private String dbName;
+    private String dbTable;
 
-    public Informacion(String dato, String informacion, String dbValue, Boolean isEdtEnabled) {
-        this.dato = dato;
-        this.informacion = informacion;
-        this.dbValue = dbValue;
-        this.isEdtEnabled = isEdtEnabled;
+    public Informacion(String id, String vName, String contenido, String dbName, String dbTable) {
+        this.id = id;
+        this.vName = vName;
+        this.contenido = contenido;
+        this.dbName = dbName;
+        this.dbTable = dbTable;
     }
 
-    public String getDato() {
-        return dato;
+    public String getId() {
+        return id;
     }
 
-    public String getInformacion() {
-        return informacion;
+    public String getvName() {
+        return vName;
     }
 
-    public String getDbValue() {
-        return dbValue;
+    public String getContenido() {
+        return contenido;
     }
 
-    public Boolean getIsEdtEnabled() {
-        return isEdtEnabled;
+    public String getDbName() {
+        return dbName;
+    }
+
+    public String getDbTable() {
+        return dbTable;
     }
 }

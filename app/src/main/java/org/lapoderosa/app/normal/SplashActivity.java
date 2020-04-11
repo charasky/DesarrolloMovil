@@ -21,13 +21,9 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void runSplash() {
-        final Runnable splash = new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        final Runnable splash = () -> {
+            startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+            finish();
         };
 
         TimerTask task = new TimerTask() {

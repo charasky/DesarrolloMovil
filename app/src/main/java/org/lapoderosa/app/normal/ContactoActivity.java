@@ -1,27 +1,23 @@
 package org.lapoderosa.app.normal;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.view.View;
 
-import com.lapoderosa.app.R;
+import androidx.appcompat.app.AppCompatActivity;
+import com.lapoderosa.app.databinding.ActivityContactoBinding;
 
 public class ContactoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contacto);
+        ActivityContactoBinding binding = ActivityContactoBinding.inflate(getLayoutInflater());
+        View v = binding.getRoot();
+        setContentView(v);
 
-        LinearLayout lFacebook = findViewById(R.id.contactoFacebook);
-        LinearLayout lTwitter = findViewById(R.id.contactoTwitter);
-        TextView tvWeb = findViewById(R.id.contactoWeb);
-
-        lFacebook.setOnClickListener(view -> {
+        binding.contactoFacebook.setOnClickListener(view -> {
             final String url1 = "fb://page/213440425391495";
             final String url2 = "https:www.facebook.com/213440425391495";
 
@@ -29,7 +25,7 @@ public class ContactoActivity extends AppCompatActivity {
             finish();
         });
 
-        lTwitter.setOnClickListener(view -> {
+        binding.contactoTwitter.setOnClickListener(view -> {
             final String url1 = "twitter://user?user_id=402559824";
             final String url2 = "https://twitter.com/gargantapodero";
 
@@ -37,7 +33,7 @@ public class ContactoActivity extends AppCompatActivity {
             finish();
         });
 
-        tvWeb.setOnClickListener(view -> {
+        binding.contactoWeb.setOnClickListener(view -> {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.lapoderosa.org.ar")));
             finish();
         });

@@ -6,7 +6,7 @@
     android:id="@+id/layoutRecuperarCuenta"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="40dp"
+    android:padding="40dp"
     android:orientation="vertical"
     tools:context="org.lapoderosa.app.normal.RecuperarCuentaActivity">
 

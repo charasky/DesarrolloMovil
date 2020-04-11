@@ -4,13 +4,13 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.widget.EditText;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.lapoderosa.app.R;
+import com.lapoderosa.app.databinding.ActivityAdminMovimientosBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,22 +26,21 @@ import java.util.List;
 import java.util.Map;
 
 public class AdminMovimientosActivity extends MasterClass {
-    private RecyclerView rvMovimiento;
     private MovimientoAdapter adaptador;
-    private EditText etBuscador;
     private List<Movimiento> listaMovimientos;
+    private ActivityAdminMovimientosBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_movimientos);
+        binding = ActivityAdminMovimientosBinding.inflate(getLayoutInflater());
+        View v = binding.getRoot();
+        setContentView(v);
+
         progressDialog = new ProgressDialog(this);
         listaMovimientos = new ArrayList<>();
 
-        etBuscador = findViewById(R.id.etBuscarM);
-        rvMovimiento = findViewById(R.id.rvMovimiento);
-
-        etBuscador.addTextChangedListener(new TextWatcher() {
+        binding.etBuscarM.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -56,12 +55,12 @@ public class AdminMovimientosActivity extends MasterClass {
             }
         });
 
-        rvMovimiento.setLayoutManager(new GridLayoutManager(this, 1));
+        binding.rvMovimiento.setLayoutManager(new GridLayoutManager(this, 1));
 
         ejecutarServicio(getResources().getString(R.string.HOST) + getResources().getString(R.string.URL_MOVIMIENTO));
 
         adaptador = new MovimientoAdapter(AdminMovimientosActivity.this, listaMovimientos);
-        rvMovimiento.setAdapter(adaptador);
+        binding.rvMovimiento.setAdapter(adaptador);
     }
 
     public void filtrar(String texto) {
@@ -111,7 +110,7 @@ public class AdminMovimientosActivity extends MasterClass {
             }
 
             adaptador = new MovimientoAdapter(AdminMovimientosActivity.this, listaMovimientos);
-            rvMovimiento.setAdapter(adaptador);
+            binding.rvMovimiento.setAdapter(adaptador);
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -16,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:src="@drawable/splash" />
+        android:src="@drawable/splash"
+        android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/contactoWeb"
@@ -25,7 +26,7 @@
         android:layout_below="@+id/logo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:hint="lapoderosa.org.ar"
+        android:hint="@string/lapoderosa_org_ar"
         android:textSize="33sp"
         android:textStyle="bold" />
 
@@ -45,14 +46,17 @@
             android:layout_weight="0.4"
             android:gravity="right"
             android:paddingLeft="20dp"
-            android:src="@drawable/fb" />
+            android:src="@drawable/fb"
+            android:paddingStart="20dp"
+            tools:ignore="RtlHardcoded,RtlSymmetry"
+            android:contentDescription="@string/todo" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint=" @gargantapodero"
+            android:hint="@string/gargantapodero"
             android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -73,13 +77,16 @@
             android:layout_weight="0.4"
             android:gravity="right"
             android:paddingLeft="20dp"
-            android:src="@drawable/twitter" />
+            android:src="@drawable/twitter"
+            android:contentDescription="@string/todo"
+            android:paddingStart="20dp"
+            tools:ignore="RtlSymmetry" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint=" @gargantapodero"
+            android:hint="@string/gargantapodero"
             android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>

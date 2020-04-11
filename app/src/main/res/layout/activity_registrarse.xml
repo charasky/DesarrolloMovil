@@ -5,7 +5,7 @@
     android:id="@+id/layoutRegistrarse"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="25dp"
+    android:padding="25dp"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="org.lapoderosa.app.normal.RegistrarseActivity">

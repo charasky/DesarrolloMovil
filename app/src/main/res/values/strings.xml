@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Garganta Poderosa</string>
 
 
@@ -90,7 +90,9 @@
 
 
 
-    <string name="xxxxxx">xxxxx</string>
-
+    <string name="xxxxxx" translatable="false">xxxxx</string>
+    <string name="todo" translatable="false">logo</string>
+    <string name="lapoderosa_org_ar" tools:ignore="MissingTranslation">lapoderosa.org.ar</string>
+    <string name="gargantapodero" translatable="false">\@gargantapodero</string>
 
 </resources>

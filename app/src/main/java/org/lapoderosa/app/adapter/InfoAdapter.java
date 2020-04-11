@@ -28,7 +28,7 @@ import org.lapoderosa.app.util.VolleySingleton;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+//todo que no se puedan editar algunas cosas especificas y limitar a cualquier usuario el editar
 public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder> {
     private Context context;
     private List<Informacion> informacionList;
@@ -129,7 +129,6 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder
                 }
             });
         }
-
 
         private void modificar() {
             String URL = context.getResources().getString(R.string.HOST) + context.getResources().getString(R.string.URL_EDIT_REPORT);

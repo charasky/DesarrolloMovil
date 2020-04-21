@@ -108,6 +108,7 @@ public class ReporteAnonimo extends MasterClass {
                 .setCancelable(true)
                 .setPositiveButton("Si", (dialog, which) -> {
                     ReporteAnonimo.this.finish();
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     return;
                 })
 

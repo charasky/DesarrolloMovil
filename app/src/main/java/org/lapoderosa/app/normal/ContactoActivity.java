@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.lapoderosa.app.R;
 import com.lapoderosa.app.databinding.ActivityContactoBinding;
 
 public class ContactoActivity extends AppCompatActivity {
@@ -37,6 +39,19 @@ public class ContactoActivity extends AppCompatActivity {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.lapoderosa.org.ar")));
             finish();
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 
     public void goTo(String string1, String string2) {

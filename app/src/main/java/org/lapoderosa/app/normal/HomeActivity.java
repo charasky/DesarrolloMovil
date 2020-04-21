@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.lapoderosa.app.R;
 import com.lapoderosa.app.databinding.ActivityHomeBinding;
 
 import org.lapoderosa.app.util.MyAnimation;
@@ -20,15 +21,25 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(v);
 
         binding.btIngresar.setOnClickListener(view -> {
-            MyAnimation.blink(view,this);
+            MyAnimation.blink(view, this);
             startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
 
-        binding.tvReporteAnonimo.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, ReporteAnonimo.class)));
+        binding.tvReporteAnonimo.setOnClickListener(view -> {
+            startActivity(new Intent(HomeActivity.this, ReporteAnonimo.class));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        });
 
-        binding.tvContacto.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, ContactoActivity.class)));
+        binding.tvContacto.setOnClickListener(view -> {
+            startActivity(new Intent(HomeActivity.this, ContactoActivity.class));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        });
 
-        binding.tvRegistrarse.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, RegistrarseActivity.class)));
+        binding.tvRegistrarse.setOnClickListener(view -> {
+            startActivity(new Intent(HomeActivity.this, RegistrarseActivity.class));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        });
     }
 
     @Override

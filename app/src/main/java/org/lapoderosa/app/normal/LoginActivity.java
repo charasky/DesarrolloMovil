@@ -54,6 +54,13 @@ public class LoginActivity extends MasterClass {
     public void onBackPressed() {
         finish();
         super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 
     private void usuarioLogin() {

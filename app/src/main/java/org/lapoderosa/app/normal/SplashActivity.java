@@ -36,4 +36,10 @@ public class SplashActivity extends AppCompatActivity {
         Timer timer = new Timer();
         timer.schedule(task, 2000);
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
+    }
 }

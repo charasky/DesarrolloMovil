@@ -16,7 +16,7 @@
 
     <style name="buttonFormat">
         <item name="android:textColor">#FFFFFF</item>
-        <item name="android:textSize">17sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:typeface">sans</item>
     </style>
 

@@ -23,7 +23,7 @@ public class HomeActivity extends AppCompatActivity {
         binding.btIngresar.setOnClickListener(view -> {
             MyAnimation.blink(view, this);
             startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            overridePendingTransition(R.anim.slide_left_slow, R.anim.slide_left_s_out);
         });
 
         binding.tvReporteAnonimo.setOnClickListener(view -> {

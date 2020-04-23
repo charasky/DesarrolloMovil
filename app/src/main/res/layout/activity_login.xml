@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutLogin"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:paddingLeft="30dp"
-    android:paddingEnd="30dp"
-    android:paddingStart="30dp"
-    android:paddingRight="30dp"
+    android:paddingLeft="25dp"
+    android:paddingEnd="25dp"
+    android:paddingStart="25dp"
+    android:paddingRight="25dp"
     android:orientation="vertical">
 
-    <ImageView
+    <RelativeLayout
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:layout_above="@+id/etUserName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:foregroundGravity="center"
-        android:padding="5dp"
-        app:srcCompat="@drawable/splash"
-        tools:ignore="ContentDescription" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/splash"
+            tools:ignore="ContentDescription" />
+    </RelativeLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_marginTop="15dp"
         android:id="@+id/etUserName"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:errorEnabled="true">
@@ -39,6 +47,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/dmPassword1"
+        android:layout_below="@+id/etUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:errorEnabled="true"
@@ -55,23 +64,35 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/btLogin"
-            android:layout_width="300dp"
-            android:layout_height="45dp"
+        <LinearLayout
+            android:id="@+id/lybutn"
+            android:layout_below="@+id/dmPassword1"
             android:layout_marginTop="15dp"
-            style="@style/buttonFormat"
-            android:background="@drawable/custom_bottom"
-            android:text="@string/Entrar"/>
+            android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="42dp">
+
+            <Button
+                android:id="@+id/btLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/buttonFormat"
+                android:background="@drawable/custom_bottom"
+                android:text="@string/Entrar"/>
+        </LinearLayout>
 
         <TextView
-            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/lybutn"
             android:padding="8dp"
             android:id="@+id/etOlvidastesContrasenia"
-            android:layout_width="300dp"
+            android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="@string/olvidastes_la_contrasenia"
             android:textSize="16sp" />
-</LinearLayout>
+</RelativeLayout>

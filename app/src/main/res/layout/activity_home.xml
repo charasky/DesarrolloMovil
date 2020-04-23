@@ -1,28 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingLeft="40dp"
-    android:paddingEnd="40dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="org.lapoderosa.app.normal.HomeActivity"
-    android:paddingStart="40dp"
-    android:paddingRight="40dp">
+    android:paddingLeft="45dp"
+    android:paddingEnd="45dp"
+    android:paddingStart="45dp"
+    android:paddingRight="45dp">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40sp"
-        android:foregroundGravity="center"
-        android:padding="5dp"
-        app:srcCompat="@drawable/splash"
-        tools:ignore="ContentDescription" />
 
     <RelativeLayout
-        android:layout_gravity="center"
+        android:id="@+id/ly1"
+        android:layout_above="@+id/divider"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/splash"
+            tools:ignore="ContentDescription" />
+    </RelativeLayout>
+
+    <View
+        android:visibility="invisible"
+        android:layout_marginBottom="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?android:attr/listDivider" />
+
+    <LinearLayout
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:id="@+id/infoly"
+        android:layout_below="@+id/divider"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -30,10 +49,9 @@
             android:id="@+id/btIngresar"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_marginBottom="20dp"
             style="@style/buttonFormat"
-            android:background="@drawable/custom_bottom"
+            android:background="@drawable/rt_bottom"
             android:gravity="center"
             android:text="@string/ingresar"/>
 
@@ -42,8 +60,6 @@
             android:id="@+id/tvRegistrarse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/btIngresar"
-            android:layout_marginTop="15dp"
             android:padding="8dp"
             android:gravity="center"
             android:text="@string/REGISTRARSE3"
@@ -54,7 +70,6 @@
             android:id="@+id/tvReporteAnonimo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvRegistrarse"
             android:padding="8dp"
             android:gravity="center"
             android:text="@string/reporte_anonimo"
@@ -65,20 +80,20 @@
             android:id="@+id/tvContacto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvReporteAnonimo"
             android:padding="8dp"
             android:gravity="center"
             android:text="@string/contacto"
             style="@style/home" />
+    </LinearLayout>
 
-        <TextView
-            android:layout_marginBottom="10dp"
-            android:textColor="#BCBBBB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:text="@string/año"
-            android:textSize="13sp" />
-    </RelativeLayout>
-</LinearLayout>
+    <TextView
+        android:layout_marginBottom="10dp"
+        android:textColor="#BCBBBB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="@string/año"
+        android:textSize="13sp" />
+
+</RelativeLayout>
